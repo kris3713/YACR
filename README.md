@@ -1,4 +1,4 @@
-# **YACR** (**Y**et **A**nother **C**opr **R**epository)
+# YACR (Yet Another Copr Repository)
 
 This is a Copr repository for free/non-free packages that don't have the privilege of receiving auto-updates.
 
