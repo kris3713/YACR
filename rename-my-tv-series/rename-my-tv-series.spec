@@ -22,7 +22,6 @@ formats and can help organize your media files.
 %prep
 # Unpack the tarball gzip archive
 %setup -q -n RenameMyTVSeries-2.0.10-Linux64bit
-%autosetup
 
 %install
 mkdir -p %{buildroot}%{_bindir}
