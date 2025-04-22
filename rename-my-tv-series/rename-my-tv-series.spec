@@ -31,11 +31,7 @@ mkdir -p %{buildroot}%{_docdir}/%{name}-%{version}/
 
 install -m 755 RenameMyTVSeries %{buildroot}%{_bindir}/
 
-# Install the desktop file (assuming it's in the extracted directory)
-# If the desktop file has a different name, update 'RenameMyTVSeries.desktop'
-if [ -f RenameMyTVSeries.desktop ]; then
-    install -m 644 rename-my-tv-series.desktop %{buildroot}%{_datadir}/applications/
-fi
+install -m 644 rename-my-tv-series.desktop %{buildroot}%{_datadir}/applications/
 
 %files
 %{_bindir}/RenameMyTVSeries
