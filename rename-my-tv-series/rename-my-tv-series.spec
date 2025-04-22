@@ -34,14 +34,12 @@ install -m 755 RenameMyTVSeries %{buildroot}%{_bindir}/
 # Install the desktop file (assuming it's in the extracted directory)
 # If the desktop file has a different name, update 'RenameMyTVSeries.desktop'
 if [ -f RenameMyTVSeries.desktop ]; then
-    install -m 644 RenameMyTVSeries.desktop %{buildroot}%{_datadir}/applications/
+    install -m 644 rename-my-tv-series.desktop %{buildroot}%{_datadir}/applications/
 fi
 
 %files
 %{_bindir}/RenameMyTVSeries
-%if commentators == "RenameMyTVSeries.desktop"
-%{_datadir}/applications/RenameMyTVSeries.desktop
-%endif
+%{_datadir}/applications/rename-my-tv-series.desktop
 
 %changelog
 * Tue Apr 22 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 2.0.10-1
