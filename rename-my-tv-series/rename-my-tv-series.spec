@@ -25,16 +25,21 @@ formats and can help organize your media files.
 
 %prep
 ls -laR .
-%setup -qn %{application_name}
+%setup -q -n %{application_name}
 
 %install
-mkdir -p %{buildroot}%{_bindir}
-mkdir -p %{buildroot}%{_datadir}/applications
-mkdir -p %{buildroot}%{_docdir}/%{name}-%{version}
-ls -laR .
+%__mkdir -p %{buildroot}%{_bindir}
+%__mkdir -p %{buildroot}%{_datadir}/applications
+%__mkdir -p %{buildroot}%{_docdir}/%{name}-%{version}
 
-install -m 755 RenameMyTVSeries %{buildroot}%{_bindir}/
-install -m 644 rename-my-tv-series.desktop %{buildroot}%{_datadir}/applications/
+%__install -D -m 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
+
+%__install -D -m 0444 %{SOURCE2} -t %{buildroot}/opt/%{application_name}/distribution
+
+# ls -laR .
+
+# install -m 755 RenameMyTVSeries %{buildroot}%{_bindir}/
+# install -m 644 rename-my-tv-series.desktop %{buildroot}%{_datadir}/applications/
 
 %files
 %{_bindir}/RenameMyTVSeries
