@@ -11,8 +11,7 @@ Source0:        https://www.tweaking4all.com/downloads/video/RenameMyTVSeries-2.
 
 ExclusiveArch:  x86_64
 
-Requires:       openssl-devel
-Requires:       libsq3-devel
+Requires:       openssl-devel libsq3-devel
 
 %description
 Rename My TV Series is a utility designed to help you rename your TV series
@@ -21,6 +20,7 @@ formats and can help organize your media files.
 
 %prep
 # Unpack the tarball gzip archive
+ls -la
 %setup -q -n RenameMyTVSeries-2.0.10-Linux64bit
 
 %install
