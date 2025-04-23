@@ -25,7 +25,7 @@ formats and can help organize your media files.
 
 %prep
 ls -laR .
-%setup -qn %{application_name}-%{version}
+%setup -qn %{application_name}
 
 %install
 mkdir -p %{buildroot}%{_bindir}
