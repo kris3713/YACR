@@ -18,15 +18,11 @@ Rename My TV Series is a utility designed to help you rename your TV series
 episodes based on information from TheTVDB.com. It supports various naming
 formats and can help organize your media files.
 
-%prep
-# Unpack the tarball gzip archive
-ls -la
-%setup -n RenameMyTVSeries-2.0.10-Linux64bit
-
 %install
 mkdir -p %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_datadir}/applications/
 mkdir -p %{buildroot}%{_docdir}/%{name}-%{version}/
+ls -la
 
 install -m 755 RenameMyTVSeries %{buildroot}%{_bindir}/
 
