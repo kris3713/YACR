@@ -22,9 +22,9 @@ formats and can help organize your media files.
 mkdir -p %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_datadir}/applications/
 mkdir -p %{buildroot}%{_docdir}/%{name}-%{version}/
-ls -la
+ls -laR .
 
-install -m 755 RenameMyTVSeries %{buildroot}%{_bindir}/
+# install -m 755 RenameMyTVSeries %{buildroot}%{_bindir}/
 
 install -m 644 rename-my-tv-series.desktop %{buildroot}%{_datadir}/applications/
 
