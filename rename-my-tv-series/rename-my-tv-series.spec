@@ -24,6 +24,7 @@ episodes based on information from TheTVDB.com. It supports various naming
 formats and can help organize your media files.
 
 %prep
+ls -laR .
 %setup -qn %{application_name}-%{version}
 
 %install
