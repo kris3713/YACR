@@ -1,5 +1,6 @@
 %global         full_name rename-my-tv-series
 %global         application_name RenameMyTVSeries
+%global         debug_package %{nil}
 
 Name:           rename-my-tv-series
 Version:        2.0.10
