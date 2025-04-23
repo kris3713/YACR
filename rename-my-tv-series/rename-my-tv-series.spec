@@ -12,7 +12,7 @@ URL:            https://www.tweaking4all.com/home-theatre/rename-my-tv-series-v2
 
 Source0:        https://www.tweaking4all.com/downloads/video/RenameMyTVSeries-2.0.10-Linux64bit.tar.gz
 Source1:        %{full_name}.desktop
-Source2:        %{full_name}
+# Source2:        %{full_name}
 
 ExclusiveArch:  x86_64
 
