@@ -1,10 +1,10 @@
 [Desktop Entry]
 Comment[en_CA]=
 Comment=
-Exec=rename-my-tv-series
+Exec=RenameMyTVSeries
 GenericName[en_CA]=
 GenericName=
-Icon=rename-my-tv-series
+Icon=RenameMyTVSeries
 MimeType=
 Name[en_CA]=Rename My TV Series
 Name=Rename My TV Series

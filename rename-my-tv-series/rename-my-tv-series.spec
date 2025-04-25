@@ -40,11 +40,11 @@ ls -laR .
 
 %__install -D -m 0755 %{buildroot}/opt/%{application_name}/%{application_name} -t %{buildroot}%{_bindir}
 
-%__ln_s ../../../../../../opt/%{application_name}/16x16.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
-%__ln_s ../../../../../../opt/%{application_name}/32x32.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{full_name}.png
-%__ln_s ../../../../../../opt/%{application_name}/48x48.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/%{full_name}.png
-%__ln_s ../../../../../../opt/%{application_name}/64x64.png %{buildroot}%{_datadir}/icons/hicolor/64x64/apps/%{full_name}.png
-%__ln_s ../../../../../../opt/%{application_name}/128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
+%__ln_s ../../../../../../opt/%{application_name}/16x16.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{application_name}.png
+%__ln_s ../../../../../../opt/%{application_name}/32x32.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{application_name}.png
+%__ln_s ../../../../../../opt/%{application_name}/48x48.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/%{application_name}.png
+%__ln_s ../../../../../../opt/%{application_name}/64x64.png %{buildroot}%{_datadir}/icons/hicolor/64x64/apps/%{application_name}.png
+%__ln_s ../../../../../../opt/%{application_name}/128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{application_name}.png
 
 ls -laR .
 
@@ -52,11 +52,11 @@ ls -laR .
 /opt/%{application_name}
 %{_bindir}/%{application_name}
 %{_datadir}/applications/%{full_name}.desktop
-%{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
-%{_datadir}/icons/hicolor/32x32/apps/%{full_name}.png
-%{_datadir}/icons/hicolor/48x48/apps/%{full_name}.png
-%{_datadir}/icons/hicolor/64x64/apps/%{full_name}.png
-%{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
+%{_datadir}/icons/hicolor/16x16/apps/%{application_name}.png
+%{_datadir}/icons/hicolor/32x32/apps/%{application_name}.png
+%{_datadir}/icons/hicolor/48x48/apps/%{application_name}.png
+%{_datadir}/icons/hicolor/64x64/apps/%{application_name}.png
+%{_datadir}/icons/hicolor/128x128/apps/%{application_name}.png
 
 %changelog
 * Tue Apr 22 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 2.0.10-1
