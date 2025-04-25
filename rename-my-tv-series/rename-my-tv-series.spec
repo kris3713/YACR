@@ -36,9 +36,9 @@ ls -laR .
 
 %__cp -r * %{buildroot}/opt/%{application_name}
 
-%__install -D -m 0644 %{SOURCE0} -t %{buildroot}%{_datadir}/applications
+%__install -D -m 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
 
-%__install -D -m 0444 %{SOURCE1} -t %{buildroot}/opt/%{application_name}/distribution
+%__install -D -m 0755 %{buildroot}/opt/%{application_name}/%{application_name} -t %{buildroot}%{_bindir}/%{application_name}
 
 %__ln_s ../../../../../../opt/%{application_name}/16x16.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
 %__ln_s ../../../../../../opt/%{application_name}/32x32.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{full_name}.png
