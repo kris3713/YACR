@@ -12,23 +12,24 @@ require 'nokogiri'
 # @param regex [String] The regular expression to use to extract the data
 # @param css_selector [String] The CSS selector to use to extract the data
 # @param attribute [String] The attribute to use to extract the data
-def scrape_website(url, regex, css_selector, attribute)
+def scrape_website(url, regex, css_selector, attribute_selector)
   # @type [RestClient::Response]
   response = RestClient.get(url)
 
   # @type [Nokogiri::HTML::Document]
   doc = Nokogiri::HTML(response.body)
   # @type [Nokogiri::XML::NodeSet]
-  links = doc.css(css)
+  links = doc.css(css_selector)
 
   result = nil
 
   # @param [Nokogiri::XML::Node]
   links.each do |link|
     regex_new = Regexp.new(regex)
-    first = regex_new.match(link.attribute(attribute).value)&.captures&.first
+    attribute_value = link.attribute(attribute_selector).value
+    first = regex_new.match(attribute_value)&.captures&.first
 
-    result = first if regex_new.match?(attribute)
+    result = first if regex_new.match?(attribute_selector)
   end
 
   puts result
