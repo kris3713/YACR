@@ -49,9 +49,9 @@ ls -laR .
 ls -laR .
 
 %files
-%{_optdir}/%{application_name}
+/opt/%{application_name}
 %{_bindir}/%{application_name}
-%{_datadir}/applications/rename-my-tv-series.desktop
+%{_datadir}/applications/%{full_name}.desktop
 %{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
 %{_datadir}/icons/hicolor/32x32/apps/%{full_name}.png
 %{_datadir}/icons/hicolor/48x48/apps/%{full_name}.png
