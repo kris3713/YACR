@@ -25,7 +25,7 @@ formats and can help organize your media files.
 
 %prep
 ls -laR .
-%setup -q -n .
+%setup
 
 %install
 %__rm -rf %{buildroot}
