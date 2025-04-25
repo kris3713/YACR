@@ -25,9 +25,11 @@ formats and can help organize your media files.
 
 %prep
 ls -laR .
-%setup
+%setup -c -n %{application_name}
+ls -laR .
 
 %install
+ls -laR .
 %__rm -rf %{buildroot}
 
 %__install -d %{buildroot}{/opt/%{application_name},%{_bindir},%{_datadir}/applications,%{_datadir}/icons/hicolor/128x128/apps,%{_datadir}/icons/hicolor/64x64/apps,%{_datadir}/icons/hicolor/48x48/apps,%{_datadir}/icons/hicolor/32x32/apps,%{_datadir}/icons/hicolor/16x16/apps}
