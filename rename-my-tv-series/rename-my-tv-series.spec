@@ -25,24 +25,36 @@ formats and can help organize your media files.
 
 %prep
 ls -laR .
-%setup -q -n %{application_name}-%{version}-Linux64bit
+%setup -q -n .
 
 %install
 %__rm -rf %{buildroot}
 
-%__install -d %{buildroot}{/opt/%{application_name},%{_bindir},%{_datadir}/applications
+%__install -d %{buildroot}{/opt/%{application_name},%{_bindir},%{_datadir}/applications,%{_datadir}/icons/hicolor/128x128/apps,%{_datadir}/icons/hicolor/64x64/apps,%{_datadir}/icons/hicolor/48x48/apps,%{_datadir}/icons/hicolor/32x32/apps,%{_datadir}/icons/hicolor/16x16/apps}
 
 %__cp -r * %{buildroot}/opt/%{application_name}
 
-%__install -D -m 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
+%__install -D -m 0644 %{SOURCE0} -t %{buildroot}%{_datadir}/applications
 
-%__install -D -m 0444 %{SOURCE2} -t %{buildroot}/opt/%{application_name}/distribution
+%__install -D -m 0444 %{SOURCE1} -t %{buildroot}/opt/%{application_name}/distribution
+
+%__ln_s ../../../../../../opt/%{application_name}/16x16.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
+%__ln_s ../../../../../../opt/%{application_name}/32x32.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{full_name}.png
+%__ln_s ../../../../../../opt/%{application_name}/48x48.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/%{full_name}.png
+%__ln_s ../../../../../../opt/%{application_name}/64x64.png %{buildroot}%{_datadir}/icons/hicolor/64x64/apps/%{full_name}.png
+%__ln_s ../../../../../../opt/%{application_name}/128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
 
 ls -laR .
 
 %files
-%{_bindir}/RenameMyTVSeries
-%{_datadir}/applications/%{full_name}.desktop
+%{_optdir}/%{application_name}
+%{_bindir}/%{application_name}
+%{_datadir}/applications/rename-my-tv-series.desktop
+%{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
+%{_datadir}/icons/hicolor/32x32/apps/%{full_name}.png
+%{_datadir}/icons/hicolor/48x48/apps/%{full_name}.png
+%{_datadir}/icons/hicolor/64x64/apps/%{full_name}.png
+%{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
 
 %changelog
 * Tue Apr 22 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 2.0.10-1
