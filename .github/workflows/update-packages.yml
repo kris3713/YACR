@@ -26,14 +26,17 @@ jobs:
       - name: 'Install helper programs'
         shell: bash
         run: |
-          sudo apt update
-          sudo apt install -y sd fish
+          sudo apt update > /dev/null
+          sudo apt install -y sd fish ruby > /dev/null
+          gem install bundle > /dev/null
 
       - name: 'Update package versions'
         shell: bash
         run: |
+          export GEM_HOME="$HOME/.gem"
           chmod +x ./scripts/scrape_website && cd ./scripts
-          bundle install && cd ..
+          bundle install > /dev/null
+          cd ..
           for i in $(find . -type f -name '*.fish'); do
             echo "Executing $i"
             fish $i
