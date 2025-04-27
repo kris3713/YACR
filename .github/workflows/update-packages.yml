@@ -27,16 +27,18 @@ jobs:
         shell: bash
         run: |
           export GEM_HOME="$HOME/.gem"
+          export PATH="$PATH:$GEM_HOME/bin"
           sudo apt update > /dev/null
           sudo apt install -y sd fish ruby > /dev/null
-          gem install bundle > /dev/null
+          gem install bundle
 
       - name: 'Update package versions'
         shell: bash
         run: |
           export GEM_HOME="$HOME/.gem"
+          export PATH="$PATH:$GEM_HOME/bin"
           chmod +x ./scripts/scrape_website && cd ./scripts
-          bundle install > /dev/null
+          bundle install
           cd ..
           for i in $(find . -type f -name '*.fish'); do
             echo "Executing $i"
@@ -46,12 +48,12 @@ jobs:
       - name: 'Commit changes'
         shell: bash
         run: |
-          readonly USERNAME='github-actions[bot]'
-          readonly EMAIL='41898282+github-actions[bot]@users.noreply.github.com'
+          USERNAME='github-actions[bot]'
+          EMAIL='41898282+github-actions[bot]@users.noreply.github.com'
           git config --local user.name "$USERNAME"
           git config --local user.email "$EMAIL"
           git add -u
-          readonly CURRENT_TIME=$(date +'%Y-%m-%d %H:%M:%S')
+          CURRENT_TIME=$(date +'%Y-%m-%d %H:%M:%S')
           git commit -m "bot: Updated packages at $CURRENT_TIME"
 
       - name: 'Push changes'
