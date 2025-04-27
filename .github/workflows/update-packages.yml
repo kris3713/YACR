@@ -26,6 +26,7 @@ jobs:
       - name: 'Install helper programs'
         shell: bash
         run: |
+          export GEM_HOME="$HOME/.gem"
           sudo apt update > /dev/null
           sudo apt install -y sd fish ruby > /dev/null
           gem install bundle > /dev/null
