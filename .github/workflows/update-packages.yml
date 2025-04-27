@@ -30,7 +30,7 @@ jobs:
           export PATH="$PATH:$GEM_HOME/bin"
           sudo apt update > /dev/null
           sudo apt install -y sd fish ruby > /dev/null
-          gem install bundle
+          gem install bundler
 
       - name: 'Update package versions'
         shell: bash
@@ -38,7 +38,7 @@ jobs:
           export GEM_HOME="$HOME/.gem"
           export PATH="$PATH:$GEM_HOME/bin"
           chmod +x ./scripts/scrape_website && cd ./scripts
-          bundle install
+          bundler || exit 1
           cd ..
           for i in $(find . -type f -name '*.fish'); do
             echo "Executing $i"
