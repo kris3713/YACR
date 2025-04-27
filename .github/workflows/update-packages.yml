@@ -1,8 +1,8 @@
-name: 'Update Trackers List'
+name: 'Update packages'
 
 on:
   schedule:
-    # Runs every Wednesday at 1:00 PM (13:00) UTC
+    # Runs every minute, between 13:00 and 13:59 UTC
     - cron: '* 13 * * *'
 
   workflow_dispatch: # Allows manual triggering of the workflow
@@ -23,23 +23,35 @@ jobs:
           repository: ${{ github.repository }}
           token: ${{ secrets.TOKEN }}
 
-      - name: 'Update packages'
+      - name: 'Install helper programs'
         shell: bash
         run: |
-          chmod +x ./scripts/scrape_website
-          # TODO: update this later...
+          sudo apt update
+          sudo apt install -y rust-sd fish
 
-      - name: 'Commit new changes'
+      - name: 'Update package versions'
         shell: bash
         run: |
-          git config --local user.name 'github-actions[bot]'
-          git config --local user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add ./ultimate_trackers.txt
-          current_time=$(date +'%Y-%m-%d %H:%M:%S')
-          git commit -m "Updated \`ultimate_trackers.txt\` at $current_time"
+          chmod +x ./scripts/scrape_website && cd ./scripts
+          bundle install && cd ..
+          for i in $(find . -type f -name '*.fish'); do
+            echo "Executing $i"
+            fish $i
+          done
+
+      - name: 'Commit changes'
+        shell: bash
+        run: |
+          readonly USERNAME='github-actions[bot]'
+          readonly EMAIL='41898282+github-actions[bot]@users.noreply.github.com'
+          git config --local user.name "$USERNAME"
+          git config --local user.email "$EMAIL"
+          git add -u
+          readonly CURRENT_TIME=$(date +'%Y-%m-%d %H:%M:%S')
+          git commit -m "bot: Updated packages at $CURRENT_TIME"
 
       - name: 'Push changes'
-        uses: 'ad-m/github-push-action@v0.8.0'
+        uses: ad-m/github-push-action@v0.8.0
         with:
           github_token: ${{ secrets.TOKEN }}
           branch: ${{ github.ref }}
