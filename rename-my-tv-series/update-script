@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+../scripts/scrape_website 'https://www.tweaking4all.com/home-theatre/rename-my-tv-series-v2/' \
+  'RenameMyTVSeries-([\d.]+)-Linux64bit\.tar\.gz' 'a.btn-ok' 'href'
