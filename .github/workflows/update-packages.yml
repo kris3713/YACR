@@ -14,20 +14,20 @@ jobs:
       contents: write
 
     env:
-      GITHUB_TOKEN: ${{ secrets.TOKEN }}
+      GITHUB_TOKEN: "${{ secrets.TOKEN }}"
 
     steps:
       - name: 'Checkout Repository'
         uses: actions/checkout@v4
         with:
-          repository: ${{ github.repository }}
-          token: ${{ secrets.TOKEN }}
+          repository: "${{ github.repository }}"
+          token: "${{ env.GITHUB_TOKEN }}"
 
       - name: 'Install helper programs'
         shell: bash
         run: |
           sudo apt update
-          sudo apt install -y rust-sd fish
+          sudo apt install -y sd fish
 
       - name: 'Update package versions'
         shell: bash
@@ -53,5 +53,5 @@ jobs:
       - name: 'Push changes'
         uses: ad-m/github-push-action@v0.8.0
         with:
-          github_token: ${{ secrets.TOKEN }}
-          branch: ${{ github.ref }}
+          github_token: "${{ env.GITHUB_TOKEN }}"
+          branch: "${{ github.ref }}"
