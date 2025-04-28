@@ -6,7 +6,7 @@ set -l REGEX 'RenameMyTVSeries-([\\d.]+)-Linux64bit\\.tar\\.gz'
 echo 'Executing the `scrape_website` script'
 set -l VERSION $("$SCRIPT_DIR/../scripts/scrape_website" $URL $REGEX 'a.btn-ok' 'href')
 
-echo 'Backing up `rename-my-tv-series.desktop`'
+echo 'Backing up `rename-my-tv-series.desktop` to `rename-my-tv-series.desktop.bak`'
 cp "$SCRIPT_DIR/rename-my-tv-series.desktop" "$SCRIPT_DIR/rename-my-tv-series.desktop.bak"
 
 # @fish-lsp-disable-next-line 2001
@@ -16,4 +16,5 @@ if test "$CAPTURED_VERSION" != "$VERSION"
   sd "Version:\\s+$CAPTURED_VERSION" "Version:\\s+$VERSION" "$SCRIPT_DIR/rename-my-tv-series.desktop"
 end
 
+echo 'Removing `rename-my-tv-series.desktop.bak`'
 rm "$SCRIPT_DIR/rename-my-tv-series.desktop.bak"
