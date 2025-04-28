@@ -37,11 +37,13 @@ jobs:
         run: |
           export GEM_HOME="$HOME/.gem"
           export PATH="$PATH:$GEM_HOME/bin"
+          echo 'Adding executable permissions to `scrape_website`'
           chmod +x ./scripts/scrape_website && cd ./scripts
           bundler && cd ..
           for i in $(find . -type f -name '*.fish'); do
             echo "Executing $i"; fish $i
           done
+          echo 'Removing executable permissions from `scrape_website`'
           chmod -x ./scripts/scrape_website
 
       - name: 'Commit changes'
@@ -52,8 +54,10 @@ jobs:
           git config --local user.name "$USERNAME"
           git config --local user.email "$EMAIL"
           git add -u
-          CURRENT_TIME=$(date +'%Y-%m-%d %H:%M:%S')
-          git commit -m "bot: Updated packages at $CURRENT_TIME"
+          if [ -n "$(git status --porcelain)" ]; then
+            CURRENT_TIME=$(date +'%Y-%m-%d %H:%M:%S')
+            git commit -m "bot: Updated packages at $CURRENT_TIME"
+          fi
 
       - name: 'Push changes'
         uses: ad-m/github-push-action@v0.8.0
