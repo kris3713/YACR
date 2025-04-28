@@ -12,7 +12,7 @@ echo 'Backing up `rename-my-tv-series.desktop` to `rename-my-tv-series.desktop.b
 cp "$SCRIPT_DIR/rename-my-tv-series.desktop" "$SCRIPT_DIR/rename-my-tv-series.desktop.bak"
 
 # @fish-lsp-disable-next-line 2001
-set -l CAPTURED_VERSION $(sd 'Version:\\s+([\\d.]+)' '$1' "$SCRIPT_DIR/rename-my-tv-series.desktop.bak")
+set -l CAPTURED_VERSION $(sed -n 's/^Version:\\s+([\\d.]+)/\\1/p' "$SCRIPT_DIR/rename-my-tv-series.desktop.bak")
 
 # @fish-lsp-disable-next-line 2001
 echo 'Comparing captured version ($CAPTURED_VERSION) with current version ($VERSION)'
