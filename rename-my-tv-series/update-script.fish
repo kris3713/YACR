@@ -2,7 +2,7 @@ set -l SCRIPT_DIR $(status dirname)
 
 set -l URL 'https://www.tweaking4all.com/home-theatre/rename-my-tv-series-v2/'
 set -l REGEX 'RenameMyTVSeries-([\\d.]+)-Linux64bit\\.tar\\.gz'
-set -l VERSION $(eval "$SCRIPT_DIR/../scripts/scrape_website" $URL $REGEX 'a.btn-ok' 'href')
+set -l VERSION $("$SCRIPT_DIR/../scripts/scrape_website" $URL $REGEX 'a.btn-ok' 'href')
 
 cp "$SCRIPT_DIR/rename-my-tv-series.desktop" "$SCRIPT_DIR/rename-my-tv-series.desktop.bak"
 
