@@ -38,12 +38,11 @@ jobs:
           export GEM_HOME="$HOME/.gem"
           export PATH="$PATH:$GEM_HOME/bin"
           chmod +x ./scripts/scrape_website && cd ./scripts
-          bundler || exit 1
-          cd ..
+          bundler && cd ..
           for i in $(find . -type f -name '*.fish'); do
-            echo "Executing $i"
-            fish $i
+            echo "Executing $i"; fish $i
           done
+          chmod -x ./scripts/scrape_website
 
       - name: 'Commit changes'
         shell: bash
