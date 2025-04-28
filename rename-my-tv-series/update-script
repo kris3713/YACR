@@ -8,20 +8,14 @@ set -l regex 'RenameMyTVSeries-([\\d.]+)-Linux64bit\\.tar\\.gz'
 echo 'Executing the `scrape_website` script'
 set -l output_version ("$script_dir/../scripts/scrape_website" $url $regex 'a.btn-ok' 'href')
 
-echo 'Backing up `rename-my-tv-series.spec` to `rename-my-tv-series.spec.bak`'
-cp "$script_dir/rename-my-tv-series.spec" "$script_dir/rename-my-tv-series.spec.bak"
+# @fish-lsp-disable-next-line 2001
+set -l captured_version (sed -n 's/^Version:\\s*\\([\\d.]*\\)/\\1/p' "$script_dir/rename-my-tv-series.spec")
 
 # @fish-lsp-disable-next-line 2001
-set -l captured_version (sed -n 's/^Version:\\s*\\([\\d.]*\\)/\\1/p' "$script_dir/rename-my-tv-series.spec.bak")
-
-# @fish-lsp-disable-next-line 2001
-echo 'Comparing captured version ($CAPTURED_VERSION) with current version ($VERSION)'
+echo 'Comparing captured version ($captured_version) with current version ($output_version)'
 echo "Captured version: $captured_version"
 echo "Current version: $output_version"
 if test "$captured_version" != "$output_version"
   set -l replacement "Version:        $output_version"
   sd "Version:\\s*$captured_version" $replacement "$script_dir/rename-my-tv-series.spec"
 end
-
-echo 'Removing `rename-my-tv-series.spec.bak`'
-rm "$script_dir/rename-my-tv-series.spec.bak"
