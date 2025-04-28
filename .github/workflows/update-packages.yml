@@ -28,6 +28,7 @@ jobs:
         run: |
           export GEM_HOME="$HOME/.gem"
           export PATH="$PATH:$GEM_HOME/bin"
+
           sudo apt update > /dev/null
           sudo apt install -y sd fish ruby > /dev/null
           gem install bundler
@@ -37,12 +38,19 @@ jobs:
         run: |
           export GEM_HOME="$HOME/.gem"
           export PATH="$PATH:$GEM_HOME/bin"
+
           echo 'Adding executable permissions to `scrape_website`'
           chmod +x ./scripts/scrape_website && cd ./scripts
-          bundler && cd ..
-          for i in $(find . -type f -name '*.fish'); do
-            echo "Executing $i"; fish $i
+
+          echo 'Installing Ruby gems'
+          bundler > /dev/null && cd ..
+
+          for i in $(find . -type f -name 'update-script'); do
+            chmod +x "$i"
+            echo "Executing $i"; eval "$i"
+            chmod -x "$i"
           done
+
           echo 'Removing executable permissions from `scrape_website`'
           chmod -x ./scripts/scrape_website
 
