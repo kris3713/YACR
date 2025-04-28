@@ -2,9 +2,11 @@ set -l SCRIPT_DIR $(status dirname)
 
 set -l URL 'https://www.tweaking4all.com/home-theatre/rename-my-tv-series-v2/'
 set -l REGEX 'RenameMyTVSeries-([\\d.]+)-Linux64bit\\.tar\\.gz'
+
+echo 'Executing the `scrape_website` script'
 set -l VERSION $("$SCRIPT_DIR/../scripts/scrape_website" $URL $REGEX 'a.btn-ok' 'href')
 
-echo "Backing up `rename-my-tv-series.desktop`"
+echo 'Backing up `rename-my-tv-series.desktop`'
 cp "$SCRIPT_DIR/rename-my-tv-series.desktop" "$SCRIPT_DIR/rename-my-tv-series.desktop.bak"
 
 # @fish-lsp-disable-next-line 2001
