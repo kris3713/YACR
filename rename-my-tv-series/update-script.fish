@@ -12,6 +12,10 @@ cp "$SCRIPT_DIR/rename-my-tv-series.desktop" "$SCRIPT_DIR/rename-my-tv-series.de
 # @fish-lsp-disable-next-line 2001
 set -l CAPTURED_VERSION $(sd 'Version:\\s+([\\d.]+)' '$1' "$SCRIPT_DIR/rename-my-tv-series.desktop.bak")
 
+# @fish-lsp-disable-next-line 2001
+echo 'Comparing captured version ($CAPTURED_VERSION) with current version ($VERSION)'
+echo "Captured version: $CAPTURED_VERSION"
+echo "Current version: $VERSION"
 if test "$CAPTURED_VERSION" != "$VERSION"
   sd "Version:\\s+$CAPTURED_VERSION" "Version:\\s+$VERSION" "$SCRIPT_DIR/rename-my-tv-series.desktop"
 end
