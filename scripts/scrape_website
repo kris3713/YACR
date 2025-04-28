@@ -27,9 +27,13 @@ def scrape_website(url, regex, css_selector, attribute_selector)
   links.each do |link|
     regex_new = Regexp.new(regex)
     attribute_value = link.attribute(attribute_selector).value
-    first = regex_new.match(attribute_value)&.captures&.first
+    match = regex_new.match(attribute_value)
 
-    result = first if regex_new.match?(attribute_selector)
+    # rubocop:disable Style/IfUnlessModifier
+    if match
+      result = match.captures.first
+    end
+    # rubocop:enable Style/IfUnlessModifier
   end
 
   puts result
