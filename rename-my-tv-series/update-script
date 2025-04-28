@@ -1,3 +1,5 @@
+#!/usr/bin/env fish
+
 set -l SCRIPT_DIR $(status dirname)
 
 set -l URL 'https://www.tweaking4all.com/home-theatre/rename-my-tv-series-v2/'
