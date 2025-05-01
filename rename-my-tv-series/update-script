@@ -15,7 +15,9 @@ set -l captured_version (sed -n 's/^Version:\\s*\\([\\d.]*\\)/\\1/p' "$script_di
 echo 'Comparing captured version ($captured_version) with current version ($output_version)'
 echo "Captured version: $captured_version"
 echo "Current version: $output_version"
-if test "$captured_version" != "$output_version"
-  set -l replacement "Version:        $output_version"
-  sd "Version:\\s*$captured_version" $replacement "$script_dir/rename-my-tv-series.spec"
+if test "$captured_version" != "$output_version" 
+  echo 'Versions are different. Updating the spec file...'
+  sd $captured_version $output_version "$script_dir/rename-my-tv-series.spec" && echo 'Done!'
+else
+  echo 'Both versions are the same. No update needed.'
 end
