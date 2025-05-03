@@ -9,3 +9,11 @@ To install this Copr repository simply run,
 ```txt
 dnf copr enable -y zliced13/YACR
 ```
+
+## Package Requests
+
+If you want to request a package create a new issue using the **new-package** template.
+
+If the requested package already works fine in other package managers (such as 
+AM (App Manager), HomeBrew, Nixpkgs, Flatpak, and Snap) then it most likely not be added unless
+there is a really good reason for why it should be added this COPR repository.
