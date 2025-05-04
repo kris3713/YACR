@@ -13,6 +13,8 @@ require 'nokogiri'
 # @param css_selector [String] The CSS selector to use to extract the data
 # @param attribute [String] The attribute to use to extract the data
 def scrape_website(url, regex, css_selector, attribute_selector)
+  regex_new = Regexp.new(regex)
+
   # @type [RestClient::Response]
   response = RestClient.get(url)
 
@@ -25,7 +27,6 @@ def scrape_website(url, regex, css_selector, attribute_selector)
 
   # @param [Nokogiri::XML::Node]
   links.each do |link|
-    regex_new = Regexp.new(regex)
     attribute_value = link.attribute(attribute_selector).value
     match = regex_new.match(attribute_value)
 
