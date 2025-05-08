@@ -1,46 +1,78 @@
-#!/usr/bin/env ruby
-# frozen_string_literal: true
-# typed: true
+#!/usr/bin/env python
 
-require 'rest-client'
-require 'nokogiri'
+
+from lxml import html
+import requests
+
+def parseWebContent(url: str, xpath_expr: str):
+    # Compile the regular expression from string
+    # regex = re.compile(regex_str)
+    # Invoke a new HTTP GET request
+    response = requests.get(url)
+
+    html_content = html.fromstring(response.content)
+
+    # xml_content = ET.fromstring(response.content)
+    results = html_content.xpath(xpath_expr)
+
+    for element in results:
+        # If you want the text content of the element:
+        # print(element.text_content())
+        # If you want the HTML representation of the element:
+        print(html.tostring(element, pretty_print=True).decode())
+
+parseWebContent('https://www.tweaking4all.com/home-theatre/rename-my-tv-series-v2/', '//div[@class="t4a_post_content_full"]/div[@class="alert alert-success"]')
 
 # spell-checker: ignore
-
-# Scrapes the website and returns a string of the group captured by the regex.
-# @param url [String] The URL to scrape
-# @param regex [String] The regular expression to use to extract the data
-# @param css_selector [String] The CSS selector to use to extract the data
-# @param attribute [String] The attribute to use to extract the data
-def scrape_website(url, regex, css_selector, attribute_selector)
-  regex_new = Regexp.new(regex)
-
-  # @type [RestClient::Response]
-  response = RestClient.get(url)
-
-  # @type [Nokogiri::HTML::Document]
-  doc = Nokogiri::HTML(response.body)
-  # @type [Nokogiri::XML::NodeSet]
-  links = doc.css(css_selector)
-
-  result = nil
-
-  # @param [Nokogiri::XML::Node]
-  links.each do |link|
-    attribute_value = link.attribute(attribute_selector).value
-    match = regex_new.match(attribute_value)
-
-    # rubocop:disable Style/IfUnlessModifier
-    if match
-      result = match.captures.first
-    end
-    # rubocop:enable Style/IfUnlessModifier
-  end
-
-  puts result
-end
-
-scrape_website(ARGV[0], ARGV[1], ARGV[2], ARGV[3])
+# require 'rest-client'
+# require 'nokogiri'
+#
+# # spell-checker: ignore
+#
+# # Scrapes the website and returns a string of the group captured by the regex.
+# # @param url [String] The URL to scrape
+# # @param regex [String] The regular expression to use to extract the data
+# # @param css_selector [String] The CSS selector to use to extract the data
+# # @param attribute [String] The attribute to use to extract the data
+# def parse_web_content_with_css(url, regex, css_selector, attribute_selector)
+#   regex_new = Regexp.new(regex)
+#
+#   # @type [RestClient::Response]
+#   response = RestClient.get(url)
+#
+#   # @type [Nokogiri::HTML::Document]
+#   doc = Nokogiri::HTML(response.body)
+#   # @type [Nokogiri::XML::NodeSet]
+#   links = doc.css(css_selector)
+#
+#   result = nil
+#
+#   # @param [Nokogiri::XML::Node]
+#   links.each do |link|
+#     attribute_value = link.attribute(attribute_selector).value
+#     match = regex_new.match(attribute_value)
+#
+#     # rubocop:disable Style/IfUnlessModifier
+#     if match
+#       result = match.captures.first
+#     end
+#     # rubocop:enable Style/IfUnlessModifier
+#   end
+#
+#   puts result
+# end
+#
+# def parse_web_content_with_xpath(url, regex, xpath_selector)
+#   regex_new = Regexp.new(regex)
+#
+#   # @type [RestClient::Response]
+#   response = RestClient.get(url)
+# end
+#
+# if ARGV.length == 4
+#   parse_web_content_with_css(ARGV[0], ARGV[1], ARGV[2], ARGV[3])
+# end
+#
 
 # Example:
 # scrape_website('https://www.tweaking4all.com/home-theatre/rename-my-tv-series-v2/',
