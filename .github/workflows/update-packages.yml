@@ -1,9 +1,9 @@
 name: 'Update packages'
 
 on:
-  schedule:
-    # Runs every minute, between 13:00 and 13:59 UTC
-    - cron: '* 13 * * *'
+  # schedule:
+  #   # Runs every minute, between 13:00 and 13:59 UTC
+  #   - cron: '* 13 * * *'
 
   workflow_dispatch: # Allows manual triggering of the workflow
 
