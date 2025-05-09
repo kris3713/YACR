@@ -58,7 +58,7 @@ ls -laR .
 %{_datadir}/icons/hicolor/128x128/apps/%{application_name}.png
 
 %changelog
-* Fri May 09 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 2.0.10-11
+* Fri May 09 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 2.0.10-2
 - Changed the prep and install sections
 
 * Tue Apr 22 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 2.0.10-1
