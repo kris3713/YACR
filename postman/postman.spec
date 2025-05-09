@@ -21,7 +21,7 @@ streamlines collaboration so you can create better APIs faster.
 %prep
 ls -laR .
 %setup -q -n %{application_name}
-cd ./%{application_name}/app
+cd ./app
 ls -laR .
 
 %install
