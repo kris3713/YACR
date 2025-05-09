@@ -49,6 +49,8 @@ jobs:
             chmod +x "$i"
             echo "Executing $i"; eval "$i"
             chmod -x "$i"
+            echo '---------------------------------------'
+            echo '---------------------------------------'
           done
 
       - name: Cleanup
