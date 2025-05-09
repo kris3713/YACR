@@ -43,7 +43,7 @@ ls -laR .
 # Install the application binary
 %__install -D -m 0755 %{buildroot}/opt/%{full_name}/%{application_name} -t %{buildroot}%{_bindir}
 
-%__ln_s %{buildroot}/opt/%{full_name}/icons/icon_128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
+%__ln_s ../../../../../../opt/%{full_name}/icons/icon_128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
 
 ls -laR .
 
