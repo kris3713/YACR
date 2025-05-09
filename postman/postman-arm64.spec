@@ -36,9 +36,6 @@ ls -la .
 # Copy the application files to the build root
 %__cp -r * %{buildroot}/opt/%{full_name}
 
-# Remove uneeded file
-shred -u %{buildroot}/opt/%{full_name}/%{application_name}
-
 # Change filemode to prevent "permission denied" error
 %__chmod 755 %{buildroot}/opt/%{full_name}/chrome_crashpad_handler
 
@@ -46,7 +43,7 @@ shred -u %{buildroot}/opt/%{full_name}/%{application_name}
 %__install -D -m 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
 
 # Install the application binary
-%__install -D -m 0755 %{buildroot}/opt/%{full_name}/%{application_name} -t %{buildroot}%{_bindir}
+%__install -D -m 0755 %{buildroot}/opt/%{full_name}/%{full_name} -t %{buildroot}%{_bindir}
 
 %__ln_s ../../../../../../opt/%{full_name}/icons/icon_128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
 
