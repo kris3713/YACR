@@ -23,7 +23,6 @@ streamlines collaboration so you can create better APIs faster.
 %prep
 ls -la .
 %setup -n ./%{application_name}/app
-# cd ./app
 ls -la .
 
 %install
@@ -45,7 +44,8 @@ ls -la .
 %__install -D -m 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
 
 # Install the application binary
-%__install -D -m 0755 %{buildroot}/opt/%{full_name}/%{full_name} -t %{buildroot}%{_bindir}
+%__ln_s ../../../../../../opt/%{full_name}/%{full_name} %{buildroot}%{_bindir}
+%__chmod 755 %{buildroot}%{_bindir}/%{full_name}
 
 %__ln_s ../../../../../../opt/%{full_name}/icons/icon_128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
 
@@ -58,5 +58,5 @@ ls -la .
 %{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
 
 %changelog
-* Fri May 09 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 11.44.0-1.x86_64
+* Fri May 09 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 11.44.0-1
 - Beginning of initial RPM packaging for Postman version 11.44.0

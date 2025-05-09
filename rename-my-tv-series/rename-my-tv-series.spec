@@ -24,7 +24,7 @@ formats and can help organize your media files.
 
 %prep
 ls -laR .
-%setup -c -n ./%{full_name}
+%setup -q -c -n ./%{full_name}
 ls -laR .
 
 %install
