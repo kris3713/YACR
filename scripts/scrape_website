@@ -1,79 +1,48 @@
 #!/usr/bin/env python
 
-
+import re
+import sys
 from lxml import html
 import requests
 
-def parseWebContent(url: str, xpath_expr: str):
+
+def parseWebContent(url: str, regex_str: str, xpath_expr: str):
+    result = None
+
     # Compile the regular expression from string
-    # regex = re.compile(regex_str)
+    regex = re.compile(regex_str)
+
     # Invoke a new HTTP GET request
     response = requests.get(url)
-
     html_content = html.fromstring(response.content)
 
-    # xml_content = ET.fromstring(response.content)
-    results = html_content.xpath(xpath_expr)
+    #  Find all the elements that were captured the xpath expression
+    elements = html_content.xpath(xpath_expr)
 
-    for element in results:
+    for e in elements:
         # If you want the text content of the element:
         # print(element.text_content())
         # If you want the HTML representation of the element:
-        print(html.tostring(element, pretty_print=True).decode())
+        v = html.tostring(e).decode()
 
-parseWebContent('https://www.tweaking4all.com/home-theatre/rename-my-tv-series-v2/', '//div[@class="t4a_post_content_full"]/div[@class="alert alert-success"]')
+        matches = regex.search(v)
 
-# spell-checker: ignore
-# require 'rest-client'
-# require 'nokogiri'
-#
-# # spell-checker: ignore
-#
-# # Scrapes the website and returns a string of the group captured by the regex.
-# # @param url [String] The URL to scrape
-# # @param regex [String] The regular expression to use to extract the data
-# # @param css_selector [String] The CSS selector to use to extract the data
-# # @param attribute [String] The attribute to use to extract the data
-# def parse_web_content_with_css(url, regex, css_selector, attribute_selector)
-#   regex_new = Regexp.new(regex)
-#
-#   # @type [RestClient::Response]
-#   response = RestClient.get(url)
-#
-#   # @type [Nokogiri::HTML::Document]
-#   doc = Nokogiri::HTML(response.body)
-#   # @type [Nokogiri::XML::NodeSet]
-#   links = doc.css(css_selector)
-#
-#   result = nil
-#
-#   # @param [Nokogiri::XML::Node]
-#   links.each do |link|
-#     attribute_value = link.attribute(attribute_selector).value
-#     match = regex_new.match(attribute_value)
-#
-#     # rubocop:disable Style/IfUnlessModifier
-#     if match
-#       result = match.captures.first
-#     end
-#     # rubocop:enable Style/IfUnlessModifier
-#   end
-#
-#   puts result
-# end
-#
-# def parse_web_content_with_xpath(url, regex, xpath_selector)
-#   regex_new = Regexp.new(regex)
-#
-#   # @type [RestClient::Response]
-#   response = RestClient.get(url)
-# end
-#
-# if ARGV.length == 4
-#   parse_web_content_with_css(ARGV[0], ARGV[1], ARGV[2], ARGV[3])
-# end
-#
+        if matches:
+            result = matches.group(1)
 
-# Example:
-# scrape_website('https://www.tweaking4all.com/home-theatre/rename-my-tv-series-v2/',
-#             'RenameMyTVSeries-([\d.]+)-Linux64bit\.tar\.gz', 'a.btn-ok', 'href')
+    print(result)
+# end of parseWebContent
+
+# Allow the user to pass in the arguments
+argv = sys.argv
+parseWebContent(argv[0], argv[1], argv[2])
+
+# # This is how it should be used
+# parseWebContent(
+#     'https://www.tweaking4all.com/home-theatre/rename-my-tv-series-v2/',
+#     'RenameMyTVSeries-([\\d.]+)-Linux64bit\\.tar\\.gz',
+#     '//div[@class="alert alert-success"]/table/tr/td[contains(text(),"RenameMyTVSeries")]',
+# )
+
+# # This is how it should be used in cli
+# ./scrape_website 'https://www.tweaking4all.com/home-theatre/rename-my-tv-series-v2/' 'RenameMyTVSeries-([\\d.]+)-Linux64bit\\.tar\\.gz' '//div[@class="alert alert-success"]/table/tr/td[contains(text(),"RenameMyTVSeries")]'
