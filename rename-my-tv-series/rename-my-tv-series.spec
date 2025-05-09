@@ -39,11 +39,11 @@ ls -laR .
 
 %__install -D -m 0755 %{buildroot}/opt/%{full_name}/%{application_name} -t %{buildroot}%{_bindir}
 
-%__ln_s ../../../../../../opt/%{full_name}/icons/16x16.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
-%__ln_s ../../../../../../opt/%{full_name}/icons/32x32.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{full_name}.png
-%__ln_s ../../../../../../opt/%{full_name}/icons/48x48.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/%{full_name}.png
-%__ln_s ../../../../../../opt/%{full_name}/icons/64x64.png %{buildroot}%{_datadir}/icons/hicolor/64x64/apps/%{full_name}.png
-%__ln_s ../../../../../../opt/%{full_name}/icons/128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
+%__ln_s %{buildroot}/opt/%{full_name}/icons/16x16.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
+%__ln_s %{buildroot}/opt/%{full_name}/icons/32x32.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{full_name}.png
+%__ln_s %{buildroot}/opt/%{full_name}/icons/48x48.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/%{full_name}.png
+%__ln_s %{buildroot}/opt/%{full_name}/icons/64x64.png %{buildroot}%{_datadir}/icons/hicolor/64x64/apps/%{full_name}.png
+%__ln_s %{buildroot}/opt/%{full_name}/icons/128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
 
 ls -laR .
 

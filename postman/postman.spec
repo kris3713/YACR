@@ -32,23 +32,23 @@ ls -laR .
 %__rm -rf %{buildroot}
 
 # Start installing the application to the build root (while also creating another build root)
-%__install -d %{buildroot}{/opt/%{final_name},%{_bindir},%{_datadir}/applications,%{_datadir}/icons/hicolor/128x128/apps
+%__install -d %{buildroot}{/opt/%{full_name},%{_bindir},%{_datadir}/applications,%{_datadir}/icons/hicolor/128x128/apps
 
 # Copy the application files to the build root
-%__cp -r * %{buildroot}/opt/%{final_name}
+%__cp -r * %{buildroot}/opt/%{full_name}
 
 # Install the desktop file
 %__install -D -m 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
 
 # Install the application binary
-%__install -D -m 0755 %{buildroot}/opt/%{final_name}/%{application_name} -t %{buildroot}%{_bindir}
+%__install -D -m 0755 %{buildroot}/opt/%{full_name}/%{application_name} -t %{buildroot}%{_bindir}
 
-%__ln_s ../../../../../../opt/%{final_name}/icons/icon_128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
+%__ln_s %{buildroot}/opt/%{full_name}/icons/icon_128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
 
 ls -laR .
 
 %files
-/opt/%{final_name}
+/opt/%{full_name}
 %{_bindir}/%{application_name}
 %{_datadir}/applications/%{full_name}.desktop
 %{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
