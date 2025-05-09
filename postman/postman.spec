@@ -28,7 +28,7 @@ streamlines collaboration so you can create better APIs faster.
 %prep
 ls -laR .
 %setup -q -n %{application_name}
-%__rm ./%{application_name}/%{application_name}
+rm ./%{application_name}/%{application_name}
 %__chmod 755 ./%{application_name}/app/chrome_crashpad_handler
 ls -laR .
 
