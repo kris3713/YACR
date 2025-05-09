@@ -51,11 +51,11 @@ ls -laR .
 /opt/%{full_name}
 %{_bindir}/%{application_name}
 %{_datadir}/applications/%{full_name}.desktop
-%{_datadir}/icons/hicolor/16x16/apps/%{application_name}.png
-%{_datadir}/icons/hicolor/32x32/apps/%{application_name}.png
-%{_datadir}/icons/hicolor/48x48/apps/%{application_name}.png
-%{_datadir}/icons/hicolor/64x64/apps/%{application_name}.png
-%{_datadir}/icons/hicolor/128x128/apps/%{application_name}.png
+%{_datadir}/icons/hicolor/16x16/apps/%{final_name}.png
+%{_datadir}/icons/hicolor/32x32/apps/%{final_name}.png
+%{_datadir}/icons/hicolor/48x48/apps/%{final_name}.png
+%{_datadir}/icons/hicolor/64x64/apps/%{final_name}.png
+%{_datadir}/icons/hicolor/128x128/apps/%{final_name}.png
 
 %changelog
 * Fri May 09 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 2.0.10-2
