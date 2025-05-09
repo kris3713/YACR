@@ -21,8 +21,6 @@ streamlines collaboration so you can create better APIs faster.
 %prep
 ls -laR .
 %setup -q -n %{application_name}
-rm ./%{application_name}/%{application_name}
-%__chmod 755 ./%{application_name}/app/chrome_crashpad_handler
 ls -laR .
 
 %install
@@ -38,6 +36,8 @@ ls -laR .
 
 # Copy the application files to the build root
 %__cp -r * %{buildroot}/opt/%{full_name}
+shred -u %{buildroot}/opt/%{full_name}/%{application_name}/%{application_name}
+%__chmod 755 %{buildroot}/opt/%{full_name}/chrome_crashpad_handler
 
 # Install the desktop file
 %__install -D -m 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
