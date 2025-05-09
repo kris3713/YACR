@@ -13,6 +13,8 @@ URL:            https://www.postman.com/
 Source0:        https://dl.pstmn.io/download/latest/linux_arm64#/postman-linux-arm64.tar.gz
 Source1:        %{full_name}.desktop
 
+ExclusiveArch:  %arm64
+
 %description
 Postman is an API platform for building and using APIs.
 Postman simplifies each step of the API lifecycle and
