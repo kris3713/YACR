@@ -6,7 +6,13 @@ from lxml import html
 import requests
 
 
-def parseWebContent(url: str, regex_str: str, xpath_expr: str):
+def parse_web_content(url: str, regex_str: str, xpath_expr: str):
+    """
+    Parses HTML/XML content from a URL and
+    extracts the desired information using
+    regular expressions and XPath expressions.
+    """
+
     result = None
 
     # Compile the regular expression from string
@@ -16,7 +22,7 @@ def parseWebContent(url: str, regex_str: str, xpath_expr: str):
     response = requests.get(url)
     html_content = html.fromstring(response.content)
 
-    #  Find all the elements that were captured the xpath expression
+    #  Find all the elements that were captured the XPath expression
     elements = html_content.xpath(xpath_expr)
 
     for e in elements:
@@ -27,15 +33,13 @@ def parseWebContent(url: str, regex_str: str, xpath_expr: str):
 
         matches = regex.search(v)
 
-        if matches:
-            result = matches.group(1)
+        if matches is not None: result = matches.group(1)  # noqa: E701
 
     print(result)
 # end of parseWebContent
 
-# Allow the user to pass in the arguments
-argv = sys.argv
-parseWebContent(argv[0], argv[1], argv[2])
+# Allow the user to pass in the arguments from the command line
+parse_web_content(sys.argv[1], sys.argv[2], sys.argv[3])
 
 # # This is how it should be used
 # parseWebContent(
