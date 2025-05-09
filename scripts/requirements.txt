@@ -1,3 +1,4 @@
 lxml
 lxml-stubs
 requests
+jsonpath-ng

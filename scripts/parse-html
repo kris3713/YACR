@@ -36,7 +36,7 @@ def parse_html(url: str, regex_str: str, xpath_expr: str):
         if matches is not None: result = matches.group(1)  # noqa: E701
 
     print(result)
-# end of parseWebContent
+# end of parse_html
 
 # Allow the user to pass in the arguments from the command line
 parse_html(sys.argv[1], sys.argv[2], sys.argv[3])
@@ -49,4 +49,4 @@ parse_html(sys.argv[1], sys.argv[2], sys.argv[3])
 # )
 
 # # This is how it should be used in cli
-# ./parse-html 'https://www.tweaking4all.com/home-theatre/rename-my-tv-series-v2/' 'RenameMyTVSeries-([\\d.]+)-Linux64bit\\.tar\\.gz' '//div[@class="alert alert-success"]/table/tr/td[contains(text(),"RenameMyTVSeries")]'
+# .scripts/parse-html 'https://www.tweaking4all.com/home-theatre/rename-my-tv-series-v2/' 'RenameMyTVSeries-([\\d.]+)-Linux64bit\\.tar\\.gz' '//div[@class="alert alert-success"]/table/tr/td[contains(text(),"RenameMyTVSeries")]'

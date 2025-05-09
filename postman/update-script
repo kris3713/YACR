@@ -2,15 +2,15 @@
 
 set -l script_dir (status dirname)
 
-set -l url 'https://www.tweaking4all.com/home-theatre/rename-my-tv-series-v2/'
-set -l regex 'RenameMyTVSeries-([\\d.]+)-Linux64bit\\.tar\\.gz'
-set -l xpath '//div[@class="alert alert-success"]/table/tr/td[contains(text(),"RenameMyTVSeries")]'
+set -l url 'https://dl.pstmn.io/changelog?channel=stable&platform=linux64'
+# set -l regex '([\\d.]+)'
+set -l jsonpath '$.changelog[0].name'
 
-echo 'Adding executable permissions to `parse-html`'
-chmod +x ./scripts/parse-html && cd ./scripts
+echo 'Adding executable permissions to `parse-json`'
+chmod +x ./scripts/parse-json && cd ./scripts
 
-echo 'Executing the `parse-html` script'
-set -l output_version ("$script_dir/../scripts/parse-html" "$url" "$regex" "$xpath")
+echo 'Executing the `parse-json` script'
+set -l output_version ("$script_dir/../scripts/parse-json" "$url" '' "$jsonpath")
 
 # @fish-lsp-disable-next-line 2001
 set -l spec_file (find "$script_dir" -name '*.spec' -print -quit)
@@ -27,5 +27,5 @@ else
   echo 'Both versions are the same. No update needed.'
 end
 
-echo 'Removing executable permissions from `parse-html`'
-chmod -x ./scripts/parse-html
+echo 'Removing executable permissions from `parse-json`'
+chmod -x ./scripts/parse-json

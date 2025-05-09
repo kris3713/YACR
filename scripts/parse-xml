@@ -3,7 +3,6 @@
 import re
 import sys
 import xml.etree.ElementTree as xml
-from lxml import html
 import requests
 
 
@@ -37,7 +36,7 @@ def parse_xml(url: str, regex_str: str, xpath_expr: str):
         if matches is not None: result = matches.group(1)  # noqa: E701
 
     print(result)
-# end of parseWebContent
+# end of parse_xml
 
 # Allow the user to pass in the arguments from the command line
 parse_xml(sys.argv[1], sys.argv[2], sys.argv[3])
