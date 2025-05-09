@@ -11,11 +11,11 @@ License:        Freeware
 URL:            https://www.postman.com/
 
 %ifarch x86_64
-Source0:        https://dl.pstmn.io/download/latest/linux_64
+Source0:        https://dl.pstmn.io/download/latest/linux_64#/postman-linux-x64.tar.gz
 %endif
 
 %ifarch aarch64
-Source0:        https://dl.pstmn.io/download/latest/linux_arm64
+Source0:        https://dl.pstmn.io/download/latest/linux_arm64#/postman-linux-arm64.tar.gz
 %endif
 
 Source1:        %{full_name}.desktop
