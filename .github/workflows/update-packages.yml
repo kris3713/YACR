@@ -41,7 +41,7 @@ jobs:
         shell: bash
         run: |
           echo 'Installing Python packages'
-          pip3 install -r ./requirements.txt &> /dev/null && cd ..
+          pip install -r ./requirements.txt
 
           for i in $(find . -type f -name 'update-script'); do
             chmod +x "$i"
