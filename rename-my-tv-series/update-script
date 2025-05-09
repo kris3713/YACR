@@ -6,7 +6,7 @@ set -l url 'https://www.tweaking4all.com/home-theatre/rename-my-tv-series-v2/'
 set -l regex 'RenameMyTVSeries-([\\d.]+)-Linux64bit\\.tar\\.gz'
 set -l xpath '//div[@class="alert alert-success"]/table/tr/td[contains(text(),"RenameMyTVSeries")]'
 
-echo 'Executing the `scrape_website` script'
+echo 'Executing the `parse-web-content` script'
 set -l output_version ("$script_dir/../scripts/parse-web-content" "$url" "$regex" "$xpath")
 
 # @fish-lsp-disable-next-line 2001
