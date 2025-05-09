@@ -23,12 +23,12 @@ episodes based on information from TheTVDB.com. It supports various naming
 formats and can help organize your media files.
 
 %prep
-ls -laR .
+ls -la .
 %setup -q -c -n ./%{full_name}
-ls -laR .
+ls -la .
 
 %install
-ls -laR .
+ls -la .
 %__rm -rf %{buildroot}
 
 %__install -d %{buildroot}{/opt/%{full_name},%{_bindir},%{_datadir}/applications,%{_datadir}/icons/hicolor/128x128/apps,%{_datadir}/icons/hicolor/64x64/apps,%{_datadir}/icons/hicolor/48x48/apps,%{_datadir}/icons/hicolor/32x32/apps,%{_datadir}/icons/hicolor/16x16/apps}
@@ -45,7 +45,7 @@ ls -laR .
 %__ln_s ../../../../../../opt/%{full_name}/icons/64x64.png %{buildroot}%{_datadir}/icons/hicolor/64x64/apps/%{full_name}.png
 %__ln_s ../../../../../../opt/%{full_name}/icons/128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
 
-ls -laR .
+ls -la .
 
 %files
 /opt/%{full_name}
