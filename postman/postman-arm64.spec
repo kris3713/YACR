@@ -21,11 +21,10 @@ streamlines collaboration so you can create better APIs faster.
 %prep
 ls -laR .
 %setup -q -n %{application_name}
+cd ./%{application_name}/app
 ls -laR .
 
 %install
-cd ./%{application_name}/app
-
 ls -laR .
 
 # Remove the build root
