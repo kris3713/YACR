@@ -45,6 +45,9 @@ jobs:
           echo 'Installing Python packages'
           pip install -r ./requirements.txt && cd ..
 
+          echo '---------------------------------------'
+          echo '---------------------------------------'
+
           for i in $(find . -type f -name 'update-script'); do
             chmod +x "$i"
             echo "Executing $i"; eval "$i"
