@@ -29,7 +29,7 @@ streamlines collaboration so you can create better APIs faster.
 ls -laR .
 %__rm ./%{application_name}/%{application_name}
 %__chmod 755 ./%{application_name}/app/chrome_crashpad_handler
-%setup -n ./%{application_name}/app
+%setup -q -n ./%{application_name}/app
 ls -laR .
 
 %install
