@@ -22,7 +22,7 @@ streamlines collaboration so you can create better APIs faster.
 
 %prep
 ls -la .
-%setup -n ./%{application_name}/app
+%setup -q -n ./%{application_name}/app
 ls -la .
 
 %install
