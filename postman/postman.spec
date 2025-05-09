@@ -33,6 +33,8 @@ ls -laR .
 ls -laR .
 
 %install
+cd ./%{application_name}/app
+
 ls -laR .
 
 # Remove the build root
