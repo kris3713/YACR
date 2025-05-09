@@ -13,10 +13,10 @@ def parse_xml(url: str, regex_str: str, xpath_expr: str):
     regular expressions and XPath expressions.
     """
 
-    result = None
+    result = ''
 
     # Compile the regular expression from string
-    regex = re.compile(regex_str)
+    regex = re.compile(regex_str) if regex_str != '' else None
 
     # Invoke a new HTTP GET request
     response = requests.get(url)
@@ -31,9 +31,16 @@ def parse_xml(url: str, regex_str: str, xpath_expr: str):
         # If you want the HTML representation of the element:
         v = xml.tostring(e).decode()
 
-        matches = regex.search(v)
+        if regex is not None:
+            matches = regex.search(v)
 
-        if matches is not None: result = matches.group(1)  # noqa: E701
+            if matches is not None:
+                if matches.group(1) is None:
+                    result = matches.group(0)
+                else:
+                    result = matches.group(1)
+        else:
+            result = v
 
     print(result)
 # end of parse_xml

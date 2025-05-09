@@ -13,7 +13,7 @@ def parse_html(url: str, regex_str: str, xpath_expr: str):
     regular expressions and XPath expressions.
     """
 
-    result = None
+    result = ''
 
     # Compile the regular expression from string
     regex = re.compile(regex_str)
@@ -29,7 +29,7 @@ def parse_html(url: str, regex_str: str, xpath_expr: str):
         # If you want the text content of the element:
         # print(element.text_content())
         # If you want the HTML representation of the element:
-        v = html.tostring(e).decode()
+        v: str = html.tostring(e).decode()
 
         matches = regex.search(v)
 
@@ -49,4 +49,4 @@ parse_html(sys.argv[1], sys.argv[2], sys.argv[3])
 # )
 
 # # This is how it should be used in cli
-# .scripts/parse-html 'https://www.tweaking4all.com/home-theatre/rename-my-tv-series-v2/' 'RenameMyTVSeries-([\\d.]+)-Linux64bit\\.tar\\.gz' '//div[@class="alert alert-success"]/table/tr/td[contains(text(),"RenameMyTVSeries")]'
+# ./scripts/parse-html 'https://www.tweaking4all.com/home-theatre/rename-my-tv-series-v2/' 'RenameMyTVSeries-([\\d.]+)-Linux64bit\\.tar\\.gz' '//div[@class="alert alert-success"]/table/tr/td[contains(text(),"RenameMyTVSeries")]'
