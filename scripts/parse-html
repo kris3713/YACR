@@ -6,9 +6,9 @@ from lxml import html
 import requests
 
 
-def parse_web_content(url: str, regex_str: str, xpath_expr: str):
+def parse_html(url: str, regex_str: str, xpath_expr: str):
     """
-    Parses HTML/XML content from a URL and
+    Parses HTML content from a URL and
     extracts the desired information using
     regular expressions and XPath expressions.
     """
@@ -39,14 +39,14 @@ def parse_web_content(url: str, regex_str: str, xpath_expr: str):
 # end of parseWebContent
 
 # Allow the user to pass in the arguments from the command line
-parse_web_content(sys.argv[1], sys.argv[2], sys.argv[3])
+parse_html(sys.argv[1], sys.argv[2], sys.argv[3])
 
 # # This is how it should be used
-# parseWebContent(
+# parse_html(
 #     'https://www.tweaking4all.com/home-theatre/rename-my-tv-series-v2/',
 #     'RenameMyTVSeries-([\\d.]+)-Linux64bit\\.tar\\.gz',
 #     '//div[@class="alert alert-success"]/table/tr/td[contains(text(),"RenameMyTVSeries")]',
 # )
 
 # # This is how it should be used in cli
-# ./scrape_website 'https://www.tweaking4all.com/home-theatre/rename-my-tv-series-v2/' 'RenameMyTVSeries-([\\d.]+)-Linux64bit\\.tar\\.gz' '//div[@class="alert alert-success"]/table/tr/td[contains(text(),"RenameMyTVSeries")]'
+# ./parse-html 'https://www.tweaking4all.com/home-theatre/rename-my-tv-series-v2/' 'RenameMyTVSeries-([\\d.]+)-Linux64bit\\.tar\\.gz' '//div[@class="alert alert-success"]/table/tr/td[contains(text(),"RenameMyTVSeries")]'
