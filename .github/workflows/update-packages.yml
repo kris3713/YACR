@@ -1,9 +1,9 @@
 name: 'Update packages'
 
 on:
-  # schedule:
-  #   # Runs every minute, between 13:00 and 13:59 UTC
-  #   - cron: '* 13 * * *'
+  schedule:
+    # Runs every minute, between 13:00 and 13:59 UTC
+    - cron: '* 13 * * *'
 
   workflow_dispatch: # Allows manual triggering of the workflow
 
@@ -26,24 +26,25 @@ jobs:
       - name: 'Install helper programs'
         shell: bash
         run: |
-          export GEM_HOME="$HOME/.gem"
-          export PATH="$PATH:$GEM_HOME/bin"
-
           sudo apt update > /dev/null
-          sudo apt install -y sd fish ruby > /dev/null
-          gem install bundler
+          sudo apt install -y sd fish python3 > /dev/null
+
+          if ! command -v python &> /dev/null; then
+            sudo ln -s $(command -v python3) /usr/bin/python
+          fi
+
+          if ! command -v pip &> /dev/null; then
+            sudo ln -s $(command -v pip3) /usr/bin/pip
+          fi
 
       - name: 'Update package versions'
         shell: bash
         run: |
-          export GEM_HOME="$HOME/.gem"
-          export PATH="$PATH:$GEM_HOME/bin"
+          echo 'Adding executable permissions to `parse-web-content`'
+          chmod +x ./scripts/parse-web-content && cd ./scripts
 
-          echo 'Adding executable permissions to `scrape_website`'
-          chmod +x ./scripts/scrape_website && cd ./scripts
-
-          echo 'Installing Ruby gems'
-          bundler > /dev/null && cd ..
+          echo 'Installing Python packages'
+          pip3 install -r ./requirements.txt && cd ..
 
           for i in $(find . -type f -name 'update-script'); do
             chmod +x "$i"
@@ -51,8 +52,13 @@ jobs:
             chmod -x "$i"
           done
 
-          echo 'Removing executable permissions from `scrape_website`'
-          chmod -x ./scripts/scrape_website
+          echo 'Removing executable permissions from `parse-web-content`'
+          chmod -x ./scripts/parse-web-content
+
+      - name: Cleanup
+        shell: bash
+        run: |
+          sudo rm $(command -v python) $(command -v pip)
 
       - name: 'Commit changes'
         shell: bash
