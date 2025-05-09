@@ -26,8 +26,8 @@ jobs:
       - name: 'Install helper programs'
         shell: bash
         run: |
-          sudo apt update > /dev/null
-          sudo apt install -y sd fish python3 > /dev/null
+          sudo apt update &> /dev/null
+          sudo apt install -y sd fish python3 &> /dev/null
 
           if ! command -v python &> /dev/null; then
             sudo ln -s $(command -v python3) /usr/bin/python
@@ -40,20 +40,14 @@ jobs:
       - name: 'Update package versions'
         shell: bash
         run: |
-          echo 'Adding executable permissions to `parse-web-content`'
-          chmod +x ./scripts/parse-web-content && cd ./scripts
-
           echo 'Installing Python packages'
-          pip3 install -r ./requirements.txt && cd ..
+          pip3 install -r ./requirements.txt &> /dev/null && cd ..
 
           for i in $(find . -type f -name 'update-script'); do
             chmod +x "$i"
             echo "Executing $i"; eval "$i"
             chmod -x "$i"
           done
-
-          echo 'Removing executable permissions from `parse-web-content`'
-          chmod -x ./scripts/parse-web-content
 
       - name: Cleanup
         shell: bash
