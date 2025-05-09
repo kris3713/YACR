@@ -10,8 +10,6 @@ def test_xpath(url: str, xpath_expr: str):
     Used for testing XPath expressions on HTML/XML content from a URL.
     """
 
-    result = None
-
     # Invoke a new HTTP GET request
     response = requests.get(url)
     html_content = html.fromstring(response.content)
