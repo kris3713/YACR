@@ -10,7 +10,7 @@ Summary:        Postman - Platform for building and using APIs
 License:        Freeware
 URL:            https://www.postman.com/
 
-Source0:        https://dl.pstmn.io/download/latest/linux_64#/postman-linux-x64.tar.gz
+Source0:        https://dl.pstmn.io/download/latest/linux_arm64#/postman-linux-arm64.tar.gz
 Source1:        %{full_name}.desktop
 
 %description
