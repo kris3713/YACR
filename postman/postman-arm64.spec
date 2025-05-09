@@ -5,7 +5,7 @@
 Name:           postman
 Version:        11.44.0
 Release:        1%{?dist}
-Summary:        Postman - Platform for building and using APIs
+Summary:        Postman - Platform for building and using APIs (arm64 variant)
 
 License:        Freeware
 URL:            https://www.postman.com/
