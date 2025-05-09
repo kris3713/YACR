@@ -1,0 +1,12 @@
+[Desktop Entry]
+Categories=Development;WebDevelopment
+Comment=API Development Environment
+Exec=postman %U
+GenericName=Postman
+Icon=postman
+Name=Postman
+Type=Application
+Version=1.4
+MimeType=x-scheme-handler/postman;
+StartupNotify=true
+StartupWMClass=postman
