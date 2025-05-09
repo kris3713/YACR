@@ -20,7 +20,7 @@ streamlines collaboration so you can create better APIs faster.
 
 %prep
 ls -la .
-%setup -q -n %{application_name}/app
+%setup -n ./%{application_name}/app
 # cd ./app
 ls -la .
 
@@ -37,7 +37,7 @@ ls -la .
 %__cp -r * %{buildroot}/opt/%{full_name}
 
 # Remove uneeded file
-shred -u %{buildroot}/opt/%{full_name}/%{application_name}/%{application_name}
+shred -u %{buildroot}/opt/%{full_name}/%{application_name}
 
 # Change filemode to prevent "permission denied" error
 %__chmod 755 %{buildroot}/opt/%{full_name}/chrome_crashpad_handler
