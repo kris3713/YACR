@@ -1,13 +1,16 @@
 #!/usr/bin/env fish
 
 set -l script_dir (status dirname)
+set -l basename (basename "$script_dir")
+
+echo "Updating '$basename'"
 
 set -l url 'https://www.tweaking4all.com/home-theatre/rename-my-tv-series-v2/'
 set -l regex 'RenameMyTVSeries-([\\d.]+)-Linux64bit\\.tar\\.gz'
 set -l xpath '//div[@class="alert alert-success"]/table/tr/td[contains(text(),"RenameMyTVSeries")]'
 
 echo 'Adding executable permissions to `parse-html`'
-chmod +x ./scripts/parse-html && cd ./scripts
+chmod +x "$script_dir/../scripts/parse-html"
 
 echo 'Executing the `parse-html` script'
 set -l output_version ("$script_dir/../scripts/parse-html" "$url" "$regex" "$xpath")
@@ -28,4 +31,6 @@ else
 end
 
 echo 'Removing executable permissions from `parse-html`'
-chmod -x ./scripts/parse-html
+chmod -x "$script_dir/../scripts/parse-html"
+
+echo "Finished updating '$basename'"
