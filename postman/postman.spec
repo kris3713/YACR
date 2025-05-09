@@ -51,7 +51,7 @@ ls -la .
 
 %files
 /opt/%{full_name}
-%{_bindir}/%{application_name}
+%{_bindir}/%{full_name}
 %{_datadir}/applications/%{full_name}.desktop
 %{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
 
