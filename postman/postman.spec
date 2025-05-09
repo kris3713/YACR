@@ -36,7 +36,11 @@ ls -laR .
 
 # Copy the application files to the build root
 %__cp -r * %{buildroot}/opt/%{full_name}
+
+# Remove uneeded file
 shred -u %{buildroot}/opt/%{full_name}/%{application_name}/%{application_name}
+
+# Change filemode to prevent "permission denied" error
 %__chmod 755 %{buildroot}/opt/%{full_name}/chrome_crashpad_handler
 
 # Install the desktop file
