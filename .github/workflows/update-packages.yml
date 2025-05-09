@@ -26,6 +26,7 @@ jobs:
       - name: 'Install helper programs'
         shell: bash
         run: |
+          echo 'Installing helper programs'
           sudo apt update &> /dev/null
           sudo apt install -y sd fish python3 &> /dev/null
 
@@ -40,8 +41,9 @@ jobs:
       - name: 'Update package versions'
         shell: bash
         run: |
+          cd ./scripts
           echo 'Installing Python packages'
-          pip install -r ./requirements.txt
+          pip install -r ./requirements.txt && cd ..
 
           for i in $(find . -type f -name 'update-script'); do
             chmod +x "$i"
