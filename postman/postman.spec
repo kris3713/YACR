@@ -45,7 +45,6 @@ ls -la .
 
 # Install the application binary
 %__ln_s ../../../../../../opt/%{full_name}/%{full_name} %{buildroot}%{_bindir}
-%__chmod 755 %{buildroot}%{_bindir}/%{full_name}
 
 %__ln_s ../../../../../../opt/%{full_name}/icons/icon_128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
 
