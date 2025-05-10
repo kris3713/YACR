@@ -41,9 +41,8 @@ jobs:
       - name: 'Update package versions'
         shell: bash
         run: |
-          cd ./scripts
           echo 'Installing Python packages'
-          pip install -r ./requirements.txt && cd ..
+          pip install -r ./scripts/requirements.txt
 
           echo '---------------------------------------'
           echo '---------------------------------------'
@@ -59,7 +58,7 @@ jobs:
       - name: Cleanup
         shell: bash
         run: |
-          pip uninstall -r ./requirements.txt
+          pip uninstall -r ./scripts/requirements.txt
           sudo rm $(command -v python) $(command -v pip)
 
       - name: 'Commit changes'
