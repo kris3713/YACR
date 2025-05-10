@@ -59,6 +59,7 @@ jobs:
       - name: Cleanup
         shell: bash
         run: |
+          pip uninstall -r ./requirements.txt
           sudo rm $(command -v python) $(command -v pip)
 
       - name: 'Commit changes'
