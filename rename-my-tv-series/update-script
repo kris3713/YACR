@@ -13,7 +13,7 @@ echo 'Adding executable permissions to `parse-html`'
 chmod +x "$script_dir/../scripts/parse-html"
 
 echo 'Executing the `parse-html` script'
-set -l output_version ("$script_dir/../scripts/parse-html" "$url" "$regex" "$xpath")
+set -l output_version ("$script_dir/../scripts/parse-html" $url $regex $xpath)
 
 # @fish-lsp-disable-next-line 2001
 set -l captured_version (sed -n 's/^Version:\\s*\\([\\d.]*\\)/\\1/p' "$script_dir/$basename.spec")
@@ -24,8 +24,8 @@ echo "Captured version: $captured_version"
 echo "Current version: $output_version"
 if test "$captured_version" != "$output_version" 
   echo 'Versions are different. Updating the spec file(s)...'
-  for v in (fd --glob '*.spec' "$script_dir")
-    sd $captured_version $output_version "$script_dir/$v"
+  for v in (fd --glob '*.spec' $script_dir)
+    sd $captured_version $output_version $v
   end && echo 'Done!'
 else
   echo 'Both versions are the same. No update needed.'
