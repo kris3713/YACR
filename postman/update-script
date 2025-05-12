@@ -28,7 +28,7 @@ echo "Captured version: $captured_version"
 echo "Current version: $output_version"
 if test "$captured_version" != "$output_version" 
   echo 'Versions are different. Updating the spec file(s)...'
-  for v in (fd '*.spec' "$script_dir")
+  for v in (fd --glob '*.spec' "$script_dir")
     sd $captured_version $output_version "$script_dir/$v.spec"
   end && echo 'Done!'
 else
