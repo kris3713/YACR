@@ -3,7 +3,7 @@
 %global         debug_package %{nil}
 
 Name:           postman
-Version:        11.44.0
+Version:        11.45.0-r250512-1424
 Release:        1%{?dist}
 Summary:        Postman - Platform for building and using APIs
 
@@ -57,5 +57,5 @@ ls -la .
 %{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
 
 %changelog
-* Fri May 09 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 11.44.0-1
-- Beginning of initial RPM packaging for Postman version 11.44.0
+* Fri May 09 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 11.45.0-r250512-1424-1
+- Beginning of initial RPM packaging for Postman version 11.45.0-r250512-1424
