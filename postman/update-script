@@ -25,7 +25,7 @@ echo "Captured version: $captured_version"
 echo "Current version: $output_version"
 if test "$captured_version" != "$output_version" 
   echo 'Versions are different. Updating the spec file...'
-  sd $captured_version $output_version "$script_dir/rename-my-tv-series.spec" && echo 'Done!'
+  sd $captured_version $output_version "$script_dir/$basename.spec" && echo 'Done!'
 else
   echo 'Both versions are the same. No update needed.'
 end
