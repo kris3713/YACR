@@ -16,16 +16,22 @@ echo 'Executing the `parse-json` script'
 set -l output_version ("$script_dir/../scripts/parse-json" "$url" '' "$jsonpath")
 
 # @fish-lsp-disable-next-line 2001
-set -l spec_file (find "$script_dir" -name '*.spec' -print -quit)
-set -l captured_version (sed -n 's/^Version:\\s*\\([\\d.]*\\)/\\1/p' "$spec_file")
+set -l captured_version (sed -n 's/^Version:\\s*\\([\\d.]*\\)/\\1/p' "$script_dir/$basename.spec")
+
+# Reassign the variables to use underscores instead of hyphens
+set -l output_version (string replace --all '-' '_' "$output_version")
+set -l captured_version (string replace --all '-' '_' "$captured_version")
 
 # @fish-lsp-disable-next-line 2001
 echo 'Comparing captured version ($captured_version) with current version ($output_version)'
 echo "Captured version: $captured_version"
 echo "Current version: $output_version"
 if test "$captured_version" != "$output_version" 
-  echo 'Versions are different. Updating the spec file...'
-  sd $captured_version $output_version "$script_dir/$basename.spec" && echo 'Done!'
+  echo 'Versions are different. Updating the spec file(s)...'
+  for v in (fd "$script_dir" '*.spec')
+    sd $captured_version $output_version "$script_dir/$v.spec"
+  end
+  echo 'Done!' 
 else
   echo 'Both versions are the same. No update needed.'
 end

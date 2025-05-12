@@ -16,21 +16,22 @@ echo 'Executing the `parse-html` script'
 set -l output_version ("$script_dir/../scripts/parse-html" "$url" "$regex" "$xpath")
 
 # @fish-lsp-disable-next-line 2001
-set -l spec_file (find "$script_dir" -name '*.spec' -print -quit)
-set -l captured_version (sed -n 's/^Version:\\s*\\([\\d.]*\\)/\\1/p' "$spec_file")
+set -l captured_version (sed -n 's/^Version:\\s*\\([\\d.]*\\)/\\1/p' "$script_dir/$basename.spec")
 
 # @fish-lsp-disable-next-line 2001
 echo 'Comparing captured version ($captured_version) with current version ($output_version)'
 echo "Captured version: $captured_version"
 echo "Current version: $output_version"
 if test "$captured_version" != "$output_version" 
-  echo 'Versions are different. Updating the spec file...'
-  sd $captured_version $output_version "$script_dir/$basename.spec" && echo 'Done!'
+  echo 'Versions are different. Updating the spec file(s)...'
+  for v in (fd "$script_dir" '*.spec')
+    sd $captured_version $output_version "$script_dir/$v.spec"
+  end && echo 'Done!'
 else
   echo 'Both versions are the same. No update needed.'
 end
 
-echo 'Removing executable permissions from `parse-html`'
-chmod -x "$script_dir/../scripts/parse-html"
+echo 'Removing executable permissions from `parse-json`'
+chmod -x "$script_dir/../scripts/parse-json"
 
 echo "Finished updating '$basename'"

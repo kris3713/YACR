@@ -28,7 +28,9 @@ jobs:
         run: |
           echo 'Installing helper programs'
           sudo apt update &> /dev/null
-          sudo apt install -y sd fish python3 &> /dev/null
+          sudo apt install -y fd-find sd fish python3 &> /dev/null
+
+          sudo ln -s $(command -v fdfind) /usr/bin/fd
 
           if ! command -v python &> /dev/null; then
             sudo ln -s $(command -v python3) /usr/bin/python
