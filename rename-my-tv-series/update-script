@@ -31,7 +31,7 @@ else
   echo 'Both versions are the same. No update needed.'
 end
 
-echo 'Removing executable permissions from `parse-json`'
-chmod -x "$script_dir/../scripts/parse-json"
+echo 'Removing executable permissions from `parse-html`'
+chmod -x "$script_dir/../scripts/parse-html"
 
 echo "Finished updating '$basename'"
