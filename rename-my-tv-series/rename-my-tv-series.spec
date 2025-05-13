@@ -4,7 +4,7 @@
 
 Name:           rename-my-tv-series
 Version:        2.0.10
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Rename My TV Series 2
 
 License:        Freeware
@@ -67,5 +67,5 @@ ls -la .
 * Fri May 09 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 2.0.10-2
 - Changed the prep and install sections
 
-# * Tue Apr 22 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 2.0.10-1
-# - Initial RPM packaging of version 2.0.10
+* Tue Apr 22 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 2.0.10-1
+- Initial RPM packaging of version 2.0.10
