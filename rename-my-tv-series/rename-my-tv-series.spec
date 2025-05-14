@@ -26,7 +26,6 @@ formats and can help organize your media files.
 %setup -q -c -n ./%{full_name}
 
 %install
-
 # Remove the build root
 %__rm -rf %{buildroot}
 
