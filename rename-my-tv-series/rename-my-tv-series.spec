@@ -23,12 +23,9 @@ episodes based on information from TheTVDB.com. It supports various naming
 formats and can help organize your media files.
 
 %prep
-ls -la .
 %setup -q -c -n ./%{full_name}
-ls -la .
 
 %install
-ls -la .
 
 # Remove the build root
 %__rm -rf %{buildroot}
@@ -51,8 +48,6 @@ ls -la .
 %__ln_s ../../../../../../opt/%{full_name}/icons/64x64.png %{buildroot}%{_datadir}/icons/hicolor/64x64/apps/%{full_name}.png
 %__ln_s ../../../../../../opt/%{full_name}/icons/128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
 
-ls -la .
-
 %files
 /opt/%{full_name}
 %{_bindir}/%{application_name}
@@ -64,6 +59,9 @@ ls -la .
 %{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
 
 %changelog
+* Wed May 14 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 2.0.10-3
+- Removed some unnecessary commands from the spec file
+
 * Fri May 09 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 2.0.10-2
 - Changed the prep and install sections
 
