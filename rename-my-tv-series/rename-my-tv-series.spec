@@ -15,7 +15,7 @@ Source1:        %{full_name}.desktop
 
 ExclusiveArch:  x86_64
 
-Requires:       openssl-devel libsq3-devel
+Requires:       openssl-devel, libsq3-devel
 
 %description
 Rename My TV Series is a utility designed to help you rename your TV series
