@@ -12,7 +12,7 @@ URL:            https://horsicq.github.io/#detect-it-easydie
 
 Source0:        https://github.com/horsicq/DIE-engine/releases/download/%{version}/die_sourcecode_%{version}.tar.gz
 
-BuildRequires:  sudo qt5-qtbase qt5-qtbase-gui qt5-qtscript-devel qt5-qttools-devel qt5-qtsvg-devel qt-devel git gettext diffstat doxygen patch patchutils systemtap qtchooser
+BuildRequires:  qt5-qtbase qt5-qtbase-gui qt5-qtscript-devel qt5-qttools-devel qt5-qtsvg-devel qt-devel git gettext diffstat doxygen patch patchutils systemtap qtchooser
 # Requires:       # Add required packages here
 
 %description
