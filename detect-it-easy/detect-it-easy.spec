@@ -12,7 +12,7 @@ URL:            https://horsicq.github.io/#detect-it-easydie
 
 Source0:        https://github.com/horsicq/DIE-engine/releases/download/%{version}/die_sourcecode_%{version}.tar.gz
 
-BuildRequires:  qt5-qtbase qt5-qtbase-gui qt5-qtscript-devel qt5-qttools-devel qt5-qtsvg-devel qt-devel git systemtap qtchooser
+BuildRequires:  cmake qt5-qtbase qt5-qtbase-gui qt5-qtscript-devel qt5-qttools-devel qt5-qtsvg-devel qt-devel git systemtap qtchooser
 # Requires:       # Add required packages here
 
 %description
@@ -28,12 +28,15 @@ the field, with a comprehensive list of supported OS images.
 %setup -q -n ./die_sourcecode_%{version}
 
 %build
-# Generate build configuration files tailored for the host system
-%__chmod a+x ./configure
-./configure
-%__chmod a-x ./configure
+# Generate build files
+%__mkdir_p build
+%__cmake . -B ./build
+# Switch to the build directory
+cd ./build
 # Build the application binaries
 %__make -j4 &> /dev/null
+# Switch back to the root directory
+cd ..
 
 %install
 # Remove the old build root
