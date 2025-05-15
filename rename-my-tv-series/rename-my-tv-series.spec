@@ -31,13 +31,7 @@ formats and can help organize your media files.
 %__rm -rf %{buildroot}
 
 # Start installing the application to the build root (while also creating another build root)
-%__install -d %{buildroot}{/opt/%{full_name}, \
-  %{_bindir},%{_datadir}/applications, \
-  %{_datadir}/icons/hicolor/128x128/apps, \
-  %{_datadir}/icons/hicolor/64x64/apps, \
-  %{_datadir}/icons/hicolor/48x48/apps, \
-  %{_datadir}/icons/hicolor/32x32/apps, \
-  %{_datadir}/icons/hicolor/16x16/apps}
+%__install -d %{buildroot}{/opt/%{full_name},%{_bindir},%{_datadir}/applications,%{_datadir}/icons/hicolor/128x128/apps,%{_datadir}/icons/hicolor/64x64/apps,%{_datadir}/icons/hicolor/48x48/apps,%{_datadir}/icons/hicolor/32x32/apps,%{_datadir}/icons/hicolor/16x16/apps}
 
 # Copy the application files to the build root
 %__cp -r * %{buildroot}/opt/%{full_name}
