@@ -60,11 +60,11 @@ cd ./LINUX
 %__install -D -m 0644 ./%{application_name}.desktop -t %{buildroot}%{_datadir}/applications
 
 # Install application icons
-%__ln_s ./hicolor/16x16/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps
-%__ln_s ./hicolor/32x32/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps
-%__ln_s ./hicolor/48x48/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps
-%__ln_s ./hicolor/64x64/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/64x64/apps
-%__ln_s ./hicolor/256x256/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps
+%__cp ./hicolor/16x16/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps
+%__cp ./hicolor/32x32/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps
+%__cp ./hicolor/48x48/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps
+%__cp ./hicolor/64x64/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/64x64/apps
+%__cp ./hicolor/256x256/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps
 
 # Change the directory back to the root
 cd ..
@@ -73,6 +73,20 @@ cd ..
 %{_bindir}/die
 %{_bindir}/diec
 %{_bindir}/diel
+%{_libdir}/qss/Celestial Mint.qss
+%{_libdir}/qss/Electric Sunset.qss
+%{_libdir}/qss/Frosted Azure.qss
+%{_libdir}/qss/Midnight Elegance.qss
+%{_libdir}/qss/Oceanic Nightfall.qss
+%{_libdir}/qss/SolarizedDark.qss
+%{_libdir}/qss/SolarizedLight.qss
+%{_libdir}/qss/Vivid Twilight.qss
+%{_libdir}/qss/console.qss
+%{_libdir}/qss/light.qss
+%{_libdir}/qss/mint.qss
+%{_libdir}/qss/orange.qss
+%{_libdir}/qss/orange_fix.qss
+%{_libdir}/qss/veles.qss
 %{_datadir}/applications/%{application_name}.desktop
 %{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
 %{_datadir}/icons/hicolor/32x32/apps/%{full_name}.png
