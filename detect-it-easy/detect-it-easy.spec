@@ -36,10 +36,10 @@ the field, with a comprehensive list of supported OS images.
 %__make -j4 &> /dev/null
 
 %install
-# Remove the build root
+# Remove the old build root
 %__rm -rf %{buildroot}
 
-# Start installing the application to the build root (while also creating another build root)
+# Create a new build root (along with other directories)
 %__install -d %{buildroot}{%{_bindir},%{_datadir}/applications,%{_datadir}/icons/hicolor/256x256/apps,%{_datadir}/icons/hicolor/64x64/apps,%{_datadir}/icons/hicolor/48x48/apps,%{_datadir}/icons/hicolor/32x32/apps,%{_datadir}/icons/hicolor/16x16/apps}
 
 # Install the application binarys
@@ -51,8 +51,8 @@ the field, with a comprehensive list of supported OS images.
 cd ./LINUX
 
 # Install the desktop file
-%__sed -i -e "s/%{application_name}/%{full_name}/g" ./io.github.horsicq.detect-it-easy.desktop
-%__install -D -m 0644 ./%{application_name}.desktop -t %{buildroot}%{_datadir}/applications/%{full_name}.desktop
+%__sed -i -e "s/%{application_name}/%{full_name}/g" ./%{application_name}.desktop
+%__install -D -m 0644 ./%{application_name}.desktop -t %{buildroot}%{_datadir}/applications
 
 # Install application icons
 %__ln_s ./hicolor/16x16/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps
@@ -65,7 +65,6 @@ cd ./LINUX
 cd ..
 
 %files
-/opt/%{full_name}
 %{_bindir}/die
 %{_bindir}/diec
 %{_bindir}/diel
