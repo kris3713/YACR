@@ -11,6 +11,8 @@ Summary:        Program for determining types of files for Windows, Linux, and M
 License:        MIT
 URL:            https://horsicq.github.io/#detect-it-easydie
 
+Source0:        https://github.com/horsicq/DIE-engine/releases/download/3.10/die_sourcecode_3.10.tar.gz
+
 BuildRequires:  sudo qt5-qtbase qt5-qtbase-gui qt5-qtscript-devel qt5-qttools-devel qt5-qtsvg-devel qt-devel git gettext diffstat doxygen patch patchutils systemtap qtchooser
 # Requires:       # Add required packages here
 
@@ -24,8 +26,8 @@ detection architecture makes it one of the most versatile tools in
 the field, with a comprehensive list of supported OS images.
 
 %prep
-%__git clone --recursive https://github.com/horsicq/DIE-engine.git
-%setup -q -n ./DIE-engine
+# %__git clone --recursive https://github.com/horsicq/DIE-engine.git
+%setup -q -n ./die_sourcecode_%{version}
 
 %build
 %__chmod a+x ./configure
