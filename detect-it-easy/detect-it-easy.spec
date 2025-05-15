@@ -43,7 +43,7 @@ cd ..
 %__rm -rf %{buildroot}
 
 # Create a new build root (along with other directories)
-%__install -d %{buildroot}{%{_bindir},%{_libdir}/qss,%{_datadir}/applications,%{_datadir}/icons/hicolor/256x256/apps,%{_datadir}/icons/hicolor/48x48/apps,%{_datadir}/icons/hicolor/32x32/apps,%{_datadir}/icons/hicolor/24x24/apps,%{_datadir}/icons/hicolor/20x20/apps,%{_datadir}/icons/hicolor/16x16/apps}
+%__install -d %{buildroot}{%{_bindir},/lib/qss,%{_datadir}/applications,%{_datadir}/icons/hicolor/256x256/apps,%{_datadir}/icons/hicolor/48x48/apps,%{_datadir}/icons/hicolor/32x32/apps,%{_datadir}/icons/hicolor/24x24/apps,%{_datadir}/icons/hicolor/20x20/apps,%{_datadir}/icons/hicolor/16x16/apps}
 
 # Install the application binarys
 %__install -D -m 0755 ./build/release/die -t %{buildroot}%{_bindir}
@@ -74,7 +74,7 @@ cd ..
 %{_bindir}/die
 %{_bindir}/diec
 %{_bindir}/diel
-%{_libdir}/qss
+/lib/qss
 %{_datadir}/applications/%{application_name}.desktop
 %{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
 %{_datadir}/icons/hicolor/20x20/apps/%{full_name}.png
