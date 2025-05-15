@@ -80,7 +80,7 @@ cd ..
 %{_datadir}/icons/hicolor/32x32/apps/%{full_name}.png
 %{_datadir}/icons/hicolor/48x48/apps/%{full_name}.png
 %{_datadir}/icons/hicolor/64x64/apps/%{full_name}.png
-%{_datadir}/icons/hicolor/256x256/apps/%{full_name
+%{_datadir}/icons/hicolor/256x256/apps/%{full_name}.png
 %license LICENSE
 
 %changelog
