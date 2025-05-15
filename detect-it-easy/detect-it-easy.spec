@@ -74,14 +74,14 @@ cd ..
 %{_bindir}/die
 %{_bindir}/diec
 %{_bindir}/diel
-%{_libdir}/qss/Celestial Mint.qss
-%{_libdir}/qss/Electric Sunset.qss
-%{_libdir}/qss/Frosted Azure.qss
-%{_libdir}/qss/Midnight Elegance.qss
-%{_libdir}/qss/Oceanic Nightfall.qss
+"%{_libdir}/qss/Celestial Mint.qss" 
+"%{_libdir}/qss/Electric Sunset.qss
+"%{_libdir}/qss/Frosted Azure.qss"
+"%{_libdir}/qss/Midnight Elegance.qss"
+"%{_libdir}/qss/Oceanic Nightfall.qss"
 %{_libdir}/qss/SolarizedDark.qss
 %{_libdir}/qss/SolarizedLight.qss
-%{_libdir}/qss/Vivid Twilight.qss
+"%{_libdir}/qss/Vivid Twilight.qss"
 %{_libdir}/qss/console.qss
 %{_libdir}/qss/light.qss
 %{_libdir}/qss/mint.qss
