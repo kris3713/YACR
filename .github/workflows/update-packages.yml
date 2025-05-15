@@ -49,7 +49,7 @@ jobs:
           echo '---------------------------------------'
           echo '---------------------------------------'
 
-          for i in $(find . -type f -name 'update-script'); do
+          for i in $(fd 'update-script' .); do
             chmod +x "$i"
             echo "Executing $i"; eval "$i"
             chmod -x "$i"
