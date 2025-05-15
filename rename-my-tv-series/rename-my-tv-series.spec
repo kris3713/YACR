@@ -41,6 +41,7 @@ formats and can help organize your media files.
 # Install the application binary
 %__install -D -m 0755 %{buildroot}/opt/%{full_name}/%{application_name} -t %{buildroot}%{_bindir}
 
+# Install application icons
 %__ln_s ../../../../../../opt/%{full_name}/icons/16x16.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
 %__ln_s ../../../../../../opt/%{full_name}/icons/32x32.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{full_name}.png
 %__ln_s ../../../../../../opt/%{full_name}/icons/48x48.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/%{full_name}.png

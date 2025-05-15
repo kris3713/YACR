@@ -21,13 +21,9 @@ Postman simplifies each step of the API lifecycle and
 streamlines collaboration so you can create better APIs faster.
 
 %prep
-ls -la .
 %setup -q -n ./%{application_name}/app
-ls -la .
 
 %install
-ls -la .
-
 # Remove the build root
 %__rm -rf %{buildroot}
 
@@ -46,9 +42,8 @@ ls -la .
 # Install the application binary
 %__ln_s ../../../../../../opt/%{full_name}/%{full_name} %{buildroot}%{_bindir}
 
+# Install application icon
 %__ln_s ../../../../../../opt/%{full_name}/icons/icon_128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
-
-ls -la .
 
 %files
 /opt/%{full_name}
