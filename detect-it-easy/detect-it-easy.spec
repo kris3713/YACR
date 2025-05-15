@@ -51,7 +51,6 @@ the field, with a comprehensive list of supported OS images.
 cd ./LINUX
 
 # Install the desktop file
-%__sed -i -e "s/%{application_name}/%{full_name}/g" ./%{application_name}.desktop
 %__install -D -m 0644 ./%{application_name}.desktop -t %{buildroot}%{_datadir}/applications
 
 # Install application icons
