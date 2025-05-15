@@ -31,8 +31,12 @@ the field, with a comprehensive list of supported OS images.
 # Generate build files
 %__mkdir_p build
 %__cmake . -B ./build
+# Switch to the build directory
+cd ./build
 # Build the application binaries
 %__make -j4 &> /dev/null
+# Switch back to the root directory
+cd ..
 
 %install
 # Remove the old build root
