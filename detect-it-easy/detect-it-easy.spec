@@ -34,7 +34,7 @@ the field, with a comprehensive list of supported OS images.
 %__chmod a-x ./configure
 # Finally build the application
 %__make -j4
-sudo %__make install
+%__make install
 
 %install
 # Remove the build root
