@@ -5,7 +5,7 @@
 
 Name:           rename-my-tv-series
 Version:        2.0.10
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Rename My TV Series 2
 
 License:        Freeware
@@ -60,11 +60,5 @@ formats and can help organize your media files.
 %{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
 
 %changelog
-* Wed May 14 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 2.0.10-3
-- Removed some unnecessary commands from the spec file
-
-* Fri May 09 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 2.0.10-2
-- Changed the prep and install sections
-
 * Tue Apr 22 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 2.0.10-1
 - Initial packaging of rename-my-tv-series version 2.0.10
