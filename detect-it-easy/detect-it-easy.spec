@@ -51,7 +51,7 @@ cd ..
 %__install -D -m 0755 ./build/release/diel -t %{buildroot}%{_bindir}
 
 # Copy the qss files
-%__cp ./XStyles/qss/*.qss -t %{buildroot}%{_libdir}/qss
+%__cp ./XStyles/qss/*.qss -t %{buildroot}/lib/qss
 
 # Change the directory to ./LINUX
 cd ./LINUX
