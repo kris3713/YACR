@@ -66,4 +66,4 @@ formats and can help organize your media files.
 - Changed the prep and install sections
 
 * Tue Apr 22 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 2.0.10-1
-- Initial RPM packaging of version 2.0.10
+- Initial packaging of rename-my-tv-series version 2.0.10
