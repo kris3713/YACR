@@ -1,5 +1,5 @@
 %global         full_name detect-it-easy
-%global         application_name io.github.horsicq.detect-it-easy
+%global         application_name die
 %global         debug_package %{nil}
 
 Name:           detect-it-easy
@@ -28,10 +28,11 @@ the field, with a comprehensive list of supported OS images.
 %setup -q -n ./die_sourcecode_%{version}
 
 %build
+# Generate build configuration files tailored for the host system
 %__chmod a+x ./configure
 ./configure
 %__chmod a-x ./configure
-# Finally build the application
+# Build the application binaries
 %__make -j4 &> /dev/null
 
 %install
@@ -39,16 +40,12 @@ the field, with a comprehensive list of supported OS images.
 %__rm -rf %{buildroot}
 
 # Start installing the application to the build root (while also creating another build root)
-%__install -d %{buildroot}{/opt/%{full_name},%{_bindir},%{_datadir}/applications,%{_datadir}/icons/hicolor/256x256/apps,%{_datadir}/icons/hicolor/64x64/apps,%{_datadir}/icons/hicolor/48x48/apps,%{_datadir}/icons/hicolor/32x32/apps,%{_datadir}/icons/hicolor/16x16/apps}
-
-# Copy the application files to the build root
-%__cp -r ./build/release/* %{buildroot}/opt/%{full_name}
-# %__cp -r ./LICENSE %{buildroot}/opt/%{full_name}
+%__install -d %{buildroot}{%{_bindir},%{_datadir}/applications,%{_datadir}/icons/hicolor/256x256/apps,%{_datadir}/icons/hicolor/64x64/apps,%{_datadir}/icons/hicolor/48x48/apps,%{_datadir}/icons/hicolor/32x32/apps,%{_datadir}/icons/hicolor/16x16/apps}
 
 # Install the application binarys
-%__install -D -m 0755 %{buildroot}/opt/%{full_name}/die -t %{buildroot}%{_bindir}
-%__install -D -m 0755 %{buildroot}/opt/%{full_name}/diec -t %{buildroot}%{_bindir}
-%__install -D -m 0755 %{buildroot}/opt/%{full_name}/diel -t %{buildroot}%{_bindir}
+%__install -D -m 0755 ./build/release/die -t %{buildroot}%{_bindir}
+%__install -D -m 0755 ./build/release/diec -t %{buildroot}%{_bindir}
+%__install -D -m 0755 ./build/release/diel -t %{buildroot}%{_bindir}
 
 # Change the directory to ./LINUX
 cd ./LINUX
@@ -58,11 +55,11 @@ cd ./LINUX
 %__install -D -m 0644 ./%{application_name}.desktop -t %{buildroot}%{_datadir}/applications/%{full_name}.desktop
 
 # Install application icons
-%__ln_s ./hicolor/16x16/apps/%{appplication_name}.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
-%__ln_s ./hicolor/32x32/apps/%{appplication_name}.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{full_name}.png
-%__ln_s ./hicolor/48x48/apps/%{appplication_name}.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/%{full_name}.png
-%__ln_s ./hicolor/64x64/apps/%{appplication_name}.png %{buildroot}%{_datadir}/icons/hicolor/64x64/apps/%{full_name}.png
-%__ln_s ./hicolor/256x256/apps/%{appplication_name}.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{full_name}.png
+%__ln_s ./hicolor/16x16/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps
+%__ln_s ./hicolor/32x32/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps
+%__ln_s ./hicolor/48x48/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps
+%__ln_s ./hicolor/64x64/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/64x64/apps
+%__ln_s ./hicolor/256x256/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps
 
 # Change the directory back to the root
 cd ..
