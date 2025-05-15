@@ -4,7 +4,7 @@
 
 Name:           detect-it-easy
 Version:        3.10
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Program for determining types of files for Windows, Linux, and MacOS
 
 License:        MIT
@@ -43,12 +43,15 @@ cd ..
 %__rm -rf %{buildroot}
 
 # Create a new build root (along with other directories)
-%__install -d %{buildroot}{%{_bindir},%{_datadir}/applications,%{_datadir}/icons/hicolor/256x256/apps,%{_datadir}/icons/hicolor/64x64/apps,%{_datadir}/icons/hicolor/48x48/apps,%{_datadir}/icons/hicolor/32x32/apps,%{_datadir}/icons/hicolor/16x16/apps}
+%__install -d %{buildroot}{%{_bindir},%{_libdir}/qss,%{_datadir}/applications,%{_datadir}/icons/hicolor/256x256/apps,%{_datadir}/icons/hicolor/64x64/apps,%{_datadir}/icons/hicolor/48x48/apps,%{_datadir}/icons/hicolor/32x32/apps,%{_datadir}/icons/hicolor/16x16/apps}
 
 # Install the application binarys
 %__install -D -m 0755 ./build/release/die -t %{buildroot}%{_bindir}
 %__install -D -m 0755 ./build/release/diec -t %{buildroot}%{_bindir}
 %__install -D -m 0755 ./build/release/diel -t %{buildroot}%{_bindir}
+
+# Copy the qss files
+%__cp ./XStyles/qss/*.qss -t %{buildroot}%{_libdir}/qss
 
 # Change the directory to ./LINUX
 cd ./LINUX
@@ -79,5 +82,8 @@ cd ..
 %license LICENSE
 
 %changelog
-* Wed May 14 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 3.1.0-1
-- Inital packaging of detect-it-easy version 3.1.0
+* Thu May 15 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 3.10-2
+- Added missing QSS files
+
+* Wed May 14 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 3.10-1
+- Inital packaging of detect-it-easy version 3.10
