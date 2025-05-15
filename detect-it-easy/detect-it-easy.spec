@@ -43,7 +43,7 @@ cd ..
 %__rm -rf %{buildroot}
 
 # Create a new build root (along with other directories)
-%__install -d %{buildroot}{%{_bindir},%{_libdir}/qss,%{_datadir}/applications,%{_datadir}/icons/hicolor/256x256/apps,%{_datadir}/icons/hicolor/64x64/apps,%{_datadir}/icons/hicolor/48x48/apps,%{_datadir}/icons/hicolor/32x32/apps,%{_datadir}/icons/hicolor/16x16/apps}
+%__install -d %{buildroot}{%{_bindir},%{_libdir}/qss,%{_datadir}/applications,%{_datadir}/icons/hicolor/256x256/apps,%{_datadir}/icons/hicolor/48x48/apps,%{_datadir}/icons/hicolor/32x32/apps,%{_datadir}/icons/hicolor/24x24/apps,%{_datadir}/icons/hicolor/20x20/apps,%{_datadir}/icons/hicolor/16x16/apps}
 
 # Install the application binarys
 %__install -D -m 0755 ./build/release/die -t %{buildroot}%{_bindir}
@@ -60,12 +60,12 @@ cd ./LINUX
 %__install -D -m 0644 ./%{application_name}.desktop -t %{buildroot}%{_datadir}/applications
 
 # Install application icons
-%__ln ./hicolor/16x16/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/
-%__ln ./hicolor/20x20/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/20x20/apps/
-%__ln ./hicolor/24x24/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/24x24/apps/
-%__ln ./hicolor/32x32/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/
-%__ln ./hicolor/48x48/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/
-%__ln ./hicolor/256x256/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/
+%__cp ./hicolor/16x16/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
+%__cp ./hicolor/20x20/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/20x20/apps/%{full_name}.png
+%__cp ./hicolor/24x24/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/24x24/apps/%{full_name}.png
+%__cp ./hicolor/32x32/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{full_name}.png
+%__cp ./hicolor/48x48/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/%{full_name}.png
+%__cp ./hicolor/256x256/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{full_name}.png
 
 # Change the directory back to the root
 cd ..
