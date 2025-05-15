@@ -25,7 +25,6 @@ detection architecture makes it one of the most versatile tools in
 the field, with a comprehensive list of supported OS images.
 
 %prep
-# %__git clone --recursive https://github.com/horsicq/DIE-engine.git
 %setup -q -n ./die_sourcecode_%{version}
 
 %build
@@ -33,7 +32,7 @@ the field, with a comprehensive list of supported OS images.
 ./configure
 %__chmod a-x ./configure
 # Finally build the application
-%__make -j4
+%__make -j4 &> /dev/null
 %__make install
 
 %install
