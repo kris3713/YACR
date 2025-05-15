@@ -74,25 +74,13 @@ cd ..
 %{_bindir}/die
 %{_bindir}/diec
 %{_bindir}/diel
-"%{_libdir}/qss/Celestial Mint.qss" 
-"%{_libdir}/qss/Electric Sunset.qss
-"%{_libdir}/qss/Frosted Azure.qss"
-"%{_libdir}/qss/Midnight Elegance.qss"
-"%{_libdir}/qss/Oceanic Nightfall.qss"
-%{_libdir}/qss/SolarizedDark.qss
-%{_libdir}/qss/SolarizedLight.qss
-"%{_libdir}/qss/Vivid Twilight.qss"
-%{_libdir}/qss/console.qss
-%{_libdir}/qss/light.qss
-%{_libdir}/qss/mint.qss
-%{_libdir}/qss/orange.qss
-%{_libdir}/qss/orange_fix.qss
-%{_libdir}/qss/veles.qss
+%{_libdir}/qss
 %{_datadir}/applications/%{application_name}.desktop
 %{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
+%{_datadir}/icons/hicolor/20x20/apps/%{full_name}.png
+%{_datadir}/icons/hicolor/24x24/apps/%{full_name}.png
 %{_datadir}/icons/hicolor/32x32/apps/%{full_name}.png
 %{_datadir}/icons/hicolor/48x48/apps/%{full_name}.png
-%{_datadir}/icons/hicolor/64x64/apps/%{full_name}.png
 %{_datadir}/icons/hicolor/256x256/apps/%{full_name}.png
 %license LICENSE
 
