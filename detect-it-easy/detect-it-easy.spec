@@ -1,15 +1,17 @@
+%global         full_name detect-it-easy
+%global         application_name io.github.horsicq.detect-it-easy
+%global         version 3.10
+%global         debug_package %{nil}
+
 Name:           detect-it-easy
 Version:        3.1.0
 Release:        1%{?dist}
-Summary:        Program for determining types of files for Windows, Linux and MacOS
+Summary:        Program for determining types of files for Windows, Linux, and MacOS
 
 License:        MIT
 URL:            https://horsicq.github.io/#detect-it-easydie
 
-Source0:        https://github.com/horsicq/DIE-engine/archive/refs/tags/3.10.tar.gz
-Source1:        https://raw.githubusercontent.com/horsicq/DIE-engine/refs/heads/master/LINUX/io.github.horsicq.detect-it-easy.desktop#/detect-it-easy.desktop
-
-BuildRequires:  qt5-qtbase qt5-qtbase-gui qt5-qtscript-devel qt5-qttools-devel qt5-qtsvg-devel git gettext diffstat doxygen patch patchutils systemtap
+BuildRequires:  sudo qt5-qtbase qt5-qtbase-gui qt5-qtscript-devel qt5-qttools-devel qt5-qtsvg-devel qt-devel git gettext diffstat doxygen patch patchutils systemtap qtchooser
 # Requires:       # Add required packages here
 
 %description
@@ -22,24 +24,63 @@ detection architecture makes it one of the most versatile tools in
 the field, with a comprehensive list of supported OS images.
 
 %prep
-%autosetup
-
+%__git clone --recursive https://github.com/horsicq/DIE-engine.git
+%setup -q -n ./DIE-engine
 
 %build
-%configure
-%make_build
-
+%__chmod a+x ./configure
+./configure
+chmod a-x ./configure
+# Finally build the application
+%__make -j4
+%__make install
 
 %install
-%make_install
+# Remove the build root
+%__rm -rf %{buildroot}
 
+# Start installing the application to the build root (while also creating another build root)
+%__install -d %{buildroot}{/opt/%{full_name},%{_bindir},%{_datadir}/applications,%{_datadir}/icons/hicolor/256x256/apps,%{_datadir}/icons/hicolor/64x64/apps,%{_datadir}/icons/hicolor/48x48/apps,%{_datadir}/icons/hicolor/32x32/apps,%{_datadir}/icons/hicolor/16x16/apps}
+
+# Copy the application files to the build root
+%__cp -r ./build/release/* %{buildroot}/opt/%{full_name}
+# %__cp -r ./LICENSE %{buildroot}/opt/%{full_name}
+
+# Install the application binarys
+%__install -D -m 0755 %{buildroot}/opt/%{full_name}/die -t %{buildroot}%{_bindir}
+%__install -D -m 0755 %{buildroot}/opt/%{full_name}/diec -t %{buildroot}%{_bindir}
+%__install -D -m 0755 %{buildroot}/opt/%{full_name}/diel -t %{buildroot}%{_bindir}
+
+# Change the directory to ./LINUX
+cd ./LINUX
+
+# Install the desktop file
+%__sed -i -e "s/%{application_name}/%{full_name}/g" ./io.github.horsicq.detect-it-easy.desktop
+%__install -D -m 0644 ./%{application_name}.desktop -t %{buildroot}%{_datadir}/applications/%{full_name}.desktop
+
+# Install application icons
+%__ln_s ./hicolor/16x16/apps/%{appplication_name}.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
+%__ln_s ./hicolor/32x32/apps/%{appplication_name}.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{full_name}.png
+%__ln_s ./hicolor/48x48/apps/%{appplication_name}.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/%{full_name}.png
+%__ln_s ./hicolor/64x64/apps/%{appplication_name}.png %{buildroot}%{_datadir}/icons/hicolor/64x64/apps/%{full_name}.png
+%__ln_s ./hicolor/256x256/apps/%{appplication_name}.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{full_name}.png
+
+# Change the directory back to the root
+cd ..
 
 %files
-%license add-license-file-here
-%doc add-docs-here
-
-
+/opt/%{full_name}
+%{_bindir}/die
+%{_bindir}/diec
+%{_bindir}/diel
+%{_datadir}/applications/%{full_name}.desktop
+%{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
+%{_datadir}/icons/hicolor/32x32/apps/%{full_name}.png
+%{_datadir}/icons/hicolor/48x48/apps/%{full_name}.png
+%{_datadir}/icons/hicolor/64x64/apps/%{full_name}.png
+%{_datadir}/icons/hicolor/256x256/apps/%{full_name
+%license LICENSE
 
 %changelog
-* Tue May 13 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 3.1.0-1
-- Inital packaging of detect-it-easy
+* Tue May 14 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 3.1.0-1
+- Inital packaging of detect-it-easy version 3.1.0
