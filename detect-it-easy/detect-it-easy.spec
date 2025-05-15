@@ -68,7 +68,7 @@ cd ..
 %{_bindir}/die
 %{_bindir}/diec
 %{_bindir}/diel
-%{_datadir}/applications/%{full_name}.desktop
+%{_datadir}/applications/%{application_name}.desktop
 %{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
 %{_datadir}/icons/hicolor/32x32/apps/%{full_name}.png
 %{_datadir}/icons/hicolor/48x48/apps/%{full_name}.png
