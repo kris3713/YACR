@@ -1,5 +1,6 @@
 %global         full_name rename-my-tv-series
 %global         application_name RenameMyTVSeries
+%global         version 3.10
 %global         debug_package %{nil}
 
 Name:           rename-my-tv-series
@@ -10,7 +11,7 @@ Summary:        Rename My TV Series 2
 License:        Freeware
 URL:            https://www.tweaking4all.com/home-theatre/rename-my-tv-series-v2/
 
-Source0:        https://www.tweaking4all.com/downloads/video/RenameMyTVSeries-2.0.10-Linux64bit.tar.gz
+Source0:        https://www.tweaking4all.com/downloads/video/RenameMyTVSeries-%{version}-Linux64bit.tar.gz
 Source1:        %{full_name}.desktop
 
 ExclusiveArch:  x86_64
