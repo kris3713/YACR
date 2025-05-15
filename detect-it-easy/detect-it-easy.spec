@@ -26,7 +26,7 @@ the field, with a comprehensive list of supported OS images.
 
 %prep
 # %__git clone --recursive https://github.com/horsicq/DIE-engine.git
-%setup -n ./die_sourcecode_%{version}
+%setup -q -n ./die_sourcecode_%{version}
 
 %build
 %__chmod a+x ./configure
