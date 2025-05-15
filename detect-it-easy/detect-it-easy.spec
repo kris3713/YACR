@@ -1,10 +1,9 @@
 %global         full_name detect-it-easy
 %global         application_name io.github.horsicq.detect-it-easy
-%global         version 3.10
 %global         debug_package %{nil}
 
 Name:           detect-it-easy
-Version:        3.1.0
+Version:        3.10
 Release:        1%{?dist}
 Summary:        Program for determining types of files for Windows, Linux, and MacOS
 
