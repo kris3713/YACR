@@ -28,10 +28,9 @@ the field, with a comprehensive list of supported OS images.
 %setup -q -n ./die_sourcecode_%{version}
 
 %build
-# Generate build configuration files tailored for the host system
-%__chmod a+x ./configure
-./configure
-%__chmod a-x ./configure
+# Generate build files
+%__mkdir_p build
+%__cmake . -B ./build
 # Build the application binaries
 %__make -j4 &> /dev/null
 
