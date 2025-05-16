@@ -43,7 +43,7 @@ streamlines collaboration so you can create better APIs faster.
 
 # Install the application binary
 %__install -D -m 0755 %{SOURCE2} -t %{buildroot}%{_bindir}
-%__chmod +x %{buildroot}%{_bindir}/%{app_name}
+%__chmod +x %{buildroot}%{_bindir}/%{full_name}
 
 # Install application icon
 %__install -D -m 0644 ./icons/icon_128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
