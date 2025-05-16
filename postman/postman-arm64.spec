@@ -49,7 +49,6 @@ streamlines collaboration so you can create better APIs faster.
 
 %files
 /opt/%{app_name}
-%{_bindir}/%{full_name}
 %{_datadir}/applications/%{full_name}.desktop
 %{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
 
