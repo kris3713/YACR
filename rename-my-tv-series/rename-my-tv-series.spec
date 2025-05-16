@@ -1,5 +1,5 @@
 %global         full_name rename-my-tv-series
-%global         application_name RenameMyTVSeries
+%global         app_name RenameMyTVSeries
 %global         debug_package %{nil}
 
 Name:           rename-my-tv-series
@@ -10,7 +10,7 @@ Summary:        Rename My TV Series 2
 License:        Freeware
 URL:            https://www.tweaking4all.com/home-theatre/rename-my-tv-series-v2/
 
-Source0:        https://www.tweaking4all.com/downloads/video/%{application_name}-%{version}-Linux64bit.tar.gz
+Source0:        https://www.tweaking4all.com/downloads/video/%{app_name}-%{version}-Linux64bit.tar.gz
 Source1:        %{full_name}.desktop
 
 ExclusiveArch:  x86_64
@@ -40,7 +40,7 @@ formats and can help organize your media files.
 %__install -D -m 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
 
 # Install the application binary
-%__install -D -m 0755 %{buildroot}/opt/%{full_name}/%{application_name} -t %{buildroot}%{_bindir}
+%__install -D -m 0755 %{buildroot}/opt/%{full_name}/%{app_name} -t %{buildroot}%{_bindir}
 
 # Install application icons
 %__install -D -m 0644 %{buildroot}/opt/%{full_name}/icons/16x16.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
@@ -52,7 +52,7 @@ formats and can help organize your media files.
 
 %files
 /opt/%{full_name}
-%{_bindir}/%{application_name}
+%{_bindir}/%{app_name}
 %{_datadir}/applications/%{full_name}.desktop
 %{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
 %{_datadir}/icons/hicolor/32x32/apps/%{full_name}.png

@@ -1,5 +1,5 @@
 %global         full_name postman
-%global         application_name Postman
+%global         app_name Postman
 %global         debug_package %{nil}
 
 Name:           postman
@@ -21,7 +21,7 @@ Postman simplifies each step of the API lifecycle and
 streamlines collaboration so you can create better APIs faster.
 
 %prep
-%setup -q -n ./%{application_name}/app
+%setup -q -n ./%{app_name}/app
 
 %install
 # Remove the build root

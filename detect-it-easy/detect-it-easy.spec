@@ -1,5 +1,5 @@
 %global         full_name detect-it-easy
-%global         application_name die
+%global         app_name die
 %global         debug_package %{nil}
 
 Name:           detect-it-easy
@@ -64,7 +64,7 @@ cd ..
 cd ./LINUX
 
 # Install the desktop file
-%__install -D -m 0644 ./%{application_name}.desktop -t %{buildroot}%{_datadir}/applications
+%__install -D -m 0644 ./%{app_name}.desktop -t %{buildroot}%{_datadir}/applications
 
 # Install application icons
 %__install -D -m 0644 ./hicolor/16x16/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
@@ -82,7 +82,7 @@ cd ..
 %{_bindir}/diec
 %{_bindir}/diel
 /lib/die
-%{_datadir}/applications/%{application_name}.desktop
+%{_datadir}/applications/%{app_name}.desktop
 %{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
 %{_datadir}/icons/hicolor/20x20/apps/%{full_name}.png
 %{_datadir}/icons/hicolor/24x24/apps/%{full_name}.png
