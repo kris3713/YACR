@@ -2,7 +2,7 @@
 
 import re
 import sys
-import xml.etree.ElementTree as xml
+from lxml import etree
 import requests
 
 
@@ -20,16 +20,16 @@ def parse_xml(url: str, regex_str: str, xpath_expr: str):
 
     # Invoke a new HTTP GET request
     response = requests.get(url)
-    xml_content = xml.fromstring(response.content)
+    xml_content = etree.fromstring(response.content)
 
     #  Find all the elements that were captured the XPath expression
-    elements = xml_content.findall(xpath_expr)
+    elements = xml_content.xpath(xpath_expr)
 
     for e in elements:
         # If you want the text content of the element:
         # print(element.text_content())
         # If you want the HTML representation of the element:
-        v = xml.tostring(e).decode()
+        v = etree.tostring(e).decode()
 
         if regex is not None:
             matches = regex.search(v)
