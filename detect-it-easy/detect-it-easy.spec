@@ -51,12 +51,12 @@ cd ..
 %__install -D -m 0755 ./build/release/diel -t %{buildroot}%{_bindir}
 
 # Copy required libraires for Detect It Easy
-%__cp -r ./XStyles/qss %{buildroot}/lib/die
-%__cp -r ./XYara/yara_rules %{buildroot}/lib/die
-%__cp -r ./XInfoDB/info %{buildroot}/lib/die
-%__cp -r ./images %{buildroot}/lib/die
-%__cp -r ./Detect-It-Easy/db_custom %{buildroot}/lib/die
-%__cp -r ./db %{buildroot}/lib/die
+%__cp -a ./XStyles/qss %{buildroot}/lib/die
+%__cp -a ./XYara/yara_rules %{buildroot}/lib/die
+%__cp -a ./XInfoDB/info %{buildroot}/lib/die
+%__cp -a ./images %{buildroot}/lib/die
+%__cp -a ./Detect-It-Easy/db_custom %{buildroot}/lib/die
+%__cp -a ./Detect-It-Easy/db %{buildroot}/lib/die
 %__install -D -m 0644 ./signatures/crypto.db -t %{buildroot}/lib/die/signatures
 
 # Change the directory to ./LINUX
