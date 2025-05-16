@@ -40,19 +40,19 @@ formats and can help organize your media files.
 %__install -D -m 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
 
 # Install the application binary
-%__ln_s /opt/%{app_name}/%{app_name} %{buildroot}%{_bindir}/%{full_name}
+%__ln_s /opt/%{app_name}/%{app_name} %{buildroot}%{_bindir}
 
 # Install application icons
-%__install -D -m 0644 %{buildroot}/opt/%{full_name}/icons/16x16.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
-%__install -D -m 0644 %{buildroot}/opt/%{full_name}/icons/32x32.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{full_name}.png
-%__install -D -m 0644 %{buildroot}/opt/%{full_name}/icons/64x64.png %{buildroot}%{_datadir}/icons/hicolor/64x64/apps/%{full_name}.png
-%__install -D -m 0644 %{buildroot}/opt/%{full_name}/icons/128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
-%__install -D -m 0644 %{buildroot}/opt/%{full_name}/icons/256x256.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{full_name}.png
-%__install -D -m 0644 %{buildroot}/opt/%{full_name}/icons/512x512.png %{buildroot}%{_datadir}/icons/hicolor/512x512/apps/%{full_name}.png
+%__install -D -m 0644 %{buildroot}/opt/%{app_name}/icons/16x16.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
+%__install -D -m 0644 %{buildroot}/opt/%{app_name}/icons/32x32.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{full_name}.png
+%__install -D -m 0644 %{buildroot}/opt/%{app_name}/icons/64x64.png %{buildroot}%{_datadir}/icons/hicolor/64x64/apps/%{full_name}.png
+%__install -D -m 0644 %{buildroot}/opt/%{app_name}/icons/128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
+%__install -D -m 0644 %{buildroot}/opt/%{app_name}/icons/256x256.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{full_name}.png
+%__install -D -m 0644 %{buildroot}/opt/%{app_name}/icons/512x512.png %{buildroot}%{_datadir}/icons/hicolor/512x512/apps/%{full_name}.png
 
 %files
 /opt/%{app_name}
-%{_bindir}/%{full_name}
+%{_bindir}/%{app_name}
 %{_datadir}/applications/%{full_name}.desktop
 %{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
 %{_datadir}/icons/hicolor/32x32/apps/%{full_name}.png
