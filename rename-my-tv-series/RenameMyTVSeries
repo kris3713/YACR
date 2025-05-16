@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+/opt/rename-my-tv-series/RenameMyTVSeries "$@"
