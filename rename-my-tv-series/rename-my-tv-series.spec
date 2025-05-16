@@ -12,7 +12,7 @@ URL:            https://www.tweaking4all.com/home-theatre/rename-my-tv-series-v2
 
 Source0:        https://www.tweaking4all.com/downloads/video/%{app_name}-%{version}-Linux64bit.tar.gz
 Source1:        %{full_name}.desktop
-Source2:        %{full_name}
+Source2:        %{app_name}
 
 ExclusiveArch:  x86_64
 
@@ -41,16 +41,16 @@ formats and can help organize your media files.
 %__install -D -m 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
 
 # Install the application binary
-%__install -D -m 0755 %{SOURCE2} %{buildroot}%{_bindir}
+%__install -D -m 0755 %{SOURCE2} -t %{buildroot}%{_bindir}
 %__chmod +x %{buildroot}%{_bindir}/%{app_name}
 
 # Install application icons
-%__install -D -m 0644 %{buildroot}/opt/%{full_name}/icons/16x16.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
-%__install -D -m 0644 %{buildroot}/opt/%{full_name}/icons/32x32.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{full_name}.png
-%__install -D -m 0644 %{buildroot}/opt/%{full_name}/icons/64x64.png %{buildroot}%{_datadir}/icons/hicolor/64x64/apps/%{full_name}.png
-%__install -D -m 0644 %{buildroot}/opt/%{full_name}/icons/128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
-%__install -D -m 0644 %{buildroot}/opt/%{full_name}/icons/256x256.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{full_name}.png
-%__install -D -m 0644 %{buildroot}/opt/%{full_name}/icons/512x512.png %{buildroot}%{_datadir}/icons/hicolor/512x512/apps/%{full_name}.png
+%__install -D -m 0644 %{buildroot}/opt/%{full_name}/icons/16x16.png -t %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
+%__install -D -m 0644 %{buildroot}/opt/%{full_name}/icons/32x32.png -t %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{full_name}.png
+%__install -D -m 0644 %{buildroot}/opt/%{full_name}/icons/64x64.png -t %{buildroot}%{_datadir}/icons/hicolor/64x64/apps/%{full_name}.png
+%__install -D -m 0644 %{buildroot}/opt/%{full_name}/icons/128x128.png -t %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
+%__install -D -m 0644 %{buildroot}/opt/%{full_name}/icons/256x256.png -t %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{full_name}.png
+%__install -D -m 0644 %{buildroot}/opt/%{full_name}/icons/512x512.png -t %{buildroot}%{_datadir}/icons/hicolor/512x512/apps/%{full_name}.png
 
 %files
 /opt/%{full_name}
