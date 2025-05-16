@@ -28,7 +28,8 @@ streamlines collaboration so you can create better APIs faster.
 %__rm -rf %{buildroot}
 
 # Start installing the application to the build root (while also creating another build root)
-%__install -d %{buildroot}{/opt/%{full_name},%{_bindir},%{_datadir}/applications,%{_datadir}/icons/hicolor/128x128/apps}
+%__install -d %{buildroot}{/opt/%{full_name},%{_bindir},%{_datadir}/applications}
+%__install -d %{buildroot}%{_datadir}/icons/hicolor/128x128/apps
 
 # Copy the application files to the build root
 %__cp -a . %{buildroot}/opt/%{full_name}
