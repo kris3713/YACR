@@ -40,7 +40,7 @@ formats and can help organize your media files.
 %__install -D -m 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
 
 # Install the application binary
-%__ln_s %{buildroot}/opt/%{full_name}/%{application_name} %{buildroot}%{_bindir}
+%__install -D -m 0755 %{buildroot}/opt/%{full_name}/%{application_name} -t %{buildroot}%{_bindir}
 
 # Install application icons
 %__install -D -m 0644 %{buildroot}/opt/%{full_name}/icons/16x16.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
