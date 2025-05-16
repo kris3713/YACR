@@ -13,7 +13,7 @@ License:        MPL-2.0
 URL:            https://cudatext.github.io/
 
 Source0:        https://sourceforge.net/projects/cudatext/files/release/%{version}/%{full_name}-linux-%{variant}-%{arch}-%{version}.tar.xz
-Source1:        https://github.com/Alexey-T/CudaText/raw/refs/heads/master/setup/debfiles/%{full_name}.desktop
+Source1:        %{full_name}.desktop
 Source2:        %{full_name}
 
 ExclusiveArch:  x86_64
