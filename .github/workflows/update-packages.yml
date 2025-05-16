@@ -28,7 +28,8 @@ jobs:
         run: |
           echo 'Installing helper programs'
           sudo apt update &> /dev/null
-          sudo apt install -y fd-find sd fish python3 &> /dev/null
+          # Python already comes pre-installed so no need to install it again
+          sudo apt install -y fd-find sd fish &> /dev/null
 
           sudo ln -s $(command -v fdfind) /usr/bin/fd
 
@@ -61,7 +62,7 @@ jobs:
         shell: bash
         run: |
           sudo rm $(command -v python) $(command -v pip)
-          sudo apt remove -y fd-find sd fish python3 &> /dev/null
+          sudo apt remove -y fd-find sd fish &> /dev/null
 
       - name: 'Commit changes'
         shell: bash
