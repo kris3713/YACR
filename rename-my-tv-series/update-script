@@ -24,8 +24,8 @@ set -l current_version (string replace --all '-' '_' $current_version)
 
 # @fish-lsp-disable-next-line 2001
 echo 'Comparing the current version ($current_version) with the latest version ($latest_version)'
-echo "Captured version: $current_version"
-echo "Current version: $latest_version"
+echo "Current version: $current_version"
+echo "Latest version: $latest_version"
 if test "$current_version" != "$latest_version"
   echo 'Versions are different. Updating the spec file(s)...'
   for v in (fd --glob '*.spec' $script_dir)
