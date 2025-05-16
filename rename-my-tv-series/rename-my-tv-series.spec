@@ -11,7 +11,7 @@ Summary:        Rename My TV Series 2
 License:        Freeware
 URL:            https://www.tweaking4all.com/home-theatre/rename-my-tv-series-v2/
 
-Source0:        https://www.tweaking4all.com/downloads/video/RenameMyTVSeries-%{version}-Linux64bit.tar.gz
+Source0:        https://www.tweaking4all.com/downloads/video/%{application_name}-%{version}-Linux64bit.tar.gz
 Source1:        %{full_name}.desktop
 
 ExclusiveArch:  x86_64
@@ -34,20 +34,20 @@ formats and can help organize your media files.
 %__install -d %{buildroot}{/opt/%{full_name},%{_bindir},%{_datadir}/applications,%{_datadir}/icons/hicolor/128x128/apps,%{_datadir}/icons/hicolor/64x64/apps,%{_datadir}/icons/hicolor/48x48/apps,%{_datadir}/icons/hicolor/32x32/apps,%{_datadir}/icons/hicolor/16x16/apps}
 
 # Copy the application files to the build root
-%__cp -r * %{buildroot}/opt/%{full_name}
+%__cp -a . %{buildroot}/opt/%{full_name}
 
 # Install the desktop file
 %__install -D -m 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
 
 # Install the application binary
-%__install -D -m 0755 %{buildroot}/opt/%{full_name}/%{application_name} -t %{buildroot}%{_bindir}
+%__ln_s %{buildroot}/opt/%{full_name}/%{application_name} %{buildroot}%{_bindir}
 
 # Install application icons
-%__ln_s ../../../../../../opt/%{full_name}/icons/16x16.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
-%__ln_s ../../../../../../opt/%{full_name}/icons/32x32.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{full_name}.png
-%__ln_s ../../../../../../opt/%{full_name}/icons/48x48.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/%{full_name}.png
-%__ln_s ../../../../../../opt/%{full_name}/icons/64x64.png %{buildroot}%{_datadir}/icons/hicolor/64x64/apps/%{full_name}.png
-%__ln_s ../../../../../../opt/%{full_name}/icons/128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
+%__install -D -m 0644 /opt/%{full_name}/icons/16x16.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
+%__install -D -m 0644 /opt/%{full_name}/icons/32x32.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{full_name}.png
+%__install -D -m 0644 /opt/%{full_name}/icons/48x48.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/%{full_name}.png
+%__install -D -m 0644 /opt/%{full_name}/icons/64x64.png %{buildroot}%{_datadir}/icons/hicolor/64x64/apps/%{full_name}.png
+%__install -D -m 0644 /opt/%{full_name}/icons/128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
 
 %files
 /opt/%{full_name}
