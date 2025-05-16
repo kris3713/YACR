@@ -55,7 +55,7 @@ cd ..
 %__cp -r ./XYara/yara_rules %{buildroot}/lib/die
 %__cp -r ./XInfoDB/info %{buildroot}/lib/die
 %__cp -r ./images %{buildroot}/lib/die
-%__cp -r ./db_custom %{buildroot}/lib/die
+%__cp -r ./Detect-It-Easy/db_custom %{buildroot}/lib/die
 %__cp -r ./db %{buildroot}/lib/die
 %__install -D -m 0644 ./signatures/crypto.db -t %{buildroot}/lib/die/signatures
 
