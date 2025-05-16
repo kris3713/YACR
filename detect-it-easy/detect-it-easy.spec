@@ -51,13 +51,13 @@ cd ..
 %__install -D -m 0755 ./build/release/diel -t %{buildroot}%{_bindir}
 
 # Copy required libraires for Detect It Easy
-%__install -d ./XStyles/qss -t %{buildroot}/lib/die
-%__install -d ./XYara/yara_rules -t %{buildroot}/lib/die
+%__cp -r ./XStyles/qss %{buildroot}/lib/die
+%__cp -r ./XYara/yara_rules %{buildroot}/lib/die
+%__cp -r ./XInfoDB/info %{buildroot}/lib/die
+%__cp -r ./images %{buildroot}/lib/die
+%__cp -r ./db_custom %{buildroot}/lib/die
+%__cp -r ./db %{buildroot}/lib/die
 %__install -D -m 0644 ./signatures/crypto.db -t %{buildroot}/lib/die/signatures
-%__install -d ./XInfoDB/info -t %{buildroot}/lib/die
-%__install -d ./images -t %{buildroot}/lib/die
-%__install -d ./db_custom -t %{buildroot}/lib/die
-%__install -d ./db -t %{buildroot}/lib/die
 
 # Change the directory to ./LINUX
 cd ./LINUX
@@ -66,12 +66,12 @@ cd ./LINUX
 %__install -D -m 0644 ./%{application_name}.desktop -t %{buildroot}%{_datadir}/applications
 
 # Install application icons
-%__cp ./hicolor/16x16/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
-%__cp ./hicolor/20x20/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/20x20/apps/%{full_name}.png
-%__cp ./hicolor/24x24/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/24x24/apps/%{full_name}.png
-%__cp ./hicolor/32x32/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{full_name}.png
-%__cp ./hicolor/48x48/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/%{full_name}.png
-%__cp ./hicolor/256x256/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{full_name}.png
+%__install -D -m 0644 ./hicolor/16x16/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
+%__install -D -m 0644 ./hicolor/20x20/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/20x20/apps/%{full_name}.png
+%__install -D -m 0644 ./hicolor/24x24/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/24x24/apps/%{full_name}.png
+%__install -D -m 0644 ./hicolor/32x32/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{full_name}.png
+%__install -D -m 0644 ./hicolor/48x48/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/%{full_name}.png
+%__install -D -m 0644 ./hicolor/256x256/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{full_name}.png
 
 # Change the directory back to the root
 cd ..
