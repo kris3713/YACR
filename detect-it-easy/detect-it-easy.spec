@@ -50,8 +50,14 @@ cd ..
 %__install -D -m 0755 ./build/release/diec -t %{buildroot}%{_bindir}
 %__install -D -m 0755 ./build/release/diel -t %{buildroot}%{_bindir}
 
-# Copy the qss files
-%__cp ./XStyles/qss/*.qss -t %{buildroot}/lib/qss
+# Copy required libraires for Detect It Easy
+%__install -d ./XStyles/qss -t %{buildroot}/lib/die
+%__install -d ./XYara/yara_rules -t %{buildroot}/lib/die
+%__install -D -m 0644 ./signatures/crypto.db -t %{buildroot}/lib/die/signatures
+%__install -d ./XInfoDB/info -t %{buildroot}/lib/die
+%__install -d ./images -t %{buildroot}/lib/die
+%__install -d ./db_custom -t %{buildroot}/lib/die
+%__install -d ./db -t %{buildroot}/lib/die
 
 # Change the directory to ./LINUX
 cd ./LINUX
@@ -74,7 +80,7 @@ cd ..
 %{_bindir}/die
 %{_bindir}/diec
 %{_bindir}/diel
-/lib/qss
+/lib/die
 %{_datadir}/applications/%{application_name}.desktop
 %{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
 %{_datadir}/icons/hicolor/20x20/apps/%{full_name}.png
@@ -86,7 +92,7 @@ cd ..
 
 %changelog
 * Thu May 15 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 3.10-2
-- Added missing QSS files
+- Added missing libraries for Detect It Easy
 
 * Wed May 14 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 3.10-1
 - Inital packaging of detect-it-easy version 3.10
