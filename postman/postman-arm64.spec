@@ -40,16 +40,11 @@ streamlines collaboration so you can create better APIs faster.
 # Install the desktop file
 %__install -D -m 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
 
-# Install application icon
-%__install -D -m 0644 %{buildroot}/opt/%{app_name}/icons/icon_128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
-
-%post
 # Install the application binary
 %__ln_s /opt/%{app_name}/%{full_name} %{_bindir}/%{full_name}
 
-%postun
-# Remove the application binary
-%__rm %{_bindir}/%{full_name}
+# Install application icon
+%__install -D -m 0644 ./icons/icon_128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
 
 %files
 /opt/%{app_name}
