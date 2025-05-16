@@ -61,6 +61,7 @@ jobs:
         shell: bash
         run: |
           sudo rm $(command -v python) $(command -v pip)
+          sudo apt remove -y fd-find sd fish python3 &> /dev/null
 
       - name: 'Commit changes'
         shell: bash
