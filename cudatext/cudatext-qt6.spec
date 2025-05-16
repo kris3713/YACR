@@ -18,6 +18,8 @@ Source2:        %{full_name}
 
 ExclusiveArch:  x86_64
 
+Conflicts:      %{full_name}-gtk2 %{full_name}-qt5 %{full_name}
+
 %description
 CudaText is a cross-platform text editor, written in Object Pascal.
 It is open source project and can be used free of charge, even for business.
