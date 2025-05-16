@@ -47,6 +47,10 @@ streamlines collaboration so you can create better APIs faster.
 # Install the application binary
 %__ln_s /opt/%{app_name}/%{full_name} %{_bindir}/%{full_name}
 
+%postun
+# Remove the application binary
+%__rm %{_bindir}/%{full_name}
+
 %files
 /opt/%{app_name}
 %{_datadir}/applications/%{full_name}.desktop
