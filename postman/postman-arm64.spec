@@ -31,7 +31,7 @@ streamlines collaboration so you can create better APIs faster.
 %__install -d %{buildroot}{/opt/%{full_name},%{_bindir},%{_datadir}/applications,%{_datadir}/icons/hicolor/128x128/apps}
 
 # Copy the application files to the build root
-%__cp -r * %{buildroot}/opt/%{full_name}
+%__cp -a . %{buildroot}/opt/%{full_name}
 
 # Change filemode to prevent "permission denied" error
 %__chmod 755 %{buildroot}/opt/%{full_name}/chrome_crashpad_handler
@@ -40,10 +40,10 @@ streamlines collaboration so you can create better APIs faster.
 %__install -D -m 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
 
 # Install the application binary
-%__ln_s ../../../../../../opt/%{full_name}/%{full_name} %{buildroot}%{_bindir}
+%__ln_s /opt/%{full_name}/%{full_name} %{buildroot}%{_bindir}
 
 # Install application icon
-%__ln_s ../../../../../../opt/%{full_name}/icons/icon_128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
+%__install -D -m 0644 /opt/%{full_name}/icons/icon_128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
 
 %files
 /opt/%{full_name}
