@@ -51,7 +51,7 @@ Syntax parser is feature-rich, from EControl engine.
 %__chmod +x %{buildroot}%{_bindir}/%{full_name}
 
 # Install application icon
-%__install -D -m 0644 %{buildroot}/opt/%{app_name}/%{full_name}-512.png -t %{buildroot}%{_datadir}/icons/hicolor/512x512/apps/%{full_name}.png
+%__install -D -m 0644 %{buildroot}/opt/%{app_name}/%{full_name}-512.png %{buildroot}%{_datadir}/icons/hicolor/512x512/apps/%{full_name}.png
 
 %files
 /opt/%{app_name}

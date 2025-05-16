@@ -67,12 +67,12 @@ cd ./LINUX
 %__install -D -m 0644 ./%{app_name}.desktop -t %{buildroot}%{_datadir}/applications
 
 # Install application icons
-%__install -D -m 0644 ./hicolor/16x16/apps/%{full_name}.png -t %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
-%__install -D -m 0644 ./hicolor/20x20/apps/%{full_name}.png -t %{buildroot}%{_datadir}/icons/hicolor/20x20/apps/%{full_name}.png
-%__install -D -m 0644 ./hicolor/24x24/apps/%{full_name}.png -t %{buildroot}%{_datadir}/icons/hicolor/24x24/apps/%{full_name}.png
-%__install -D -m 0644 ./hicolor/32x32/apps/%{full_name}.png -t %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{full_name}.png
-%__install -D -m 0644 ./hicolor/48x48/apps/%{full_name}.png -t %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/%{full_name}.png
-%__install -D -m 0644 ./hicolor/256x256/apps/%{full_name}.png -t %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{full_name}.png
+%__install -D -m 0644 ./hicolor/16x16/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
+%__install -D -m 0644 ./hicolor/20x20/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/20x20/apps/%{full_name}.png
+%__install -D -m 0644 ./hicolor/24x24/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/24x24/apps/%{full_name}.png
+%__install -D -m 0644 ./hicolor/32x32/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{full_name}.png
+%__install -D -m 0644 ./hicolor/48x48/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/%{full_name}.png
+%__install -D -m 0644 ./hicolor/256x256/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{full_name}.png
 
 # Change the directory back to the root
 cd ..
