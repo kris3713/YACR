@@ -28,11 +28,11 @@ streamlines collaboration so you can create better APIs faster.
 %__rm -rf %{buildroot}
 
 # Start installing the application to the build root (while also creating another build root)
-%__install -d %{buildroot}{/opt/%{full_name},%{_bindir},%{_datadir}/applications}
+%__install -d %{buildroot}{/opt/%{app_name},%{_bindir},%{_datadir}/applications}
 %__install -d %{buildroot}%{_datadir}/icons/hicolor/128x128/apps
 
-# Copy the application files to the build root
-%__cp -a . %{buildroot}/opt/%{full_name}
+# Copy the application files to the application directory
+%__cp -a . %{buildroot}/opt/%{app_name}
 
 # Change filemode to prevent "permission denied" error
 %__chmod 755 %{buildroot}/opt/%{full_name}/chrome_crashpad_handler
@@ -40,11 +40,12 @@ streamlines collaboration so you can create better APIs faster.
 # Install the desktop file
 %__install -D -m 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
 
-# Install the application binary
-%__ln_s %{buildroot}/opt/%{full_name}/%{full_name} -t %{buildroot}%{_bindir}
-
 # Install application icon
 %__install -D -m 0644 %{buildroot}/opt/%{full_name}/icons/icon_128x128.png -t %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
+
+%post
+# Install the application binary
+%__ln_s /opt/%{full_name}/%{full_name} %{_bindir}/%{full_name}
 
 %files
 /opt/%{full_name}
