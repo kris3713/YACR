@@ -16,6 +16,9 @@ Source0:        https://sourceforge.net/projects/cudatext/files/release/%{versio
 Source1:        %{full_name}.desktop
 Source2:        %{full_name}
 
+Requires:       qt5-qtbase qt5-qttools
+Recommends:     python3
+
 ExclusiveArch:  x86_64
 
 Conflicts:      %{full_name}-gtk2 %{full_name} %{full_name}-qt6
