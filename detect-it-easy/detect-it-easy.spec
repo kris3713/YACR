@@ -13,7 +13,7 @@ URL:            https://horsicq.github.io/#detect-it-easydie
 Source0:        https://github.com/horsicq/DIE-engine/releases/download/%{version}/die_sourcecode_%{version}.tar.gz
 
 BuildRequires:  cmake qt5-qtbase qt5-qtbase-gui qt5-qtscript-devel qt5-qttools-devel qt5-qtsvg-devel qt-devel git qtchooser
-# Requires:       # Add required packages here
+Requires:       qt5-qtbase qt5-qttools
 
 %description
 Detect It Easy (DiE) is a powerful tool for file type identification,
@@ -43,7 +43,7 @@ cd ..
 %__rm -rf %{buildroot}
 
 # Create a new build root (along with other directories)
-%__install -d %{buildroot}{%{_bindir},/lib/die,%{_datadir}/applications}
+%__install -d %{buildroot}{%{_bindir},/lib/%{app_name},%{_datadir}/applications}
 %__install -d %{buildroot}%{_datadir}/icons/hicolor/{16x16,20x20,24x24,32x32,48x48,256x256}/apps
 
 # Install the application binarys
@@ -52,13 +52,13 @@ cd ..
 %__install -D -m 0755 ./build/release/diel -t %{buildroot}%{_bindir}
 
 # Copy required libraires for Detect It Easy
-%__cp -a ./XStyles/qss %{buildroot}/lib/die
-%__cp -a ./XYara/yara_rules %{buildroot}/lib/die
-%__cp -a ./XInfoDB/info %{buildroot}/lib/die
-%__cp -a ./images %{buildroot}/lib/die
-%__cp -a ./Detect-It-Easy/db_custom %{buildroot}/lib/die
-%__cp -a ./Detect-It-Easy/db %{buildroot}/lib/die
-%__install -D -m 0644 ./signatures/crypto.db -t %{buildroot}/lib/die/signatures
+%__cp -a ./XStyles/qss %{buildroot}/lib/%{app_name}
+%__cp -a ./XYara/yara_rules %{buildroot}/lib/%{app_name}
+%__cp -a ./XInfoDB/info %{buildroot}/lib/%{app_name}
+%__cp -a ./images %{buildroot}/lib/%{app_name}
+%__cp -a ./Detect-It-Easy/db_custom %{buildroot}/lib/%{app_name}
+%__cp -a ./Detect-It-Easy/db %{buildroot}/lib/%{app_name}
+%__install -D -m 0644 ./signatures/crypto.db -t %{buildroot}/lib/%{app_name}/signatures
 
 # Change the directory to ./LINUX
 cd ./LINUX
@@ -81,7 +81,7 @@ cd ..
 %{_bindir}/die
 %{_bindir}/diec
 %{_bindir}/diel
-/lib/die
+/lib/%{app_name}
 %{_datadir}/applications/%{app_name}.desktop
 %{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
 %{_datadir}/icons/hicolor/20x20/apps/%{full_name}.png
