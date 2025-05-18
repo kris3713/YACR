@@ -12,7 +12,7 @@ URL:            https://github.com/kingToolbox/WindTerm
 
 Source0:        https://github.com/kingToolbox/WindTerm/releases/download/%{version}/%{app_name}_%{version}_Linux_Portable_x86_64.zip
 
-# Requires:
+Requires:       qt5-qtbase qt5-qttools
 
 %description
 A professional cross-platform SSH/Sftp/Shell/Telnet/Tmux/Serial terminal.
