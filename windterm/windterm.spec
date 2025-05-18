@@ -21,6 +21,8 @@ A professional cross-platform SSH/Sftp/Shell/Telnet/Tmux/Serial terminal.
 %setup -q -n ./%{app_name}_%{version}
 
 %install
+export QA_RPATHS=$(( 0x0002|0x0010 ))
+
 # Remove build root
 %__rm -rf %{buildroot}
 
