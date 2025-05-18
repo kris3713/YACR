@@ -16,6 +16,7 @@ Source0:        https://sourceforge.net/projects/cudatext/files/release/%{versio
 Source1:        %{full_name}.desktop
 Source2:        %{full_name}
 
+BuildRequires:  zlib
 Requires:       gtk2
 Recommends:     python3
 
