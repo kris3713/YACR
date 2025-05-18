@@ -47,7 +47,7 @@ export QA_RPATHS=$(( 0x0002|0x0010 ))
 /opt/%{app_name}
 %{_bindir}/%{full_name}
 %{_datadir}/applications/%{full_name}.desktop
-%{_datadir}/icons/hicolor/1024x1024/apps/%{app_name}.png
+%{_datadir}/icons/hicolor/1024x1024/apps/%{full_name}.png
 
 %changelog
 * Sun May 18 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 2.7.0-1
