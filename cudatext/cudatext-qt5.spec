@@ -16,7 +16,7 @@ Source0:        https://sourceforge.net/projects/cudatext/files/release/%{versio
 Source1:        %{full_name}.desktop
 Source2:        %{full_name}
 
-BuildRequires:  zlib
+BuildRequires:  zlib-ng
 Requires:       qt5-qtbase qt5-qttools
 Recommends:     python3
 
