@@ -63,7 +63,7 @@ Syntax parser is feature-rich, from EControl engine.
 %{_bindir}/%{full_name}
 %{_datadir}/cudatext
 %{_datadir}/applications/%{full_name}.desktop
-%{_datadir}/icons/hicolor/512x512/apps/%{full_name}-512.png
+%{_datadir}/icons/hicolor/512x512/apps/%{full_name}.png
 %license ./readme/license.%{app_name}.txt
 
 %changelog
