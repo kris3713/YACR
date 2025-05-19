@@ -45,7 +45,7 @@ A professional cross-platform SSH/Sftp/Shell/Telnet/Tmux/Serial terminal.
 %__chmod 0644 %{buildroot}%{_datadir}/applications/%{full_name}.desktop
 
 # Install the application binary (might use a BASH script wrapper if this doesn't work)
-%__ln_s /opt/%{app_name}/%{full_name} %{buildroot}%{_bindir}
+%__ln_s /opt/%{app_name}/%{app_name} %{buildroot}%{_bindir}
 
 # Install application icons
 %__install -D -m 0644 %{buildroot}/opt/%{app_name}/%{full_name}.png -t %{buildroot}%{_datadir}/icons/hicolor/1024x1024/apps
@@ -60,7 +60,7 @@ fi
 
 %files
 /opt/%{app_name}
-%{_bindir}/%{full_name}
+%{_bindir}/%{app_name}
 %{_datadir}/applications/%{full_name}.desktop
 %{_datadir}/icons/hicolor/1024x1024/apps/%{full_name}.png
 %license ./license.txt
