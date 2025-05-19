@@ -1,3 +1,5 @@
+%define         user %(whoami)
+
 %global         full_name windterm
 %global         app_name WindTerm
 %global         debug_package %{nil}
@@ -11,6 +13,7 @@ License:        MIT, Apache-2.0, LGPL-2.1-or-later, BSD-2-Clause (or BSD-3-Claus
 URL:            https://github.com/kingToolbox/WindTerm
 
 Source0:        https://github.com/kingToolbox/WindTerm/releases/download/%{version}/%{app_name}_%{version}_Linux_Portable_x86_64.zip
+Source1:        %{full_name}.desktop
 
 ExclusiveArch:  x86_64
 
@@ -39,17 +42,21 @@ A professional cross-platform SSH/Sftp/Shell/Telnet/Tmux/Serial terminal.
 %__cp -a . %{buildroot}/opt/%{app_name}
 
 # Install the desktop file
-%__mv %{buildroot}/opt/%{app_name}/%{full_name}.desktop %{buildroot}%{_datadir}/applications
-%__chmod 0644 %{buildroot}%{_datadir}/applications/%{full_name}.desktop
+%__install -Dm 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
 
 # Install the application binary (might use a BASH script wrapper if this doesn't work)
-%__chmod +x %{buildroot}/opt/%{app_name}/%{app_name}
 %__ln_s /opt/%{app_name}/%{app_name} %{buildroot}%{_bindir}/%{full_name}
 
 # Install application icons
-%__install -D -m 0644 %{buildroot}/opt/%{app_name}/%{full_name}.png -t %{buildroot}%{_datadir}/icons/hicolor/1024x1024/apps
+%__install -Dm 0644 %{buildroot}/opt/%{app_name}/%{full_name}.png -t %{buildroot}%{_datadir}/icons/hicolor/1024x1024/apps
 
 %post
+# Add executable permissions to the application binary
+%__chmod +x /opt/%{app_name}/%{app_name}
+
+# Allow the user full permissions to the application directory
+%__chown -R %{user}:%{user} /opt/%{app_name}
+
 if [ -e /opt/%{app_name}/lib.tar.xz ]; then
   # Create the `lib` directory
   %__mkdir_p /opt/%{app_name}/lib
@@ -63,6 +70,10 @@ fi
 if [ -e /opt/%{app_name}/lib ]; then
   # Remove the `lib` directory
   %__rm -r /opt/%{app_name}/lib
+fi
+
+if [ -e /opt/%{app_name} ]; then
+  %__rm -r /opt/%{app_name}
 fi
 
 %files
