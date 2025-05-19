@@ -23,8 +23,6 @@ A professional cross-platform SSH/Sftp/Shell/Telnet/Tmux/Serial terminal.
 %setup -q -n ./%{app_name}_%{version}
 
 %install
-export QA_RPATHS=$(( 0x0002|0x0010 ))
-
 # Remove build root
 %__rm -rf %{buildroot}
 
@@ -35,6 +33,13 @@ export QA_RPATHS=$(( 0x0002|0x0010 ))
 # Copy the application files to the application directory
 %__cp -a . %{buildroot}/opt/%{app_name}
 
+# Compress the `lib` directory to avoid the "broken rpath" error
+%__tar -cf %{buildroot}/opt/%{app_name}/lib.tar %{buildroot}/opt/%{app_name}/lib
+%__xz -6 %{buildroot}/opt/%{app_name}/lib.tar -c > %{buildroot}/opt/%{app_name}/lib.tar.xz
+
+# Remove the `lib` directory
+%__rm -r %{buildroot}/opt/%{app_name}/lib
+
 # Install the desktop file
 %__mv %{buildroot}/opt/%{app_name}/%{full_name}.desktop %{buildroot}%{_datadir}/applications
 %__chmod 0644 %{buildroot}%{_datadir}/applications/%{full_name}.desktop
@@ -44,6 +49,14 @@ export QA_RPATHS=$(( 0x0002|0x0010 ))
 
 # Install application icons
 %__install -D -m 0644 %{buildroot}/opt/%{app_name}/%{full_name}.png -t %{buildroot}%{_datadir}/icons/hicolor/1024x1024/apps
+
+%post
+if [ -e /opt/%{app_name}/lib.tar.xz ]; then
+  # Uncompress the `lib.tar.xz` file
+  %__tar -xf /opt/%{app_name}/lib.tar.xz "--strip-components=1" -C /opt/%{app_name}/lib
+  # Remove the `lib.tar.xz` file
+  %__rm /opt/%{app_name}/lib.tar.xz
+fi
 
 %files
 /opt/%{app_name}
