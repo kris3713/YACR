@@ -36,6 +36,7 @@ A professional cross-platform SSH/Sftp/Shell/Telnet/Tmux/Serial terminal.
 # Compress the `lib` directory to avoid the "broken rpath" error
 %__tar -cf %{buildroot}/opt/%{app_name}/lib.tar %{buildroot}/opt/%{app_name}/lib
 %__xz -6 %{buildroot}/opt/%{app_name}/lib.tar -c > %{buildroot}/opt/%{app_name}/lib.tar.xz
+%__rm %{buildroot}/opt/%{app_name}/lib.tar
 
 # Remove the `lib` directory
 %__rm -r %{buildroot}/opt/%{app_name}/lib
