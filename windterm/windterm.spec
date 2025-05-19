@@ -14,6 +14,7 @@ URL:            https://github.com/kingToolbox/WindTerm
 
 Source0:        https://github.com/kingToolbox/WindTerm/releases/download/%{version}/%{app_name}_%{version}_Linux_Portable_x86_64.zip
 Source1:        %{full_name}.desktop
+Source2:        %{full_name}
 
 ExclusiveArch:  x86_64
 
@@ -36,7 +37,7 @@ A professional cross-platform SSH/Sftp/Shell/Telnet/Tmux/Serial terminal.
 # Compress the `lib` directory to avoid the "broken rpath" error
 %__tar -cf ./lib.tar ./lib
 %__xz -6 ./lib.tar -c > ./lib.tar.xz
-%__rm -r ./lib.tar ./lib
+%__rm -r ./lib ./lib.tar
 
 # Copy the application files to the application directory
 %__cp -a . %{buildroot}/opt/%{app_name}
@@ -45,7 +46,8 @@ A professional cross-platform SSH/Sftp/Shell/Telnet/Tmux/Serial terminal.
 %__install -Dm 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
 
 # Install the application binary (might use a BASH script wrapper if this doesn't work)
-%__ln_s /opt/%{app_name}/%{app_name} %{buildroot}%{_bindir}/%{full_name}
+%__install -Dm 0755 %{SOURCE2} -t %{buildroot}%{_bindir}
+%__chmod +x %{buildroot}%{_bindir}/%{full_name}
 
 # Install application icons
 %__install -Dm 0644 %{buildroot}/opt/%{app_name}/%{full_name}.png -t %{buildroot}%{_datadir}/icons/hicolor/1024x1024/apps
