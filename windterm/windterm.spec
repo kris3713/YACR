@@ -53,8 +53,16 @@ A professional cross-platform SSH/Sftp/Shell/Telnet/Tmux/Serial terminal.
 
 %post
 if [ -e /opt/%{app_name}/lib.tar.xz ]; then
+  # Create the `lib` directory
+  mkdir -p /opt/%{app_name}/lib
   # Uncompress the `lib.tar.xz` file
   %__tar -xf /opt/%{app_name}/lib.tar.xz "--strip-components=1" -C /opt/%{app_name}/lib
+  # Remove the `lib.tar.xz` file
+  %__rm /opt/%{app_name}/lib.tar.xz
+fi
+
+%postun
+if [ -e /opt/%{app_name}/lib.tar.xz ]; then
   # Remove the `lib.tar.xz` file
   %__rm /opt/%{app_name}/lib.tar.xz
 fi
