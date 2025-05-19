@@ -23,6 +23,10 @@ Requires:       qt5-qtbase qt5-qttools
 %description
 A professional cross-platform SSH/Sftp/Shell/Telnet/Tmux/Serial terminal.
 
+You may need to use the following command to give the application permissions to create the `profiles.config` file:
+
+chown -R %{user}:%{user} /opt/%{app_name}
+
 %prep
 %setup -q -n ./%{app_name}_%{version}
 
@@ -56,9 +60,6 @@ A professional cross-platform SSH/Sftp/Shell/Telnet/Tmux/Serial terminal.
 # Add executable permissions to the application binary
 %__chmod +x /opt/%{app_name}/%{app_name}
 
-# Allow the user full permissions to the application directory
-%__chown -R %{user}:%{user} /opt/%{app_name}
-
 if [ -e /opt/%{app_name}/lib.tar.xz ]; then
   # Create the `lib` directory
   %__mkdir_p /opt/%{app_name}/lib
@@ -67,6 +68,11 @@ if [ -e /opt/%{app_name}/lib.tar.xz ]; then
   # Remove the `lib.tar.xz` file
   %__rm /opt/%{app_name}/lib.tar.xz
 fi
+
+# Inform the user that they may have to use chown if they want the application to create the `profiles.config` file
+echo "You may need to use the following command to give the application permissions to create the `profiles.config` file:"
+echo ""
+echo "chown -R %{user}:%{user} /opt/%{app_name}"
 
 %postun
 if [ -e /opt/%{app_name}/lib ]; then
