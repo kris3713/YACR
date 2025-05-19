@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+exec /opt/figma-linux/figma-linux "$@"
