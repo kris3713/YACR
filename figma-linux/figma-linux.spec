@@ -34,7 +34,7 @@ Figma is the first interface design tool based in the browser, making it easier 
 %__cp -a . %{buildroot}/opt/%{full_name}
 
 # Install the desktop file
-%__install -Dm 0644 %{SOURCE13} -t %{buildroot}%{_datadir}/applications
+%__install -Dm 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
 
 # Install the application binary
 %__ln_s /opt/%{full_name}/%{full_name} %{buildroot}%{_bindir}
