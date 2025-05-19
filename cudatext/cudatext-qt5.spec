@@ -57,14 +57,14 @@ Syntax parser is feature-rich, from EControl engine.
 %__chmod +x %{buildroot}%{_bindir}/%{full_name}
 
 # Install application icon
-%__install -D -m 0644 %{buildroot}/opt/%{app_name}/%{full_name}-512.png %{buildroot}%{_datadir}/icons/hicolor/512x512/apps/%{full_name}.png
+%__install -D -m 0644 %{buildroot}/opt/%{app_name}/%{full_name}-512.png %{buildroot}%{_datadir}/icons/hicolor/512x512/apps
 
 %files
 /opt/%{app_name}
 %{_bindir}/%{full_name}
 %{_datadir}/cudatext
 %{_datadir}/applications/%{full_name}.desktop
-%{_datadir}/icons/hicolor/512x512/apps/%{full_name}.png
+%{_datadir}/icons/hicolor/512x512/apps/%{full_name}-512.png
 %license ./readme/license.%{app_name}.txt
 
 %changelog

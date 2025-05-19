@@ -2,10 +2,10 @@
 Name=CudaText
 GenericName=Text Editor
 Comment=Text and code editor. Syntax highlighting for 250+ languages. Supports all major encodings. Multi-carets and multi-selections. UI with tabs and sidebar. Search and replace with regex.
-Exec=/opt/CudaText/cudatext %F
+Exec=cudatext %F
 Terminal=false
 Type=Application
 StartupNotify=true
-MimeType=text/plain;
+MimeType=text/plain
 Categories=Development;TextEditor
-Icon=cudatext
+Icon=cudatext-512
