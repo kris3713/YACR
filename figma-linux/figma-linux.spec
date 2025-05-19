@@ -9,20 +9,9 @@ Summary:        Figma-linux is an unofficial Electron-based Figma desktop app fo
 License:        GPL-2.0
 URL:            https://github.com/Figma-Linux/figma-linux
 
-Source0:        https://github.com/Figma-Linux/%{name}/releases/download/v%{version}/%{full_name}-%{version}.zip
-Source1:        https://raw.githubusercontent.com/ChugunovRoman/%{full_name}/master/resources/%{full_name}.desktop
-Source2:        https://raw.githubusercontent.com/ChugunovRoman/%{full_name}/master/resources/icons/24x24.png
-Source3:        https://raw.githubusercontent.com/ChugunovRoman/%{full_name}/master/resources/icons/36x36.png
-Source4:        https://raw.githubusercontent.com/ChugunovRoman/%{full_name}/master/resources/icons/48x48.png
-Source5:        https://raw.githubusercontent.com/ChugunovRoman/%{full_name}/master/resources/icons/64x64.png
-Source6:        https://raw.githubusercontent.com/ChugunovRoman/%{full_name}/master/resources/icons/72x72.png
-Source7:        https://raw.githubusercontent.com/ChugunovRoman/%{full_name}/master/resources/icons/96x96.png
-Source8:        https://raw.githubusercontent.com/ChugunovRoman/%{full_name}/master/resources/icons/128x128.png
-Source9:        https://raw.githubusercontent.com/ChugunovRoman/%{full_name}/master/resources/icons/192x192.png
-Source10:       https://raw.githubusercontent.com/ChugunovRoman/%{full_name}/master/resources/icons/256x256.png
-Source11:       https://raw.githubusercontent.com/ChugunovRoman/%{full_name}/master/resources/icons/384x384.png
-Source12:       https://raw.githubusercontent.com/ChugunovRoman/%{full_name}/master/resources/icons/512x512.png
-# Source13:       %{full_name}
+Source0:        https://github.com/Figma-Linux/figma-linux/releases/download/v%{version}/%{full_name}_%{version}_linux_amd64.zip
+Source1:        https://raw.githubusercontent.com/Figma-Linux/figma-linux/master/resources/%{full_name}.desktop
+# Source2:       %{full_name}
 
 # Requires:       # Might use this later
 
@@ -51,17 +40,17 @@ Figma is the first interface design tool based in the browser, making it easier 
 %__ln_s /opt/%{full_name}/%{full_name} %{buildroot}%{_bindir}
 
 # Install application icons
-%__install -Dm 0644 %{SOURCE2} %{buildroot}%{_datadir}/icons/hicolor/24x24/apps/%{full_name}.png
-%__install -Dm 0644 %{SOURCE3} %{buildroot}%{_datadir}/icons/hicolor/36x36/apps/%{full_name}.png
-%__install -Dm 0644 %{SOURCE4} %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/%{full_name}.png
-%__install -Dm 0644 %{SOURCE5} %{buildroot}%{_datadir}/icons/hicolor/64x64/apps/%{full_name}.png
-%__install -Dm 0644 %{SOURCE6} %{buildroot}%{_datadir}/icons/hicolor/72x72/apps/%{full_name}.png
-%__install -Dm 0644 %{SOURCE7} %{buildroot}%{_datadir}/icons/hicolor/96x96/apps/%{full_name}.png
-%__install -Dm 0644 %{SOURCE8} %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
-%__install -Dm 0644 %{SOURCE9} %{buildroot}%{_datadir}/icons/hicolor/192x192/apps/%{full_name}.png
-%__install -Dm 0644 %{SOURCE10} %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{full_name}.png
-%__install -Dm 0644 %{SOURCE11} %{buildroot}%{_datadir}/icons/hicolor/384x384/apps/%{full_name}.png
-%__install -Dm 0644 %{SOURCE12} %{buildroot}%{_datadir}/icons/hicolor/512x512/apps/%{full_name}.png
+%__install -Dm 0644 %{buildroot}/opt/%{full_name}/icons/24x24.png -t %{buildroot}%{_datadir}/icons/hicolor/24x24/apps
+%__install -Dm 0644 %{buildroot}/opt/%{full_name}/icons/36x36.png -t %{buildroot}%{_datadir}/icons/hicolor/36x36/apps
+%__install -Dm 0644 %{buildroot}/opt/%{full_name}/icons/48x48.png -t %{buildroot}%{_datadir}/icons/hicolor/48x48/apps
+%__install -Dm 0644 %{buildroot}/opt/%{full_name}/icons/64x64.png -t %{buildroot}%{_datadir}/icons/hicolor/64x64/apps
+%__install -Dm 0644 %{buildroot}/opt/%{full_name}/icons/72x72.png -t %{buildroot}%{_datadir}/icons/hicolor/72x72/apps
+%__install -Dm 0644 %{buildroot}/opt/%{full_name}/icons/96x96.png -t %{buildroot}%{_datadir}/icons/hicolor/96x96/apps
+%__install -Dm 0644 %{buildroot}/opt/%{full_name}/icons/128x128.png -t %{buildroot}%{_datadir}/icons/hicolor/128x128/apps
+%__install -Dm 0644 %{buildroot}/opt/%{full_name}/icons/192x192.png -t %{buildroot}%{_datadir}/icons/hicolor/192x192/apps
+%__install -Dm 0644 %{buildroot}/opt/%{full_name}/icons/256x256.png -t %{buildroot}%{_datadir}/icons/hicolor/256x256/apps
+%__install -Dm 0644 %{buildroot}/opt/%{full_name}/icons/384x384.png -t %{buildroot}%{_datadir}/icons/hicolor/384x384/apps
+%__install -Dm 0644 %{buildroot}/opt/%{full_name}/icons/512x512.png -t %{buildroot}%{_datadir}/icons/hicolor/512x512/apps
 
 %files
 /opt/figma-linux/
