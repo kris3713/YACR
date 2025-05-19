@@ -63,6 +63,7 @@ fi
 %{_bindir}/%{full_name}
 %{_datadir}/applications/%{full_name}.desktop
 %{_datadir}/icons/hicolor/1024x1024/apps/%{full_name}.png
+%license ./license.txt
 
 %changelog
 * Sun May 18 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 2.7.0-1
