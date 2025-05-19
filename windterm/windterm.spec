@@ -12,6 +12,8 @@ URL:            https://github.com/kingToolbox/WindTerm
 
 Source0:        https://github.com/kingToolbox/WindTerm/releases/download/%{version}/%{app_name}_%{version}_Linux_Portable_x86_64.zip
 
+ExclusiveArch:  x86_64
+
 Requires:       qt5-qtbase qt5-qttools
 
 %description
