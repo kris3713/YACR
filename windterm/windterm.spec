@@ -1,5 +1,3 @@
-%define         user %(whoami)
-
 %global         full_name windterm
 %global         app_name WindTerm
 %global         debug_package %{nil}
@@ -25,7 +23,7 @@ A professional cross-platform SSH/Sftp/Shell/Telnet/Tmux/Serial terminal.
 
 You may need to use the following command to give the application permissions to create the `profiles.config` file:
 
-chown -R %{user}:%{user} /opt/%{app_name}
+chown -R "$USER:$USER" /opt/WindTerm
 
 %prep
 %setup -q -n ./%{app_name}_%{version}
