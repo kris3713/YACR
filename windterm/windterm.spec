@@ -62,7 +62,7 @@ fi
 %postun
 if [ -e /opt/%{app_name}/lib ]; then
   # Remove the `lib` directory
-  %__rm /opt/%{app_name}/lib
+  %__rm -r /opt/%{app_name}/lib
 fi
 
 %files
