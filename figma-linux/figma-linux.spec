@@ -2,7 +2,7 @@
 %global         debug_package %{nil}
 
 Name:           figma-linux
-Version:        0.11.5
+Version:        3.10
 Release:        1%{?dist}
 Summary:        Figma-linux is an unofficial Electron-based Figma desktop app for Linux.
 
