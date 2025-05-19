@@ -40,17 +40,17 @@ Figma is the first interface design tool based in the browser, making it easier 
 %__ln_s /opt/%{full_name}/%{full_name} %{buildroot}%{_bindir}
 
 # Install application icons
-%__install -Dm 0644 %{buildroot}/opt/%{full_name}/icons/24x24.png -t %{buildroot}%{_datadir}/icons/hicolor/24x24/apps/%{full_name}
-%__install -Dm 0644 %{buildroot}/opt/%{full_name}/icons/36x36.png -t %{buildroot}%{_datadir}/icons/hicolor/36x36/apps/%{full_name}
-%__install -Dm 0644 %{buildroot}/opt/%{full_name}/icons/48x48.png -t %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/%{full_name}
-%__install -Dm 0644 %{buildroot}/opt/%{full_name}/icons/64x64.png -t %{buildroot}%{_datadir}/icons/hicolor/64x64/apps/%{full_name}
-%__install -Dm 0644 %{buildroot}/opt/%{full_name}/icons/72x72.png -t %{buildroot}%{_datadir}/icons/hicolor/72x72/apps/%{full_name}
-%__install -Dm 0644 %{buildroot}/opt/%{full_name}/icons/96x96.png -t %{buildroot}%{_datadir}/icons/hicolor/96x96/apps/%{full_name}
-%__install -Dm 0644 %{buildroot}/opt/%{full_name}/icons/128x128.png -t %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{full_name}
-%__install -Dm 0644 %{buildroot}/opt/%{full_name}/icons/192x192.png -t %{buildroot}%{_datadir}/icons/hicolor/192x192/apps/%{full_name}
-%__install -Dm 0644 %{buildroot}/opt/%{full_name}/icons/256x256.png -t %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{full_name}
-%__install -Dm 0644 %{buildroot}/opt/%{full_name}/icons/384x384.png -t %{buildroot}%{_datadir}/icons/hicolor/384x384/apps/%{full_name}
-%__install -Dm 0644 %{buildroot}/opt/%{full_name}/icons/512x512.png -t %{buildroot}%{_datadir}/icons/hicolor/512x512/apps/%{full_name}
+%__install -Dm 0644 %{buildroot}/opt/%{full_name}/icons/24x24.png %{buildroot}%{_datadir}/icons/hicolor/24x24/apps/%{full_name}.png
+%__install -Dm 0644 %{buildroot}/opt/%{full_name}/icons/36x36.png %{buildroot}%{_datadir}/icons/hicolor/36x36/apps/%{full_name}.png
+%__install -Dm 0644 %{buildroot}/opt/%{full_name}/icons/48x48.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/%{full_name}.png
+%__install -Dm 0644 %{buildroot}/opt/%{full_name}/icons/64x64.png %{buildroot}%{_datadir}/icons/hicolor/64x64/apps/%{full_name}.png
+%__install -Dm 0644 %{buildroot}/opt/%{full_name}/icons/72x72.png %{buildroot}%{_datadir}/icons/hicolor/72x72/apps/%{full_name}.png
+%__install -Dm 0644 %{buildroot}/opt/%{full_name}/icons/96x96.png %{buildroot}%{_datadir}/icons/hicolor/96x96/apps/%{full_name}.png
+%__install -Dm 0644 %{buildroot}/opt/%{full_name}/icons/128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
+%__install -Dm 0644 %{buildroot}/opt/%{full_name}/icons/192x192.png %{buildroot}%{_datadir}/icons/hicolor/192x192/apps/%{full_name}.png
+%__install -Dm 0644 %{buildroot}/opt/%{full_name}/icons/256x256.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{full_name}.png
+%__install -Dm 0644 %{buildroot}/opt/%{full_name}/icons/384x384.png %{buildroot}%{_datadir}/icons/hicolor/384x384/apps/%{full_name}.png
+%__install -Dm 0644 %{buildroot}/opt/%{full_name}/icons/512x512.png %{buildroot}%{_datadir}/icons/hicolor/512x512/apps/%{full_name}.png
 
 %files
 /opt/figma-linux/
