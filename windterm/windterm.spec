@@ -30,23 +30,20 @@ A professional cross-platform SSH/Sftp/Shell/Telnet/Tmux/Serial terminal.
 %__install -d %{buildroot}{/opt/%{app_name},%{_bindir},%{_datadir}/applications}
 %__install -d %{buildroot}%{_datadir}/icons/hicolor/1024x1024/apps
 
+# Compress the `lib` directory to avoid the "broken rpath" error
+%__tar -cf ./lib.tar ./lib
+%__xz -6 ./lib.tar -c > ./lib.tar.xz
+%__rm -r ./lib.tar ./lib
+
 # Copy the application files to the application directory
 %__cp -a . %{buildroot}/opt/%{app_name}
-
-# Compress the `lib` directory to avoid the "broken rpath" error
-%__tar -cf %{buildroot}/opt/%{app_name}/lib.tar %{buildroot}/opt/%{app_name}/lib
-%__xz -6 %{buildroot}/opt/%{app_name}/lib.tar -c > %{buildroot}/opt/%{app_name}/lib.tar.xz
-%__rm %{buildroot}/opt/%{app_name}/lib.tar
-
-# Remove the `lib` directory
-%__rm -r %{buildroot}/opt/%{app_name}/lib
 
 # Install the desktop file
 %__mv %{buildroot}/opt/%{app_name}/%{full_name}.desktop %{buildroot}%{_datadir}/applications
 %__chmod 0644 %{buildroot}%{_datadir}/applications/%{full_name}.desktop
 
 # Install the application binary (might use a BASH script wrapper if this doesn't work)
-%__ln_s /opt/%{app_name}/%{app_name} %{buildroot}%{_bindir}
+%__ln_s /opt/%{app_name}/%{app_name} %{buildroot}%{_bindir}/%{full_name}
 
 # Install application icons
 %__install -D -m 0644 %{buildroot}/opt/%{app_name}/%{full_name}.png -t %{buildroot}%{_datadir}/icons/hicolor/1024x1024/apps
@@ -54,22 +51,22 @@ A professional cross-platform SSH/Sftp/Shell/Telnet/Tmux/Serial terminal.
 %post
 if [ -e /opt/%{app_name}/lib.tar.xz ]; then
   # Create the `lib` directory
-  mkdir -p /opt/%{app_name}/lib
+  %__mkdir_p /opt/%{app_name}/lib
   # Uncompress the `lib.tar.xz` file
-  %__tar -xf /opt/%{app_name}/lib.tar.xz "--strip-components=1" -C /opt/%{app_name}/lib
+  %__tar -xf /opt/%{app_name}/lib.tar.xz "--strip-components=2" -C /opt/%{app_name}/lib
   # Remove the `lib.tar.xz` file
   %__rm /opt/%{app_name}/lib.tar.xz
 fi
 
 %postun
-if [ -e /opt/%{app_name}/lib.tar.xz ]; then
-  # Remove the `lib.tar.xz` file
-  %__rm /opt/%{app_name}/lib.tar.xz
+if [ -e /opt/%{app_name}/lib ]; then
+  # Remove the `lib` directory
+  %__rm /opt/%{app_name}/lib
 fi
 
 %files
 /opt/%{app_name}
-%{_bindir}/%{app_name}
+%{_bindir}/%{full_name}
 %{_datadir}/applications/%{full_name}.desktop
 %{_datadir}/icons/hicolor/1024x1024/apps/%{full_name}.png
 %license ./license.txt
