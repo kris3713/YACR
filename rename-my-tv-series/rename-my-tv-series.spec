@@ -60,7 +60,3 @@ formats and can help organize your media files.
 %{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
 %{_datadir}/icons/hicolor/256x256/apps/%{full_name}.png
 %{_datadir}/icons/hicolor/512x512/apps/%{full_name}.png
-
-%changelog
-* Tue Apr 22 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 2.0.10-1
-- Initial packaging of rename-my-tv-series version 2.0.10

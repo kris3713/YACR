@@ -90,10 +90,3 @@ cd ..
 %{_datadir}/icons/hicolor/48x48/apps/%{full_name}.png
 %{_datadir}/icons/hicolor/256x256/apps/%{full_name}.png
 %license LICENSE
-
-%changelog
-* Thu May 15 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 3.10-2
-- Added missing libraries for Detect It Easy
-
-* Wed May 14 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 3.10-1
-- Inital packaging of detect-it-easy version 3.10

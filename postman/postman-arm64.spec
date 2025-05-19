@@ -53,7 +53,3 @@ streamlines collaboration so you can create better APIs faster.
 %{_bindir}/%{full_name}
 %{_datadir}/applications/%{full_name}.desktop
 %{_datadir}/icons/hicolor/128x128/apps/%{full_name}.png
-
-%changelog
-* Fri May 09 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 11.45.6-1
-- Beginning of initial RPM packaging for Postman version 11.45.6

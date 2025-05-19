@@ -65,7 +65,3 @@ Syntax parser is feature-rich, from EControl engine.
 %{_datadir}/applications/%{full_name}.desktop
 %{_datadir}/icons/hicolor/512x512/apps/%{full_name}-512.png
 %license ./readme/license.%{app_name}.txt
-
-%changelog
-* Fri May 09 2025 FlawlessCasual17 <07e5297d5b@c0x0.com> - 1.223.6.0-1
-- Beginning of initial RPM packaging for Cudatext version 1.223.6.0
