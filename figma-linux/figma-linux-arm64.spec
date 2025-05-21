@@ -1,5 +1,5 @@
 %global         full_name figma-linux
-%global         arch amd64
+%global         arch arm64
 %global         debug_package %{nil}
 
 Name:           figma-linux-arm64
