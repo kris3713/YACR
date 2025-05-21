@@ -1,7 +1,7 @@
 %global         full_name cudatext
 %global         app_name CudaText
 %global         variant gtk2
-%global         arch amd64
+%global         pkg_arch amd64
 %global         debug_package %{nil}
 
 Name:           cudatext-%{variant}
@@ -12,7 +12,7 @@ Summary:        Cross-platform text and code editor
 License:        MPL-2.0
 URL:            https://cudatext.github.io/
 
-Source0:        https://sourceforge.net/projects/cudatext/files/release/%{version}/%{full_name}-linux-%{variant}-%{arch}-%{version}.tar.xz
+Source0:        https://sourceforge.net/projects/cudatext/files/release/%{version}/%{full_name}-linux-%{variant}-%{pkg_arch}-%{version}.tar.xz
 Source1:        %{full_name}.desktop
 Source2:        %{full_name}
 

@@ -1,10 +1,10 @@
 %global         full_name cudatext
 %global         app_name CudaText
 %global         variant qt5
-%global         arch %arm64
+%global         pkg_arch %arm64
 %global         debug_package %{nil}
 
-Name:           cudatext-%{arch}
+Name:           cudatext-%{pkg_arch}
 Version:        1.223.6.0
 Release:        1%{?dist}
 Summary:        Cross-platform text and code editor
@@ -12,7 +12,7 @@ Summary:        Cross-platform text and code editor
 License:        MPL-2.0
 URL:            https://cudatext.github.io/
 
-Source0:        https://sourceforge.net/projects/cudatext/files/release/%{version}/%{full_name}-linux-%{variant}-%{arch}-%{version}.tar.xz
+Source0:        https://sourceforge.net/projects/cudatext/files/release/%{version}/%{full_name}-linux-%{variant}-%{pkg_arch}-%{version}.tar.xz
 Source1:        %{full_name}.desktop
 Source2:        %{full_name}
 
@@ -21,7 +21,7 @@ Recommends:     python3
 
 ExclusiveArch:  %arm64
 
-Conflicts:      %{full_name}-gtk2-%{arch} %{full_name}-qt5-%{arch}
+Conflicts:      %{full_name}-gtk2-%{pkg_arch} %{full_name}-qt5-%{pkg_arch}
 
 %description
 CudaText is a cross-platform text editor, written in Object Pascal.
