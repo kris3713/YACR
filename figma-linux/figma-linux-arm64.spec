@@ -2,7 +2,7 @@
 %global         arch amd64
 %global         debug_package %{nil}
 
-Name:           figma-linux
+Name:           figma-linux-arm64
 Version:        0.11.5
 Release:        1%{?dist}
 Summary:        Figma-linux is an unofficial Electron-based Figma desktop app for Linux.
