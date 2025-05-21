@@ -1,5 +1,5 @@
 %global         full_name figma-linux
-%global         arch arm64
+%global         arch amd64
 %global         debug_package %{nil}
 
 Name:           figma-linux
@@ -13,7 +13,7 @@ URL:            https://github.com/Figma-Linux/figma-linux
 Source0:        https://github.com/Figma-Linux/figma-linux/releases/download/v%{version}/%{full_name}_%{version}_linux_%{arch}.zip
 Source1:        https://raw.githubusercontent.com/Figma-Linux/figma-linux/master/resources/%{full_name}.desktop
 
-ExclusiveArch:  %arm64
+ExclusiveArch:  x86_64
 
 # Requires:       # Might use this later
 
