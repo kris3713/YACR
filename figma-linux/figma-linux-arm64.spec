@@ -13,7 +13,7 @@ URL:            https://github.com/Figma-Linux/figma-linux
 Source0:        https://github.com/Figma-Linux/figma-linux/releases/download/v%{version}/%{full_name}_%{version}_linux_%{arch}.zip
 Source1:        https://raw.githubusercontent.com/Figma-Linux/figma-linux/master/resources/%{full_name}.desktop
 
-ExclusiveArch:  x86_64
+ExclusiveArch:  %arm64
 
 # Requires:       # Might use this later
 
