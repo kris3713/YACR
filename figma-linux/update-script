@@ -6,14 +6,14 @@ set -l basename (basename "$script_dir")
 echo "Updating '$basename'"
 
 set -l url 'https://api.github.com/repos/Figma-Linux/figma-linux/releases/latest'
-# set -l regex '([\\d.]+)'
+set -l regex 'v([\\d.]+)'
 set -l jsonpath '$.tag_name'
 
 echo 'Adding executable permissions to `parse-json`'
 chmod +x "$script_dir/../scripts/parse-json"
 
 echo 'Executing the `parse-json` script'
-set -l latest_version ("$script_dir/../scripts/parse-json" $url '' $jsonpath)
+set -l latest_version ("$script_dir/../scripts/parse-json" $url $regex $jsonpath)
 
 # @fish-lsp-disable-next-line 2001
 set -l current_version (sed -n 's/^Version:\\s*\\([\\d.]*\\)/\\1/p' "$script_dir/$basename.spec")
