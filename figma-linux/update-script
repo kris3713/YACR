@@ -5,7 +5,7 @@ set -l basename (basename "$script_dir")
 
 echo "Updating '$basename'"
 
-set -l url 'https://api.github.com/repos/horsicq/DIE-engine/releases/latest'
+set -l url 'https://api.github.com/repos/Figma-Linux/figma-linux/releases/latest'
 # set -l regex '([\\d.]+)'
 set -l jsonpath '$.tag_name'
 
