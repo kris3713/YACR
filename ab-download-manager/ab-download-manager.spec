@@ -13,6 +13,8 @@ URL:            https://abdownloadmanager.com/
 Source0:        https://github.com/amir1376/ab-download-manager/releases/download/v%{version}/%{app_name}_%{version}_linux_x64.tar.gz
 Source1:        %{full_name}.desktop
 
+ExclusiveArch:  x86_64
+
 %description
 A Download Manager that speeds up your downloads
 
