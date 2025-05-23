@@ -33,8 +33,14 @@ tasks.
 %setup -q -n ./naps2-%{version}
 
 %build
+export DOTNET_NOLOGO=true
+export DOTNET_CLI_TELEMETRY_OPTOUT=true
+
 %{n2} build -v debug && %{n2} build -v release
 %__mkdir ./app
+
+unset DOTNET_NOLOGO
+unset DOTNET_CLI_TELEMETRY_OPTOUT
 
 %ifarch x86_64
 %__cp -a ./NAPS2.App.Gtk/bin/Release/net9/linux-x64/* ./app
@@ -55,7 +61,9 @@ tasks.
 %__cp -a ./app/* %{buildroot}/opt/NAPS2
 
 # Remove the publish directory (since the files in there always get corrupted for some reason)
-%__rm -r %{buildroot}/opt/NAPS2/publish
+if [ -d "%{buildroot}/opt/NAPS2/publish" ]; then
+  %__rm -r %{buildroot}/opt/NAPS2/publish
+fi
 
 # Remove executables from /opt/NAPS2/sosdocsunix.txt
 %__chmod -x %{buildroot}/opt/NAPS2/sosdocsunix.txt
