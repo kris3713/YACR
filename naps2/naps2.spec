@@ -1,7 +1,7 @@
 %define         n2 dotnet run --project NAPS2.Tools --
+%define         n2_publish dotnet publish NAPS2.App.Gtk -c Release
 
-%global         full_name naps2
-%global         app_name NAPS2
+%global         full_name com.naps2.Naps2
 %global         debug_package %{nil}
 
 Name:           naps2
@@ -12,7 +12,8 @@ Summary:        Scan documents to PDF and more, as simply as possible.
 License:        GPL-2.0-or-later
 URL:            https://www.naps2.com/
 
-Source0:        https://github.com/cyanfish/naps2/archive/refs/tags/v8.1.4.tar.gz
+Source0:        https://github.com/cyanfish/naps2/archive/refs/tags/v%{version}.tar.gz
+Source1:        naps2
 
 BuildRequires:  dotnet-sdk-9.0 liberation-fonts-all google-noto-fonts-common google-noto-sans-cjk-vf-fonts
 Requires:       dotnet-host dotnet-runtime-9.0
@@ -28,30 +29,62 @@ over 100 languages. Use batch scanning, advanced profile settings, and an option
 tasks.
 
 %prep
-%setup -q -n ./%{full_name}-%{version}
+%setup -q -n ./naps2-%{version}
 
 %build
-dotnet restore ./NAPS2.Tools/NAPS2.Tools.csproj
 %{n2} build debug && %{n2} build release
 %{n2} clean
-# The echo commands are here for better looking log output
-echo '----------------------------------'
+
 %ifarch x86_64
-dotnet publish NAPS2.App.Gtk -c Release -r linux-x64 --self-contained '-p:DebugType=None' '-p:DebugSymbols=false'
-echo '----------------------------------'
+%{n2_publish} -r linux-x64 --self-contained '-p:DebugType=None' '-p:DebugSymbols=false'
+%__ln_s ./NAPS2.App.Gtk/bin/Release/net9/linux-x64/publish ./app
 %else
-dotnet publish NAPS2.App.Gtk -c Release -r linux-arm64 --self-contained '-p:DebugType=None' '-p:DebugSymbols=false'
-echo '----------------------------------'
+%{n2_publish} -r linux-arm64 --self-contained '-p:DebugType=None' '-p:DebugSymbols=false'
+%__ln_s ./NAPS2.App.Gtk/bin/Release/net9/linux-arm64/publish ./app
 %endif
 
-
 %install
-%make_install
+# Remove the old build directory
+%__rm -rf %{buildroot}
 
+# Install the new build directory
+%__install -d %{buildroot}{/opt/NAPS2,%{_bindir},%{_datadir}/applications,%{_metainfodir}}
+%__install -d %{buildroot}%{_iconsdir}/hicolor/{16x16,32x32,44x44,48x48,64x64}/apps
+%__install -d %{buildroot}%{_iconsdir}/hicolor/{72x72,96x96,128x128,150x150}/apps
+
+# Copy the application files to the appllication directory
+%__cp -a ./app/* %{buildroot}/opt/NAPS2
+
+# Install the desktop file
+%__install -Dm 0644 ./NAPS2.Setup/config/linux/%{full_name}.desktop %{buildroot}%{_datadir}/applications/naps2.desktop
+
+# Install the application metainfo
+%__install -Dm 0644 ./NAPS2.Setup/config/linux/%{full_name}.metainfo.xml -t %{buildroot}%{_metainfodir}
+
+# Install the application binary
+%__install -Dm 0755 %{SOURCE1} -t %{buildroot}%{_bindir}
+
+# Install the application icons
+%__install -Dm 0644 ./NAPS2.Setup/config/windows/msix/Assets/scanner-150.png %{buildroot}%{_iconsdir}/hicolor/150x150/apps/%{full_name}.png
+%__install -Dm 0644 ./NAPS2.Lib/Icons/scanner-128.png %{buildroot}%{_iconsdir}/hicolor/128x128/apps/%{full_name}.png
+%__install -Dm 0644 ./NAPS2.Lib/Icons/scanner-96.png %{buildroot}%{_iconsdir}/hicolor/96x96/apps/%{full_name}.png
+%__install -Dm 0644 ./NAPS2.Lib/Icons/scanner-72-rev1.png %{buildroot}%{_iconsdir}/hicolor/72x72/apps/%{full_name}.png
+%__install -Dm 0644 ./NAPS2.Lib/Icons/scanner-64-rev1.png %{buildroot}%{_iconsdir}/hicolor/64x64/apps/%{full_name}.png
+%__install -Dm 0644 ./NAPS2.Lib/Icons/scanner-48-rev1.png %{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{full_name}.png
+%__install -Dm 0644 ./NAPS2.Lib/Icons/scanner-32-rev1.png %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{full_name}.png
+%__install -Dm 0644 ./NAPS2.Lib/Icons/scanner-16-rev1.png %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{full_name}.png
 
 %files
-/opt/%{app_name}
+/opt/NAPS2
 %{_bindir}/naps2
 %{_datadir}/applications/naps2.desktop
-%{_datadir}/icons/hicolor/128x128/apps/com.naps2.Naps2.png
-%{_datadir}/metainfo/com.naps2.Naps2.metainfo.xml
+%{_iconsdir}/hicolor/150x150/apps/%{full_name}.png
+%{_iconsdir}/hicolor/128x128/apps/%{full_name}.png
+%{_iconsdir}/hicolor/96x96/apps/%{full_name}.png
+%{_iconsdir}/hicolor/72x72/apps/%{full_name}.png
+%{_iconsdir}/hicolor/64x64/apps/%{full_name}.png
+%{_iconsdir}/hicolor/48x48/apps/%{full_name}.png
+%{_iconsdir}/hicolor/32x32/apps/%{full_name}.png
+%{_iconsdir}/hicolor/16x16/apps/%{full_name}.png
+%{_metainfodir}/%{full_name}.metainfo.xml
+%license ./LICENSE
