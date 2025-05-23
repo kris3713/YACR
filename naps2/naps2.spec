@@ -33,7 +33,7 @@ tasks.
 %setup -q -n ./naps2-%{version}
 
 %build
-%{n2} pkg rpm -p linux --nosign
+%{n2} build -v debug && %{n2} build -v release
 %__mkdir ./app
 
 %ifarch x86_64
