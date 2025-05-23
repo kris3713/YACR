@@ -34,15 +34,13 @@ tasks.
 %setup -q -n ./naps2-%{version}
 
 %build
-%{n2} build debug && %{n2} build release
-%{n2} clean
+%{n2} pkg rpm -p linux --nosign &> /dev/null
+%__mkdir ./app
 
 %ifarch x86_64
-%{n2_publish} -r linux-x64 --self-contained '-p:DebugType=None' '-p:DebugSymbols=false'
-%__ln_s ./NAPS2.App.Gtk/bin/Release/net9/linux-x64/publish ./app
+%__cp -a ./NAPS2.App.Gtk/bin/Release/net9/linux-x64/* ./app
 %else
-%{n2_publish} -r linux-arm64 --self-contained '-p:DebugType=None' '-p:DebugSymbols=false'
-%__ln_s ./NAPS2.App.Gtk/bin/Release/net9/linux-arm64/publish ./app
+%__cp -a ./NAPS2.App.Gtk/bin/Release/net9/linux-arm64/* ./app
 %endif
 
 %install
@@ -56,6 +54,12 @@ tasks.
 
 # Copy the application files to the appllication directory
 %__cp -a ./app/* %{buildroot}/opt/NAPS2
+
+# Remove the publish directory (since the files in there always get corrupted for some reason)
+%__rm -r %{buildroot}/opt/NAPS2/publish
+
+# Remove executables from /opt/NAPS2/sosdocsunix.txt
+%__chmod -x %{buildroot}/opt/NAPS2/sosdocsunix.txt
 
 # Install the desktop file
 %__install -Dm 0644 ./NAPS2.Setup/config/linux/%{full_name}.desktop %{buildroot}%{_datadir}/applications/naps2.desktop
