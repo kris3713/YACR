@@ -2,6 +2,8 @@
 %define         n2_publish dotnet publish NAPS2.App.Gtk -c Release
 
 %global         full_name com.naps2.Naps2
+%global         __requires_exclude_from ^/opt/NAPS2/.*$
+%global         __provides_exclude_from ^/opt/NAPS2/.*$
 %global         debug_package %{nil}
 
 Name:           naps2
