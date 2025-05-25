@@ -2,7 +2,7 @@
 
 import re
 import sys
-from lxml import etree
+from lxml import etree as xml
 import requests
 
 
@@ -11,6 +11,7 @@ def parse_xml(url: str, regex_str: str, xpath_expr: str):
     Parses XML content from a URL and
     extracts the desired information using
     regular expressions and XPath expressions.
+    Includes detection for Atom feeds.
     """
 
     result = ''
@@ -19,17 +20,29 @@ def parse_xml(url: str, regex_str: str, xpath_expr: str):
     regex = re.compile(regex_str) if regex_str != '' else None
 
     # Invoke a new HTTP GET request
-    response = requests.get(url)
-    xml_content = etree.fromstring(response.content)
+    user_agent = 'Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0'
+    response = requests.get(url, headers={ 'User-Agent': user_agent })
+    content = response.content.replace(b'\xc2\xa0', b'')
+    xml_content = xml.fromstring(content)
+
+    namespaces = None
+
+    # TODO: Add support for other namespaces
+    # Check if the XML content is an Atom feed
+    if xml_content.tag == '{http://www.w3.org/2005/Atom}feed':
+        namespaces = {
+            'atom': 'http://www.w3.org/2005/Atom'
+        }
+
 
     #  Find all the elements that were captured the XPath expression
-    elements = xml_content.xpath(xpath_expr)
+    elements = xml_content.xpath(xpath_expr, namespaces=namespaces)
 
     for e in elements:
         # If you want the text content of the element:
         # print(element.text_content())
         # If you want the HTML representation of the element:
-        v = etree.tostring(e).decode()
+        v = xml.tostring(e).decode()
 
         if regex is not None:
             matches = regex.search(v)
@@ -47,3 +60,6 @@ def parse_xml(url: str, regex_str: str, xpath_expr: str):
 
 # Allow the user to pass in the arguments from the command line
 parse_xml(sys.argv[1], sys.argv[2], sys.argv[3])
+
+# How it should be used in cli
+# ./scripts/parse-xml 'https://0xacab.org/leap/bitmask-vpn/-/tags?format=atom' '>([\\d.]+)<' '/atom:feed/atom:entry[1]/atom:title'

@@ -30,7 +30,8 @@ def parse_json(url: str, regex_str: str, jsonpath_expr: str):
     jsonPath: JSONPath = parse(jsonpath_expr)
 
     # Invoke a new HTTP GET request
-    response = requests.get(url)
+    user_agent = 'Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0'
+    response = requests.get(url, headers={ 'User-Agent': user_agent })
     json_content = response.json()
 
     keys: list[Any] = jsonPath.find(json_content)
