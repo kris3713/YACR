@@ -10,10 +10,10 @@ set -l url 'https://api.github.com/repos/kingToolbox/WindTerm/releases/latest'
 set -l jsonpath '$.tag_name'
 
 echo 'Adding executable permissions to `parse-json`'
-chmod +x "$script_dir/../scripts/parse-json"
+chmod +x "$script_dir/../../scripts/parse-json"
 
 echo 'Executing the `parse-json` script'
-set -l latest_version ("$script_dir/../scripts/parse-json" $url '' $jsonpath)
+set -l latest_version ("$script_dir/../../scripts/parse-json" $url '' $jsonpath)
 
 # @fish-lsp-disable-next-line 2001
 set -l current_version (sed -n 's/^Version:\\s*\\([\\d.]*\\)/\\1/p' "$script_dir/$basename.spec")
@@ -36,6 +36,6 @@ else
 end
 
 echo 'Removing executable permissions from `parse-json`'
-chmod -x "$script_dir/../scripts/parse-json"
+chmod -x "$script_dir/../../scripts/parse-json"
 
 echo "Finished updating '$basename'"
