@@ -18,10 +18,6 @@ set -l latest_version ("$script_dir/../../scripts/parse-json" $url '' $jsonpath)
 # @fish-lsp-disable-next-line 2001
 set -l current_version (sed -n 's/^Version:\\s*\\([\\d.]*\\)/\\1/p' "$script_dir/$basename.spec")
 
-# Reassign the variables to use underscores instead of hyphens
-set -l latest_version (string replace --all '-' '_' $latest_version)
-set -l current_version (string replace --all '-' '_' $current_version)
-
 # @fish-lsp-disable-next-line 2001
 echo 'Comparing the current version ($current_version) with the latest version ($latest_version)'
 echo "Current version: $current_version"
