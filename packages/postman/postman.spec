@@ -11,8 +11,8 @@ License:        Freeware
 URL:            https://www.postman.com/
 
 Source0:        https://dl.pstmn.io/download/version/%{real_version}/linux64#/postman-linux-x64.tar.gz
-Source1:        cudatext.desktop
-Source2:        cudatext
+Source1:        postman.desktop
+Source2:        postman
 
 ExclusiveArch:  x86_64
 
@@ -43,13 +43,13 @@ streamlines collaboration so you can create better APIs faster.
 
 # Install the application binary
 %__install -D -m 0755 %{SOURCE2} -t %{buildroot}%{_bindir}
-%__chmod +x %{buildroot}%{_bindir}/cudatext
+%__chmod +x %{buildroot}%{_bindir}/postman
 
 # Install application icon
-%__install -D -m 0644 ./icons/icon_128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/cudatext.png
+%__install -D -m 0644 ./icons/icon_128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/postman.png
 
 %files
 /opt/%{app_name}
-%{_bindir}/cudatext
-%{_datadir}/applications/cudatext.desktop
-%{_datadir}/icons/hicolor/128x128/apps/cudatext.png
+%{_bindir}/postman
+%{_datadir}/applications/postman.desktop
+%{_datadir}/icons/hicolor/128x128/apps/postman.png
