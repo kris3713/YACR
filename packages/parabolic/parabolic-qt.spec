@@ -3,7 +3,7 @@
 %global         debug_package %{nil}
 
 Name:           parabolic
-Version:\s+8.1.42025.5.5
+Version:        2025.5.5
 Release:        1%{?dist}
 Summary:        Download web video and audio
 
