@@ -18,7 +18,6 @@ Source1:        %{name}.desktop
 BuildRequires:  make libxcrypt-compat fdupes open-sans-fonts gettext python3 python3-devel
 BuildRequires:  python3-polib python3-pypubsub python3-wxpython4 python3-setuptools
 Requires:       python3 python3-polib python3-pypubsub python3-wxpython4 python3-setuptools
-
 Recommends:     yt-dlp ffmpeg
 
 %description
