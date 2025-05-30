@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Exit immediately if a command exits with a non-zero status.
+set -e
+
+# --- Python helper script ---
+BASE_URL='https://raw.githubusercontent.com/FlawlessCasual17/YACR/refs/heads/master'
+curl -s "$BASE_URL/scripts/requirements.txt" -o "$SCRIPT_DIR/requirements.txt"
+if command -v pip3 &> /dev/null; then
+  pip3 install -r "$SCRIPT_DIR/requirements.txt"
+elif command -v pip &> /dev/null; then
+  pip install -r "$SCRIPT_DIR/requirements.txt"
+fi 
+
+curl -s "$BASE_URL/scripts/parse-json" -o "$SCRIPT_DIR/parse-json"
+chmod +x "$SCRIPT_DIR/parse-json"
+
+# --- Configuration ---
+API_URL='https://api.github.com/repos/NickvisionApps/libnick/releases/latest'
+VERSION="$("$SCRIPT_DIR/parse-json" $API_URL '' '$.tag_name')"
+TARBALL_URL="https://github.com/NickvisionApps/libnick/archive/refs/tags/${VERSION}.tar.gz"
+
+echo "--- Script to clone, build, and install 'libnick' C++ library ---"
+
+# 1. Download the tarball, extract it, remove it, and navigate into the new directory
+echo "Downloading tarball from ${TARBALL_URL}..."
+# shellcheck disable=SC2086
+curl -s $TARBALL_URL -o "$SCRIPT_DIR/${VERSION}.tar.gz" && echo "Downloaded tarball to '$SCRIPT_DIR/${VERSION}.tar.gz'"
+mkdir "$SCRIPT_DIR/libnick"
+tar -xf "$SCRIPT_DIR/${VERSION}.tar.gz" -C "$SCRIPT_DIR/libnick"
+rm "$SCRIPT_DIR/${VERSION}.tar.gz"
+echo "Navigated into directory '$SCRIPT_DIR/libnick'"
+cd libnick
+
+# TODO: [ ] Test this script and find any errors in it
+
+# 2. Create and navigate into a build directory
+echo "Creating build directory and navigating into it..."
+mkdir -p build
+cd build
+
+# 3. Configure the build with CMake
+echo "Configuring build with CMake..."
+# For Linux, -DCMAKE_BUILD_TYPE=Release is recommended for optimized builds.
+# -DCMAKE_INSTALL_PREFIX specifies the installation directory.
+cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="${INSTALL_PREFIX}"
+
+# 4. Build the library
+echo "Building libnick..."
+cmake --build .
+
+# 5. Install the library
+echo "Installing libnick to ${INSTALL_PREFIX}. This may require sudo privileges."
+sudo cmake --install .
+
+echo "--- libnick installation complete! ---"
+echo "You can now use libnick in your C++ applications."
+echo "If you use CMake in your project, you can find libnick with:"
+echo "  find_package(libnick CONFIG REQUIRED)"
+echo "And link to it with:"
+echo "  target_link_libraries(your_target PRIVATE libnick::libnick)"

@@ -12,9 +12,9 @@ URL:            %{git_url}
 
 Source0:        %{git_url}/archive/refs/tags/%{version}.tar.gz
 
-BuildRequires:  cmake vcpkg boost boost-devel boost-date-time gtest gtest-devel
-BuildRequires:  qt6-qtbase qt6-qtbase-devel qt6-qtbase-gui qt6-qttools
-BuildRequires:  qt6-qttools-devel qt6-qtsvg-devel qt-devel qt6-qtdeclarative-devel
+BuildRequires:  python3-pip cmake boost-devel boost-date-time gtest-devel
+BuildRequires:  qt6-qtbase-devel qt6-qtbase-gui qt6-qttools-devel
+BuildRequires:  qt6-qtsvg-devel qt-devel qt6-qtdeclarative-devel
 
 Recommends:     ffmpeg yt-dlp
 
@@ -32,9 +32,10 @@ Download web video and audio
 %setup -q -n ./%{app_name}-%{version}
 
 %build
+# Set environmental variables
+export INTALL_PREFIX="%{_builddir}/local"
+
 # Install the libnick dependency
-export VCPKG_ROOT="%{_builddir}/vcpkg"
-export VCPKG_DEFAULT_TRIPLET='x64-linux'
 vcpkg install libnick
 
 # Build the application
