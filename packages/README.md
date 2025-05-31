@@ -15,3 +15,4 @@
 * `rename-my-tv-series`
 * `riseup-vpn`
 * `windterm`
+* `yt-dlg`
