@@ -13,16 +13,11 @@ URL:            %{git_url}
 
 Source0:        %{git_url}/archive/refs/tags/%{version}.tar.gz
 
-# parabolic dependencies
-BuildRequires:  qt6-qtbase-devel qt6-qtbase-gui qt6-qttools-devel
-BuildRequires:  qt6-qtsvg-devel qt-devel qt6-qtdeclarative-devel
-# vcpkg dependencies
-BuildRequires:  git python3-pip python3-jinja2 perl ninja-build libstdc++-devel
-BuildRequires:  wget autoconf-archive flex gcc-c++ autoconf libtool gawk
-BuildRequires:  cmake bison boost-devel boost-date-time gtest-devel
-BuildRequires:  libxkbcommon-devel mesa-libEGL-devel xcb-util-cursor-devel
-BuildRequires:  xcb-util-wm-devel xcb-util-renderutil-devel xcb-util-keysyms-devel
-BuildRequires:  xcb-util-image-devel xcb-util-devel
+BuildRequires:  git python3-pip python3-jinja2 perl ninja-build libstdc++-devel wget
+BuildRequires:  autoconf-archive autoconf flex libtool gawk cmake bison libcurl-devel
+BuildRequires:  blueprint-compiler libxml++-devel gtk4-devel gtk4-devel-tools libadwaita-devel
+BuildRequires:  libsecret-devel boost-devel boost-date-time gtest-devel desktop-file-utils yelp
+Requires:       desktop-file-utils
 
 Recommends:     ffmpeg yt-dlp
 
@@ -41,24 +36,23 @@ Download web video and audio
 
 %build
 # Install vcpkg
-BASE_URL='https://gist.githubusercontent.com/FlawlessCasual17/2ac42388ee357363bbae41567391778d'
-curl -s "$BASE_URL/raw/417c5ba672ce217b13626363ea3de0efbb257b6f/install-vcpkg" -o ./install-vcpkg
-chmod +x ./install-vcpkg
+BASE_URL='https://raw.githubusercontent.com/FlawlessCasual17/YACR'
+curl -s "$BASE_URL/refs/heads/master/scripts/install-vcpkg" -o ./install-vcpkg
+%__chmod +x ./install-vcpkg
 ./install-vcpkg &> /dev/null
+%__rm -f ./install-vcpkg
 
 # Set environmental variables
-if [ -z "$VCPKG_ROOT" ]; then
-  export VCPKG_ROOT="%{_builddir}/vcpkg"
-fi
+export VCPKG_ROOT="%{_builddir}/vcpkg"
 %__mkdir_p "$VCPKG_ROOT"
 export VCPKG_DEFAULT_TRIPLET='x64-linux'
 
 # Install the required c++ libraries
-%{vcpkg} install libnick qtbase qlementine qlementine-icons &> /dev/null
+%{vcpkg} install libnick &> /dev/null
 
 # Build the application
-cd ./build
-%__cmake .. '-DCMAKE_BUILD_TYPE=Release' '-DUI_PLATFORM=qt'
+%__mkdir build && cd ./build
+%__cmake .. '-DCMAKE_BUILD_TYPE=Release' '-DUI_PLATFORM=gnome' "-Dlibnick_DIR=$VCPKG_ROOT/installed/x64-linux/share/libnick"
 %__cmake --build .
 cd ..
 
