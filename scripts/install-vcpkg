@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Exit immediately if a command exits with a non-zero status.
+set -e
+
+# --- Python helper script ---
+BASE_URL='https://raw.githubusercontent.com/FlawlessCasual17/YACR/refs/heads/master'
+curl -s "$BASE_URL/scripts/requirements.txt" -o "$SCRIPT_DIR/requirements.txt"
+pip install -r "$SCRIPT_DIR/requirements.txt"
+
+
+curl -s "$BASE_URL/scripts/parse-json" -o "$SCRIPT_DIR/parse-json"
+chmod +x "$SCRIPT_DIR/parse-json"
+
+# --- Configuration ---
+API_URL='https://api.github.com/repos/microsoft/vcpkg/releases/latest'
+VERSION="$("$SCRIPT_DIR/parse-json" $API_URL '' '$.tag_name')"
+TARBALL_URL="https://github.com/microsoft/vcpkg/archive/refs/tags/${VERSION}.tar.gz"
+if [ -z "$INSTALL_PREFIX" ]; then
+  INSTALL_PREFIX="$SCRIPT_DIR/.local"
+fi
+
+echo "--- Script to clone, and install 'vcpkg' ---"
+
+# 1. Download the tarball, extract it, remove it, and navigate into the new directory
+echo "Downloading tarball from ${TARBALL_URL}..."
+# shellcheck disable=SC2086
+# Works witn wget but not curl
+wget --quiet $TARBALL_URL -O "$SCRIPT_DIR/${VERSION}.tar.gz" &&
+  echo "Downloaded tarball to '$SCRIPT_DIR/${VERSION}.tar.gz'"
+if [ ! -d "$SCRIPT_DIR/vcpkg" ]; then
+  mkdir "$SCRIPT_DIR/vcpkg"
+fi
+echo "Extracting tarball to '$SCRIPT_DIR/vcpkg'..."
+tar -xf "$SCRIPT_DIR/${VERSION}.tar.gz" '--strip-components=1' -C "$SCRIPT_DIR/vcpkg"
+rm "$SCRIPT_DIR/${VERSION}.tar.gz"
+echo "Navigating into directory '$SCRIPT_DIR/vcpkg'"
+cd "$SCRIPT_DIR/vcpkg"
+
+# 2. Install vcpkg
+chmod +x ./bootstrap-vcpkg.sh
+./bootstrap-vcpkg.sh
+
+# 3. Finish installation
+echo "--- Installation of 'vcpkg' version ${VERSION} is complete ---"
+cd "$SCRIPT_DIR/.."
+# shellcheck disable=SC2086
+rm -rf "$SCRIPT_DIR/{requirements.txt,parse-json}"
