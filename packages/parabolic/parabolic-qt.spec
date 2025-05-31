@@ -1,3 +1,4 @@
+%define         vcpkg ./vcpkg/vcpkg
 %global         app_name Parabolic
 %global         git_url https://github.com/NickvisionApps/Parabolic
 %global         debug_package %{nil}
@@ -12,9 +13,16 @@ URL:            %{git_url}
 
 Source0:        %{git_url}/archive/refs/tags/%{version}.tar.gz
 
-BuildRequires:  python3-pip cmake boost-devel boost-date-time gtest-devel
+# parabolic dependencies
 BuildRequires:  qt6-qtbase-devel qt6-qtbase-gui qt6-qttools-devel
 BuildRequires:  qt6-qtsvg-devel qt-devel qt6-qtdeclarative-devel
+# vcpkg dependencies
+BuildRequires:  git python3-pip python3-jinja2 perl ninja-build libstdc++-devel
+BuildRequires:  wget autoconf-archive flex gcc-c++ autoconf libtool gawk
+BuildRequires:  cmake bison boost-devel boost-date-time gtest-devel
+BuildRequires:  libxkbcommon-devel mesa-libEGL-devel xcb-util-cursor-devel
+BuildRequires:  xcb-util-wm-devel xcb-util-renderutil-devel xcb-util-keysyms-devel
+BuildRequires:  xcb-util-image-devel xcb-util-devel
 
 Recommends:     ffmpeg yt-dlp
 
@@ -32,16 +40,26 @@ Download web video and audio
 %setup -q -n ./%{app_name}-%{version}
 
 %build
-# Set environmental variables
-export INTALL_PREFIX="%{_builddir}/local"
+# Install vcpkg
+BASE_URL='https://gist.githubusercontent.com/FlawlessCasual17/2ac42388ee357363bbae41567391778d'
+curl -s "$BASE_URL/raw/417c5ba672ce217b13626363ea3de0efbb257b6f/install-vcpkg" -o ./install-vcpkg
+chmod +x ./install-vcpkg
+./install-vcpkg &> /dev/null
 
-# Install the libnick dependency
-vcpkg install libnick
+# Set environmental variables
+if [ -z "$VCPKG_ROOT" ]; then
+  export VCPKG_ROOT="%{_builddir}/vcpkg"
+fi
+%__mkdir_p "$VCPKG_ROOT"
+export VCPKG_DEFAULT_TRIPLET='x64-linux'
+
+# Install the required c++ libraries
+%{vcpkg} install libnick qtbase qlementine qlementine-icons &> /dev/null
 
 # Build the application
 cd ./build
-cmake .. "-DCMAKE_BUILD_TYPE=Release" "-DUI_PLATFORM=qt"
-cmake --build .
+%__cmake .. '-DCMAKE_BUILD_TYPE=Release' '-DUI_PLATFORM=qt'
+%__cmake --build .
 cd ..
 
 %install
