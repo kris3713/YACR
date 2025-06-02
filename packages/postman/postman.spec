@@ -3,7 +3,7 @@
 %global         debug_package %{nil}
 
 Name:           postman
-Version:        11.47.4
+.48.0
 Release:        1%{?dist}
 Summary:        Postman - Platform for building and using APIs
 
