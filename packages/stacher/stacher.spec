@@ -14,6 +14,8 @@ Source0:        https://s7-releases.stacher-cloud.com/s7-releases/stacher7_7.0.1
 
 BuildRequires:  dpkg
 
+ExclusiveArch:  x86_64
+
 %description
 Stacher is a frontend GUI for the youtube-dl (or yt-dlp) command line tool.
 It is designed to be simple, easy to use, and powerful.
