@@ -14,6 +14,7 @@ dnf copr enable -y zliced13/YACR
 
 If you want to request a new package to be added, then create a new issue using the **package-request** template.
 
-If the requested package already works fine in other Linux package managers (including but not limited to 
-**AM** (App Manager), **HomeBrew**, **Nixpkgs**, **Flatpak**, and **Snap**) then it most likely not 
+<!-- spellcheck ignore -->
+If the requested package already works fine in other Linux package managers (including but not limited to
+**AM** (App Manager), **HomeBrew**, **NixPkgs**, **Flatpak**, and **Snap**) then it most likely not
 be added unless there is a really good reason for why it should be added this COPR repository.
