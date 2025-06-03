@@ -21,8 +21,8 @@ Stacher is a frontend GUI for the youtube-dl (or yt-dlp) command line tool.
 It is designed to be simple, easy to use, and powerful.
 
 %prep
-dpkg -x %{SOURCE0} ./%{name}-%{version}
-%setup -q -n ./%{name}-%{version}
+dpkg -x %{SOURCE0} ./%{name}-%{version}-build
+cd ./%{name}-%{version}-build
 
 %install
 # Remove the old build root

@@ -1,0 +1,37 @@
+#!/usr/bin/env fish
+
+set -l script_dir (status dirname)
+set -l basename (basename "$script_dir")
+
+echo "Updating '$basename'"
+
+set -l url 'https://changelog.stacher.io/'
+set -l regex 'version:\\s"([\\d.]*)"'
+set -l xpath '/html/head/script'
+
+echo 'Adding executable permissions to `parse-html`'
+chmod +x "$script_dir/../../scripts/parse-html"
+
+echo 'Executing the `parse-html` script'
+set -l latest_version ("$script_dir/../../scripts/parse-html" $url $regex $xpath)
+
+# @fish-lsp-disable-next-line 2001
+set -l current_version (sed -n 's/^Version:\\s*\\([\\d.]*\\)/\\1/p' "$script_dir/$basename.spec")
+
+# @fish-lsp-disable-next-line 2001
+echo 'Comparing the current version ($current_version) with the latest version ($latest_version)'
+echo "Current version: $current_version"
+echo "Latest version: $latest_version"
+if test "$current_version" != "$latest_version"
+  echo 'Versions are different. Updating the spec file(s)...'
+  for v in (fd --glob '*.spec' $script_dir)
+    sd "(Version\\:\\s*)$current_version" "\${1}$latest_version" $v
+  end && echo 'Done!'
+else
+  echo 'Both versions are the same. No update needed.'
+end
+
+echo 'Removing executable permissions from `parse-html`'
+chmod -x "$script_dir/../../scripts/parse-html"
+
+echo "Finished updating '$basename'"
