@@ -1,5 +1,6 @@
-%global         full_name Stacher7
-%global         app_name %{name}7
+%global         major 7
+%global         full_name Stacher%{major}
+%global         app_name %{name}%{major}
 %global         debug_package %{nil}
 
 Name:           stacher
@@ -10,7 +11,7 @@ Summary:        A modern GUI for yt-dlp (and other youtube-dl forks)
 License:        Freeware
 URL:            https://stacher.io/
 
-Source0:        https://s7-releases.stacher-cloud.com/s7-releases/stacher7_7.0.19_amd64.deb
+Source0:        https://s7-releases.stacher-cloud.com/s%{major}-releases/stacher%{major}_%{version}_amd64.deb
 
 BuildRequires:  dpkg
 
@@ -21,8 +22,7 @@ Stacher is a frontend GUI for the youtube-dl (or yt-dlp) command line tool.
 It is designed to be simple, easy to use, and powerful.
 
 %prep
-dpkg -x %{SOURCE0} ./%{name}-%{version}-build
-cd ./%{name}-%{version}-build
+dpkg -x %{SOURCE0} .
 
 %install
 # Remove the old build root

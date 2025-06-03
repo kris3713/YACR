@@ -15,8 +15,11 @@ chmod +x "$script_dir/../../scripts/parse-html"
 echo 'Executing the `parse-html` script'
 set -l latest_version ("$script_dir/../../scripts/parse-html" $url $regex $xpath)
 
-# @fish-lsp-disable-next-line 2001
+set -l latest_major (echo $latest_version | cut -d. -f1)
+
 set -l current_version (sed -n 's/^Version:\\s*\\([\\d.]*\\)/\\1/p' "$script_dir/$basename.spec")
+
+set -l current_major (echo $current_version | cut -d. -f1)
 
 # @fish-lsp-disable-next-line 2001
 echo 'Comparing the current version ($current_version) with the latest version ($latest_version)'
@@ -25,6 +28,7 @@ echo "Latest version: $latest_version"
 if test "$current_version" != "$latest_version"
   echo 'Versions are different. Updating the spec file(s)...'
   for v in (fd --glob '*.spec' $script_dir)
+    sd -F "major $current_major" "major $latest_major" $v
     sd "(Version\\:\\s*)$current_version" "\${1}$latest_version" $v
   end && echo 'Done!'
 else
