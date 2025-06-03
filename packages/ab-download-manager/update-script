@@ -25,7 +25,7 @@ echo "Latest version: $latest_version"
 if test "$current_version" != "$latest_version"
   echo 'Versions are different. Updating the spec file(s)...'
   for v in (fd --glob '*.spec' $script_dir)
-    sd "(Version:\\s+)$current_version" "\$1$latest_version" $v
+    sd "(Version\\:\\s*)$current_version" "\${1}$latest_version" $v
   end && echo 'Done!'
 else
   echo 'Both versions are the same. No update needed.'

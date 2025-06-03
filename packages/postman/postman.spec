@@ -1,9 +1,9 @@
 %global         app_name Postman
-%global         real_version 11.48.011.48.011.48.0 11.47.4
+%global         real_version 11.47.4
 %global         debug_package %{nil}
 
 Name:           postman
-.48.0
+Version:        11.47.4
 Release:        1%{?dist}
 Summary:        Postman - Platform for building and using APIs
 
