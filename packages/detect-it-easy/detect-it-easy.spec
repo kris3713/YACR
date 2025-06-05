@@ -3,7 +3,7 @@
 %global         debug_package %{nil}
 
 Name:           detect-it-easy
-Version:        3.10
+Version:        
 Release:        2%{?dist}
 Summary:        Program for determining types of files for Windows, Linux, and MacOS
 

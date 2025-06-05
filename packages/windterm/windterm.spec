@@ -3,7 +3,7 @@
 %global         debug_package %{nil}
 
 Name:           windterm
-Version:        2.7.0
+Version:        
 Release:        1%{?dist}
 Summary:        A professional cross-platform SSH/Sftp/Shell/Telnet/Tmux/Serial terminal.
 
