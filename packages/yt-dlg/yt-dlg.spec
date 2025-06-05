@@ -6,7 +6,7 @@
 
 Name:           yt-dlg
 Version:        
-Release:        1%{?dist}
+1.8.5Release:        1%{?dist}
 Summary:        GUI for youtube-dl
 
 License:        Unlicense

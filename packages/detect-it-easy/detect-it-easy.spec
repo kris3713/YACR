@@ -4,7 +4,7 @@
 
 Name:           detect-it-easy
 Version:        
-Release:        2%{?dist}
+3.10Release:        2%{?dist}
 Summary:        Program for determining types of files for Windows, Linux, and MacOS
 
 License:        MIT
