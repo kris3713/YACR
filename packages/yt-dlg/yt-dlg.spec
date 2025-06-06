@@ -5,7 +5,7 @@
 %global         debug_package %{nil}
 
 Name:           yt-dlg
-Version:        
+Version:        1.8.5
 Release:        1%{?dist}
 Summary:        GUI for youtube-dl
 
