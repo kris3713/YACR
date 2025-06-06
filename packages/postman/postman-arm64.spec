@@ -1,9 +1,9 @@
 %global         app_name Postman
-%global         real_version 11.48.4
+%global         real_version 11.48.5
 %global         debug_package %{nil}
 
 Name:           postman-arm64
-Version:        11.48.4
+Version:        11.48.5
 Release:        1%{?dist}
 Summary:        Postman - Platform for building and using APIs (arm64 variant)
 
