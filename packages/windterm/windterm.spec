@@ -4,7 +4,7 @@
 
 Name:           windterm
 Version:        
-2.7.02.7.0Release:        1%{?dist}
+2.7.0Release:        1%{?dist}
 Summary:        A professional cross-platform SSH/Sftp/Shell/Telnet/Tmux/Serial terminal.
 
 License:        MIT, Apache-2.0, LGPL-2.1-or-later, BSD-2-Clause (or BSD-3-Clause)
