@@ -4,7 +4,7 @@
 
 Name:           ab-download-manager
 Version:        
-1.6.3Release:        1%{?dist}
+Release:        1%{?dist}
 Summary:        A Download Manager that speeds up your downloads
 
 License:        Apache-2.0
