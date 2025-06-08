@@ -39,7 +39,7 @@ It introduces a new, modern music management paradigm to enhance your experience
 %__install -Dm 0644 ./assets/rune.desktop -t %{buildroot}%{_datadir}/applications
 
 # Create a symlink to the application binary
-%__ln_s %{buildroot}/opt/%{name}/rune %{buildroot}%{_bindir}
+%__ln_s /opt/%{name}/rune %{buildroot}%{_bindir}
 
 # Install the application metainfo file
 %__install -Dm 0644 ./assets/rune.metainfo.xml -t %{buildroot}%{_metainfodir}

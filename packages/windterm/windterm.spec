@@ -1,3 +1,5 @@
+%global         __brp_check_rpaths %{nil}
+# The reason for this is to avoid the "broken rpath" error
 %global         full_name windterm
 %global         app_name WindTerm
 %global         debug_package %{nil}
@@ -36,11 +38,6 @@ chown -R "$USER:$USER" /opt/WindTerm
 %__install -d %{buildroot}{/opt/%{app_name},%{_bindir},%{_datadir}/applications}
 %__install -d %{buildroot}%{_datadir}/icons/hicolor/1024x1024/apps
 
-# Compress the `lib` directory to avoid the "broken rpath" error
-%__tar -cf ./lib.tar ./lib
-%__xz -6 ./lib.tar -c > ./lib.tar.xz
-%__rm -r ./lib ./lib.tar
-
 # Copy the application files to the application directory
 %__cp -a . %{buildroot}/opt/%{app_name}
 
@@ -55,32 +52,10 @@ chown -R "$USER:$USER" /opt/WindTerm
 %__install -Dm 0644 %{buildroot}/opt/%{app_name}/%{full_name}.png -t %{buildroot}%{_datadir}/icons/hicolor/1024x1024/apps
 
 %post
-# Add executable permissions to the application binary
-%__chmod +x /opt/%{app_name}/%{app_name}
-
-if [ -e /opt/%{app_name}/lib.tar.xz ]; then
-  # Create the `lib` directory
-  %__mkdir_p /opt/%{app_name}/lib
-  # Uncompress the `lib.tar.xz` file
-  %__tar -xf /opt/%{app_name}/lib.tar.xz "--strip-components=2" -C /opt/%{app_name}/lib
-  # Remove the `lib.tar.xz` file
-  %__rm /opt/%{app_name}/lib.tar.xz
-fi
-
 # Inform the user that they may have to use chown if they want the application to create the `profiles.config` file
 echo "You may need to use the following command to give the application permissions to create the `profiles.config` file:"
 echo ""
 echo "chown -R %{user}:%{user} /opt/%{app_name}"
-
-%postun
-if [ -e /opt/%{app_name}/lib ]; then
-  # Remove the `lib` directory
-  %__rm -r /opt/%{app_name}/lib
-fi
-
-if [ -e /opt/%{app_name} ]; then
-  %__rm -r /opt/%{app_name}
-fi
 
 %files
 /opt/%{app_name}
