@@ -43,7 +43,7 @@ tasks.
 export DOTNET_NOLOGO=true
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 
-%{n2} pkg rpm -p linux --nosign &> /dev/null
+%{n2} pkg rpm -p linux --nosign
 %__mkdir ./app
 
 unset DOTNET_NOLOGO
