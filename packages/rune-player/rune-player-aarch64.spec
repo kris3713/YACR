@@ -1,4 +1,4 @@
-%global         pkg_arch arm64
+%global         pkg_arch %arm64
 %global         git_url https://github.com/Losses/rune
 %global         real_version 1.1.0
 %global         debug_package %{nil}
