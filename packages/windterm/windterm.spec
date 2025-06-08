@@ -25,7 +25,7 @@ A professional cross-platform SSH/Sftp/Shell/Telnet/Tmux/Serial terminal.
 
 You may need to use the following command to give the application permissions to create the `profiles.config` file:
 
-chown -R "$USER:$USER" /opt/WindTerm
+chown -R $USER:$USER /opt/%{app_name}
 
 %prep
 %setup -q -n ./%{app_name}_%{version}
@@ -46,7 +46,6 @@ chown -R "$USER:$USER" /opt/WindTerm
 
 # Install the application binary (might use a BASH script wrapper if this doesn't work)
 %__install -Dm 0755 %{SOURCE2} -t %{buildroot}%{_bindir}
-%__chmod +x %{buildroot}%{_bindir}/%{full_name}
 
 # Install application icons
 %__install -Dm 0644 %{buildroot}/opt/%{app_name}/%{full_name}.png -t %{buildroot}%{_datadir}/icons/hicolor/1024x1024/apps
@@ -55,7 +54,7 @@ chown -R "$USER:$USER" /opt/WindTerm
 # Inform the user that they may have to use chown if they want the application to create the `profiles.config` file
 echo "You may need to use the following command to give the application permissions to create the `profiles.config` file:"
 echo ""
-echo "chown -R %{user}:%{user} /opt/%{app_name}"
+echo "chown -R \$USER:\$USER /opt/%{app_name}"
 
 %files
 /opt/%{app_name}
