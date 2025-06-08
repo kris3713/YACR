@@ -1,9 +1,16 @@
 %define         n2 dotnet run --project NAPS2.Tools --
 
+%ifarch x86_64
+%define         rel_dir linux-x64
+%else
+%define         rel_dir linux-arm64
+%endif
+
 %global         full_name com.naps2.Naps2
 %global         __requires_exclude_from ^/opt/NAPS2/.*$
-%global         __provides_exclude_from ^/opt/NAPS2/.*$
 %global         debug_package %{nil}
+%global         __spec_install_post %{nil}
+%global         __os_install_post %{_dbpath}/brp-compress
 
 Name:           naps2
 Version:        8.1.4
@@ -36,17 +43,13 @@ tasks.
 export DOTNET_NOLOGO=true
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 
-%{n2} build -v debug && %{n2} build -v release
+%{n2} pkg rpm -p linux --nosign &> /dev/null
 %__mkdir ./app
 
 unset DOTNET_NOLOGO
 unset DOTNET_CLI_TELEMETRY_OPTOUT
 
-%ifarch x86_64
-%__cp -a ./NAPS2.App.Gtk/bin/Release/net9/linux-x64/* ./app
-%else
-%__cp -a ./NAPS2.App.Gtk/bin/Release/net9/linux-arm64/* ./app
-%endif
+%__tar -cf ./app/publish.tar -C ./NAPS2.App.Gtk/bin/Release/net9/%{rel_dir}/publish .
 
 %install
 # Remove the old build directory
@@ -58,12 +61,7 @@ unset DOTNET_CLI_TELEMETRY_OPTOUT
 %__install -d %{buildroot}%{_iconsdir}/hicolor/{72x72,96x96,128x128,150x150}/apps
 
 # Copy the application files to the appllication directory
-%__cp -a ./app/* %{buildroot}/opt/NAPS2
-
-# Remove the publish directory (since the files in there always get corrupted for some reason)
-if [ -d "%{buildroot}/opt/NAPS2/publish" ]; then
-  %__rm -r %{buildroot}/opt/NAPS2/publish
-fi
+%__tar -xf ./app/publish.tar '--strip-components=1' -C %{buildroot}/opt/NAPS2
 
 # Remove executables from /opt/NAPS2/sosdocsunix.txt
 %__chmod -x %{buildroot}/opt/NAPS2/sosdocsunix.txt
