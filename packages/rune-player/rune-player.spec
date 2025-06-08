@@ -1,3 +1,5 @@
+%global         __brp_check_rpaths %{nil}
+# The reason for this is to avoid the "broken rpath" error
 %global         pkg_arch amd64
 %global         git_url https://github.com/Losses/rune
 %global         real_version 1.1.0
