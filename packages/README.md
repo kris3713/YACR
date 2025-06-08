@@ -15,5 +15,4 @@
 * `rename-my-tv-series`
 * `riseup-vpn`
 * `stacher`
-* `windterm`
 * `yt-dlg`
