@@ -44,11 +44,12 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=true
 dotnet run --project NAPS2.Tools -- clean &> /dev/null
 dotnet publish NAPS2.App.Gtk -c Release -r %{rel_type} --self-contained '-p:DebugType=None' '-p:DebugSymbols=false'
 %__mkdir ./app
+%__cp -a ./NAPS2.App.Gtk/bin/Release/net9/%{rel_type}/publish/* ./app
 
 unset DOTNET_NOLOGO
 unset DOTNET_CLI_TELEMETRY_OPTOUT
 
-%__tar -cf ./app/publish.tar -C ./NAPS2.App.Gtk/bin/Release/net9/%{rel_type}/publish .
+%__tar -cf ./app.tar -C ./app .
 
 %install
 # Remove the old build directory
@@ -60,7 +61,7 @@ unset DOTNET_CLI_TELEMETRY_OPTOUT
 %__install -d %{buildroot}%{_iconsdir}/hicolor/{72x72,96x96,128x128,150x150}/apps
 
 # Copy the application files to the appllication directory
-%__tar -xf ./app/publish.tar '--strip-components=1' -C %{buildroot}/opt/NAPS2
+%__tar -xf ./app.tar '--strip-components=1' -C %{buildroot}/opt/NAPS2
 
 # Remove executables from /opt/NAPS2/sosdocsunix.txt
 %__chmod -x %{buildroot}/opt/NAPS2/sosdocsunix.txt
