@@ -1,9 +1,7 @@
-%define         n2 dotnet run --project NAPS2.Tools --
-
 %ifarch x86_64
-%define         rel_dir linux-x64
+%define         rel_type linux-x64
 %else
-%define         rel_dir linux-arm64
+%define         rel_type linux-arm64
 %endif
 
 %global         full_name com.naps2.Naps2
@@ -43,13 +41,14 @@ tasks.
 export DOTNET_NOLOGO=true
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 
-%{n2} pkg rpm -p linux --nosign
+dotnet run --project NAPS2.Tools -- clean &> /dev/null
+dotnet publish NAPS2.App.Gtk -c Release -r %{rel_type} --self-contained '-p:DebugType=None' '-p:DebugSymbols=false'
 %__mkdir ./app
 
 unset DOTNET_NOLOGO
 unset DOTNET_CLI_TELEMETRY_OPTOUT
 
-%__tar -cf ./app/publish.tar -C ./NAPS2.App.Gtk/bin/Release/net9/%{rel_dir}/publish .
+%__tar -cf ./app/publish.tar -C ./NAPS2.App.Gtk/bin/Release/net9/%{rel_type}/publish .
 
 %install
 # Remove the old build directory
