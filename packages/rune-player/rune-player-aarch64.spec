@@ -43,8 +43,8 @@ It introduces a new, modern music management paradigm to enhance your experience
 %__install -Dm 0644 ./assets/rune.metainfo.xml -t %{buildroot}%{_metainfodir}
 
 # Copy the application icons to the icon directory
-%__chmod -R 0644 ./assets/icons
 %__cp -a ./assets/icons/* %{buildroot}%{_iconsdir}/hicolor
+find %{buildroot}%{_iconsdir}/hicolor -type f -name "*.spec" -exec %__chmod 0644 {} \;
 
 %files
 /opt/%{name}
