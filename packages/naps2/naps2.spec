@@ -11,7 +11,7 @@
 %global         __os_install_post %{_dbpath}/brp-compress
 
 Name:           naps2
-Version:        8.1.4
+Version:        8.2.0
 Release:        1%{?dist}
 Summary:        Scan documents to PDF and more, as simply as possible.
 
