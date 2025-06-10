@@ -11,7 +11,7 @@ Summary:        XnView MP is a powerful, versatile and free image viewer, photo 
 License:        Freeware (Non-Commercial) | Proprietary (Commercial)
 URL:            https://www.xnview.com/en/xnviewmp/
 
-Source0:        https://download.xnview.com/old_versions/XnView_MP/XnView_MP-1.9.1-linux-x64.tgz
+Source0:        https://download.xnview.com/old_versions/XnView_MP/XnView_MP-%{version}-linux-x64.tgz
 Source1:        %{name}.png
 Source2:        %{name}.desktop
 Source3:        xnview
