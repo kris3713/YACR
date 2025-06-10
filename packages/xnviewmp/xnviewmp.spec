@@ -1,5 +1,7 @@
 %global         __brp_check_rpaths %{nil}
 # The reason for this is to avoid the "broken rpath" error
+%global         __requires_exclude_from ^/opt/%{app_name}/.*$
+%global         __provides_exclude_from ^/opt/%{app_name}/.*$
 %global         app_name XnViewMP
 %global         debug_package %{nil}
 
