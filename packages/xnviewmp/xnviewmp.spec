@@ -17,6 +17,8 @@ Source2:        %{name}.desktop
 Source3:        xnview
 Source4:        %{name}
 
+ExclusiveArch:  x86_64
+
 %description
 XnView MP is a powerful, versatile and free image viewer, photo management, and image resizer software.
 XnView is one of the most stable, user-friendly, and comprehensive photo management tools available today,
