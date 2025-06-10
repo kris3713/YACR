@@ -54,7 +54,7 @@ export QA_RPATHS=$[ 0x0002 | 0x0010 ]
 
 # Install the application icon
 %__install -Dm 0644 ./xnview.png -t %{buildroot}%{_iconsdir}/hicolor/64x64/apps/%{name}.png
-%__ln_s {_iconsdir}/hicolor/64x64/apps/%{name}.png %{buildroot}%{_iconsdir}/hicolor/64x64/apps/xnview.png
+%__ln_s %{_iconsdir}/hicolor/64x64/apps/%{name}.png %{buildroot}%{_iconsdir}/hicolor/64x64/apps/xnview.png
 %__install -Dm 0644 %{SOURCE1} -t %{buildroot}%{_iconsdir}/hicolor/512x512/apps
 %__ln_s %{_iconsdir}/hicolor/512x512/apps/%{name}.png %{buildroot}%{_iconsdir}/hicolor/512x512/apps/xnview.png
 
