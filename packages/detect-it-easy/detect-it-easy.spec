@@ -34,7 +34,7 @@ the field, with a comprehensive list of supported OS images.
 # Switch to the build directory
 cd ./build
 # Build the application binaries
-%__make -j4 &> /dev/null
+%__make "-j$(nproc)" &> /dev/null
 # Switch back to the root directory
 cd ..
 
