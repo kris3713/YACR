@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Terminal=0
+Exec=xnconvert
+Icon=xnconvert
+Type=Application
+Categories=Graphics;
+StartupNotify=true
+Name=XnConvert
+GenericName=XnConvert
