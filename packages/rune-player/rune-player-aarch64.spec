@@ -15,6 +15,8 @@ URL:            %{git_url}
 
 Source0:        %{git_url}/releases/download/v%{real_version}/Rune-v%{real_version}-linux-%{pkg_arch}.zip
 
+BuildRequires:  fd-find
+
 ExclusiveArch:  %arm64
 
 %description
@@ -46,7 +48,7 @@ It introduces a new, modern music management paradigm to enhance your experience
 
 # Copy the application icons to the icon directory
 %__cp -a ./assets/icons/* %{buildroot}%{_iconsdir}/hicolor
-find %{buildroot}%{_iconsdir}/hicolor -type f -name "*.spec" -exec %__chmod 0644 {} \;
+fd -e spec . %{buildroot}%{_iconsdir}/hicolor --exec %__chmod 0644 {}
 
 %files
 /opt/%{name}
