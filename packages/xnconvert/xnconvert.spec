@@ -18,6 +18,8 @@ Source1:        %{name}.png
 Source2:        %{name}.desktop
 Source3:        %{name}
 
+ExclusiveArch:  x86_64
+
 %description
 XnConvert is a fast, powerful and free cross-platform batch image converter.
 It allows to automate editing of your photo collections: you can rotate,
