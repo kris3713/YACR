@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Exit immediately if a command exits with a non-zero status.
+set -e
+
+# --- Python helper script ---
+BASE_URL='https://raw.githubusercontent.com/FlawlessCasual17/YACR/refs/heads/master'
+curl -s "$BASE_URL/scripts/requirements.txt" -o "$SCRIPT_DIR/requirements.txt"
+pip install -r "$SCRIPT_DIR/requirements.txt"
+
+curl -s "$BASE_URL/scripts/parse-json" -o "$SCRIPT_DIR/parse-json"
+chmod +x "$SCRIPT_DIR/parse-json"
+
+# --- Configuration ---
+API_URL='https://api.github.com/repos/fooyin/fooyin/contents/3rdparty/libvgm'
+REGEX='([\w]{40})'
+# shellcheck disable=SC2086
+SHA1="$("$SCRIPT_DIR/parse-json" $API_URL $REGEX '$.sha')"
+ZIPBALL_URL="https://github.com/ValleyBell/libvgm/archive/$SHA1.zip"
+
+echo "--- Script to clone 'libvgm' ---"
+
+echo "Downloading zipball from ${ZIPBALL_URL}..."
+# shellcheck disable=SC2086
+wget --quiet $ZIPBALL_URL -O "$SCRIPT_DIR/libvgm-$SHA1.zip"
+
+echo "Extracting zipball to '$SCRIPT_DIR/libvgm'..."
+unzip "$SCRIPT_DIR/libvgm-$SHA1.zip" -d "$SCRIPT_DIR/libvgm"
+rm "$SCRIPT_DIR/libvgm-$SHA1.zip"
+
+echo 'Done!'
