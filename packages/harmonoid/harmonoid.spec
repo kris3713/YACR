@@ -17,6 +17,7 @@ Source0:        %{releases_url}/releases/download/v0.3.10/harmonoid-linux-x86_64
 Source1:        %{releases_url}/raw/refs/heads/main/LICENSE.txt
 # Source2:        https://github.com/harmonoid/harmonoid/raw/refs/tags/v0.3.10/LICENSE
 
+BuildRequires:  fd-find
 Requires:       mpv mpv-devel mpv-libs
 
 %description
