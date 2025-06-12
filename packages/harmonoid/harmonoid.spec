@@ -21,6 +21,8 @@ Source1:        %{releases_url}/raw/refs/heads/main/LICENSE.txt
 BuildRequires:  fd-find
 Requires:       mpv mpv-devel mpv-libs
 
+ExclusiveArch:  x86_64
+
 %description
 Plays & manages your music library. Looks beautiful & juicy.
 
