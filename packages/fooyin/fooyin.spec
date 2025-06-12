@@ -61,6 +61,10 @@ export QA_RPATHS=$[ 0x0002 | 0x0010 ]
 # Create the new build root
 %__install -d %{buildroot}{%{_bindir},%{_libdir}/%{name},%{_datadir}/%{name}/translations,%{_datadir}/applications}
 %__install -d %{buildroot}%{_iconsdir}/hicolor/{16x16,22x22,32x32,48x48,64x64,128x128,256x256,512x512,scalable}/apps
+%__install -d %{buildroot}%{_sysconfdir}/ld.so.conf.d
+
+# Make sure the shared libraries are discoverable
+echo "%{_libdir}/%{name}" > %{buildroot}%{_sysconfdir}/ld.so.conf.d/%{name}.conf
 
 # Install the desktop file
 %__install -Dm 0644 ./dist/linux/%{app_name}.desktop.in %{buildroot}%{_datadir}/applications/%{name}.desktop
@@ -89,6 +93,12 @@ fd . ./build/run/lib64/%{name} -t symlink --exec %__rm {}
 # Copy the translation files
 %__cp -a ./build/data/*.qm %{buildroot}%{_datadir}/%{name}/translations
 
+%post
+/sbin/ldconfig
+
+%postun
+/sbin/ldconfig
+
 %files
 %{_bindir}/%{name}
 %{_libdir}/%{name}
@@ -104,4 +114,5 @@ fd . ./build/run/lib64/%{name} -t symlink --exec %__rm {}
 %{_iconsdir}/hicolor/scalable/apps/%{app_name}.svg
 %{_metainfodir}/%{app_name}.metainfo.xml
 %{_datadir}/%{name}/translations
+%config(noreplace) %{_sysconfdir}/ld.so.conf.d/%{name}.conf
 %license ./COPYING
