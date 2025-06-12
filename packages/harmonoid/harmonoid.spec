@@ -1,6 +1,7 @@
 %global         __brp_check_rpaths %{nil}
 # The reason for this is to avoid the "broken rpath" error
 %global         __provides_exclude_from ^/opt/%{name}/.*$
+%global         __requires_exclude_from ^/opt/%{name}/.*$
 %global         releases_url https://github.com/alexmercerind2/harmonoid-releases
 %global         debug_package %{nil}
 
