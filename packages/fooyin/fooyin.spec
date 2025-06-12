@@ -27,6 +27,8 @@ BuildRequires:  taglib-devel kdsingleapplication-qt6-devel libicu-devel pipewire
 BuildRequires:  SDL2-devel libopenmpt-devel game-music-emu-devel libarchive-devel libebur128-devel
 Requires:       qt6-qtbase qt6-qttools libicu74
 
+ExclusiveArch:  x86_64
+
 %description
 fooyin is a music player built around customisation. It provides
 a variety of widgets to help you manage and play your local collection.
