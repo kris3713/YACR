@@ -17,6 +17,8 @@ Source2:        pnpm-workspace.yaml
 
 BuildRequires:  nodejs-npm pnpm
 
+ExclusiveArch:  x86_64
+
 %description
 A free and open source code snippets manager for developers.
 It helps you create and organize your own personal
