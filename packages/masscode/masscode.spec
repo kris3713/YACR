@@ -15,7 +15,7 @@ Source0:        https://github.com/massCodeIO/massCode/archive/refs/tags/v%{vers
 Source1:        %{name}.desktop
 Source2:        pnpm-workspace.yaml
 
-BuildRequires:  nodejs-npm
+BuildRequires:  nodejs pnpm
 
 %description
 A free and open source code snippets manager for developers.
@@ -27,7 +27,6 @@ snippet collection and have quick access to it.
 
 %build
 %__cp -a %{SOURCE2} .
-npm install -g pnpm
 pnpm install
 pnpm run build
 
