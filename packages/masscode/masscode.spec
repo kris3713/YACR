@@ -39,6 +39,9 @@ pnpm run build
 # Create the new build root
 %__install -d %{buildroot}{%{_bindir},/opt/%{app_name},%{_datadir}/applications,%{_iconsdir}/hicolor/256x256/apps}
 
+# Copy the application files to the application directory
+%__cp -a ./dist/linux-unpacked/* %{buildroot}/opt/%{app_name}
+
 # Install the desktop file
 %__install -Dm 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
 
