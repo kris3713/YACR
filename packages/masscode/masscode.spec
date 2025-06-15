@@ -37,7 +37,8 @@ pnpm run build
 %__rm -rf %{buildroot}
 
 # Create the new build root
-%__install -d %{buildroot}{%{_bindir},/opt/%{app_name},%{_datadir}/applications,%{_iconsdir}/hicolor/256x256/apps}
+%__install -d %{buildroot}{%{_bindir},/opt/%{app_name},%{_datadir}/{applications,pixmaps}}
+%__install -d %{buildroot}%{_iconsdir}/hicolor/256x256/apps
 
 # Copy the application files to the application directory
 %__cp -a ./dist/linux-unpacked/* %{buildroot}/opt/%{app_name}
@@ -50,6 +51,9 @@ pnpm run build
 
 # Install the application icon
 %__install -Dm 0644 ./config/icons/256x256.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{name}.png
+
+# Install the pixmap
+%__install -Dm 0644 ./config/icons/256x256.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
 
 %files
 /opt/%{app_name}
