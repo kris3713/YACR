@@ -1,3 +1,5 @@
+%global         __provides_exclude_from ^/opt/%{app_name}/.*$
+%global         __requires_exclude_from ^/opt/%{app_name}/.*$
 %global         app_name Postman
 %global         real_version 11.49.4
 %global         debug_package %{nil}

@@ -1,3 +1,5 @@
+%global         __provides_exclude_from ^/opt/%{name}/.*$
+%global         __requires_exclude_from ^/opt/%{name}/.*$
 %global         major 7
 %global         full_name Stacher%{major}
 %global         app_name %{name}%{major}
