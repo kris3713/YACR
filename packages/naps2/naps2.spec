@@ -72,8 +72,8 @@ unset DOTNET_CLI_TELEMETRY_OPTOUT
 # Install the application metainfo
 %__install -Dm 0644 ./NAPS2.Setup/config/linux/%{full_name}.metainfo.xml -t %{buildroot}%{_metainfodir}
 
-# Install the application binary
-%__install -Dm 0755 %{SOURCE1} -t %{buildroot}%{_bindir}
+# Create a symlink to the application binary
+%__ln_s /opt/NAPS2/%{name} %{buildroot}%{_bindir}
 
 # Install the application icons
 %__install -Dm 0644 ./NAPS2.Setup/config/windows/msix/Assets/scanner-150.png %{buildroot}%{_iconsdir}/hicolor/150x150/apps/%{full_name}.png

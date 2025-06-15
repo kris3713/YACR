@@ -1,0 +1,8 @@
+onlyBuiltDependencies:
+  - '@apollo/protobufjs'
+  - core-js-pure
+  - ejs
+  - electron
+  - esbuild
+  - utf-8-validate
+  - vue-demi

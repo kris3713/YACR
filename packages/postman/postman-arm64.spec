@@ -12,7 +12,6 @@ URL:            https://www.postman.com/
 
 Source0:        https://dl.pstmn.io/download/version/%{real_version}/linuxarm64#/postman-%{version}-linux-arm64.tar.gz
 Source1:        postman.desktop
-Source2:        postman
 
 ExclusiveArch:  %arm64
 
@@ -41,9 +40,8 @@ streamlines collaboration so you can create better APIs faster.
 # Install the desktop file
 %__install -D -m 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
 
-# Install the application binary
-%__install -D -m 0755 %{SOURCE2} -t %{buildroot}%{_bindir}
-%__chmod +x %{buildroot}%{_bindir}/postman
+# Create a symlink to the application binary
+%__ln_s /opt/%{app_name}/%{name} %{buildroot}%{_bindir}/postman
 
 # Install application icon
 %__install -D -m 0644 ./icons/icon_128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/postman.png

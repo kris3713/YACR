@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=massCode
+Exec=masscode %U
+Terminal=false
+Type=Application
+Icon=masscode
+Comment=A free and open source code snippets manager for developers
+MimeType=x-scheme-handler/masscode;
+Categories=Utility;
