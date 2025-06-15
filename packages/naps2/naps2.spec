@@ -19,7 +19,6 @@ License:        GPL-2.0-or-later
 URL:            https://www.naps2.com/
 
 Source0:        https://github.com/cyanfish/naps2/archive/refs/tags/v%{version}.tar.gz
-Source1:        naps2
 
 BuildRequires:  dotnet-sdk-9.0 liberation-fonts-all google-noto-fonts-common google-noto-sans-cjk-vf-fonts
 Requires:       dotnet-host dotnet-runtime-9.0
