@@ -30,7 +30,7 @@ dpkg -x %{SOURCE0} .
 %__rm -rf %{buildroot}
 
 # Create the new build root
-%__install -d %{buildroot}{%{_bindir},/opt/%{name},pixmaps,%{_datadir}/applications}
+%__install -d %{buildroot}{%{_bindir},/opt/%{name},%{_datadir}/{applications,pixmaps}}
 %__install -d %{buildroot}%{_iconsdir}/hicolor/256x256/apps
 
 # Copy the application files to the application directory
