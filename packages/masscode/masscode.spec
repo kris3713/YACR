@@ -60,4 +60,5 @@ pnpm run build
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/256x256/apps/%{name}.png
+%{_datadir}/pixmaps/%{name}.png
 %license ./LICENSE
