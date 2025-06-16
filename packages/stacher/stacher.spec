@@ -16,7 +16,7 @@ URL:            https://stacher.io/
 Source0:        https://s7-releases.stacher-cloud.com/s%{major}-releases/stacher%{major}_%{version}_amd64.deb
 
 BuildRequires:  dpkg
-Requires:       yt-dlp ffmpeg
+Recommends:     yt-dlp ffmpeg
 
 ExclusiveArch:  x86_64
 
