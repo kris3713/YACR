@@ -5,7 +5,7 @@ set -l basename (basename "$script_dir")
 
 echo "Updating '$basename'"
 
-set -l url 'https://www.xnview.com/en/xnviewmp/'
+set -l url 'https://www.xnview.com/en/xnview-mp/'
 set -l regex 'Version\\s([\\d.]+)'
 set -l xpath '//div/p[@class="carousel-description"]/span[@class="text-muted"]'
 

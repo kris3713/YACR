@@ -5,7 +5,7 @@ set -l basename (basename "$script_dir")
 
 echo "Updating '$basename'"
 
-set -l url 'https://api.github.com/repos/alexmercerind2/harmonoid-releases/releases/latest'
+set -l url 'https://api.github.com/repos/massCodeIO/massCode/releases/latest'
 set -l regex 'v([\\w.]+)'
 set -l jsonpath '$.tag_name'
 
