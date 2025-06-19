@@ -9,7 +9,7 @@ Summary:        Utility for mass-downloading LRC synced lyrics for your offline 
 License:        MIT
 URL:            https://github.com/tranxuanthang/lrcget
 
-Source0:        https://github.com/tranxuanthang/lrcget/archive/refs/tags/0.9.3.tar.gz
+Source0:        %{url}/archive/refs/tags/0.9.3.tar.gz
 Source1:        %{name}.desktop
 
 BuildRequires:  nodejs-npm rust cargo openssl-devel libsoup3-devel
