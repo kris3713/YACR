@@ -15,6 +15,8 @@ Source1:        %{name}.desktop
 BuildRequires:  nodejs-npm rust cargo openssl-devel libsoup3-devel
 BuildRequires:  javascriptcoregtk4.1-devel webkit2gtk4.1-devel alsa-lib-devel
 
+ExclusiveArch:  x86_64
+
 %description
 Utility for mass-downloading LRC synced lyrics for your offline music library.
 
