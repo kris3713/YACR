@@ -48,8 +48,9 @@ npm run tauri build -- --no-bundle
 %__install -Dm 0755 ./src-tauri/target/release/%{app_name} -t %{buildroot}%{_bindir}
 
 # Install the application icons
-%__install -Dm 0644 ./src-tauri/icons/{32x32,128x128}.png %{buildroot}%{_iconsdir}/hicolor/{32x32,128x128}/apps/%{app_name}.png
+%__install -Dm 0644 ./src-tauri/icons/32x32.png %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{app_name}.png
 %__install -Dm 0644 ./src-tauri/icons/Square44x44Logo.png %{buildroot}%{_iconsdir}/hicolor/44x44/apps/%{app_name}.png
+%__install -Dm 0644 ./src-tauri/icons/128x128.png %{buildroot}%{_iconsdir}/hicolor/128x128/apps/%{app_name}.png
 %__install -Dm 0644 ./src-tauri/icons/128x128@2x.png %{buildroot}%{_iconsdir}/hicolor/256x256/apps/%{app_name}.png
 %__install -Dm 0644 ./src-tauri/icons/icon.png %{buildroot}%{_iconsdir}/hicolor/512x512/apps/%{app_name}.png
 
