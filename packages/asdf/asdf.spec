@@ -13,7 +13,7 @@ URL:            https://asdf-vm.com/
 
 Source0:        https://github.com/asdf-vm/asdf/archive/refs/tags/v0.18.0.tar.gz
 
-BuildRequires:  golang
+BuildRequires:  golang git
 Requires:       bash git
 
 %description
