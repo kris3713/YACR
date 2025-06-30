@@ -58,12 +58,6 @@ jobs:
             echo '---------------------------------------'
           done
 
-      - name: Cleanup
-        shell: bash
-        run: |
-          sudo rm $(command -v python) $(command -v pip) $(command -v fd)
-          sudo apt remove -y fd-find sd fish &> /dev/null
-
       - name: 'Commit changes'
         shell: bash
         run: |
