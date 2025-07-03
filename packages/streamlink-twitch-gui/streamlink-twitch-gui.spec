@@ -10,7 +10,7 @@ Summary:        A multi platform Twitch.tv browser for Streamlink
 License:        MIT
 URL:            https://streamlink.github.io/streamlink-twitch-gui/
 
-Source0:        https://github.com/streamlink/streamlink-twitch-gui/releases/download/v2.5.3/streamlink-twitch-gui-v2.5.3-linux64.tar.gz
+Source0:        https://github.com/streamlink/streamlink-twitch-gui/releases/download/v%{version}/%{name}-v%{version}-linux64.tar.gz
 Source1:        %{name}.desktop
 
 ExclusiveArch:  x86_64
