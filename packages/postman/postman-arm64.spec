@@ -1,11 +1,11 @@
 %global         __provides_exclude_from ^/opt/%{app_name}/.*$
 %global         __requires_exclude_from ^/opt/%{app_name}/.*$
 %global         app_name Postman
-%global         real_version 11.51.5
+%global         real_version 11.52.5
 %global         debug_package %{nil}
 
 Name:           postman-arm64
-Version:        11.51.5
+Version:        11.52.5
 Release:        1%{?dist}
 Summary:        Postman - Platform for building and using APIs (arm64 variant)
 
