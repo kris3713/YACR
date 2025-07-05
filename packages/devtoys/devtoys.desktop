@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=DevToys
+Comment=A Swiss Army knife for developers.
+GenericName=DevToys
+Exec=DevToys.Linux
+Icon=devtoys
+Type=Application
+StartupNotify=false
+Categories=Development;Utility;Office
+Keywords=devtoys
