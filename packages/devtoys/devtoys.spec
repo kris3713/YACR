@@ -17,8 +17,8 @@ URL:            https://devtoys.app/
 
 Source0:        %{github_url}/releases/download/v%{version}/%{full_name}_linux_x64_portable.zip
 Source1:        %{name}.desktop
-Source2:        %{github_url}/raw/refs/heads/v%{version}/assets/logo/Windows-Linux/Preview/Icon-Windows-Linux-Preview.svg#/%{full_name}.svg
-Source3:        %{github_url}/raw/refs/heads/v%{version}/assets/logo/Windows-Linux/Preview/Icon-Windows-Linux-Preview.png#/%{full_name}.png
+Source2:        %{github_url}/raw/refs/tags/v%{version}/assets/logo/Windows-Linux/Preview/Icon-Windows-Linux-Preview.svg#/%{full_name}.svg
+Source3:        %{github_url}/raw/refs/tags/v%{version}/assets/logo/Windows-Linux/Preview/Icon-Windows-Linux-Preview.png#/%{full_name}.png
 
 Requires:      dotnet-host webkitgtk6.0
 
