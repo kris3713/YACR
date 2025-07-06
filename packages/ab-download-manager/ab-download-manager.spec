@@ -3,7 +3,7 @@
 %global         debug_package %{nil}
 
 Name:           ab-download-manager
-Version:        1.6.5
+Version:        1.6.6
 Release:        1%{?dist}
 Summary:        A Download Manager that speeds up your downloads
 
