@@ -22,8 +22,8 @@ Requires:      dotnet-host
 ExclusiveArch:  x86_64
 
 %description
-DevToys helps with daily development tasks
-by offering a bundle of tiny tools designed to do quick, specific tiny tasks.
+DevToys helps with daily development tasks by offering a
+bundle of tiny tools designed to do quick, specific tiny tasks.
 No need to use many untrustworthy websites to simply decode a
 text or compress an image. With Smart Detection, the app
 intuitively selects the best tool for the data on your clipboard.
