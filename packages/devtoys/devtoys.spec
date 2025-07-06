@@ -40,7 +40,7 @@ intuitively selects the best tool for the data on your clipboard.
 
 # Create a new build root
 %__install -d %{buildroot}{/opt/%{name},%{_bindir},%{_datadir}/applications}
-%__install -d %{buildroot}{%{_iconsdir}/hicolor/{scalable,512x512}/apps}}
+%__install -d %{buildroot}%{_iconsdir}/hicolor/{scalable,512x512}/apps
 
 # Copy all the application files to application directory
 %__cp -a . %{buildroot}/opt/%{name}
