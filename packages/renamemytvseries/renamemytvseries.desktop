@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=RenameMyTVSeries
+GenericName=Rename My TV Series
+Comment=Utility to rename TV show episode files
+Type=Application
+Categories=Utility
+Terminal=false
+Keywords=rename;files;tv;series;shows;video
+NoDisplay=true
+Exec=RenameMyTVSeries
+Icon=RenameMyTVSeries
