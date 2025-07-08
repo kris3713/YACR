@@ -7,7 +7,7 @@
 Name:           renamemytvseries-gtk
 Version:        2.3.0
 Release:        1%{?dist}
-Summary:        Rename My TV Series 2 (Qt5 version)
+Summary:        Rename My TV Series 2 (GTK version)
 
 License:        Freeware
 URL:            https://www.tweaking4all.com/home-theatre/rename-my-tv-series-v2/
