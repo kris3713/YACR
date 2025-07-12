@@ -1,12 +1,12 @@
 [Desktop Entry]
-Type=Application
-Name=Rename My TV Series
-GenericName=Rename My TV Series
 Comment=Utility to rename TV show episode files
-Type=Application
-Categories=Utility
-Terminal=false
-Keywords=rename;files;tv;series;shows;video
-NoDisplay=true
 Exec=RenameMyTVSeries
+GenericName=Utility to rename TV show episode files
 Icon=RenameMyTVSeries
+Name=Rename My TV Series
+NoDisplay=false
+PrefersNonDefaultGPU=false
+StartupNotify=true
+Terminal=false
+Type=Application
+X-KDE-SubstituteUID=false
