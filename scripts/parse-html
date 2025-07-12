@@ -40,8 +40,9 @@ def parse_html(url: str, regex_str: str, xpath_expr: str):
     print(result)
 # end of parse_html
 
-# Allow the user to pass in the arguments from the command line
-parse_html(sys.argv[1], sys.argv[2], sys.argv[3])
+if __name__ == '__main__':
+    # Allow the user to pass in the arguments from the command line
+    parse_html(sys.argv[1], sys.argv[2], sys.argv[3])
 
 # # This is how it should be used
 # parse_html(

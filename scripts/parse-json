@@ -51,8 +51,9 @@ def parse_json(url: str, regex_str: str, jsonpath_expr: str):
     print(result)
 # end of parse_json
 
-# Allow the user to pass in the arguments from the command line
-parse_json(sys.argv[1], sys.argv[2], sys.argv[3])
+if __name__ == '__main__':
+    # Allow the user to pass in the arguments from the command line
+    parse_json(sys.argv[1], sys.argv[2], sys.argv[3])
 
 # # This is how it should be used
 # parse_json('https://dl.pstmn.io/changelog?channel=stable&platform=linux64', '', '$.changelog[0].name')

@@ -58,8 +58,9 @@ def parse_xml(url: str, regex_str: str, xpath_expr: str):
     print(result)
 # end of parse_xml
 
-# Allow the user to pass in the arguments from the command line
-parse_xml(sys.argv[1], sys.argv[2], sys.argv[3])
+if __name__ == '__main__':
+    # Allow the user to pass in the arguments from the command line
+    parse_xml(sys.argv[1], sys.argv[2], sys.argv[3])
 
 # How it should be used in cli
 # ./scripts/parse-xml 'https://0xacab.org/leap/bitmask-vpn/-/tags?format=atom' '>([\\d.]+)<' '/atom:feed/atom:entry[1]/atom:title'
