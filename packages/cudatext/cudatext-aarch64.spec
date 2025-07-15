@@ -5,7 +5,7 @@
 %global         debug_package %{nil}
 
 Name:           cudatext-%{pkg_arch}
-Version:        1.225.0.0
+Version:        1.226.0.0
 Release:        1%{?dist}
 Summary:        Cross-platform text and code editor
 
