@@ -1,0 +1,31 @@
+#!/usr/bin/env fish
+
+set -l script_dir (status dirname)
+
+set -l webhook_rebuild $argv[1]
+
+# echo $webhook_rebuild
+
+for v in (fd 'spec' "$script_dir/../packages" -t file --format '{}')
+  # Get subdir name (ie. the directory that contains the spec file(s))
+  set -l split_dir (string split '/' $v)
+  set -l subdir $split_dir[-2]
+  set -l name (basename -s '.spec' $split_dir[-1])
+
+  echo '--------------------------------------------'
+  echo 'https://github.com/FlawlessCasual17/YACR.git'
+  echo 'master'
+  echo "packages/$subdir"
+  echo "$name.spec"
+  echo $name
+  echo $webhook_rebuild
+
+  copr-cli edit-package-scm \
+    --clone-url 'https://github.com/FlawlessCasual17/YACR.git' \
+    --commit 'master' \
+    --subdir "packages/$subdir" \
+    --spec "$name.spec" \
+    --name $name \
+    --webhook-rebuild $webhook_rebuild \
+    'YACR'
+end
