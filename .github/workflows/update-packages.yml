@@ -33,7 +33,7 @@ jobs:
           echo 'sudo apt install -y fd-find sd fish'
           sudo apt install -y fd-find sd fish &> /dev/null
 
-          echo 'sudo ln -s $(command -v fdfind)'
+          echo 'sudo ln -s $(command -v fdfind) /usr/bin/fd'
           sudo ln -s $(command -v fdfind) /usr/bin/fd
 
           if ! command -v python &> /dev/null; then
