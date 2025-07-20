@@ -9,8 +9,6 @@ set -l url 'https://dl.pstmn.io/changelog?channel=stable&platform=linux64'
 # set -l regex '([\\d.]+)'
 set -l jsonpath '$.changelog[0].name'
 
-echo 'Adding executable permissions to `parse-json`'
-chmod +x "$script_dir/../../scripts/parse-json"
 
 echo 'Executing the `parse-json` script'
 set -l latest_version ("$script_dir/../../scripts/parse-json" $url '' $jsonpath)
@@ -39,8 +37,5 @@ if test "$current_version" != "$latest_version"
 else
   echo 'Both versions are the same. No update needed.'
 end
-
-echo 'Removing executable permissions from `parse-json`'
-chmod -x "$script_dir/../../scripts/parse-json"
 
 echo "Finished updating '$basename'"

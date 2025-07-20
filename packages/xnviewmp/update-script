@@ -9,8 +9,6 @@ set -l url 'https://www.xnview.com/en/xnview-mp/'
 set -l regex 'Version\\s([\\d.]+)'
 set -l xpath '//div/p[@class="carousel-description"]/span[@class="text-muted"]'
 
-echo 'Adding executable permissions to `parse-html`'
-chmod +x "$script_dir/../../scripts/parse-html"
 
 echo 'Executing the `parse-html` script'
 set -l latest_version ("$script_dir/../../scripts/parse-html" $url $regex $xpath)
@@ -39,8 +37,5 @@ if test "$current_version" != "$latest_version"
 else
   echo 'Both versions are the same. No update needed.'
 end
-
-echo 'Removing executable permissions from `parse-html`'
-chmod -x "$script_dir/../../scripts/parse-html"
 
 echo "Finished updating '$basename'"
