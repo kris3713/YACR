@@ -56,6 +56,8 @@ jobs:
           cd ./scripts
           echo 'uv venv'
           uv venv
+          echo 'source ./.venv/bin/activate'
+          source ./.venv/bin/activate
           echo 'uv pip install -r ./requirements.txt'
           uv pip install -r ./requirements.txt
           echo 'cd ..'
