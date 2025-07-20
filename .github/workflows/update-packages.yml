@@ -26,34 +26,46 @@ jobs:
       - name: 'Install helper programs'
         shell: bash
         run: |
-          echo 'Installing helper programs'
+          echo '----- Installing helper programs -----'
+          echo 'sudo apt update'
           sudo apt update &> /dev/null
           # Python already comes pre-installed so no need to install it again
+          echo 'sudo apt install -y fd-find sd fish'
           sudo apt install -y fd-find sd fish &> /dev/null
 
+          echo 'sudo ln -s $(command -v fdfind)'
           sudo ln -s $(command -v fdfind) /usr/bin/fd
 
           if ! command -v python &> /dev/null; then
+            echo 'sudo ln -s $(command -v python3) /usr/bin/python'
             sudo ln -s $(command -v python3) /usr/bin/python
           fi
 
           if ! command -v pip &> /dev/null; then
+            echo 'sudo ln -s $(command -v pip3)'
             sudo ln -s $(command -v pip3) /usr/bin/pip
           fi
 
       - name: 'Update package versions'
         shell: bash
         run: |
-          echo 'Installing Python packages'
-          pip install -r ./scripts/requirements.txt
+          echo '----- Installing Python packages -----'
+          echo 'pip install uv'
+          pip install uv
+          echo 'cd ./scripts'
+          cd ./scripts
+          echo 'uv venv'
+          uv venv
+          echo 'uv pip install -r ./requirements.txt'
+          uv pip install -r ./requirements.txt
 
           echo '---------------------------------------'
           echo '---------------------------------------'
 
           for i in $(fd 'update-script' .); do
-            chmod +x "$i"
-            echo "Executing $i"; eval "$i"
-            chmod -x "$i"
+            chmod +x $i
+            echo "Executing $i"; eval $i
+            chmod -x $i
             echo '---------------------------------------'
             echo '---------------------------------------'
           done
@@ -61,13 +73,20 @@ jobs:
       - name: 'Commit changes'
         shell: bash
         run: |
+          echo "USERNAME='github-actions[bot]'"
           USERNAME='github-actions[bot]'
+          echo "EMAIL='41898282+github-actions[bot]@users.noreply.github.com'"
           EMAIL='41898282+github-actions[bot]@users.noreply.github.com'
-          git config --local user.name "$USERNAME"
-          git config --local user.email "$EMAIL"
+          echo 'git config --local user.name $USERNAME'
+          git config --local user.name $USERNAME
+          echo 'git config --local user.email $EMAIL'
+          git config --local user.email $EMAIL
+          echo 'git add -u'
           git add -u
           if [ -n "$(git status --porcelain)" ]; then
+            echo "CURRENT_TIME=$(date +'%Y-%m-%d %H:%M:%S')"
             CURRENT_TIME=$(date +'%Y-%m-%d %H:%M:%S')
+            echo 'git commit -m "bot: Updated packages at $CURRENT_TIME"'
             git commit -m "bot: Updated packages at $CURRENT_TIME"
           fi
 
