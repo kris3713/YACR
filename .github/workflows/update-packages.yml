@@ -58,6 +58,8 @@ jobs:
           uv venv
           echo 'uv pip install -r ./requirements.txt'
           uv pip install -r ./requirements.txt
+          echo 'cd ..'
+          cd ..
 
           echo '---------------------------------------'
           echo '---------------------------------------'
