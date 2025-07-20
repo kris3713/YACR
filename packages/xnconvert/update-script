@@ -15,6 +15,11 @@ chmod +x "$script_dir/../../scripts/parse-html"
 echo 'Executing the `parse-html` script'
 set -l latest_version ("$script_dir/../../scripts/parse-html" $url $regex $xpath)
 
+if test -z "$latest_version"
+  echo "Latest version is empty. Exiting."
+  exit 1
+end
+
 set -l latest_major (echo $latest_version | cut -d. -f1)
 
 set -l current_version (sed -n 's/^Version:\\s*\\([\\d.]*\\)/\\1/p' "$script_dir/$basename.spec")

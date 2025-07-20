@@ -16,6 +16,12 @@ chmod +x "$script_dir/../../scripts/parse-json"
 
 echo 'Executing the `parse-json` script'
 set -l latest_version ("$script_dir/../../scripts/parse-json" $url $regex $jsonpath)
+
+if test -z "$latest_version"
+  echo "Latest version is empty. Exiting."
+  exit 1
+end
+
 set -l libvgm_sha1 ("$script_dir/../../scripts/parse-json" $libvgm_url $sha1_regex '$.sha')
 
 # @fish-lsp-disable-next-line 2001

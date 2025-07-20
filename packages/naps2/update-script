@@ -15,6 +15,11 @@ chmod +x "$script_dir/../../scripts/parse-json"
 echo 'Executing the `parse-json` script'
 set -l latest_version ("$script_dir/../../scripts/parse-json" $url $regex $jsonpath)
 
+if test -z "$latest_version"
+  echo "Latest version is empty. Exiting."
+  exit 1
+end
+
 # @fish-lsp-disable-next-line 2001
 set -l current_version (sed -n 's/^Version:\\s*\\([\\d.]*\\)/\\1/p' "$script_dir/$basename.spec")
 
