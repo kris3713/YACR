@@ -72,8 +72,7 @@ jobs:
             chmod -x $i
             if [ "$?" -ne 0 ]; then
               basename=$(basename $i)
-              echo "Failed to get the latest version for $basename"
-              unset basename
+              echo "Failed to get the latest version for '$basename'"
               echo 'Exitting...'
               exit 1
             fi
