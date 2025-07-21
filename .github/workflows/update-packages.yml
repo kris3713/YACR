@@ -30,10 +30,8 @@ jobs:
           echo '> sudo apt update'
           sudo apt update &> /dev/null
           # Python already comes pre-installed so no need to install it again
-          echo '> sudo apt install -y nala'
-          sudo apt install -y nala
-          echo '> sudo nala install -y fd-find sd fish --no-autoremove --no-update --simple'
-          sudo nala install -y fd-find sd fish --no-autoremove --no-update --simple
+          echo '> sudo apt install -y fd-find sd fish'
+          sudo apt install -y fd-find sd fish
 
           echo '> sudo ln -vs $(command -v fdfind) /usr/bin/fd'
           sudo ln -vs $(command -v fdfind) /usr/bin/fd
