@@ -37,12 +37,12 @@ jobs:
           sudo ln -vs $(command -v fdfind) /usr/bin/fd
 
           if ! command -v python &> /dev/null; then
-            echo 'sudo ln -s $(command -v python3) /usr/bin/python'
+            echo 'sudo ln -vs $(command -v python3) /usr/bin/python'
             sudo ln -vs $(command -v python3) /usr/bin/python
           fi
 
           if ! command -v pip &> /dev/null; then
-            echo 'sudo ln -s $(command -v pip3)'
+            echo 'sudo ln -vs $(command -v pip3)'
             sudo ln -vs $(command -v pip3) /usr/bin/pip
           fi
 
