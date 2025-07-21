@@ -33,7 +33,7 @@ jobs:
           echo '> sudo apt install -y nala'
           sudo apt install -y nala
           echo '> sudo nala install -y fd-find sd fish'
-          sudo nala install -y fd-find sd fish
+          sudo nala install -y fd-find sd fish --no-autoremove --no-update --simple
 
           echo '> sudo ln -vs $(command -v fdfind) /usr/bin/fd'
           sudo ln -vs $(command -v fdfind) /usr/bin/fd
