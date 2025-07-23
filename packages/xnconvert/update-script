@@ -16,6 +16,7 @@ set -l latest_version ("$script_dir/../../scripts/parse-html" $url $regex $xpath
 if test -z "$latest_version"
   echo "Failed to get the latest version for '$basename'"
   echo 'Exitting...'
+  exit 1
 end
 
 set -l latest_major (echo $latest_version | cut -d. -f1)
