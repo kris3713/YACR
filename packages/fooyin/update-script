@@ -16,8 +16,8 @@ echo 'Executing the `parse-json` script'
 set -l latest_version ("$script_dir/../../scripts/parse-json" $url $regex $jsonpath)
 
 if test -z "$latest_version"
-  echo "Latest version is empty. Exiting."
-  exit 1
+  echo "Failed to get the latest version for '$basename'"
+  echo 'Exitting...'
 end
 
 set -l libvgm_sha1 ("$script_dir/../../scripts/parse-json" $libvgm_url $sha1_regex '$.sha')
