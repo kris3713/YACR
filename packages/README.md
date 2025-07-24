@@ -22,10 +22,12 @@
 * lrcget
 * masscode
 * naps2
+* pdfstudioviewer
 * postman-arm64
 * postman
 * renamemytvseries-gtk
 * renamemytvseries-qt
+* renamemytvseries
 * riseup-vpn
 * rune-player-aarch64
 * rune-player
