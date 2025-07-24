@@ -1,0 +1,10 @@
+[Desktop Entry]
+Categories=Office
+Comment=Views and edits PDF files
+Exec=pdfstudioviewer %f
+GenericName=View and edit PDF files
+Icon=pdfstudioviewer
+MimeType=application/pdf
+Name=PDF Studio Viewer
+Keywords=PDF
+Type=Application
