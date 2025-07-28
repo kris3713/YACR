@@ -5,7 +5,7 @@
 %global         debug_package %{nil}
 
 Name:           renamemytvseries
-Version:        2.3.3
+Version:        2.3.5
 Release:        1%{?dist}
 Summary:        Rename My TV Series 2 (GTK version)
 
