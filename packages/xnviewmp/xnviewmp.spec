@@ -16,7 +16,7 @@ URL:            https://www.xnview.com/en/xnviewmp/
 Source0:        https://download.xnview.com/old_versions/XnView_MP/XnView_MP-%{version}-linux-x64.tgz
 Source1:        %{name}.png
 Source2:        %{name}.desktop
-Source3:        xnview
+Source3:        xnview.sh
 Source4:        %{name}
 
 ExclusiveArch:  x86_64
