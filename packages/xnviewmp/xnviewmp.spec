@@ -49,7 +49,7 @@ export QA_RPATHS=$[ 0x0002 | 0x0010 ]
 # Install the desktop file
 %__install -Dm 0644 %{SOURCE2} -t %{buildroot}%{_datadir}/applications
 
-# Install the application binary
+# Install the shell script wrapper for the application binary
 %__install -Dm 0755 %{SOURCE4} -t %{buildroot}%{_bindir}
 
 # Install the application icons

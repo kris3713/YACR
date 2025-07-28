@@ -15,8 +15,9 @@ Summary:        Create, Review and Edit PDF Documents
 License:        Freeware (https://www.qoppa.com/pdfstudio/buy/eula/)
 URL:            https://www.qoppa.com/pdfstudioviewer/
 
-Source0:        https://download.qoppa.com/pdfstudioviewer/v2024/PDFStudioViewer_v%{underscore_version}_linux64.deb
+Source0:        https://download.qoppa.com/pdfstudioviewer/v%{year}/PDFStudioViewer_v%{underscore_version}_linux64.deb
 Source1:        %{name}.desktop
+Source2:        %{name}
 
 BuildRequires:  dpkg
 
@@ -42,8 +43,9 @@ dpkg -x %{SOURCE0} .
 # Copy the application files to the application directory
 %__cp -a ./opt/%{fullname} %{buildroot}/opt
 
-# Install the application binary
-%__ln -s /opt/%{fullname}/%{fullname} %{buildroot}%{_bindir}/%{name}
+# Install the shell script wrapper for the application binary
+%__install -Dm 0755 %{SOURCE2} -t %{buildroot}%{_bindir}
+%__sed -i -e 's/%{name}/%{fullname}/g' %{buildroot}%{_bindir}/%{name}
 
 # Install the desktop file
 %__install -Dm 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
