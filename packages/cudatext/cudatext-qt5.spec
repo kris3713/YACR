@@ -1,3 +1,5 @@
+%global         __provides_exclude_from ^/opt/%{app_name}/.*$
+%global         __requires_exclude_from ^/opt/%{app_name}/.*$
 %global         full_name cudatext
 %global         app_name CudaText
 %global         variant qt5

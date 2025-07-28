@@ -1,5 +1,7 @@
 %global         __brp_check_rpaths %{nil}
 # The reason for this is to avoid the "broken rpath" error
+%global         __provides_exclude_from ^/opt/%{name}/.*$
+%global         __requires_exclude_from ^/opt/%{name}/.*$
 %global         pkg_arch %arm64
 %global         git_url https://github.com/Losses/rune
 %global         real_version 1.1.0
