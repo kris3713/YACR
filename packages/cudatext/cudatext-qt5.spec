@@ -54,9 +54,8 @@ Syntax parser is feature-rich, from EControl engine.
 # Install the desktop file
 %__install -D -m 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
 
-# Install the application binary
-%__install -D -m 0755 %{SOURCE2} -t %{buildroot}%{_bindir}
-%__chmod +x %{buildroot}%{_bindir}/%{full_name}
+# Create a symlink to the application binary
+%__ln_s /opt/%{app_name}/%{full_name} %{buildroot}%{_bindir}
 
 # Install application icon
 %__install -D -m 0644 %{buildroot}/opt/%{app_name}/%{full_name}-512.png %{buildroot}%{_datadir}/icons/hicolor/512x512/apps
