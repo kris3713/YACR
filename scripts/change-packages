@@ -13,7 +13,7 @@ for v in (fd 'spec' "$script_dir/../packages" -t file --format '{}')
   set -l name (basename -s '.spec' $split_dir[-1])
 
   echo '--------------------------------------------'
-  echo 'https://github.com/FlawlessCasual17/YACR.git'
+  echo 'https://github.com/kris3713/YACR.git'
   echo 'master'
   echo "packages/$subdir"
   echo "$name.spec"
@@ -21,7 +21,7 @@ for v in (fd 'spec' "$script_dir/../packages" -t file --format '{}')
   echo $webhook_rebuild
 
   copr-cli edit-package-scm \
-    --clone-url 'https://github.com/FlawlessCasual17/YACR.git' \
+    --clone-url 'https://github.com/kris3713/YACR.git' \
     --commit 'master' \
     --subdir "packages/$subdir" \
     --spec "$name.spec" \
