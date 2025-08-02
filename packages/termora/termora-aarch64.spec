@@ -4,7 +4,7 @@
 %global         app_name Termora
 %global         debug_package %{nil}
 
-Name:           %{fullname}
+Name:           %{fullname}-aarch64
 Version:        1.0.17
 Release:        1%{?dist}
 Summary:        Termora is cross-platform a terminal emulator and SSH client.
