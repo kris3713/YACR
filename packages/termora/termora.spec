@@ -15,6 +15,8 @@ URL:            https://www.termora.app/
 Source0:        https://github.com/TermoraDev/termora/releases/download/%{version}/termora-%{version}-linux-x86-64.tar.gz
 Source1:        %{name}.desktop
 
+ExclusiveArch:  x86_64
+
 %description
 Termora is cross-platform a terminal emulator and SSH client.
 It is developed using Kotlin/JVM and partially implements the XTerm control sequence protocol.
