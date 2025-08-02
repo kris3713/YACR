@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Termora
+Comment=Terminal emulator and SSH client
+Exec=Termora
+Icon=Termora
+Categories=Development
+Terminal=false

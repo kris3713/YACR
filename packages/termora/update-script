@@ -1,0 +1,38 @@
+#!/usr/bin/env fish
+
+set -l script_dir (status dirname)
+set -l basename (basename "$script_dir")
+
+echo "Updating '$basename'"
+
+set -l url 'https://api.github.com/repos/TermoraDev/termora/releases/latest'
+set -l regex 'v([\\d.]+)'
+set -l jsonpath '$.tag_name'
+
+
+echo 'Executing the `parse-json` script'
+set -l latest_version ("$script_dir/../../scripts/parse-json" $url $regex $jsonpath)
+
+if test -z "$latest_version"
+  echo "Failed to get the latest version for '$basename'"
+  echo 'Exitting...'
+  exit 1
+end
+
+# @fish-lsp-disable-next-line 2001
+set -l current_version (sed -n 's/^Version:\\s*\\([\\d.]*\\)/\\1/p' "$script_dir/$basename.spec")
+
+# @fish-lsp-disable-next-line 2001
+echo 'Comparing the current version ($current_version) with the latest version ($latest_version)'
+echo "Current version: $current_version"
+echo "Latest version: $latest_version"
+if test "$current_version" != "$latest_version"
+  echo 'Versions are different. Updating the spec file(s)...'
+  for v in (fd --glob '*.spec' $script_dir)
+    sd "(Version\\:\\s*)$current_version" "\${1}$latest_version" $v
+  end && echo 'Done!'
+else
+  echo 'Both versions are the same. No update needed.'
+end
+
+echo "Finished updating '$basename'"
