@@ -13,7 +13,7 @@ License:        AGPL-3.0,Propietary
 URL:            https://www.termora.app/
 
 Source0:        https://github.com/TermoraDev/termora/releases/download/%{version}/termora-%{version}-linux-aarch64.tar.gz
-Source1:        %{name}.desktop
+Source1:        %{fullname}.desktop
 
 ExcludeArch:    %arm64
 
