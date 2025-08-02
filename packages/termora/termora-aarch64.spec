@@ -15,7 +15,7 @@ URL:            https://www.termora.app/
 Source0:        https://github.com/TermoraDev/termora/releases/download/%{version}/termora-%{version}-linux-aarch64.tar.gz
 Source1:        %{fullname}.desktop
 
-ExcludeArch:    %arm64
+ExclusiveArch:  %arm64
 
 %description
 Termora is cross-platform a terminal emulator and SSH client.
