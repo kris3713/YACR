@@ -2,7 +2,7 @@
 Name=Termora
 Comment=A terminal emulator and SSH client.
 Exec=Termora
-Icon=/opt/termora/lib/Termora
+Icon=/opt/Termora/lib/Termora
 Terminal=false
 Type=Application
 Categories=Development;System
