@@ -4,7 +4,7 @@
 %global         debug_package %{nil}
 
 Name:           riseup-vpn
-Version:        0.24.10
+Version:        0.25.8
 Release:        1%{?dist}
 Summary:        Easy, fast, and secure VPN service from riseup.net.
 
