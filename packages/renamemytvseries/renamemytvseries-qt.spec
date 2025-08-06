@@ -1,6 +1,6 @@
 %global         __provides_exclude_from ^/opt/%{app_name}/.*$
 %global         __requires_exclude_from ^/opt/%{app_name}/.*$
-%global         full_name renamemytvseries
+%global         fullname renamemytvseries
 %global         app_name RenameMyTVSeries
 %global         debug_package %{nil}
 
@@ -13,14 +13,14 @@ License:        Freeware
 URL:            https://www.tweaking4all.com/home-theatre/rename-my-tv-series-v2/
 
 Source0:        https://www.tweaking4all.com/downloads/video/%{app_name}-%{version}-QT5-Linux-x64-shared-ffmpeg.tar.xz
-Source1:        %{full_name}.desktop
+Source1:        %{fullname}.desktop
 
 ExclusiveArch:  x86_64
 
 Requires:       qt5pas openssl-devel libsq3-devel
 Recommends:     ffmpeg
 
-Conflicts:      %{full_name}-gtk
+Conflicts:      %{fullname}-gtk
 
 %description
 Rename My TV Series is a utility designed to help you rename your TV series
@@ -61,7 +61,7 @@ formats and can help organize your media files.
 %files
 /opt/%{app_name}
 %{_bindir}/%{app_name}
-%{_datadir}/applications/%{full_name}.desktop
+%{_datadir}/applications/%{fullname}.desktop
 %{_datadir}/icons/hicolor/16x16/apps/%{app_name}.png
 %{_datadir}/icons/hicolor/32x32/apps/%{app_name}.png
 %{_datadir}/icons/hicolor/64x64/apps/%{app_name}.png

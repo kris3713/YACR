@@ -4,7 +4,7 @@
 %global         __requires_exclude_from ^/opt/%{name}/.*$
 %global         __spec_install_post %{nil}
 %global         __os_install_post %{_dbpath}/brp-compress
-%global         full_name devtoys
+%global         fullname devtoys
 %global         debug_package %{nil}
 
 Name:           devtoys
@@ -15,10 +15,10 @@ Summary:        A Swiss Army knife for developers.
 License:        MIT
 URL:            https://devtoys.app/
 
-Source0:        %{github_url}/releases/download/v%{version}/%{full_name}_linux_x64_portable.zip
+Source0:        %{github_url}/releases/download/v%{version}/%{fullname}_linux_x64_portable.zip
 Source1:        %{name}.desktop
-Source2:        %{github_url}/raw/refs/tags/v%{version}/assets/logo/Windows-Linux/Preview/Icon-Windows-Linux-Preview.svg#/%{full_name}.svg
-Source3:        %{github_url}/raw/refs/tags/v%{version}/assets/logo/Windows-Linux/Preview/Icon-Windows-Linux-Preview.png#/%{full_name}.png
+Source2:        %{github_url}/raw/refs/tags/v%{version}/assets/logo/Windows-Linux/Preview/Icon-Windows-Linux-Preview.svg#/%{fullname}.svg
+Source3:        %{github_url}/raw/refs/tags/v%{version}/assets/logo/Windows-Linux/Preview/Icon-Windows-Linux-Preview.png#/%{fullname}.png
 
 Requires:      dotnet-host webkitgtk6.0
 
@@ -59,6 +59,6 @@ intuitively selects the best tool for the data on your clipboard.
 /opt/%{name}
 %{_bindir}/DevToys.Linux
 %{_datadir}/applications/%{name}.desktop
-%{_iconsdir}/hicolor/scalable/apps/%{full_name}.svg
-%{_iconsdir}/hicolor/512x512/apps/%{full_name}.png
+%{_iconsdir}/hicolor/scalable/apps/%{fullname}.svg
+%{_iconsdir}/hicolor/512x512/apps/%{fullname}.png
 %license ./LICENSE.md

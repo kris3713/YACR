@@ -1,6 +1,6 @@
 %global         __provides_exclude_from ^/opt/%{app_name}/.*$
 %global         __requires_exclude_from ^/opt/%{app_name}/.*$
-%global         full_name ab-download-manager
+%global         fullname ab-download-manager
 %global         app_name ABDownloadManager
 %global         debug_package %{nil}
 
@@ -13,7 +13,7 @@ License:        Apache-2.0
 URL:            https://abdownloadmanager.com/
 
 Source0:        https://github.com/amir1376/ab-download-manager/releases/download/v%{version}/%{app_name}_%{version}_linux_x64.tar.gz
-Source1:        %{full_name}.desktop
+Source1:        %{fullname}.desktop
 
 ExclusiveArch:  x86_64
 
@@ -54,5 +54,5 @@ Features:
 %files
 /opt/%{app_name}
 %{_bindir}/%{app_name}
-%{_datadir}/applications/%{full_name}.desktop
+%{_datadir}/applications/%{fullname}.desktop
 %{_datadir}/icons/hicolor/512x512/apps/%{app_name}.png

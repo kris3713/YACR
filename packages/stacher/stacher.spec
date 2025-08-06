@@ -1,7 +1,7 @@
 %global         __provides_exclude_from ^/opt/%{name}/.*$
 %global         __requires_exclude_from ^/opt/%{name}/.*$
 %global         major 7
-%global         full_name Stacher%{major}
+%global         fullname Stacher%{major}
 %global         app_name %{name}%{major}
 %global         debug_package %{nil}
 
@@ -42,7 +42,7 @@ dpkg -x %{SOURCE0} .
 %__install -Dm 0644 ./usr/share/applications/%{app_name}.desktop -t %{buildroot}%{_datadir}/applications
 
 # Install the application binary
-%__ln -s /opt/%{name}/%{full_name} %{buildroot}%{_bindir}/%{app_name}
+%__ln -s /opt/%{name}/%{fullname} %{buildroot}%{_bindir}/%{app_name}
 
 # Install the application icon
 %__install -Dm 0644 ./usr/share/pixmaps/%{app_name}.png -t %{buildroot}%{_iconsdir}/hicolor/256x256/apps

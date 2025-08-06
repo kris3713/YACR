@@ -4,7 +4,7 @@
 %global         __requires_exclude_from ^/opt/%{name}/.*$
 %global         __spec_install_post %{nil}
 %global         __os_install_post %{_dbpath}/brp-compress
-%global         full_name devtoys
+%global         fullname devtoys
 %global         debug_package %{nil}
 
 Name:           devtoys-cli
@@ -15,7 +15,7 @@ Summary:        A Swiss Army knife for developers. (CLI version)
 License:        MIT
 URL:            https://devtoys.app/
 
-Source0:        %{github_url}/releases/download/v%{version}/%{full_name}.cli_linux_x64_portable.zip
+Source0:        %{github_url}/releases/download/v%{version}/%{fullname}.cli_linux_x64_portable.zip
 
 Requires:      dotnet-host
 

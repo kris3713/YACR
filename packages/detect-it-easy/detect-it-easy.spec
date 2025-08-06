@@ -1,4 +1,4 @@
-%global         full_name detect-it-easy
+%global         fullname detect-it-easy
 %global         app_name die
 %global         debug_package %{nil}
 
@@ -12,7 +12,9 @@ URL:            https://horsicq.github.io/#detect-it-easydie
 
 Source0:        https://github.com/horsicq/DIE-engine/releases/download/%{version}/die_sourcecode_%{version}.tar.gz
 
-BuildRequires:  cmake qt5-qtbase qt5-qtbase-devel qt5-qtbase-gui qt5-qtscript-devel qt5-qttools qt5-qttools-devel qt5-qtsvg-devel qt-devel qtchooser
+BuildRequires:  cmake qt5-qtbase qt5-qtbase-devel qt5-qtbase-gui
+BuildRequires:  qt5-qtscript-devel qt5-qttools qt5-qttools-devel
+BuildRequires:  qt5-qtsvg-devel qt-devel qtchooser
 Requires:       qt5-qtbase qt5-qttools
 
 %description
@@ -67,12 +69,12 @@ cd ./LINUX
 %__install -D -m 0644 ./%{app_name}.desktop -t %{buildroot}%{_datadir}/applications
 
 # Install application icons
-%__install -D -m 0644 ./hicolor/16x16/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
-%__install -D -m 0644 ./hicolor/20x20/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/20x20/apps/%{full_name}.png
-%__install -D -m 0644 ./hicolor/24x24/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/24x24/apps/%{full_name}.png
-%__install -D -m 0644 ./hicolor/32x32/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{full_name}.png
-%__install -D -m 0644 ./hicolor/48x48/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/%{full_name}.png
-%__install -D -m 0644 ./hicolor/256x256/apps/%{full_name}.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{full_name}.png
+%__install -D -m 0644 ./hicolor/16x16/apps/%{fullname}.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{fullname}.png
+%__install -D -m 0644 ./hicolor/20x20/apps/%{fullname}.png %{buildroot}%{_datadir}/icons/hicolor/20x20/apps/%{fullname}.png
+%__install -D -m 0644 ./hicolor/24x24/apps/%{fullname}.png %{buildroot}%{_datadir}/icons/hicolor/24x24/apps/%{fullname}.png
+%__install -D -m 0644 ./hicolor/32x32/apps/%{fullname}.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{fullname}.png
+%__install -D -m 0644 ./hicolor/48x48/apps/%{fullname}.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/%{fullname}.png
+%__install -D -m 0644 ./hicolor/256x256/apps/%{fullname}.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{fullname}.png
 
 # Change the directory back to the root
 cd ..
@@ -83,10 +85,10 @@ cd ..
 %{_bindir}/diel
 /lib/%{app_name}
 %{_datadir}/applications/%{app_name}.desktop
-%{_datadir}/icons/hicolor/16x16/apps/%{full_name}.png
-%{_datadir}/icons/hicolor/20x20/apps/%{full_name}.png
-%{_datadir}/icons/hicolor/24x24/apps/%{full_name}.png
-%{_datadir}/icons/hicolor/32x32/apps/%{full_name}.png
-%{_datadir}/icons/hicolor/48x48/apps/%{full_name}.png
-%{_datadir}/icons/hicolor/256x256/apps/%{full_name}.png
+%{_datadir}/icons/hicolor/16x16/apps/%{fullname}.png
+%{_datadir}/icons/hicolor/20x20/apps/%{fullname}.png
+%{_datadir}/icons/hicolor/24x24/apps/%{fullname}.png
+%{_datadir}/icons/hicolor/32x32/apps/%{fullname}.png
+%{_datadir}/icons/hicolor/48x48/apps/%{fullname}.png
+%{_datadir}/icons/hicolor/256x256/apps/%{fullname}.png
 %license LICENSE

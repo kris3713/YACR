@@ -1,4 +1,4 @@
-%global         full_name youtube-dl-gui
+%global         fullname youtube-dl-gui
 %global         py_name youtube_dl_gui
 %global         __python %python3
 %global         __requires_exclude_from ^%{python_sitelib}/.*$
@@ -24,7 +24,7 @@ Recommends:     yt-dlp ffmpeg
 A front-end GUI for the popular youtube-dl written in wxPython.
 
 %prep
-%setup -q -n ./%{full_name}-%{version}
+%setup -q -n ./%{fullname}-%{version}
 
 %build
 # For whatever reason, this has to be executed twice or find_lang fails
@@ -57,15 +57,15 @@ EOF
 
 %files
 %{_bindir}/%{name}
-%{_mandir}/man1/%{full_name}.1*
+%{_mandir}/man1/%{fullname}.1*
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps
-%{_iconsdir}/hicolor/16x16/apps/%{full_name}.png
-%{_iconsdir}/hicolor/32x32/apps/%{full_name}.png
-%{_iconsdir}/hicolor/48x48/apps/%{full_name}.png
-%{_iconsdir}/hicolor/64x64/apps/%{full_name}.png
-%{_iconsdir}/hicolor/128x128/apps/%{full_name}.png
-%{_iconsdir}/hicolor/256x256/apps/%{full_name}.png
+%{_iconsdir}/hicolor/16x16/apps/%{fullname}.png
+%{_iconsdir}/hicolor/32x32/apps/%{fullname}.png
+%{_iconsdir}/hicolor/48x48/apps/%{fullname}.png
+%{_iconsdir}/hicolor/64x64/apps/%{fullname}.png
+%{_iconsdir}/hicolor/128x128/apps/%{fullname}.png
+%{_iconsdir}/hicolor/256x256/apps/%{fullname}.png
 %{python_sitelib}/%{py_name}
 %{python_sitelib}/yt_dlg-%{version}-py%{python_version}.egg-info
 %license ./LICENSE
