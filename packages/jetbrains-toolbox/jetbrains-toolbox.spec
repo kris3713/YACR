@@ -15,6 +15,7 @@ URL:            https://www.jetbrains.com/toolbox-app/
 
 Source0:        https://download.jetbrains.com/toolbox/%{fullname}-%{version}.tar.gz
 Source1:        %{fullname}.svg
+Source2:        %{fullname}
 
 ExclusiveArch:  x86_64
 
@@ -32,11 +33,15 @@ ExclusiveArch:  x86_64
 %__install -d %{buildroot}{/opt/%{fullname},%{_bindir},%{_datadir}/applications}
 %__install -d %{buildroot}%{_iconsdir}/hicolor/scalable/apps
 
-# Copy all the application files to the build root
+# Copy all the application files to the appilcation directory
 %__cp -a . %{buildroot}/opt/%{fullname}
+%__install -Dm 0755 %{SOURCE1} %{buildroot}/opt/%{fullname}/icon.svg
 
-# Create a symlink for the application binary
-%__ln_s /opt/%{fullname}/%{fullname} %{buildroot}%{_bindir}
+# Remove unnecessary files from the application directory
+%__rm %{buildroot}/opt/%{fullname}/%{fullname}.desktop
+
+# Install the shell wrapper script for the application binary
+%__install -Dm 0755 %{SOURCE2} %{buildroot}%{_bindir}
 
 # Install the desktop file
 %__install -Dm 0644 ./%{fullname}.desktop -t %{buildroot}%{_datadir}/applications
