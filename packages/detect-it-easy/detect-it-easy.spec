@@ -1,4 +1,3 @@
-%global         fullname detect-it-easy
 %global         app_name die
 %global         debug_package %{nil}
 
@@ -69,26 +68,26 @@ cd ./LINUX
 %__install -D -m 0644 ./%{app_name}.desktop -t %{buildroot}%{_datadir}/applications
 
 # Install application icons
-%__install -D -m 0644 ./hicolor/16x16/apps/%{fullname}.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{fullname}.png
-%__install -D -m 0644 ./hicolor/20x20/apps/%{fullname}.png %{buildroot}%{_datadir}/icons/hicolor/20x20/apps/%{fullname}.png
-%__install -D -m 0644 ./hicolor/24x24/apps/%{fullname}.png %{buildroot}%{_datadir}/icons/hicolor/24x24/apps/%{fullname}.png
-%__install -D -m 0644 ./hicolor/32x32/apps/%{fullname}.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{fullname}.png
-%__install -D -m 0644 ./hicolor/48x48/apps/%{fullname}.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/%{fullname}.png
-%__install -D -m 0644 ./hicolor/256x256/apps/%{fullname}.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{fullname}.png
+%__install -D -m 0644 ./hicolor/16x16/apps/%{name}.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{name}.png
+%__install -D -m 0644 ./hicolor/20x20/apps/%{name}.png %{buildroot}%{_datadir}/icons/hicolor/20x20/apps/%{name}.png
+%__install -D -m 0644 ./hicolor/24x24/apps/%{name}.png %{buildroot}%{_datadir}/icons/hicolor/24x24/apps/%{name}.png
+%__install -D -m 0644 ./hicolor/32x32/apps/%{name}.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{name}.png
+%__install -D -m 0644 ./hicolor/48x48/apps/%{name}.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/%{name}.png
+%__install -D -m 0644 ./hicolor/256x256/apps/%{name}.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{name}.png
 
 # Change the directory back to the root
 cd ..
 
 %files
-%{_bindir}/die
+%{_bindir}/%{app_name}
 %{_bindir}/diec
 %{_bindir}/diel
 /lib/%{app_name}
 %{_datadir}/applications/%{app_name}.desktop
-%{_datadir}/icons/hicolor/16x16/apps/%{fullname}.png
-%{_datadir}/icons/hicolor/20x20/apps/%{fullname}.png
-%{_datadir}/icons/hicolor/24x24/apps/%{fullname}.png
-%{_datadir}/icons/hicolor/32x32/apps/%{fullname}.png
-%{_datadir}/icons/hicolor/48x48/apps/%{fullname}.png
-%{_datadir}/icons/hicolor/256x256/apps/%{fullname}.png
+%{_datadir}/icons/hicolor/16x16/apps/%{name}.png
+%{_datadir}/icons/hicolor/20x20/apps/%{name}.png
+%{_datadir}/icons/hicolor/24x24/apps/%{name}.png
+%{_datadir}/icons/hicolor/32x32/apps/%{name}.png
+%{_datadir}/icons/hicolor/48x48/apps/%{name}.png
+%{_datadir}/icons/hicolor/256x256/apps/%{name}.png
 %license LICENSE

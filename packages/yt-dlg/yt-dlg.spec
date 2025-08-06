@@ -53,7 +53,8 @@ This application downloads the last youtube-dl on ~/.config/yt-dlg
 EOF
 %__chmod a+r README.install
 
-%__sed -i 's/pyinstaller<=5.6.2,>=3.6//g' %{buildroot}%{python3_sitelib}/yt_dlg-%{version}-py%{python3_version}.egg-info/requires.txt
+%__sed -i 's/pyinstaller<=5.6.2,>=3.6//g' \
+  %{buildroot}%{python3_sitelib}/yt_dlg-%{version}-py%{python3_version}.egg-info/requires.txt
 
 %files
 %{_bindir}/%{name}

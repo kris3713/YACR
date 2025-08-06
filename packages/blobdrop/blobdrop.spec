@@ -78,9 +78,12 @@ export QA_RPATHS=$[ 0x0002 | 0x0010 ]
 %__install -Dm 0644 ./assets/%{name}.svg -t %{buildroot}%{_iconsdir}/hicolor/scalable/apps
 
 # Install the completions for bash, fish and zsh
-%__install -Dm 0644 ./assets/completions/bash-completion/completions/%{name} %{buildroot}%{bash_completions_dir}/%{name}.bash
-%__install -Dm 0644 ./assets/completions/fish/vendor_completions.d/%{name}.fish -t %{buildroot}%{fish_completions_dir}
-%__install -Dm 0644 ./assets/completions/zsh/site-functions/_%{name} -t %{buildroot}%{zsh_completions_dir}
+%__install -Dm 0644 ./assets/completions/bash-completion/completions/%{name} \
+  %{buildroot}%{bash_completions_dir}/%{name}.bash
+%__install -Dm 0644 ./assets/completions/fish/vendor_completions.d/%{name}.fish \
+  -t %{buildroot}%{fish_completions_dir}
+%__install -Dm 0644 ./assets/completions/zsh/site-functions/_%{name} \
+  -t %{buildroot}%{zsh_completions_dir}
 
 %files
 %{_bindir}/%{name}

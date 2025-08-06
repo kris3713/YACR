@@ -6,7 +6,7 @@
 Name:           riseup-vpn
 Version:        0.25.8
 Release:        1%{?dist}
-Summary:        Easy, fast, and secure VPN service from riseup.net.
+Summary:        Easy, fast, and secure VPN service from riseup.net
 
 License:        GPL-3.0-only
 URL:            https://riseup.net/en/vpn

@@ -4,7 +4,7 @@
 %global         app_name RenameMyTVSeries
 %global         debug_package %{nil}
 
-Name:           renamemytvseries-qt
+Name:           %{fullname}-qt
 Version:        2.3.5
 Release:        1%{?dist}
 Summary:        Rename My TV Series 2 (Qt5 version)

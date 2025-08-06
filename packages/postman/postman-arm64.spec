@@ -13,7 +13,7 @@ License:        Freeware
 URL:            https://www.postman.com/
 
 Source0:        https://dl.pstmn.io/download/version/%{real_version}/linuxarm64#/postman-%{version}-linux-arm64.tar.gz
-Source1:        postman.desktop
+Source1:        %{name}.desktop
 
 ExclusiveArch:  %arm64
 
@@ -50,6 +50,6 @@ streamlines collaboration so you can create better APIs faster.
 
 %files
 /opt/%{app_name}
-%{_bindir}/postman
-%{_datadir}/applications/postman.desktop
-%{_datadir}/icons/hicolor/128x128/apps/postman.png
+%{_bindir}/%{name}
+%{_datadir}/applications/%{name}.desktop
+%{_datadir}/icons/hicolor/128x128/apps/%{name}.png
