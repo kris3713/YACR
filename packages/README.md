@@ -19,6 +19,8 @@
 * devtoys
 * fooyin
 * harmonoid
+* jetbrains-toolbox-arm64
+* jetbrains-toolbox
 * lrcget
 * masscode
 * naps2
@@ -33,6 +35,8 @@
 * rune-player
 * stacher
 * streamlink-twitch-gui
+* termora-aarch64
+* termora
 * xnconvert
 * xnviewmp
 * yt-dlg
