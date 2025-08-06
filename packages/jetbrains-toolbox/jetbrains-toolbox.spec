@@ -35,7 +35,7 @@ ExclusiveArch:  x86_64
 
 # Copy all the application files to the appilcation directory
 %__cp -a . %{buildroot}/opt/%{fullname}
-%__install -Dm 0755 %{SOURCE1} %{buildroot}/opt/%{fullname}/icon.svg
+%__install -Dm 0644 %{SOURCE1} %{buildroot}/opt/%{fullname}/icon.svg
 
 # Remove unnecessary files from the application directory
 %__rm %{buildroot}/opt/%{fullname}/%{fullname}.desktop
