@@ -1,12 +1,12 @@
 %global         __provides_exclude_from ^/opt/%{app_name}/.*$
 %global         __requires_exclude_from ^/opt/%{app_name}/.*$
-%global         full_name cudatext
+%global         fullname cudatext
 %global         app_name CudaText
 %global         variant qt5
 %global         pkg_arch amd64
 %global         debug_package %{nil}
 
-Name:           cudatext-%{variant}
+Name:           %{fullname}-%{variant}
 Version:        1.226.1.0
 Release:        1%{?dist}
 Summary:        Cross-platform text and code editor
@@ -14,8 +14,8 @@ Summary:        Cross-platform text and code editor
 License:        MPL-2.0
 URL:            https://cudatext.github.io/
 
-Source0:        https://sourceforge.net/projects/cudatext/files/release/%{version}/%{full_name}-linux-%{variant}-%{pkg_arch}-%{version}.tar.xz
-Source1:        %{full_name}.desktop
+Source0:        https://sourceforge.net/projects/cudatext/files/release/%{version}/%{fullname}-linux-%{variant}-%{pkg_arch}-%{version}.tar.xz
+Source1:        %{fullname}.desktop
 
 BuildRequires:  zlib-ng
 Requires:       qt5-qtbase qt5-qttools
@@ -23,7 +23,7 @@ Recommends:     python3
 
 ExclusiveArch:  x86_64
 
-Conflicts:      %{full_name}-gtk2 %{full_name} %{full_name}-qt6
+Conflicts:      %{fullname}-gtk2 %{fullname} %{fullname}-qt6
 
 %description
 CudaText is a cross-platform text editor, written in Object Pascal.
@@ -33,7 +33,7 @@ It is extensible by Python add-ons: plugins, linters, code tree parsers, externa
 Syntax parser is feature-rich, from EControl engine.
 
 %prep
-%setup -q -n ./%{full_name}
+%setup -q -n ./%{fullname}
 
 %install
 # Remove the build root
@@ -45,7 +45,7 @@ Syntax parser is feature-rich, from EControl engine.
 
 # CudaText requires the `data`, `py` and `settings_default` directories to be in
 # `/usr/share/cudatext` in order to be considered non-portable
-%__mv ./{data,py,settings_default} %{buildroot}%{_datadir}/cudatext
+%__mv ./{data,py,settings_default} %{buildroot}%{_datadir}/%{fullname}
 
 # Copy the application files to the application directory
 %__cp -a . %{buildroot}/opt/%{app_name}
@@ -54,15 +54,15 @@ Syntax parser is feature-rich, from EControl engine.
 %__install -D -m 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
 
 # Create a symlink to the application binary
-%__ln_s /opt/%{app_name}/%{full_name} %{buildroot}%{_bindir}
+%__ln_s /opt/%{app_name}/%{fullname} %{buildroot}%{_bindir}
 
 # Install application icon
-%__install -D -m 0644 %{buildroot}/opt/%{app_name}/%{full_name}-512.png %{buildroot}%{_datadir}/icons/hicolor/512x512/apps
+%__install -D -m 0644 %{buildroot}/opt/%{app_name}/%{fullname}-512.png %{buildroot}%{_datadir}/icons/hicolor/512x512/apps
 
 %files
 /opt/%{app_name}
-%{_bindir}/%{full_name}
-%{_datadir}/cudatext
-%{_datadir}/applications/%{full_name}.desktop
-%{_datadir}/icons/hicolor/512x512/apps/%{full_name}-512.png
+%{_bindir}/%{fullname}
+%{_datadir}/%{fullname}
+%{_datadir}/applications/%{fullname}.desktop
+%{_datadir}/icons/hicolor/512x512/apps/%{fullname}-512.png
 %license ./readme/license.%{app_name}.txt
