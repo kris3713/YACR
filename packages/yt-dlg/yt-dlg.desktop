@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Youtube Downloader GUI
 GenericName=Youtube Downloader GUI
-Comment=A cross platform front-end GUI of the popular youtube-dl written in wxPython Phoenix
+Comment=A cross platform front-end GUI of the popular youtube-dl written in wxPython Phoenix.
 Exec=yt-dlg
 Icon=youtube-dl-gui
 Terminal=false

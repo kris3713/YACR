@@ -1,5 +1,5 @@
 [Desktop Entry]
-Categories=AudioVideo;Audio;Music;
+Categories=AudioVideo;Audio;Music
 Comment=Utility for mass-downloading LRC synced lyrics for your offline music library.
 Exec=LRCGET
 Icon=LRCGET

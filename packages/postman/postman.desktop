@@ -7,6 +7,6 @@ Icon=postman
 Name=Postman
 Type=Application
 Version=1.4
-MimeType=x-scheme-handler/postman;
+MimeType=x-scheme-handler/postman
 StartupNotify=true
 StartupWMClass=postman
