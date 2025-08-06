@@ -1,9 +1,6 @@
-<!--
-  Taken from https://aur.archlinux.org/cgit/aur.git/tree/icon.svg?h=jetbrains-toolbox
-
-  Formatted using the XML language server, lemminx
--->
-<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+<!-- Extracted from the jar file, `toolbox.jar` -->
+<!-- Formatted using lemminx, the XML language server -->
+<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="64" height="64">
   <defs>
     <linearGradient id="a" x1="2.18" y1="23.255" x2="30.041" y2="8.782"
       gradientUnits="userSpaceOnUse">
