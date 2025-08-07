@@ -41,16 +41,16 @@ streamlines collaboration so you can create better APIs faster.
 %__chmod 755 %{buildroot}/opt/%{app_name}/chrome_crashpad_handler
 
 # Install the desktop file
-%__install -D -m 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
+%__install -Dm 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
 
 # Create a symlink to the application binary
-%__ln_s /opt/%{app_name}/%{name} %{buildroot}%{_bindir}/postman
+%__ln_s /opt/%{app_name}/%{fullname} %{buildroot}%{_bindir}
 
 # Install application icon
-%__install -D -m 0644 ./icons/icon_128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/postman.png
+%__install -Dm 0644 ./icons/icon_128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{fullname}.png
 
 %files
 /opt/%{app_name}
-%{_bindir}/%{name}
-%{_datadir}/applications/%{name}.desktop
-%{_datadir}/icons/hicolor/128x128/apps/%{name}.png
+%{_bindir}/%{fullname}
+%{_datadir}/applications/%{fullname}.desktop
+%{_datadir}/icons/hicolor/128x128/apps/%{fullname}.png
