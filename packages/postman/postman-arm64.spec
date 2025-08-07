@@ -1,10 +1,11 @@
 %global         __provides_exclude_from ^/opt/%{app_name}/.*$
 %global         __requires_exclude_from ^/opt/%{app_name}/.*$
+%global         fullname postman
 %global         app_name Postman
 %global         real_version 11.57.5
 %global         debug_package %{nil}
 
-Name:           postman-arm64
+Name:           %{fullname}-arm64
 Version:        11.57.5
 Release:        1%{?dist}
 Summary:        Postman - Platform for building and using APIs (arm64 variant)
@@ -12,7 +13,7 @@ Summary:        Postman - Platform for building and using APIs (arm64 variant)
 License:        Freeware
 URL:            https://www.postman.com/
 
-Source0:        https://dl.pstmn.io/download/version/%{real_version}/linuxarm64#/postman-%{version}-linux-arm64.tar.gz
+Source0:        https://dl.pstmn.io/download/version/%{real_version}/linuxarm64#/%{fullname}-%{version}-linux-arm64.tar.gz
 Source1:        %{name}.desktop
 
 ExclusiveArch:  %arm64
