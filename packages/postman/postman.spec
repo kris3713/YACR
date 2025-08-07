@@ -14,7 +14,7 @@ License:        Freeware
 URL:            https://www.postman.com/
 
 Source0:        https://dl.pstmn.io/download/version/%{real_version}/linux64#/%{fullname}-%{version}-linux-x64.tar.gz
-Source1:        %{name}.desktop
+Source1:        %{fullname}.desktop
 
 ExclusiveArch:  x86_64
 
