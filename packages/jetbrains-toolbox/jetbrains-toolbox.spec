@@ -50,11 +50,11 @@ ExclusiveArch:  x86_64
 
 %post
 # Prevent JetBrains Toolbox from creating a desktop file in $HOME/.local/share/applications
-%__ln_s /dev/null "$HOME/.local/share/applications/%{fullname}.desktop"
+%__ln_s /dev/null "/home/$USER/.local/share/applications/%{fullname}.desktop"
 
 %postun
-if [ -f "$HOME/.local/share/applications/%{fullname}.desktop" ]; then
-  %__rm "$HOME/.local/share/applications/%{fullname}.desktop"
+if [ -f "/home/$USER/.local/share/applications/%{fullname}.desktop" ]; then
+  %__rm "/home/$USER/.local/share/applications/%{fullname}.desktop"
 fi
 
 %files
