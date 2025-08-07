@@ -15,7 +15,6 @@ URL:            https://www.jetbrains.com/toolbox-app/
 
 Source0:        https://download.jetbrains.com/toolbox/%{fullname}-%{version}-arm64.tar.gz
 Source1:        %{fullname}.svg
-Source2:        %{fullname}
 
 ExclusiveArch:  %arm64
 
@@ -35,19 +34,28 @@ ExclusiveArch:  %arm64
 
 # Copy all the application files to the appilcation directory
 %__cp -a . %{buildroot}/opt/%{fullname}
-%__install -Dm 0644 %{SOURCE1} %{buildroot}/opt/%{fullname}/icon.svg
+%__install -Dm 0644 %{SOURCE1} %{buildroot}/opt/%{fullname}/toolbox.svg
 
 # Remove unnecessary files from the application directory
 %__rm %{buildroot}/opt/%{fullname}/%{fullname}.desktop
 
-# Install the shell wrapper script for the application binary
-%__install -Dm 0755 %{SOURCE2} %{buildroot}%{_bindir}
+# Create a symlink to the application binary
+%__ln_s /opt/%{fullname}/%{fullname} %{buildroot}%{_bindir}
 
 # Install the desktop file
 %__install -Dm 0644 ./%{fullname}.desktop -t %{buildroot}%{_datadir}/applications
 
 # Install the application icon
 %__install -Dm 0644 %{SOURCE1} -t %{buildroot}%{_iconsdir}/hicolor/scalable/apps
+
+%post
+# Prevent JetBrains Toolbox from creating a desktop file in $HOME/.local/share/applications
+%__ln_s /dev/null "$HOME/.local/share/applications/%{fullname}.desktop"
+
+%postun
+if [ -f "$HOME/.local/share/applications/%{fullname}.desktop" ]; then
+  %__rm "$HOME/.local/share/applications/%{fullname}.desktop"
+fi
 
 %files
 /opt/%{fullname}
