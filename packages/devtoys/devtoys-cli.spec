@@ -1,5 +1,3 @@
-%define         github_url https://github.com/DevToys-app/DevToys
-
 %global         __provides_exclude_from ^/opt/%{name}/.*$
 %global         __requires_exclude_from ^/opt/%{name}/.*$
 %global         __spec_install_post %{nil}
@@ -15,7 +13,7 @@ Summary:        A Swiss Army knife for developers. (CLI version)
 License:        MIT
 URL:            https://devtoys.app/
 
-Source0:        %{github_url}/releases/download/v%{version}/%{fullname}.cli_linux_x64_portable.zip
+Source0:        https://github.com/DevToys-app/DevToy/releases/download/v%{version}/%{fullname}.cli_linux_x64_portable.zip
 
 Requires:      dotnet-host
 

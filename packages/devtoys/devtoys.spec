@@ -1,4 +1,4 @@
-%define         github_url https://github.com/DevToys-app/DevToys
+%define         git_url https://github.com/DevToys-app/DevToys
 
 %global         __provides_exclude_from ^/opt/%{name}/.*$
 %global         __requires_exclude_from ^/opt/%{name}/.*$
@@ -15,10 +15,10 @@ Summary:        A Swiss Army knife for developers.
 License:        MIT
 URL:            https://devtoys.app/
 
-Source0:        %{github_url}/releases/download/v%{version}/%{fullname}_linux_x64_portable.zip
+Source0:        %{git_url}/releases/download/v%{version}/%{fullname}_linux_x64_portable.zip
 Source1:        %{name}.desktop
-Source2:        %{github_url}/raw/refs/tags/v%{version}/assets/logo/Windows-Linux/Preview/Icon-Windows-Linux-Preview.svg#/%{fullname}.svg
-Source3:        %{github_url}/raw/refs/tags/v%{version}/assets/logo/Windows-Linux/Preview/Icon-Windows-Linux-Preview.png#/%{fullname}.png
+Source2:        %{git_url}/raw/refs/tags/v%{version}/assets/logo/Windows-Linux/Preview/Icon-Windows-Linux-Preview.svg#/%{fullname}.svg
+Source3:        %{git_url}/raw/refs/tags/v%{version}/assets/logo/Windows-Linux/Preview/Icon-Windows-Linux-Preview.png#/%{fullname}.png
 
 Requires:      dotnet-host webkitgtk6.0
 
