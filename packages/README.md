@@ -21,10 +21,13 @@
 * harmonoid
 * jetbrains-toolbox-arm64
 * jetbrains-toolbox
+* localsend-arm64
+* localsend
 * lrcget
 * masscode
 * naps2
 * pdfstudioviewer
+* picocrypt
 * postman-arm64
 * postman
 * renamemytvseries-gtk
@@ -33,6 +36,7 @@
 * riseup-vpn
 * rune-player-aarch64
 * rune-player
+* sly
 * stacher
 * streamlink-twitch-gui
 * termora-aarch64
