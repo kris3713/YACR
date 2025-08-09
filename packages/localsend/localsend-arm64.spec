@@ -53,10 +53,10 @@ export QA_RPATHS=$[ 0x0002 | 0x0010 ]
 %__install -Dm 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
 
 # Install the application icons
-%__install -Dm 0644 %{SOURCE2} -t %{buildroot}%{_iconsdir}/hicolor/32x32/apps
-%__install -Dm 0644 %{SOURCE3} -t %{buildroot}%{_iconsdir}/hicolor/128x128/apps
-%__install -Dm 0644 %{SOURCE4} -t %{buildroot}%{_iconsdir}/hicolor/256x256/apps
-%__install -Dm 0644 %{SOURCE5} -t %{buildroot}%{_iconsdir}/hicolor/512x512/apps
+%__install -Dm 0644 %{SOURCE2} %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{realname}.png
+%__install -Dm 0644 %{SOURCE3} %{buildroot}%{_iconsdir}/hicolor/128x128/apps/%{realname}.png
+%__install -Dm 0644 %{SOURCE4} %{buildroot}%{_iconsdir}/hicolor/256x256/apps/%{realname}.png
+%__install -Dm 0644 %{SOURCE5} %{buildroot}%{_iconsdir}/hicolor/512x512/apps/%{realname}.png
 
 %files
 /opt/%{app_name}
