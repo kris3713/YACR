@@ -2,6 +2,7 @@
 # The reason for this is to avoid the "broken rpath" error
 %global         __provides_exclude_from ^/opt/%{app_name}/.*$
 %global         __requires_exclude_from ^/opt/%{app_name}/.*$
+%global         git_url https://codeberg.org/kramo/Sly
 %global         fullname page.kramo.Sly
 %global         app_name Sly
 %global         debug_package %{nil}
@@ -14,11 +15,11 @@ Summary:        A friendly image editor that requires no internet connection or 
 License:        GPL-3.0
 URL:            https://kramo.page/sly/
 
-Source0:        https://codeberg.org/kramo/Sly/releases/download/v%{version}/Sly-%{version}-Linux.tar.gz
-Source1:        https://codeberg.org/kramo/Sly/raw/tag/v%{version}/packaging/linux/%{fullname}.desktop
-Source2:        https://codeberg.org/kramo/Sly/raw/tag/v%{version}/packaging/linux/%{fullname}.svg
-Source3:        https://codeberg.org/kramo/Sly/raw/tag/v%{version}/packaging/linux/%{fullname}-symbolic.svg
-Source4:        https://codeberg.org/kramo/Sly/raw/tag/v%{version}/packaging/linux/%{fullname}.metainfo.xml
+Source0:        %{git_url}/releases/download/v%{version}/Sly-%{version}-Linux.tar.gz
+Source1:        %{git_url}/raw/tag/v%{version}/packaging/linux/%{fullname}.desktop
+Source2:        %{git_url}/raw/tag/v%{version}/packaging/linux/%{fullname}.svg
+Source3:        %{git_url}/raw/tag/v%{version}/packaging/linux/%{fullname}-symbolic.svg
+Source4:        %{git_url}/raw/tag/v%{version}/packaging/linux/%{fullname}.metainfo.xml
 
 ExclusiveArch:  x86_64
 
