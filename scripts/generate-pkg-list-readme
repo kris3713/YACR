@@ -27,7 +27,7 @@ def generate_pkg_list_readme():
     result = subprocess.run(args, capture_output=True, text=True, check=True)
     file_paths = result.stdout.strip().split('\n')
 
-    # Filter through file paths and remove any empty strings might cause an error.
+    # Filter through file paths and remove any empty strings that might cause an error.
     # In Python, if a string is empty it automatically counts as false
     file_paths = [path for path in file_paths if path]
 
