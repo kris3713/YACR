@@ -88,7 +88,7 @@ jobs:
           echo '> git add -u'
           git add -u
           if [ -n "$(git status --porcelain)" ]; then
-            echo "> CURRENT_TIME=$(date +'%Y-%m-%d %H:%M:%S')"
+            echo "> CURRENT_TIME=\$(date +'%Y-%m-%d %H:%M:%S')"
             CURRENT_TIME=$(date +'%Y-%m-%d %H:%M:%S')
             echo '> git commit -m "bot: Updated packages at $CURRENT_TIME"'
             git commit -m "bot: Updated packages at $CURRENT_TIME"
