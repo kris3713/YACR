@@ -9,7 +9,7 @@ Summary:        Program for determining types of files for Windows, Linux, and M
 License:        MIT
 URL:            https://horsicq.github.io/#detect-it-easydie
 
-Source0:        https://github.com/horsicq/DIE-engine/releases/download/%{version}/die_sourcecode_%{version}.tar.gz
+Source0:        https://github.com/horsicq/DIE-engine/releases/download/%{version}/%{app_name}_sourcecode_%{version}.tar.gz
 
 BuildRequires:  cmake qt5-qtbase qt5-qtbase-devel qt5-qtbase-gui
 BuildRequires:  qt5-qtscript-devel qt5-qttools qt5-qttools-devel
@@ -26,7 +26,7 @@ detection architecture makes it one of the most versatile tools in
 the field, with a comprehensive list of supported OS images.
 
 %prep
-%setup -q -n ./die_sourcecode_%{version}
+%setup -q -n ./%{app_name}_sourcecode_%{version}
 
 %build
 # Generate build files
@@ -90,4 +90,4 @@ cd ..
 %{_datadir}/icons/hicolor/32x32/apps/%{name}.png
 %{_datadir}/icons/hicolor/48x48/apps/%{name}.png
 %{_datadir}/icons/hicolor/256x256/apps/%{name}.png
-%license LICENSE
+%license ./LICENSE

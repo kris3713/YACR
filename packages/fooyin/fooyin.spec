@@ -17,7 +17,7 @@ Summary:        A customisable music player inspired by foobar2000
 License:        GPL-3.0-or-later
 URL:            https://www.fooyin.org/
 
-Source0:        https://github.com/fooyin/fooyin/archive/refs/tags/v0.8.1.tar.gz
+Source0:        https://github.com/fooyin/fooyin/archive/refs/tags/v%{version}.tar.gz
 Source1:        https://github.com/ValleyBell/libvgm/archive/%{libvgm_sha1}.tar.gz#/libvgm-%{libvgm_sha1}.tar.gz
 
 BuildRequires:  fd-find cmake ninja-build glib2-devel libxkbcommon-x11-devel libxkbcommon-devel
