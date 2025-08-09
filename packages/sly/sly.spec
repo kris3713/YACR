@@ -15,10 +15,10 @@ License:        GPL-3.0
 URL:            https://kramo.page/sly/
 
 Source0:        https://codeberg.org/kramo/Sly/releases/download/v%{version}/Sly-%{version}-Linux.tar.gz
-Source1:        https://codeberg.org/kramo/Sly/raw/branch/main/packaging/linux/%{fullname}.desktop
-Source2:        https://codeberg.org/kramo/Sly/src/branch/main/packaging/linux/%{fullname}.svg
-Source3:        https://codeberg.org/kramo/Sly/raw/branch/main/packaging/linux/%{fullname}-symbolic.svg
-Source4:        https://codeberg.org/kramo/Sly/raw/branch/main/packaging/linux/%{fullname}.metainfo.xml
+Source1:        https://codeberg.org/kramo/Sly/raw/tag/v%{version}/packaging/linux/%{fullname}.desktop
+Source2:        https://codeberg.org/kramo/Sly/raw/tag/v%{version}/packaging/linux/%{fullname}.svg
+Source3:        https://codeberg.org/kramo/Sly/raw/tag/v%{version}/packaging/linux/%{fullname}-symbolic.svg
+Source4:        https://codeberg.org/kramo/Sly/raw/tag/v%{version}/packaging/linux/%{fullname}.metainfo.xml
 
 ExclusiveArch:  x86_64
 
