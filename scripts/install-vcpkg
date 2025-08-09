@@ -47,4 +47,4 @@ chmod +x ./bootstrap-vcpkg.sh
 echo "--- Installation of 'vcpkg' version ${VERSION} is complete ---"
 cd "$SCRIPT_DIR/.."
 # shellcheck disable=SC2086
-rm -rf "$SCRIPT_DIR/{requirements.txt,parse-json}"
+rm -rf $SCRIPT_DIR/{requirements.txt,parse-json}
