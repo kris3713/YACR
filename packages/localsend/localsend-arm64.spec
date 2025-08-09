@@ -20,10 +20,10 @@ URL:            https://localsend.org/
 
 Source0:        %{git_url}/releases/download/v%{version}/%{app_name}-%{version}-linux-arm-64.tar.gz
 Source1:        %{fullname}.desktop
-Source2:        %{git_url}/raw/refs/tags/v1.17.0/app/assets/img/logo-32.png
-Source3:        %{git_url}/raw/refs/tags/v1.17.0/app/assets/img/logo-128.png
-Source4:        %{git_url}/raw/refs/tags/v1.17.0/app/assets/img/logo-256.png
-Source5:        %{git_url}/raw/refs/tags/v1.17.0/app/assets/img/logo-512.png
+Source2:        %{git_url}/raw/refs/tags/v%{version}/app/assets/img/logo-32.png
+Source3:        %{git_url}/raw/refs/tags/v%{version}/app/assets/img/logo-128.png
+Source4:        %{git_url}/raw/refs/tags/v%{version}/app/assets/img/logo-256.png
+Source5:        %{git_url}/raw/refs/tags/v%{version}/app/assets/img/logo-512.png
 
 ExclusiveArch:  %arm64
 
