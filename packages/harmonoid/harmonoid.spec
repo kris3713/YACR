@@ -1,8 +1,10 @@
 %global         __brp_check_rpaths %{nil}
 # The reason for this is to avoid the "broken rpath" error
+
+%define         rel_url https://github.com/alexmercerind2/harmonoid-releases
+
 %global         __provides_exclude_from ^/opt/%{name}/.*$
 %global         __requires_exclude_from ^/opt/%{name}/.*$
-%global         releases_url https://github.com/alexmercerind2/harmonoid-releases
 %global         debug_package %{nil}
 
 Name:           harmonoid
@@ -14,8 +16,8 @@ Summary:        Plays & manages your music library. Looks beautiful & juicy.
 License:        Freeware/Custom (See LICENSE.txt)
 URL:            https://harmonoid.com/
 
-Source0:        %{releases_url}/releases/download/v%{version}/harmonoid-linux-x86_64.tar.gz
-Source1:        %{releases_url}/raw/refs/heads/main/LICENSE.txt
+Source0:        %{rel_url}/releases/download/v%{version}/harmonoid-linux-x86_64.tar.gz
+Source1:        %{rel_url}/raw/refs/heads/main/LICENSE.txt
 # Source2:        https://github.com/harmonoid/harmonoid/raw/refs/tags/v0.3.10/LICENSE
 
 BuildRequires:  fd-find

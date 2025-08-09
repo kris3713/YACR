@@ -13,7 +13,7 @@ Summary:        A modern GUI for yt-dlp (and other youtube-dl forks)
 License:        Freeware
 URL:            https://stacher.io/
 
-Source0:        https://s7-releases.stacher-cloud.com/s%{major}-releases/stacher%{major}_%{version}_amd64.deb
+Source0:        https://s7-releases.stacher-cloud.com/s%{major}-releases/%{name}%{major}_%{version}_amd64.deb
 
 BuildRequires:  dpkg
 Recommends:     yt-dlp ffmpeg

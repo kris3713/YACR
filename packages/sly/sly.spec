@@ -1,8 +1,10 @@
 %global         __brp_check_rpaths %{nil}
 # The reason for this is to avoid the "broken rpath" error
+
+%define         git_url https://codeberg.org/kramo/Sly
+
 %global         __provides_exclude_from ^/opt/%{app_name}/.*$
 %global         __requires_exclude_from ^/opt/%{app_name}/.*$
-%global         git_url https://codeberg.org/kramo/Sly
 %global         fullname page.kramo.Sly
 %global         app_name Sly
 %global         debug_package %{nil}

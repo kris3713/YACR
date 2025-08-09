@@ -13,7 +13,7 @@ Summary:        XnConvert is a fast, powerful and free cross-platform batch imag
 License:        Freeware (Non-Commercial) | Proprietary (Commercial)
 URL:            https://www.xnview.com/en/xnconvert/
 
-Source0:        https://download.xnview.com/old_versions/XnConvert/XnConvert-1.105.0-linux-x64.tgz
+Source0:        https://download.xnview.com/old_versions/XnConvert/XnConvert-%{version}-linux-x64.tgz
 Source1:        %{name}.png
 Source2:        %{name}.desktop
 Source3:        %{name}.sh
