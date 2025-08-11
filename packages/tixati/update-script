@@ -1,0 +1,44 @@
+#!/usr/bin/env fish
+
+set -l script_dir (status dirname)
+set -l basename (basename "$script_dir")
+
+echo "Updating '$basename'"
+
+set -l url 'https://tixati.com/linux'
+set -l regex 'tixati(?:-|_)([\\d.]+)-1'
+set -l xpath "//div/div/a[@class='intlink']"
+
+echo 'Executing the `parse-html` script'
+set -l latest_version ("$script_dir/../../scripts/parse-html" $url $regex $xpath)
+
+if test -z "$latest_version"
+  echo "Failed to get the latest version for '$basename'"
+  echo 'Exitting...'
+  exit 1
+end
+
+set -l latest_year (echo $latest_version | cut -d. -f1)
+set -l latest_underscore_version (string replace --all '.' '_' $latest_version)
+
+set -l current_version (sed -n 's/^Version:\\s*\\([\\d.]*\\)/\\1/p' "$script_dir/$basename.spec")
+
+set -l current_year (echo $current_version | cut -d. -f1)
+set -l current_underscore_version (string replace --all '.' '_' $current_version)
+
+# @fish-lsp-disable-next-line 2001
+echo 'Comparing the current version ($current_version) with the latest version ($latest_version)'
+echo "Current version: $current_version"
+echo "Latest version: $latest_version"
+if test "$current_version" != "$latest_version"
+  echo 'Versions are different. Updating the spec file(s)...'
+  for v in (fd --glob '*.spec' $script_dir)
+    sd -F "year $current_year" "year $latest_year" $v
+    sd -F "underscore_version $current_underscore_version" "underscore_version $current_underscore_version" $v
+    sd "(Version\\:\\s*)$current_version" "\${1}$latest_version" $v
+  end && echo 'Done!'
+else
+  echo 'Both versions are the same. No update needed.'
+end
+
+echo "Finished updating '$basename'"
