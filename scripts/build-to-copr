@@ -1,0 +1,29 @@
+#!/usr/bin/env fish
+
+switch (count $argv)
+  case 1
+    set -l name ($argv[1])
+
+    copr-cli buildscm \
+      --clone-url https://github.com/kris3713/yacr.git \
+      --commit master \
+      --subdir "packages/$name" \
+      --spec "$name.spec" \
+      --enable-net on \
+      'zliced13/yacr'
+  case 2
+    set -l dir_name ($argv[1])
+    set -l name ($argv[2])
+
+    copr-cli buildscm \
+      --clone-url https://github.com/kris3713/yacr.git \
+      --commit master \
+      --subdir "packages/$dir_name" \
+      --spec "$name.spec" \
+      --enable-net on \
+      'zliced13/yacr'
+  case '*'
+    echo 'Usage: build-to-copr <dir_name> <name>'
+    echo 'OR'
+    echo 'Usage: build-to-copr <name>'
+end
