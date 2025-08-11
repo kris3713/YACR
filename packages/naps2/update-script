@@ -9,7 +9,6 @@ set -l url 'https://api.github.com/repos/cyanfish/naps2/releases/latest'
 set -l regex 'v([\\d.]+)'
 set -l jsonpath '$.tag_name'
 
-
 echo 'Executing the `parse-json` script'
 set -l latest_version ("$script_dir/../../scripts/parse-json" $url $regex $jsonpath)
 

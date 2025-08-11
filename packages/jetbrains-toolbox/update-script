@@ -9,7 +9,6 @@ set -l url 'https://data.services.jetbrains.com/products/releases?code=TBA&lates
 # set -l regex '([\\d.]+)'
 set -l jsonpath '$.TBA[0].build'
 
-
 echo 'Executing the `parse-json` script'
 set -l latest_version ("$script_dir/../../scripts/parse-json" $url '' $jsonpath)
 

@@ -9,7 +9,6 @@ set -l url 'https://www.videohelp.com/software/Stacher'
 set -l regex 'Stacher\\s([\\d.]+)'
 set -l xpath '/html/head/title'
 
-
 echo 'Executing the `parse-html` script'
 set -l latest_version ("$script_dir/../../scripts/parse-html" $url $regex $xpath)
 

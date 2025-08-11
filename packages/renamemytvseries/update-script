@@ -9,7 +9,6 @@ set -l url 'https://www.tweaking4all.com/home-theatre/rename-my-tv-series-v2/'
 set -l regex 'RenameMyTVSeries-([\\d.]+)-[\\w]+-Linux-x64-(?:shared|static)-ffmpeg'
 set -l xpath '//div[@class="alert alert-success"]/table/tr/td[contains(text(),"RenameMyTVSeries")]'
 
-
 echo 'Executing the `parse-html` script'
 set -l latest_version ("$script_dir/../../scripts/parse-html" $url $regex $xpath)
 

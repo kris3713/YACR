@@ -9,7 +9,6 @@ set -l url 'https://0xacab.org/leap/bitmask-vpn/-/tags?format=atom'
 set -l regex '>([\\d.]+)<'
 set -l xpath '/atom:feed/atom:entry[1]/atom:title'
 
-
 echo 'Executing the `parse-xml` script'
 set -l latest_version ("$script_dir/../../scripts/parse-xml" $url $regex $xpath)
 

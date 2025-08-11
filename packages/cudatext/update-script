@@ -9,7 +9,6 @@ set -l url 'https://sourceforge.net/projects/cudatext/rss?path=/release'
 set -l regex '/release/([\\d.]+)'
 set -l xpath '/rss/channel/item[1]/title'
 
-
 echo 'Executing the `parse-xml` script'
 set -l latest_version ("$script_dir/../../scripts/parse-xml" $url $regex $xpath)
 
