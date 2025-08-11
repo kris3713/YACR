@@ -1,5 +1,13 @@
 #!/usr/bin/env fish
 
+set -l msg '
+Usage: build-to-copr <package-name>
+
+OR
+
+Usage: build-to-copr <directory-name-relative-to-packages> <package-name>
+'
+
 switch (count $argv)
   case 1
     set -l name ($argv[1])
@@ -23,7 +31,5 @@ switch (count $argv)
       --enable-net on \
       'zliced13/yacr'
   case '*'
-    echo 'Usage: build-to-copr <dir_name> <name>'
-    echo 'OR'
-    echo 'Usage: build-to-copr <name>'
+    echo $msg && exit 1
 end
