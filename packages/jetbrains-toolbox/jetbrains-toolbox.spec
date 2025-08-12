@@ -6,7 +6,7 @@
 %global         debug_package %{nil}
 
 Name:           %{fullname}
-Version:        2.8.0.51430
+Version:        2.8.1.52155
 Release:        1%{?dist}
 Summary:        Manage your JetBrains IDEs and Tools the easy way
 
