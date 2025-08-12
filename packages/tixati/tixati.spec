@@ -10,8 +10,8 @@ License:        Freeware
 URL:            https://tixati.com/
 
 Source0:        https://download.tixati.com/%{name}-%{version}-1.x86_64.manualinstall.tar.gz
-Source1:        https://tixati.com/favicon.png#/%{name}.png
-Source2:        https://tixati.com/tixati_eula.txt
+Source1:        %{url}favicon.png#/%{name}.png
+Source2:        %{url}tixati_eula.txt
 
 Requires:       gtk3 dbus-glib
 
