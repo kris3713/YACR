@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-dirname="$(dirname "$(readlink -e "$0")")"
-export LD_LIBRARY_PATH="$dirname/lib"
-export QT_PLUGIN_PATH="$dirname/lib"
-"$dirname/XnConvert" "$@"
+SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
+export LD_LIBRARY_PATH="$SCRIPT_DIR/lib"
+export QT_PLUGIN_PATH="$SCRIPT_DIR/lib"
+exec "$SCRIPT_DIR/XnConvert" "$@"
