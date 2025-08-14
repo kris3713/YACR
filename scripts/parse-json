@@ -16,7 +16,7 @@ def parse_json(url: str, regex_str: str, jsonpath_expr: str):
     regular expressions and JSONPath expressions.
     """
 
-    if jsonpath_expr.__contains__("?"):
+    if jsonpath_expr.__contains__('?'):
         error('JSONPath expression contains a question mark!')
         error('Conditional JSONPath expressions are not supported!')
         exit(1)
