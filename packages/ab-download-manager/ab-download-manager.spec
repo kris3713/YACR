@@ -41,10 +41,13 @@ Features:
 # Copy the application files to the application directory
 %__cp -a . %{buildroot}/opt/%{app_name}
 
+# Ensure the application binary has executable permissions
+%__chmod 0755 %{buildroot}/opt/%{app_name}/bin/%{app_name}
+
 # Install the desktop file
 %__install -Dm 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
 
-# Install the application binary
+# Create a symlink to the application binary
 %__ln_s /opt/%{app_name}/bin/%{app_name} %{buildroot}%{_bindir}
 
 # Install application icon
