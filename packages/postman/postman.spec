@@ -38,7 +38,7 @@ streamlines collaboration so you can create better APIs faster.
 %__cp -a . %{buildroot}/opt/%{app_name}
 
 # Change filemode to prevent "permission denied" error
-%__chmod 755 %{buildroot}/opt/%{app_name}/chrome_crashpad_handler
+%__chmod 0755 %{buildroot}/opt/%{app_name}/chrome_crashpad_handler
 
 # Install the desktop file
 %__install -Dm 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
