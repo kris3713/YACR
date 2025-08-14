@@ -13,12 +13,14 @@ for v in (fd 'spec' "$script_dir/../packages" -t file --format '{}')
   set -l name (basename -s '.spec' $split_dir[-1])
 
   echo '--------------------------------------------'
-  echo 'https://github.com/kris3713/YACR.git'
-  echo 'master'
-  echo "packages/$subdir"
-  echo "$name.spec"
-  echo $name
-  echo $webhook_rebuild
+  echo 'Clone URL: https://github.com/kris3713/YACR.git'
+  echo 'Commitish: master'
+  echo "Subdir: packages/$subdir"
+  echo "Spec: $name.spec"
+  echo "Pkg Name: $name"
+  echo "Webhook Rebuild: $webhook_rebuild"
+  echo 'COPR Project: YACR'
+  echo "COPR User: $(copr-cli whoami)"
 
   copr-cli edit-package-scm \
     --clone-url 'https://github.com/kris3713/YACR.git' \
