@@ -13,7 +13,7 @@ switch (count $argv)
     set -l name ($argv[1])
 
     copr-cli buildscm \
-      --clone-url https://github.com/kris3713/yacr.git \
+      --clone-url 'https://github.com/kris3713/yacr.git' \
       --commit master \
       --subdir "packages/$name" \
       --spec "$name.spec" \
@@ -24,7 +24,7 @@ switch (count $argv)
     set -l name ($argv[2])
 
     copr-cli buildscm \
-      --clone-url https://github.com/kris3713/yacr.git \
+      --clone-url 'https://github.com/kris3713/yacr.git' \
       --commit master \
       --subdir "packages/$dir_name" \
       --spec "$name.spec" \
