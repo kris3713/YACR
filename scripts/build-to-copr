@@ -14,10 +14,10 @@ switch (count $argv)
 
     copr-cli buildscm \
       --clone-url 'https://github.com/kris3713/yacr.git' \
-      --commit master \
+      --commit 'master' \
       --subdir "packages/$name" \
       --spec "$name.spec" \
-      --enable-net on \
+      --enable-net 'on' \
       'zliced13/yacr'
   case 2
     set -l dir_name ($argv[1])
@@ -25,10 +25,10 @@ switch (count $argv)
 
     copr-cli buildscm \
       --clone-url 'https://github.com/kris3713/yacr.git' \
-      --commit master \
+      --commit 'master' \
       --subdir "packages/$dir_name" \
       --spec "$name.spec" \
-      --enable-net on \
+      --enable-net 'on' \
       'zliced13/yacr'
   case '*'
     echo $msg && exit 1
