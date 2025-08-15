@@ -10,7 +10,7 @@ Usage: build-to-copr <directory-name-relative-to-packages> <package-name>
 
 switch (count $argv)
   case 1
-    set -l name ($argv[1])
+    set -l name $argv[1]
 
     copr-cli buildscm \
       --clone-url 'https://github.com/kris3713/YACR.git' \
@@ -18,10 +18,10 @@ switch (count $argv)
       --subdir "packages/$name" \
       --spec "$name.spec" \
       --enable-net 'on' \
-      'zliced13/yacr'
+      'zliced13/YACR'
   case 2
-    set -l dir_name ($argv[1])
-    set -l name ($argv[2])
+    set -l dir_name $argv[1]
+    set -l name $argv[2]
 
     copr-cli buildscm \
       --clone-url 'https://github.com/kris3713/YACR.git' \
@@ -29,7 +29,7 @@ switch (count $argv)
       --subdir "packages/$dir_name" \
       --spec "$name.spec" \
       --enable-net 'on' \
-      'zliced13/yacr'
+      'zliced13/YACR'
   case '*'
     echo $msg && exit 1
 end
