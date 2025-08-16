@@ -54,8 +54,8 @@ jobs:
           pip install uv
           echo '> cd ./scripts'
           cd ./scripts
-          echo '> uv venv --python 3.13.5'
-          uv venv --python 3.13.5
+          echo '> uv venv --python 3.13'
+          uv venv --python 3.13
           echo '> source ./.venv/bin/activate'
           source ./.venv/bin/activate
           echo '> uv pip install -r ./requirements.txt'
