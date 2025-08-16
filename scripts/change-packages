@@ -2,32 +2,95 @@
 
 set -l script_dir (status dirname)
 
-set -l webhook_rebuild $argv[1]
+set -l script (status filename)
 
-# echo $webhook_rebuild
+set -l msg "
+Usage:
 
-for v in (fd 'spec' "$script_dir/../packages" -t file --format '{}')
-  # Get subdir name (ie. the directory that contains the spec file(s))
-  set -l split_dir (string split '/' $v)
-  set -l subdir $split_dir[-2]
-  set -l name (basename -s '.spec' $split_dir[-1])
+  $script <disable-or-enable-webhook-rebuild>
 
-  echo '--------------------------------------------'
-  echo 'Clone URL: https://github.com/kris3713/YACR.git'
-  echo 'Commitish: master'
-  echo "Subdir: packages/$subdir"
-  echo "Spec: $name.spec"
-  echo "Pkg Name: $name"
-  echo "Webhook Rebuild: $webhook_rebuild"
-  echo 'COPR Project: YACR'
-  echo "COPR User: $(copr-cli whoami)"
+  OR
 
-  copr-cli edit-package-scm \
-    --clone-url 'https://github.com/kris3713/YACR.git' \
-    --commit 'master' \
-    --subdir "packages/$subdir" \
-    --spec "$name.spec" \
-    --name $name \
-    --webhook-rebuild $webhook_rebuild \
-    'YACR'
+  $script <disable-or-enable-webhook-rebuild> <directory-name-relative-to-packages> <package-name>
+
+Examples:
+
+  $script on
+
+  $script off
+
+  $script on cudatext cudatext-gtk2-aarch64
+
+  $script off cudatext cudatext-gtk2-aarch64
+"
+
+switch (count $argv)
+  case 1
+    set -l webhook_rebuild $argv[1]
+    
+    if test $webhook_rebuild != 'on'; and test $webhook_rebuild != 'off'
+      echo 'First argument must either be a value of "on" or "off" (without quotes)'
+      exit 1
+    end
+
+    for v in (fd 'spec' "$script_dir/../packages" -t file --format '{}')
+      # Get subdir name (ie. the directory that contains the spec file(s))
+      set -l split_dir (string split '/' $v)
+      set -l subdir $split_dir[-2]
+      set -l name (basename -s '.spec' $split_dir[-1])
+
+      echo '--------------------------------------------'
+      echo 'Clone URL: https://github.com/kris3713/YACR.git'
+      echo 'Commitish: master'
+      echo "Subdir: packages/$subdir"
+      echo "Spec: $name.spec"
+      echo "Pkg Name: $name"
+      echo "Webhook Rebuild: $webhook_rebuild"
+      echo 'COPR Project: zliced13/YACR'
+
+      copr-cli edit-package-scm \
+        --clone-url 'https://github.com/kris3713/YACR.git' \
+        --commit 'master' \
+        --subdir "packages/$subdir" \
+        --spec "$name.spec" \
+        --name $name \
+        --webhook-rebuild $webhook_rebuild \
+        'zliced13/YACR'
+    end
+
+  case 3
+    set -l webhook_rebuild $argv[1]
+    set -l subdir $argv[2]
+    set -l name $argv[3]
+    
+     if test $webhook_rebuild != 'on'; and test $webhook_rebuild != 'off'
+      echo 'First argument must either be a value of "on" or "off" (without quotes)'
+      exit 1
+    end
+
+    echo '--------------------------------------------'
+    echo 'Clone URL: https://github.com/kris3713/YACR.git'
+    echo 'Commitish: master'
+    echo "Subdir: packages/$subdir"
+    echo "Spec: $name.spec"
+    echo "Pkg Name: $name"
+    echo "Webhook Rebuild: $webhook_rebuild"
+    echo 'COPR Project: zliced13/YACR'
+
+    copr-cli edit-package-scm \
+      --clone-url 'https://github.com/kris3713/YACR.git' \
+      --commit 'master' \
+      --subdir "packages/$subdir" \
+      --spec "$name.spec" \
+      --name $name \
+      --webhook-rebuild $webhook_rebuild \
+      'zliced13/YACR'
+
+  case '*'
+    set_color red
+    printf "ERROR: Invalid Usage!\n"
+    set_color normal
+
+    echo $msg
+    exit 1
 end

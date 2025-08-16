@@ -1,12 +1,22 @@
 #!/usr/bin/env fish
 
-set -l msg '
-Usage: build-to-copr <package-name>
+set -l script (status filename)
 
-OR
+set -l msg "
+Usage:
 
-Usage: build-to-copr <directory-name-relative-to-packages> <package-name>
-'
+  $script <package-name>
+
+  OR
+
+  $script <directory-name-relative-to-packages> <package-name>
+
+Example:
+
+  $script cudatext
+
+  $script cudatext cudatext-gtk2-aarch64
+"
 
 switch (count $argv)
   case 1
@@ -19,17 +29,24 @@ switch (count $argv)
       --spec "$name.spec" \
       --enable-net 'on' \
       'zliced13/YACR'
+
   case 2
-    set -l dir_name $argv[1]
+    set -l subdir $argv[1]
     set -l name $argv[2]
 
     copr-cli buildscm \
       --clone-url 'https://github.com/kris3713/YACR.git' \
       --commit 'master' \
-      --subdir "packages/$dir_name" \
+      --subdir "packages/$subdir" \
       --spec "$name.spec" \
       --enable-net 'on' \
       'zliced13/YACR'
+
   case '*'
-    echo $msg && exit 1
+    set_color red
+    printf "ERROR: Invalid Usage!\n"
+    set_color normal
+
+    echo $msg
+    exit 1
 end
