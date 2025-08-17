@@ -2,7 +2,7 @@
 # The reason for this is to avoid the "broken rpath" error
 
 %define         sed_script 's/opt.backgroundBrush = {}/opt.backgroundBrush = Qt::NoBrush/g'
-%define         libvgm_sha1 0833b26bcda4fce9d870a22f2adb8e0cd525be22
+%define         libvgm_sha1 305b1bad78f7486c9e4058191abdd9195775efa0
 
 %global         __spec_install_post %{nil}
 %global         __os_install_post %{_dbpath}/brp-compress
@@ -10,7 +10,7 @@
 %global         debug_package %{nil}
 
 Name:           fooyin
-Version:        0.8.1
+Version:        0.9.0
 Release:        1%{?dist}
 Summary:        A customisable music player inspired by foobar2000
 
