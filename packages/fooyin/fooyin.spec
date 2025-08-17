@@ -1,7 +1,6 @@
 %global         __brp_check_rpaths %{nil}
 # The reason for this is to avoid the "broken rpath" error
 
-%define         sed_script 's/opt.backgroundBrush = {}/opt.backgroundBrush = Qt::NoBrush/g'
 %define         libvgm_sha1 305b1bad78f7486c9e4058191abdd9195775efa0
 
 %global         __spec_install_post %{nil}
@@ -41,19 +40,15 @@ starting from a blank slate or a preset layout.
 %setup -q -n ./%{name}-%{version}
 
 %build
-# Unpack libvgm (Need since tarballs don't retain refrences to other git repositories)
+# Unpack libvgm (Needed since tarballs don't retain refrences to other git repositories)
 %__tar -xf %{SOURCE1} '--strip-components=1' -C ./3rdparty/libvgm
 
 # Generate build environment
-%__mkdir build
+%__mkdir ./build
 %__cmake -S . -G Ninja -B ./build '-DCMAKE_BUILD_TYPE=Release'
 
-# Manually correct some issues present in some source code files before building
-%__sed -i -e %{sed_script} ./src/gui/{dirbrowser/dirdelegate,librarytree/librarytreedelegate}.cpp
-%__sed -i -e %{sed_script} ./src/gui/playlist/organiser/playlistorganiserdelegate.cpp
-
 # Build the application
-%__cmake --build ./build "-j$(nproc)" &> /dev/null
+%__cmake --build ./build "-j$(nproc)"
 
 %install
 export QA_RPATHS=$[ 0x0002 | 0x0010 ]
@@ -66,7 +61,7 @@ export QA_RPATHS=$[ 0x0002 | 0x0010 ]
 %__install -d %{buildroot}%{_sysconfdir}/ld.so.conf.d
 
 # Make sure the shared libraries are discoverable
-echo "%{_libdir}/%{name}" > %{buildroot}%{_sysconfdir}/ld.so.conf.d/%{name}.conf
+echo '%{_libdir}/%{name}' > %{buildroot}%{_sysconfdir}/ld.so.conf.d/%{name}.conf
 
 # Install the desktop file
 %__install -Dm 0644 ./dist/linux/%{app_name}.desktop.in %{buildroot}%{_datadir}/applications/%{name}.desktop
@@ -74,8 +69,10 @@ echo "%{_libdir}/%{name}" > %{buildroot}%{_sysconfdir}/ld.so.conf.d/%{name}.conf
 # Install the application binary
 %__install -Dm 0755 ./build/run/bin/%{name} -t %{buildroot}%{_bindir}
 
-# Install the libraries required by the application
+# Remove all the symlinks in `./build/run/lib64`
 fd . ./build/run/lib64/%{name} -t symlink --exec %__rm {}
+
+# Install the libraries required by the application
 %__cp -a ./build/run/lib64/%{name}/* %{buildroot}%{_libdir}/%{name}
 
 # Install the application icons
@@ -96,10 +93,14 @@ fd . ./build/run/lib64/%{name} -t symlink --exec %__rm {}
 %__cp -a ./build/data/*.qm %{buildroot}%{_datadir}/%{name}/translations
 
 %post
-/sbin/ldconfig
+# Configure dynamic linker run-time binding. This is required because
+# the system normally can't find the required libraries needed for fooyin
+ldconfig
 
 %postun
-/sbin/ldconfig
+# Configure dynamic linker run-time binding. This is required because
+# the system normally can't find the required libraries needed for fooyin
+ldconfig
 
 %files
 %{_bindir}/%{name}
