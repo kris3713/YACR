@@ -41,7 +41,7 @@ export PROVIDER='riseup'
 %__make relink_vendor
 
 # Build the application
-env LRELEASE="%{_libdir}/qt6/bin/lrelease" RELEASE='yes' %__make build &> /dev/null
+env LRELEASE="%{_libdir}/qt6/bin/lrelease" RELEASE='yes' %__make build
 
 # Cleanup user-created environmental variables
 unset PROVIDER

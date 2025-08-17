@@ -30,12 +30,12 @@ the field, with a comprehensive list of supported OS images.
 
 %build
 # Generate build files
-%__mkdir_p build
+%__mkdir ./build
 %__cmake . -B ./build
 # Switch to the build directory
 cd ./build
 # Build the application binaries
-%__make "-j$(nproc)" &> /dev/null
+%__make "-j$(nproc)"
 # Switch back to the root directory
 cd ..
 

@@ -55,7 +55,7 @@ Zsh completion for %{name}
 %setup -q -n ./%{name}-%{version}
 
 %build
-%__mkdir build
+%__mkdir ./build
 %__cmake -B ./build
 %__cmake --build ./build
 
