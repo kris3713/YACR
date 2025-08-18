@@ -9,7 +9,7 @@
 %global         debug_package %{nil}
 
 Name:           fooyin
-Version:        0.9.0
+Version:        0.9.1
 Release:        1%{?dist}
 Summary:        A customisable music player inspired by foobar2000
 
