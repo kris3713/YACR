@@ -20,21 +20,22 @@ if test -z "$latest_version"
   exit 1
 end
 
-set -l libvgm_sha1 ("$script_dir/../../scripts/parse-json" $libvgm_url $sha1_regex '$.sha')
+set -l latest_libvgm_sha1 ("$script_dir/../../scripts/parse-json" $libvgm_url $sha1_regex '$.sha')
 
-# @fish-lsp-disable-next-line 2001
-set -l current_version (sed -n 's/^Version:\\s*\\([\\d.]*\\)/\\1/p' "$script_dir/$basename.spec")
+set -l current_version (cat "$script_dir/$basename.spec" | rg -or '$1' 'Version:\\s*([\\d.]+)')
 
-echo "SHA1 hash of libvgm: $libvgm_sha1"
-# @fish-lsp-disable-next-line 2001
+set -l current_libvgm_sha1 (cat "$script_dir/$basename.spec" | rg -or '$1' 'libvgm_sha1\\s([\\w]{40})')
+
 echo 'Comparing the current version ($current_version) with the latest version ($latest_version)'
 echo "Current version: $current_version"
 echo "Latest version: $latest_version"
+echo "Current libvgm SHA1 hash: $current_libvgm_sha1"
+echo "Latest libvgm SHA1 hash: $latest_libvgm_sha1"
 if test "$current_version" != "$latest_version"
   echo 'Versions are different. Updating the spec file(s)...'
   for v in (fd --glob '*.spec' $script_dir)
     sd "(Version\\:\\s*)$current_version" "\${1}$latest_version" $v
-    sd "(libvgm_sha1\\s)($sha1_regex)" "\${1}$libvgm_sha1" $v
+    sd "(libvgm_sha1\\s)$current_libvgm_sha1" "\${1}$latest_libvgm_sha1" $v
   end && echo 'Done!'
 else
   echo 'Both versions are the same. No update needed.'

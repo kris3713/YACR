@@ -18,10 +18,8 @@ if test -z "$latest_version"
   exit 1
 end
 
-# @fish-lsp-disable-next-line 2001
-set -l current_version (sed -n 's/^Version:\\s*\\([\\d.]*\\)/\\1/p' "$script_dir/$basename.spec")
+set -l current_version (cat "$script_dir/$basename.spec" | rg -or '$1' 'Version:\\s*([\\d.]+)')
 
-# @fish-lsp-disable-next-line 2001
 echo 'Comparing the current version ($current_version) with the latest version ($latest_version)'
 echo "Current version: $current_version"
 echo "Latest version: $latest_version"

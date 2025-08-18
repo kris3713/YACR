@@ -20,11 +20,10 @@ end
 
 set -l latest_major (echo $latest_version | cut -d. -f1)
 
-set -l current_version (sed -n 's/^Version:\\s*\\([\\d.]*\\)/\\1/p' "$script_dir/$basename.spec")
+set -l current_version (cat "$script_dir/$basename.spec" | rg -or '$1' 'Version:\\s*([\\d.]+)')
 
 set -l current_major (echo $current_version | cut -d. -f1)
 
-# @fish-lsp-disable-next-line 2001
 echo 'Comparing the current version ($current_version) with the latest version ($latest_version)'
 echo "Current version: $current_version"
 echo "Latest version: $latest_version"
