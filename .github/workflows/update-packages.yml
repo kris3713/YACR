@@ -30,21 +30,12 @@ jobs:
           echo '> sudo apt update'
           sudo apt update &> /dev/null
           # Python already comes pre-installed so no need to install it again
-          echo '> sudo apt install -y fd-find sd fish'
-          sudo apt install -y fd-find sd fish
+          echo '> sudo apt install -y fd-find sd ripgrep fish'
+          sudo apt install -y fd-find sd ripgrep fish
 
+          # Using verbose flag to show the output of the command
           echo '> sudo ln -vs $(command -v fdfind) /usr/bin/fd'
           sudo ln -vs $(command -v fdfind) /usr/bin/fd
-
-          if ! command -v python &> /dev/null; then
-            echo '> sudo ln -vs $(command -v python3) /usr/bin/python'
-            sudo ln -vs $(command -v python3) /usr/bin/python
-          fi
-
-          if ! command -v pip &> /dev/null; then
-            echo '> sudo ln -vs $(command -v pip3)'
-            sudo ln -vs $(command -v pip3) /usr/bin/pip
-          fi
 
       - name: 'Update package versions'
         shell: bash
@@ -68,7 +59,7 @@ jobs:
 
           for i in $(fd 'update-script' .); do
             chmod +x $i
-            echo "Executing $i"; eval $i
+            echo "Executing $i"; $i
             chmod -x $i
             echo '---------------------------------------'
             echo '---------------------------------------'
