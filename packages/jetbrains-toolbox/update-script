@@ -5,12 +5,12 @@ set -l basename (basename "$script_dir")
 
 echo "Updating '$basename'"
 
-set -l url 'https://api.github.com/repos/localsend/localsend/releases/latest'
-set -l regex 'v([\\w.]+)'
-set -l jsonpath '$.tag_name'
+set -l url 'https://data.services.jetbrains.com/products/releases?code=TBA&latest=true&type=release'
+# set -l regex '([\\d.]+)'
+set -l jsonpath '$.TBA[0].build'
 
 echo 'Executing the `parse-json` script'
-set -l latest_version ("$script_dir/../../scripts/parse-json" $url $regex $jsonpath)
+set -l latest_version ("$script_dir/../../scripts/parse-json" $url '' $jsonpath)
 
 if test -z "$latest_version"
   echo "Failed to get the latest version for '$basename'"
