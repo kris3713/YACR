@@ -24,7 +24,7 @@ def parse_html(url: str, regex_str: str, xpath_expr: str):
     content = response.content.replace(b'\xc2\xa0', b'')
     html_content = html.fromstring(content)
 
-    #  Find all the elements that were captured the XPath expression
+    #  Find all the elements that were captured in the XPath expression
     elements = html_content.xpath(xpath_expr)
 
     for e in elements:
