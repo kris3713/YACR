@@ -35,7 +35,7 @@ def parse_xml(url: str, regex_str: str, xpath_expr: str):
         }
 
 
-    #  Find all the elements that were captured the XPath expression
+    #  Find all the elements that were captured in the XPath expression
     elements = xml_content.xpath(xpath_expr, namespaces=namespaces)
 
     for e in elements:
