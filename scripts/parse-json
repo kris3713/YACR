@@ -10,50 +10,50 @@ from jsonpath_ng import JSONPath, parse
 
 
 def parse_json(url: str, regex_str: str, jsonpath_expr: str):
-    """
-    Parses JSON content from a URL and
-    extracts the desired information using
-    regular expressions and JSONPath expressions.
-    """
+  """
+  Parses JSON content from a URL and
+  extracts the desired information using
+  regular expressions and JSONPath expressions.
+  """
 
-    if jsonpath_expr.__contains__('?'):
-        error('JSONPath expression contains a question mark!')
-        error('Conditional JSONPath expressions are not supported!')
-        exit(1)
+  if jsonpath_expr.__contains__('?'):
+    error('JSONPath expression contains a question mark!')
+    error('Conditional JSONPath expressions are not supported!')
+    exit(1)
 
-    result = ''
+  result = ''
 
-    # Compile the regular expression from string
-    regex = re.compile(regex_str) if regex_str != '' else None
+  # Compile the regular expression from string
+  regex = re.compile(regex_str) if regex_str != '' else None
 
-    # Parse the JSONPath expression from string
-    jsonPath: JSONPath = parse(jsonpath_expr)
+  # Parse the JSONPath expression from string
+  jsonPath: JSONPath = parse(jsonpath_expr)
 
-    # Invoke a new HTTP GET request
-    user_agent = 'Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0'
-    response = requests.get(url, headers={ 'User-Agent': user_agent })
-    json_content = response.json()
+  # Invoke a new HTTP GET request
+  user_agent = 'Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0'
+  response = requests.get(url, headers={'User-Agent': user_agent})
+  json_content = response.json()
 
-    keys: list[Any] = jsonPath.find(json_content)
+  keys: list[Any] = jsonPath.find(json_content)
 
-    for key in keys:
-        if regex is not None:
-            matches = regex.search(str(key.value))
+  for key in keys:
+    if regex is not None:
+      matches = regex.search(str(key.value))
 
-            if matches is not None:
-                if matches.group(1) is None:
-                    result = matches.group(0)
-                else:
-                    result = matches.group(1)
+      if matches is not None:
+        if matches.group(1) is None:
+          result = matches.group(0)
         else:
-            result = str(key.value)
+          result = matches.group(1)
+    else:
+      result = str(key.value)
 
-    print(result)
+  print(result)
 # end of parse_json
 
 if __name__ == '__main__':
-    # Allow the user to pass in the arguments from the command line
-    parse_json(sys.argv[1], sys.argv[2], sys.argv[3])
+  # Allow the user to pass in the arguments from the command line
+  parse_json(sys.argv[1], sys.argv[2], sys.argv[3])
 
 # # This is how it should be used
 # parse_json('https://dl.pstmn.io/changelog?channel=stable&platform=linux64', '', '$.changelog[0].name')
