@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Terminal=false
+Name=Picocrypt NG
+Comment=A very small, very simple, yet very secure encryption tool
+Exec=picocrypt-ng
+Icon=picocrypt-ng
+Categories=Utility;Security
