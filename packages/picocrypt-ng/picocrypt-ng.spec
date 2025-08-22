@@ -12,7 +12,7 @@ URL:            https://github.com/Picocrypt-NG/Picocrypt-NG
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 Source1:        %{name}.desktop
 
-BuildRequires:  golang gcc xorg-x11-server-devel gtk3-devel mesa-libGL-devel mesa-libGLU-devel
+BuildRequires:  golang git gcc xorg-x11-server-devel gtk3-devel mesa-libGL-devel mesa-libGLU-devel
 
 ExclusiveArch:  x86_64
 
