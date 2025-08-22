@@ -45,7 +45,7 @@ def generate_pkg_list_readme():
   for filename in filenames:
     # Sort through the filename and retrieve the basename
     pkg_name, _ = os.path.splitext(filename)
-    markdown_content += f'* {pkg_name}\n'
+    markdown_content += f'* `{pkg_name}`\n'
 
   # Create the `README.md` file
   with open(output_file, 'w', newline='\n') as f:
