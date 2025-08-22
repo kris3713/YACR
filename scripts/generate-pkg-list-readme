@@ -15,6 +15,7 @@ def generate_pkg_list_readme():
   script_dir = os.path.dirname(os.path.realpath(__file__))
   pkgs_dir = os.path.join(script_dir, '..', 'packages')
   output_file = os.path.join(os.path.realpath(pkgs_dir), 'README.md')
+  removed_pkgs_file = os.path.join(os.path.realpath(pkgs_dir), 'removed-packages.txt')
 
   fd_path = shutil.which('fd')
 
@@ -27,12 +28,17 @@ def generate_pkg_list_readme():
   result = subprocess.run(args, capture_output=True, text=True, check=True)
   file_paths = result.stdout.strip().split('\n')
 
+  removed_pkg_names = []
+
+  with open(removed_pkgs_file, 'r') as f:
+    removed_pkg_names = [entry.strip() for entry in f]
+
   # Filter through file paths and remove any empty strings that might cause an error.
-  # In Python, if a string is empty it automatically counts as false
+  # In Python, if a string is empty, it automatically counts as false
   file_paths = [path for path in file_paths if path]
 
-  # Sort through the file paths and get the filenames of each `.spec` file
-  filenames = sorted([os.path.basename(path) for path in file_paths])
+  # Collect all basenames and add the missing package, then sort the list
+  basenames = sorted([os.path.basename(path) for path in file_paths] + removed_pkg_names)
 
   # Generate the Markdown content
   markdown_content = """<!--
@@ -42,14 +48,14 @@ def generate_pkg_list_readme():
 # Packages available for installation\n
 """
 
-  for filename in filenames:
-    # Sort through the filename and retrieve the basename
-    pkg_name, _ = os.path.splitext(filename)
+  for basename in basenames:
+    # Sort through the basenames and retrieve the filenames without an extension
+    pkg_name, _ = os.path.splitext(basename)
     markdown_content += f'* `{pkg_name}`\n'
 
   # Create the `README.md` file
   with open(output_file, 'w', newline='\n') as f:
-    f.write(markdown_content)  # pyright: ignore[reportUnusedCallResult]
+    _ = f.write(markdown_content)
 
   # Print success message
   print(f'Successfully generated `{os.path.relpath(output_file)}`!')
