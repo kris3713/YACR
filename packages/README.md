@@ -30,6 +30,7 @@
 * `picocrypt`
 * `postman-arm64`
 * `postman`
+* `rename-my-tv-series`
 * `renamemytvseries-gtk`
 * `renamemytvseries-qt`
 * `renamemytvseries`
