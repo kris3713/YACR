@@ -27,7 +27,7 @@ and the Argon2id key derivation function to provide a high level of security.
 
 %build
 cd ./src
-env CGO_ENABLED=1 go build '-ldflags=-s -w' %{real_name}.go
+env CGO_ENABLED=1 go build '-ldflags=-s -w'
 cd ..
 
 %install
