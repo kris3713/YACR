@@ -12,7 +12,8 @@ URL:            https://github.com/Picocrypt-NG/Picocrypt-NG
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 Source1:        %{name}.desktop
 
-BuildRequires:  golang git gcc gcc-c++ xorg-x11-server-devel gtk3-devel mesa-libGL-devel mesa-libGLU-devel
+BuildRequires:  golang git gcc gcc-c++ xorg-x11-server-devel gtk3-devel
+BuildRequires:  mesa-libGL-devel mesa-libGLU-devel libXxf86vm-devel
 
 ExclusiveArch:  x86_64
 
@@ -27,7 +28,7 @@ and the Argon2id key derivation function to provide a high level of security.
 
 %build
 cd ./src
-env CGO_ENABLED=1 go build '-ldflags=-s -w'
+env CGO_ENABLED=1 go build '-ldflags=-s -w' -o %{name}
 cd ..
 
 %install
@@ -38,7 +39,7 @@ cd ..
 %__install -d %{buildroot}{%{_bindir},%{_datadir}/applications,%{_iconsdir}/hicolor/scalable/apps}
 
 # Install the application binary
-%__install -Dm 0755 ./src/%{real_name} %{buildroot}%{_bindir}/%{name}
+%__install -Dm 0755 ./src/%{name} -t %{buildroot}%{_bindir}
 
 # Install the desktop file
 %__install -Dm 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
