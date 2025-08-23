@@ -79,7 +79,7 @@ switch (count $argv)
     copr-cli edit-package-scm \
       --clone-url 'https://github.com/kris3713/YACR.git' \
       --commit 'master' \
-      --subdir "packages/$subdir" \
+      --subdir "packages/$name" \
       --spec "$name.spec" \
       --name $name \
       --webhook-rebuild $webhook_rebuild \
