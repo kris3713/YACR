@@ -1,4 +1,4 @@
-%global         __requires_exclude ^%{_bindir}/%{name}$
+%global         __requires_exclude_from ^%{_bindir}/%{name}$
 %global         real_name Picocrypt-NG
 %global         debug_package %{nil}
 
