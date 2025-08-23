@@ -115,7 +115,7 @@ switch (count $argv)
 
   case '*'
     set_color red
-    printf "ERROR: Invalid Usage!\n"
+    printf 'ERROR: Invalid Usage!\n'
     set_color normal
 
     echo $msg
