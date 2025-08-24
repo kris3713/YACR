@@ -16,7 +16,7 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in
     {
-      # Define a devShell that provides all necessary tools
+      # Define a devShell that provides all the required tools
       devShells.${system}.default = pkgs.mkShell {
         buildInputs = with pkgs; [
           python3
