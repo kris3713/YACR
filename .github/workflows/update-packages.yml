@@ -23,19 +23,19 @@ jobs:
           repository: "${{ github.repository }}"
           token: "${{ env.GITHUB_TOKEN }}"
 
+      - name: 'Install nix'
+        uses: cachix/install-nix-action@v31
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+
       - name: 'Install helper programs'
         shell: bash
         run: |
           echo '----- Installing helper programs -----'
-          echo '> sudo apt update'
-          sudo apt update &> /dev/null
-          # Python already comes pre-installed so no need to install it again
-          echo '> sudo apt install -y fd-find sd ripgrep fish'
-          sudo apt install -y fd-find sd ripgrep fish
-
-          # Using verbose flag to show the output of the command
-          echo '> sudo ln -vs $(command -v fdfind) /usr/bin/fd'
-          sudo ln -vs $(command -v fdfind) /usr/bin/fd
+          echo '> nix flake update --verbose'
+          nix flake update --verbose
+          echo '> nix profile install .'
+          nix profile install .
 
       - name: 'Update package versions'
         shell: bash
@@ -45,8 +45,8 @@ jobs:
           pip install uv
           echo '> cd ./scripts'
           cd ./scripts
-          echo '> uv venv --python 3.13'
-          uv venv --python 3.13
+          echo '> uv venv'
+          uv venv
           echo '> source ./.venv/bin/activate'
           source ./.venv/bin/activate
           echo '> uv pip install -r ./requirements.txt'
