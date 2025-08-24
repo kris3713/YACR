@@ -46,8 +46,10 @@ done
 
 for i in $(fd 'update-script' .); do
   echo '---------------------------------------'
+  #shellcheck disable=SC2086
   chmod +x $i
   echo "Executing $i"; $i
+  #shellcheck disable=SC2086
   chmod -x $i
   echo '---------------------------------------'
 done
