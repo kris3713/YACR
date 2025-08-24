@@ -16,11 +16,15 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in
     {
-      # packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
-
-      # packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
-      packages.x86_64-linux = with pkgs; {
-        inherit python3 fd sd ripgrep fish;
+      # Define a devShell that provides all necessary tools
+      devShells.${system}.default = pkgs.mkShell {
+        buildInputs = with pkgs; [
+          python3
+          fd
+          sd
+          ripgrep
+          fish
+        ];
       };
     };
 }
