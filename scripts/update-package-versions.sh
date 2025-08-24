@@ -1,3 +1,5 @@
+set -e
+
 echo '----- Installing Python packages -----'
 
 if ! command -v pip &> /dev/null; then
