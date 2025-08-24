@@ -1,6 +1,6 @@
 echo '----- Installing Python packages -----'
 echo '> pip install uv'
-pip install uv
+pip install uv --user
 echo '> cd ./scripts'
 cd ./scripts
 echo '> uv venv'
