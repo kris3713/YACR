@@ -23,7 +23,7 @@ jobs:
           repository: "${{ github.repository }}"
           token: "${{ env.GITHUB_TOKEN }}"
 
-      - name: 'Install nix'
+      - name: 'Install Nix'
         uses: DeterminateSystems/nix-installer-action@v19
 
       - name: 'Update package versions'
