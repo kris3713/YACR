@@ -28,14 +28,14 @@ jobs:
         with:
           nix_path: nixpkgs=channel:nixos-unstable
 
-      - name: 'Install helper programs'
+      - name: 'Create a new enviroment with helper programs'
         shell: bash
         run: |
-          echo '----- Installing helper programs -----'
+          echo '----- Creating a new enviroment with helper programs -----'
           echo '> nix flake update --verbose'
           nix flake update --verbose
-          echo '> nix profile install .'
-          nix profile install .
+          echo '> nix develop'
+          nix develop
 
       - name: 'Update package versions'
         shell: bash
