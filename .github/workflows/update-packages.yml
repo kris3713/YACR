@@ -28,7 +28,7 @@ jobs:
         with:
           nix_path: nixpkgs=channel:nixos-unstable
 
-      - name: 'Create a new enviroment with helper programs'
+      - name: 'Update package versions'
         shell: bash
         run: |
           echo '----- Creating a new enviroment with helper programs -----'
@@ -37,9 +37,6 @@ jobs:
           echo '> nix develop'
           nix develop
 
-      - name: 'Update package versions'
-        shell: bash
-        run: |
           echo '----- Installing Python packages -----'
           echo '> pip install uv'
           pip install uv
@@ -54,6 +51,7 @@ jobs:
           echo '> cd ..'
           cd ..
 
+          printf '----- Updating package versions -----\n'
           echo '---------------------------------------'
           echo '---------------------------------------'
 
