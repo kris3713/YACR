@@ -24,7 +24,7 @@ jobs:
           token: "${{ env.GITHUB_TOKEN }}"
 
       - name: 'Install Nix'
-        uses: DeterminateSystems/nix-installer-action@v19
+        uses: cachix/install-nix-action@v31
 
       - name: 'Update package versions'
         shell: bash
