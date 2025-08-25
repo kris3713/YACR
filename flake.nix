@@ -13,7 +13,8 @@
 
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      legacyPackages = nixpkgs.legacyPackages;
+      pkgs = legacyPackages.${system};
     in
     {
       # Define a devShell that provides all the required tools
