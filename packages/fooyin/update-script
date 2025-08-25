@@ -35,7 +35,9 @@ if test "$current_version" != "$latest_version"
   echo 'Versions are different. Updating the spec file(s)...'
   for v in (fd --glob '*.spec' $script_dir)
     sd "(Version\\:\\s*)$current_version" "\${1}$latest_version" $v
-    sd "(libvgm_sha1\\s)$current_libvgm_sha1" "\${1}$latest_libvgm_sha1" $v
+    if test $current_libvgm_sha1 != $latest_libvgm_sha1
+      sd "(libvgm_sha1\\s)$current_libvgm_sha1" "\${1}$latest_libvgm_sha1" $v
+    end
   end && echo 'Done!'
 else
   echo 'Both versions are the same. No update needed.'
