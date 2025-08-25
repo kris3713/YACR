@@ -66,8 +66,8 @@ jobs:
               commit_message="bot: Updated packages at $CURRENT_TIME"
             fi
 
-            echo '> git commit -m "$commit_message"'
-            git commit -m "$commit_message"
+            echo '> git commit -m $commit_message'
+            git commit -m $commit_message
           fi
 
       - name: 'Push changes'
