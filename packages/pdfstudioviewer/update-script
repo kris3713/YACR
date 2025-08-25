@@ -5,9 +5,9 @@ set -l basename (basename "$script_dir")
 
 echo "Updating '$basename'"
 
-set -l url 'https://aur.archlinux.org/packages/pdfstudioviewer'
-set -l regex 'pdfstudioviewer\\s([\\d.]+)-[\\d]'
-set -l xpath "//div[@id='content']/div[@id='pkgdetails']/h2"
+set -l url 'https://repology.org/project/pdfstudioviewer/information'
+set -l regex '([\\d.]+)'
+set -l xpath "//section[@id='Versions']/ul/li/span[@title='newest version']"
 
 echo 'Executing the `parse-html` script'
 set -l latest_version ("$script_dir/../../scripts/parse-html" $url $regex $xpath)
