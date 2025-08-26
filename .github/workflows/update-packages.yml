@@ -56,7 +56,7 @@ jobs:
             commit_message=''
 
             # Check if only flake.lock was updated
-            if [ "$STAGED_FILES" == "flake.lock" ]; then
+            if [ "$STAGED_FILES" == 'flake.lock' ]; then
               echo "> commit_message='bot: Updated \`flake.lock\`'"
               commit_message='bot: Updated `flake.lock`'
             else
@@ -66,8 +66,8 @@ jobs:
               commit_message="bot: Updated packages at $CURRENT_TIME"
             fi
 
-            echo '> git commit -m $commit_message'
-            git commit -m $commit_message
+            echo '> git commit -m "$commit_message"'
+            git commit -m "$commit_message"
           fi
 
       - name: 'Push changes'
