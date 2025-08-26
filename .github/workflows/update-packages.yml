@@ -56,8 +56,8 @@ jobs:
             commit_message=''
 
             # Check if only flake.lock was updated
-            if [ "$STAGED_FILES" == 'flake.lock' ]; then
-              echo "commit_message='bot: Updated \`flake.lock\`'"
+            if [ "$STAGED_FILES" == "flake.lock" ]; then
+              echo "> commit_message='bot: Updated \`flake.lock\`'"
               commit_message='bot: Updated `flake.lock`'
             else
               echo "> CURRENT_TIME=\$(date +'%Y-%m-%d %H:%M:%S')"
