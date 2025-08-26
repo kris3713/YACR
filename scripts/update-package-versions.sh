@@ -16,8 +16,6 @@ fi
 # because it provides the latest version, unlike nixpkgs
 echo '> pip install uv --user'
 pip install uv --user
-echo '> cd ./scripts'
-cd ./scripts
 
 if ! command -v uv &> /dev/null; then
   #shellcheck disable=SC2016
@@ -25,6 +23,8 @@ if ! command -v uv &> /dev/null; then
   exit 1
 fi
 
+echo '> cd ./scripts'
+cd ./scripts
 echo '> uv venv'
 uv venv
 echo '> source ./.venv/bin/activate'
