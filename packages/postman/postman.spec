@@ -2,11 +2,11 @@
 %global         __requires_exclude_from ^/opt/%{app_name}/.*$
 %global         fullname postman
 %global         app_name Postman
-%global         real_version 11.59.5
+%global         real_version 11.60.1
 %global         debug_package %{nil}
 
 Name:           %{fullname}
-Version:        11.59.5
+Version:        11.60.1
 Release:        1%{?dist}
 Summary:        Postman - Platform for building and using APIs
 
