@@ -20,7 +20,7 @@
       # Define a devShell that provides all the required tools
       devShells.${system}.default = pkgs.mkShell {
         buildInputs = with pkgs; [
-          rpm
+          # rpm
           python3
           fd
           sd
