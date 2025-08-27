@@ -29,7 +29,7 @@ jobs:
       - name: 'Update package versions'
         shell: bash
         run: |
-          echo '----- Creating a new enviroment with helper programs -----'
+          echo '----- Creating a new environment with helper programs -----'
           echo '> nix flake update --verbose'
           nix flake update --verbose
           echo '> nix develop --command bash ./scripts/update-package-versions.sh'
