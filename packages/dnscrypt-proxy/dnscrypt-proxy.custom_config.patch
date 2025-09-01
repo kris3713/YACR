@@ -1,4 +1,5 @@
-> # This is downloaded from https://gitlab.archlinux.org/archlinux/packaging/packages/dnscrypt-proxy/-/blob/main/dnscrypt-proxy-2.1.13-configuration.patch?ref_type=heads
+This is downloaded from https://gitlab.archlinux.org/archlinux/packaging/packages/dnscrypt-proxy/-/blob/main/dnscrypt-proxy-2.1.13-configuration.patch?ref_type=heads
+
 From 1d07bd936bbc1be986608294f9b1928d2cb2bb85 Mon Sep 17 00:00:00 2001
 From: David Runge <dave@sleepmap.de>
 Date: Thu, 11 Jun 2020 11:45:32 +0200
