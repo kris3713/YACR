@@ -1,0 +1,223 @@
+> # This is downloaded from https://gitlab.archlinux.org/archlinux/packaging/packages/dnscrypt-proxy/-/blob/main/dnscrypt-proxy-2.1.13-configuration.patch?ref_type=heads
+From 1d07bd936bbc1be986608294f9b1928d2cb2bb85 Mon Sep 17 00:00:00 2001
+From: David Runge <dave@sleepmap.de>
+Date: Thu, 11 Jun 2020 11:45:32 +0200
+Subject: [PATCH] Make configuration file-hierarchy compliant
+
+Change the example configuration to be file-hierarchy compliant.
+Use syslog by default.
+---
+ dnscrypt-proxy/example-dnscrypt-proxy.toml | 50 +++++++++++-----------
+ 1 file changed, 25 insertions(+), 25 deletions(-)
+
+diff --git a/dnscrypt-proxy/example-dnscrypt-proxy.toml b/dnscrypt-proxy/example-dnscrypt-proxy.toml
+index ae14f5c6..50dc6468 100644
+--- a/dnscrypt-proxy/example-dnscrypt-proxy.toml
++++ b/dnscrypt-proxy/example-dnscrypt-proxy.toml
+@@ -215,7 +215,7 @@ keepalive = 30
+ ## This file is different from other log files, and will not be
+ ## automatically rotated by the application.
+
+-# log_file = 'dnscrypt-proxy.log'
++log_file = '/var/log/dnscrypt-proxy/dnscrypt-proxy.log'
+
+
+ ## When using a log file, only keep logs from the most recent launch.
+@@ -225,7 +225,7 @@ keepalive = 30
+
+ ## Use the system logger (syslog on Unix, Event Log on Windows)
+
+-# use_syslog = true
++use_syslog = true
+
+
+ ## Automatic log files rotation
+@@ -296,7 +296,7 @@ cert_refresh_delay = 240
+ ## all TLS traffic to/from DoH servers.
+ ## Never ever enable except for debugging purposes with a tool such as mitmproxy.
+
+-# tls_key_log_file = '/tmp/keylog.txt'
++# tls_key_log_file = '/var/log/dnscrypt-proxy/keylog.txt'
+
+
+ ###############################################################################
+@@ -432,7 +432,7 @@ reject_ttl = 10
+
+ ## See the `example-forwarding-rules.txt` file for an example
+
+-# forwarding_rules = 'forwarding-rules.txt'
++# forwarding_rules = '/etc/dnscrypt-proxy/forwarding-rules.txt'
+
+
+ ###############################################################################
+@@ -447,7 +447,7 @@ reject_ttl = 10
+ ##
+ ## See the `example-cloaking-rules.txt` file for an example
+
+-# cloaking_rules = 'cloaking-rules.txt'
++# cloaking_rules = '/etc/dnscrypt-proxy/cloaking-rules.txt'
+
+ ## TTL used when serving entries in cloaking-rules.txt
+
+@@ -499,7 +499,7 @@ cache_neg_max_ttl = 600
+ ## check for connectivity and captive portals, along with hard-coded
+ ## IP addresses to return.
+
+-# map_file = 'example-captive-portals.txt'
++# map_file = '/etc/dnscrypt-proxy/captive-portals.txt'
+
+
+ ###############################################################################
+@@ -530,8 +530,8 @@ cache_neg_max_ttl = 600
+ ## openssl req -x509 -nodes -newkey rsa:2048 -days 5000 -sha256 -keyout localhost.pem -out localhost.pem
+ ## See the documentation (wiki) for more information.
+
+-# cert_file = 'localhost.pem'
+-# cert_key_file = 'localhost.pem'
++# cert_file = "/var/lib/dnscrypt-proxy/localhost.pem"
++# cert_key_file = "/var/lib/dnscrypt-proxy/localhost.pem"
+
+
+ ###############################################################################
+@@ -543,7 +543,7 @@ cache_neg_max_ttl = 600
+ ## Path to the query log file (absolute, or relative to the same directory as the config file)
+ ## Can be set to /dev/stdout in order to log to the standard output.
+
+-# file = 'query.log'
++# file = '/var/log/dnscrypt-proxy/query.log'
+
+
+ ## Query log format (currently supported: tsv and ltsv)
+@@ -568,7 +568,7 @@ format = 'tsv'
+
+ ## Path to the query log file (absolute, or relative to the same directory as the config file)
+
+-# file = 'nx.log'
++# file = '/var/log/dnscrypt-proxy/nx.log'
+
+
+ ## Query log format (currently supported: tsv and ltsv)
+@@ -597,12 +597,12 @@ format = 'tsv'
+
+ ## Path to the file of blocking rules (absolute, or relative to the same directory as the config file)
+
+-# blocked_names_file = 'blocked-names.txt'
++# blocked_names_file = '/etc/dnscrypt-proxy/blocked-names.txt'
+
+
+ ## Optional path to a file logging blocked queries
+
+-# log_file = 'blocked-names.log'
++# log_file = '/var/log/dnscrypt-proxy/blocked-names.log'
+
+
+ ## Optional log format: tsv or ltsv (default: tsv)
+@@ -624,12 +624,12 @@ format = 'tsv'
+
+ ## Path to the file of blocking rules (absolute, or relative to the same directory as the config file)
+
+-# blocked_ips_file = 'blocked-ips.txt'
++# blocked_ips_file = '/etc/dnscrypt-proxy/blocked-ips.txt'
+
+
+ ## Optional path to a file logging blocked queries
+
+-# log_file = 'blocked-ips.log'
++# log_file = '/var/log/dnscrypt-proxy/blocked-ips.log'
+
+
+ ## Optional log format: tsv or ltsv (default: tsv)
+@@ -651,12 +651,12 @@ format = 'tsv'
+
+ ## Path to the file of allow list rules (absolute, or relative to the same directory as the config file)
+
+-# allowed_names_file = 'allowed-names.txt'
++# allowed_names_file = '/etc/dnscrypt-proxy/allowed-names.txt'
+
+
+ ## Optional path to a file logging allowed queries
+
+-# log_file = 'allowed-names.log'
++# log_file = '/var/log/dnscrypt-proxy/allowed-names.log'
+
+
+ ## Optional log format: tsv or ltsv (default: tsv)
+@@ -678,12 +678,12 @@ format = 'tsv'
+
+ ## Path to the file of allowed ip rules (absolute, or relative to the same directory as the config file)
+
+-# allowed_ips_file = 'allowed-ips.txt'
++# allowed_ips_file = '/etc/dnscrypt-proxy/allowed-ips.txt'
+
+
+ ## Optional path to a file logging allowed queries
+
+-# log_file = 'allowed-ips.log'
++# log_file = '/var/log/dnscrypt-proxy/allowed-ips.log'
+
+ ## Optional log format: tsv or ltsv (default: tsv)
+
+@@ -755,7 +755,7 @@ urls = [
+   'https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md',
+   'https://download.dnscrypt.info/resolvers-list/v3/public-resolvers.md',
+ ]
+-cache_file = 'public-resolvers.md'
++cache_file = '/var/cache/dnscrypt-proxy/public-resolvers.md'
+ minisign_key = 'RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3'
+ refresh_delay = 73
+ prefix = ''
+@@ -767,7 +767,7 @@ urls = [
+   'https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/relays.md',
+   'https://download.dnscrypt.info/resolvers-list/v3/relays.md',
+ ]
+-cache_file = 'relays.md'
++cache_file = '/var/cache/dnscrypt-proxy/relays.md'
+ minisign_key = 'RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3'
+ refresh_delay = 73
+ prefix = ''
+@@ -776,13 +776,13 @@ prefix = ''
+
+ # [sources.odoh-servers]
+ #   urls = ['https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/odoh-servers.md', 'https://download.dnscrypt.info/resolvers-list/v3/odoh-servers.md']
+-#   cache_file = 'odoh-servers.md'
++#   cache_file = '/var/cache/dnscrypt-proxy/odoh-servers.md'
+ #   minisign_key = 'RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3'
+ #   refresh_delay = 73
+ #   prefix = ''
+ # [sources.odoh-relays]
+ #   urls = ['https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/odoh-relays.md', 'https://download.dnscrypt.info/resolvers-list/v3/odoh-relays.md']
+-#   cache_file = 'odoh-relays.md'
++#   cache_file = '/var/cache/dnscrypt-proxy/odoh-relays.md'
+ #   minisign_key = 'RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3'
+ #   refresh_delay = 73
+ #   prefix = ''
+@@ -792,7 +792,7 @@ prefix = ''
+ # [sources.quad9-resolvers]
+ #   urls = ['https://quad9.net/dnscrypt/quad9-resolvers.md', 'https://raw.githubusercontent.com/Quad9DNS/dnscrypt-settings/main/dnscrypt/quad9-resolvers.md']
+ #   minisign_key = 'RWQBphd2+f6eiAqBsvDZEBXBGHQBJfeG6G+wJPPKxCZMoEQYpmoysKUN'
+-#   cache_file = 'quad9-resolvers.md'
++#   cache_file = '/var/cache/dnscrypt-proxy/quad9-resolvers.md'
+ #   prefix = 'quad9-'
+
+ ### Another example source, with resolvers censoring some websites not appropriate for children
+@@ -800,7 +800,7 @@ prefix = ''
+
+ # [sources.parental-control]
+ #   urls = ['https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/parental-control.md', 'https://download.dnscrypt.info/resolvers-list/v3/parental-control.md']
+-#   cache_file = 'parental-control.md'
++#   cache_file = '/var/cache/dnscrypt-proxy/parental-control.md'
+ #   minisign_key = 'RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3'
+
+ ### dnscry.pt servers - See https://www.dnscry.pt
+@@ -808,7 +808,7 @@ prefix = ''
+ #  [sources.dnscry-pt-resolvers]
+ #    urls = ["https://www.dnscry.pt/resolvers.md"]
+ #    minisign_key = "RWQM31Nwkqh01x88SvrBL8djp1NH56Rb4mKLHz16K7qsXgEomnDv6ziQ"
+-#    cache_file = "dnscry.pt-resolvers.md"
++#    cache_file = "/var/cache/dnscrypt-proxy/dnscry.pt-resolvers.md"
+ #    refresh_delay = 73
+ #    prefix = "dnscry.pt-"
+
+--
+2.50.1
+
