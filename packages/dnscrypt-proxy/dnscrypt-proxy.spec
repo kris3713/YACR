@@ -78,6 +78,7 @@ cd ..
 %__install -Dm 0644 ./dnscrypt-proxy/example-forwarding-rules.txt  %{buildroot}/etc/%{name}/forwarding-rules.txt
 
 %post
+dnscrypt-proxy -service uninstall
 dnscrypt-proxy -service install -config /etc/%{name}/%{name}.toml
 echo "dnscrypt-proxy service has been installed to '/etc/systemd/system/dnscrypt-proxy.service'"
 echo -e "\ndnscrypt-proxy configuration files can be found in the '/etc/%{name}' directory"
