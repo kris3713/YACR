@@ -14,9 +14,8 @@ Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 Patch0:         %{name}.custom_config.patch
 
 BuildRequires:  golang
-# Optionally needed Needed the `generate-domains-blocklist` script
+# Optionally needed for the `generate-domains-blocklist` script
 Recommends:     python3
-
 
 %description
 A flexible DNS proxy, with support for modern encrypted DNS protocols such as
