@@ -84,11 +84,13 @@ echo "dnscrypt-proxy service has been installed to '/etc/systemd/system/dnscrypt
 echo -e "\ndnscrypt-proxy configuration files can be found in the '/etc/%{name}' directory"
 
 %preun
-dnscrypt-proxy -service stop
-dnscrypt-proxy -service uninstall
-echo "'/etc/systemd/system/dnscrypt-proxy.service' was removed"
-echo 'Reloading systemd daemon...'
-systemctl daemon-reload
+if [ $1 -eq 0 ]; then
+  dnscrypt-proxy -service stop
+  dnscrypt-proxy -service uninstall
+  echo "'/etc/systemd/system/dnscrypt-proxy.service' was removed"
+  echo 'Reloading systemd daemon...'
+  systemctl daemon-reload
+fi
 
 # %postun
 # dnscrypt-proxy -service stop
