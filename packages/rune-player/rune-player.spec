@@ -6,11 +6,11 @@
 %global         __provides_exclude_from ^/opt/%{name}/.*$
 %global         __requires_exclude_from ^/opt/%{name}/.*$
 %global         pkg_arch amd64
-%global         real_version 1.1.0
+%global         real_version 2.0.0
 %global         debug_package %{nil}
 
 Name:           rune-player
-Version:        1.1.0
+Version:        2.0.0
 Release:        1%{?dist}
 Summary:        The audio player that blends classic design with modern technology
 
