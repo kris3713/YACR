@@ -6,7 +6,7 @@ set -l basename (basename "$script_dir")
 echo "Updating '$basename'"
 
 set -l url 'https://api.github.com/repos/Losses/rune/releases/latest'
-set -l regex 'v([\\w.]+)'
+set -l regex 'v([\\w]+.*)'
 set -l jsonpath '$.tag_name'
 
 echo 'Executing the `parse-json` script'
@@ -28,8 +28,8 @@ if test "$current_version" != "$latest_version"
   for v in (fd --glob '*.spec' $script_dir)
     sd -F "real_version $current_version" "real_version $latest_version" $v
     # Reassign the variables to use underscores instead of hyphens
-    set -l latest_version (string replace --all '-' '_' $latest_version)
-    set -l current_version (string replace --all '-' '_' $current_version)
+    set -l latest_version (string replace --all '-' '~' $latest_version)
+    set -l current_version (string replace --all '-' '~' $current_version)
     sd "(Version\\:\\s*)$current_version" "\${1}$latest_version" $v
   end && echo 'Done!'
 else
