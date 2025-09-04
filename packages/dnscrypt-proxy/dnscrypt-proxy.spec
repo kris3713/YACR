@@ -3,7 +3,7 @@
 %global         debug_package %{nil}
 
 Name:           dnscrypt-proxy
-Version:        2.1.13
+Version:        2.1.14
 Release:        1%{?dist}
 Summary:        Flexible DNS proxy, with support for encrypted DNS protocols
 
