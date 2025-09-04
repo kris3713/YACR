@@ -68,7 +68,9 @@ cd ..
   %{buildroot}%{_bindir}/generate-domains-blocklist
 
 # Installing required config files
-for file_part in '%{name}' 'allowed-ips' 'allowed-names' 'blocked-ips' 'blocked-names' 'captive-portals' 'cloaking-rules' 'forwarding-rules'; do
+%__install -Dm 0644 ./%{name}/example-%{name}.toml %{buildroot}/etc/%{name}/%{name}.toml
+
+for file_part in 'allowed-ips' 'allowed-names' 'blocked-ips' 'blocked-names' 'captive-portals' 'cloaking-rules' 'forwarding-rules'; do
   %__install -Dm 0644 "./%{name}/example-$file_part.txt" "%{buildroot}/etc/%{name}/$file_part.txt"
 done
 
