@@ -14,13 +14,9 @@ fi
 
 # The reason for installing uv from pip is
 # because it provides the latest version, unlike nixpkgs
-echo '> pip install uv --user'
-pip install uv --user
-
 if ! command -v uv &> /dev/null; then
-  #shellcheck disable=SC2016
-  echo '`uv` not found, please install it first'
-  exit 1
+  echo '> pip install uv --user'
+  pip install uv --user
 fi
 
 echo '> cd ./scripts'
