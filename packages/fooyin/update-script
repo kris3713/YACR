@@ -3,11 +3,13 @@
 set -l script_dir (status dirname)
 set -l basename (basename "$script_dir")
 
+source "$script_dir/../constants.fish"
+
 echo "Updating '$basename'"
 
 set -l url 'https://api.github.com/repos/fooyin/fooyin/releases/latest'
 set -l libvgm_url 'https://api.github.com/repos/fooyin/fooyin/contents/3rdparty/libvgm'
-set -l regex 'v([\\d.]+)'
+set -l regex "v$VERSION_REGEX"
 set -l sha1_regex '([\\w]{40})'
 set -l jsonpath '$.tag_name'
 
@@ -22,7 +24,7 @@ end
 
 set -l latest_libvgm_sha1 ("$script_dir/../../scripts/parse-json" $libvgm_url $sha1_regex '$.sha')
 
-set -l current_version (cat "$script_dir/$basename.spec" | rg -or '$1' 'Version:\\s*([\\d.]+)')
+set -l current_version (cat "$script_dir/$basename.spec" | rg -or '$1' "Version:\\s*$VERSION_REGEX")
 
 set -l current_libvgm_sha1 (cat "$script_dir/$basename.spec" | rg -or '$1' 'libvgm_sha1\\s([\\w]{40})')
 

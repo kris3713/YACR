@@ -3,10 +3,12 @@
 set -l script_dir (status dirname)
 set -l basename (basename "$script_dir")
 
+source "$script_dir/../constants.fish"
+
 echo "Updating '$basename'"
 
 set -l url 'https://www.xnview.com/en/xnconvert/'
-set -l regex 'Version\\s([\\d.]+)'
+set -l regex "Version\\s$VERSION_REGEX"
 set -l xpath '//div/p[@class="carousel-description"]/span[@class="text-muted"]'
 
 echo 'Executing the `parse-html` script'
@@ -20,7 +22,7 @@ end
 
 set -l latest_major (echo $latest_version | cut -d. -f1)
 
-set -l current_version (cat "$script_dir/$basename.spec" | rg -or '$1' 'Version:\\s*([\\d.]+)')
+set -l current_version (cat "$script_dir/$basename.spec" | rg -or '$1' "Version:\\s*$VERSION_REGEX")
 
 set -l current_major (echo $current_version | cut -d. -f1)
 

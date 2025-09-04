@@ -3,6 +3,8 @@
 set -l script_dir (status dirname)
 set -l basename (basename "$script_dir")
 
+source "$script_dir/../constants.fish"
+
 echo "Updating '$basename'"
 
 set -l url 'https://api.github.com/repos/TermoraDev/termora/releases/latest'
@@ -18,7 +20,7 @@ if test -z "$latest_version"
   exit 1
 end
 
-set -l current_version (cat "$script_dir/$basename.spec" | rg -or '$1' 'Version:\\s*([\\d.]+)')
+set -l current_version (cat "$script_dir/$basename.spec" | rg -or '$1' "Version:\\s*$VERSION_REGEX")
 
 echo 'Comparing the current version ($current_version) with the latest version ($latest_version)'
 echo "Current version: $current_version"
