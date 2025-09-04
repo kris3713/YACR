@@ -68,22 +68,23 @@ cd ..
   %{buildroot}%{_bindir}/generate-domains-blocklist
 
 # Installing required config files
-%__install -Dm 0644 ./dnscrypt-proxy/example-dnscrypt-proxy.toml %{buildroot}/etc/%{name}/dnscrypt-proxy.toml
-%__install -Dm 0644 ./dnscrypt-proxy/example-allowed-ips.txt %{buildroot}/etc/%{name}/allowed-ips.txt
-%__install -Dm 0644 ./dnscrypt-proxy/example-allowed-names.txt  %{buildroot}/etc/%{name}/allowed-names.txt
-%__install -Dm 0644 ./dnscrypt-proxy/example-blocked-ips.txt  %{buildroot}/etc/%{name}/blocked-ips.txt
-%__install -Dm 0644 ./dnscrypt-proxy/example-blocked-names.txt  %{buildroot}/etc/%{name}/blocked-names.txt
-%__install -Dm 0644 ./dnscrypt-proxy/example-captive-portals.txt  %{buildroot}/etc/%{name}/captive-portals.txt
-%__install -Dm 0644 ./dnscrypt-proxy/example-cloaking-rules.txt  %{buildroot}/etc/%{name}/cloaking-rules.txt
-%__install -Dm 0644 ./dnscrypt-proxy/example-forwarding-rules.txt  %{buildroot}/etc/%{name}/forwarding-rules.txt
+for file_part in '%{name}' 'allowed-ips' 'allowed-names' 'blocked-ips' 'blocked-names' 'captive-portals' 'cloaking-rules' 'forwarding-rules'; do
+  %__install -Dm 0644 "./%{name}/example-$file_part.txt" "%{buildroot}/etc/%{name}/$file_part.txt"
+done
 
 %post
-dnscrypt-proxy -service uninstall
-dnscrypt-proxy -service install -config /etc/%{name}/%{name}.toml
-echo "dnscrypt-proxy service has been installed to '/etc/systemd/system/dnscrypt-proxy.service'"
-echo -e "\ndnscrypt-proxy configuration files can be found in the '/etc/%{name}' directory"
+# Check if the user is installing the package
+if [ $1 -eq 1 ]; then
+  dnscrypt-proxy -service install -config /etc/%{name}/%{name}.toml
+  echo "dnscrypt-proxy service has been installed to '/etc/systemd/system/%{name}.service'"
+else
+  echo 'Be sure to restart the %{name} systemd service after upgrading!'
+fi
+
+echo -e "\n%{name} configuration files can be found in the '/etc/%{name}' directory"
 
 %preun
+# Check if the user is removing the package
 if [ $1 -eq 0 ]; then
   dnscrypt-proxy -service stop
   dnscrypt-proxy -service uninstall
@@ -91,15 +92,6 @@ if [ $1 -eq 0 ]; then
   echo 'Reloading systemd daemon...'
   systemctl daemon-reload
 fi
-
-# %postun
-# dnscrypt-proxy -service stop
-# rm -rfv /etc/systemd/system/dnscrypt-proxy.service
-# %systemd_postun_with_restart dnscrypt-proxy.service
-#
-# %posttrans
-# dnscrypt-proxy -service stop
-# rm -rfv /etc/systemd/system/dnscrypt-proxy.service
 
 %files
 %{_bindir}/%{name}
