@@ -1,15 +1,16 @@
 set -e
 
-BOLD=$(tput bold)
-RESET=$(tput sgr0)
-RED=$(tput setaf 1)
-YELLOW=$(tput setaf 3)
+RESET='\033[0m'
+RED='\033[0;31m'
+BOLD_RED='\033[1;31m'
+# YELLOW='\033[0;33m'
+BOLD_YELLOW='\033[1;33m'
 
 if ! command -v pip &> /dev/null; then
-  echo "${BOLD}${RED}ERROR: ${RESET}${RED}\`pip\` not found, please install it first$RESET"
+  echo -e "${BOLD_RED}ERROR: ${RESET}${RED}\`pip\` not found, please install it first$RESET"
   exit 1
 elif ! command -v python &> /dev/null; then
-  echo "${BOLD}${RED}ERROR: ${RESET}${RED}\`python\` not found, please install it first$RESET"
+  echo -e "${BOLD_RED}ERROR: ${RESET}${RED}\`python\` not found, please install it first$RESET"
   exit 1
 fi
 
@@ -21,7 +22,7 @@ if ! command -v uv &> /dev/null; then
 fi
 
 if [ ! -d './scripts/.venv' ]; then
-  echo "${BOLD}${YELLOW}Installing Python packages...$RESET"
+  echo -e "${BOLD_YELLOW}Installing Python packages...$RESET"
   echo '> cd ./scripts'
   cd ./scripts
   echo '> uv venv'
@@ -34,12 +35,12 @@ if [ ! -d './scripts/.venv' ]; then
   cd ..
 fi
 
-echo "${BOLD}${YELLOW}Updating package versions...$RESET"
+echo -e "${BOLD_YELLOW}Updating package versions...$RESET"
 
 for i in 'fd' 'sd' 'rg' 'fish'; do
   if ! command -v $i &> /dev/null; then
     #shellcheck disable=SC2016
-    echo "${BOLD}${RED}ERROR: ${RESET}${RED}\`$i\` not found, please install it first$RESET"
+    echo -e "${BOLD_RED}ERROR: ${RESET}${RED}\`$i\` not found, please install it first$RESET"
     exit 1
   fi
 done
