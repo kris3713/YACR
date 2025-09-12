@@ -1,7 +1,5 @@
 #!/usr/bin/env fish
 
-source '../constants.fish'
-
 set -l script_dir (status dirname)
 set -l basename (basename "$script_dir")
 
