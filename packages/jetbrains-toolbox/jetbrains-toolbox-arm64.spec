@@ -6,7 +6,7 @@
 %global         debug_package %{nil}
 
 Name:           %{fullname}-arm64
-Version:        2.8.1.52155
+Version:        2.9.0.56191
 Release:        1%{?dist}
 Summary:        Manage your JetBrains IDEs and Tools the easy way
 
