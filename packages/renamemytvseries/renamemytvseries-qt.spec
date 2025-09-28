@@ -5,7 +5,7 @@
 %global         debug_package %{nil}
 
 Name:           %{fullname}-qt
-Version:        2.3.11
+Version:        2.3.12
 Release:        1%{?dist}
 Summary:        Rename My TV Series 2 (Qt5 version)
 
