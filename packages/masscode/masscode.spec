@@ -4,7 +4,7 @@
 %global         debug_package %{nil}
 
 Name:           masscode
-Version:        4.1.0
+Version:        4.2.0
 Release:        1%{?dist}
 Summary:        A free and open source code snippets manager for developers
 
