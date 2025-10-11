@@ -21,7 +21,7 @@ Source1:        %{rel_url}/raw/refs/heads/main/LICENSE.txt
 # Source2:        https://github.com/harmonoid/harmonoid/raw/refs/tags/v0.3.10/LICENSE
 
 BuildRequires:  fd-find
-Requires:       mpv mpv-devel mpv-libs
+Requires:       mpv mpv-libs
 
 ExclusiveArch:  x86_64
 
