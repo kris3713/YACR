@@ -50,10 +50,10 @@ pnpm run build
 %__ln_s /opt/%{app_name}/%{name} %{buildroot}%{_bindir}
 
 # Install the application icon
-%__install -Dm 0644 ./config/icons/256x256.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{name}.png
+%__install -Dm 0644 ./build/icons/256x256.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{name}.png
 
 # Install the pixmap
-%__install -Dm 0644 ./config/icons/256x256.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
+%__install -Dm 0644 ./build/icons/256x256.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
 
 %files
 /opt/%{app_name}
