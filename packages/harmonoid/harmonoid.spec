@@ -18,10 +18,9 @@ URL:            https://harmonoid.com/
 
 Source0:        %{rel_url}/releases/download/v%{version}/harmonoid-linux-x86_64.tar.gz
 Source1:        %{rel_url}/raw/refs/heads/main/LICENSE.txt
-# Source2:        https://github.com/harmonoid/harmonoid/raw/refs/tags/v0.3.10/LICENSE
 
 BuildRequires:  fd-find
-Requires:       mpv mpv-libs
+Requires:       mpv mpv-libs (ffmpeg-devel or ffmpeg-free-devel)
 
 ExclusiveArch:  x86_64
 
