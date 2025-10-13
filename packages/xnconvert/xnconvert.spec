@@ -6,7 +6,7 @@
 %global         debug_package %{nil}
 
 Name:           xnconvert
-Version:        1.105.0
+Version:        1.106.0
 Release:        1%{?dist}
 Summary:        XnConvert is a fast, powerful and free cross-platform batch image converter.
 
