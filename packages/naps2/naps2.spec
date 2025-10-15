@@ -68,8 +68,11 @@ unset DOTNET_CLI_TELEMETRY_OPTOUT
 # Remove executables from /opt/%{app_name}/sosdocsunix.txt
 %__chmod 0644 %{buildroot}/opt/%{app_name}/sosdocsunix.txt
 
-# Ensure the tesseract binary is executable
-%__chmod 0755 %{buildroot}/opt/%{app_name}/_linux/tesseract
+# The tesseract binary is not included in the arm64 build
+if [ '%{rel_type}' != 'linux-arm64' ]; then
+  # Ensure the tesseract binary is executable
+  %__chmod 0755 %{buildroot}/opt/%{app_name}/_linux/tesseract
+fi
 
 # Install the desktop file
 %__install -Dm 0644 ./%{app_name}.Setup/config/linux/%{fullname}.desktop \
