@@ -17,6 +17,7 @@
 * `detect-it-easy`
 * `devtoys-cli`
 * `devtoys`
+* `dnscrypt-proxy`
 * `fooyin`
 * `harmonoid`
 * `jetbrains-toolbox-arm64`
@@ -27,7 +28,7 @@
 * `masscode`
 * `naps2`
 * `pdfstudioviewer`
-* `picocrypt`
+* `picocrypt-ng`
 * `postman-arm64`
 * `postman`
 * `rename-my-tv-series`
