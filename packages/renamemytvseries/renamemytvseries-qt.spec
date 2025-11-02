@@ -58,7 +58,7 @@ formats and can help organize your media files.
 %__install -D -m 0644 ./icons/512x512.png %{buildroot}%{_datadir}/icons/hicolor/512x512/apps/%{app_name}.png
 
 %post
-if [ -e /opt/%{app_name}/ffprobe ]; then
+if [ ! -e /opt/%{app_name}/ffprobe ]; then
   ln -sv $(command -v ffprobe) /opt/%{app_name}/ffprobe
 fi
 
