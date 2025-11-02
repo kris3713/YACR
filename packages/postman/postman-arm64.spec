@@ -47,7 +47,7 @@ streamlines collaboration so you can create better APIs faster.
 %__ln_s /opt/%{app_name}/%{fullname} %{buildroot}%{_bindir}
 
 # Install application icon
-%__install -Dm 0644 ./icons/icon_128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{fullname}.png
+%__install -Dm 0644 ./app/resources/app/assets/icon.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{fullname}.png
 
 %files
 /opt/%{app_name}
