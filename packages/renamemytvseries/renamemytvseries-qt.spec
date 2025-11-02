@@ -17,8 +17,7 @@ Source1:        %{fullname}.desktop
 
 ExclusiveArch:  x86_64
 
-Requires:       qt5pas openssl-devel libsq3-devel
-Recommends:     ffmpeg
+Requires:       qt5pas openssl-devel libsq3-devel (ffmpeg or ffmpeg-free)
 
 Conflicts:      %{fullname}-gtk
 
@@ -57,6 +56,11 @@ formats and can help organize your media files.
 %__install -D -m 0644 ./icons/128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{app_name}.png
 %__install -D -m 0644 ./icons/256x256.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{app_name}.png
 %__install -D -m 0644 ./icons/512x512.png %{buildroot}%{_datadir}/icons/hicolor/512x512/apps/%{app_name}.png
+
+%post
+if [ -e /opt/%{app_name}/ffprobe ]; then
+  ln -sv $(command -v ffprobe) /opt/%{app_name}/ffprobe
+fi
 
 %files
 /opt/%{app_name}
