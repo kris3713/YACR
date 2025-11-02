@@ -62,6 +62,11 @@ if [ -e /opt/%{app_name}/ffprobe ]; then
   ln -sv $(command -v ffprobe) /opt/%{app_name}/ffprobe
 fi
 
+%preun
+if [ $1 -eq 0 ]; then
+  rm /opt/%{app_name}/ffprobe
+fi
+
 %files
 /opt/%{app_name}
 %{_bindir}/%{app_name}
