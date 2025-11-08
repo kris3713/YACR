@@ -2,7 +2,7 @@
 %global         debug_package %{nil}
 
 Name:           tixati
-Version:        3.38
+Version:        3.39
 Release:        1%{?dist}
 Summary:        Tixati is a peer-to-peer file sharing program that uses the popular BitTorrent protocol
 
