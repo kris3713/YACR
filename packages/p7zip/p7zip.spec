@@ -12,6 +12,8 @@ Source:        %{url}/archive/refs/tags/v%{version}.tar.gz
 
 BuildRequires: gcc-c++ yasm cmake ninja-build devscripts
 
+ExclusiveArch:  x86_64
+
 %description
 p7zip is a port of 7za.exe for Unix. 7-Zip is a file archiver with a very high
 compression ratio. The original version can be found at http://www.7-zip.org/.
