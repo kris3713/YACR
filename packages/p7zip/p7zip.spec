@@ -1,16 +1,16 @@
-%global        debug_package %{nil}
+%global         debug_package %{nil}
 
-Name:          p7zip
-Version:       17.06
-Release:       1%{?dist}
-Summary:       Very high compression ratio file archiver
+Name:           p7zip
+Version:        17.06
+Release:        1%{?dist}
+Summary:        Very high compression ratio file archiver
 
-License:       LGPLv2 and (LGPLv2+ or CPL)
-URL:           https://github.com/p7zip-project/p7zip
+License:        LGPLv2 and (LGPLv2+ or CPL)
+URL:            https://github.com/p7zip-project/p7zip
 
-Source:        %{url}/archive/refs/tags/v%{version}.tar.gz
+Source:         %{url}/archive/refs/tags/v%{version}.tar.gz
 
-BuildRequires: gcc-c++ yasm cmake ninja-build devscripts
+BuildRequires:  gcc-c++ yasm cmake ninja-build devscripts
 
 ExclusiveArch:  x86_64
 
