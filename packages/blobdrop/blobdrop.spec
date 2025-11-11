@@ -13,7 +13,7 @@ Summary:        Drag and drop files directly out of the terminal
 License:        GPL-3.0
 URL:            https://github.com/vimpostor/blobdrop
 
-Source0:        %{url}/archive/refs/tags/v2.1.tar.gz
+Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 Source1:        %{name}.desktop
 
 BuildRequires:  qt6-qttools-devel qt-devel qt6-qtdeclarative-devel qt6-qtsvg-devel xcb-util-wm-devel
