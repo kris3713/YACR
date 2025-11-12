@@ -46,26 +46,10 @@ jobs:
           git config --local user.email $EMAIL
           echo '> git add -u'
           git add -u
-          # Get the list of staged files
-          STAGED_FILES=$(git diff --cached --name-only)
 
-          if [ -n "$STAGED_FILES" ]; then
-            echo "> commit_message=''"
-            commit_message=''
-
-            # Check if only flake.lock was updated
-            if [ "$STAGED_FILES" == 'flake.lock' ]; then
-              echo "> commit_message='bot: Updated \`flake.lock\`'"
-              commit_message='bot: Updated `flake.lock`'
-            else
-              echo "> CURRENT_TIME=\$(date +'%Y-%m-%d %H:%M:%S')"
-              CURRENT_TIME=$(date +'%Y-%m-%d %H:%M:%S')
-              echo '> commit_message="bot: Updated packages at $CURRENT_TIME UTC"'
-              commit_message="bot: Updated packages at $CURRENT_TIME UTC"
-            fi
-
-            echo '> git commit -m "$commit_message"'
-            git commit -m "$commit_message"
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "> git commit -m 'bot: Updated \`packages/README.md\`'"
+            git commit -m 'bot: Updated `packages/README.md`'
           fi
 
       - name: 'Push changes'
