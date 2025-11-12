@@ -1,12 +1,12 @@
 set -e
 
-echo -e "${YELLOW}Setting up Python environment...$RESET"
-
 RESET='\033[0m'
 RED='\033[0;31m'
 BOLD_RED='\033[1;31m'
 YELLOW='\033[0;33m'
 BOLD_YELLOW='\033[1;33m'
+
+echo -e "\n${YELLOW}Setting up Python environment...$RESET"
 
 if ! command -v pip &> /dev/null; then
   echo -e "${BOLD_RED}ERROR: ${RESET}${RED}\`pip\` not found, please install it first$RESET"
