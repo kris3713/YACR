@@ -22,6 +22,7 @@
 * `harmonoid`
 * `jetbrains-toolbox-arm64`
 * `jetbrains-toolbox`
+* `jq`
 * `localsend-arm64`
 * `localsend`
 * `lrcget`
