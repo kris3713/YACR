@@ -27,10 +27,12 @@
 * `lrcget`
 * `masscode`
 * `naps2`
+* `p7zip`
 * `pdfstudioviewer`
 * `picocrypt-ng`
 * `postman-arm64`
 * `postman`
+* `rar`
 * `rename-my-tv-series`
 * `renamemytvseries-gtk`
 * `renamemytvseries-qt`
