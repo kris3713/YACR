@@ -1,6 +1,8 @@
 set -e
 
-source ./setup-python-env.sh
+SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
+
+source "$SCRIPT_DIR/setup-python-env.sh"
 
 echo -e "${BOLD_YELLOW}Updating package versions...$RESET"
 
