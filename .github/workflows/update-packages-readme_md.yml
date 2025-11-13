@@ -29,7 +29,7 @@ jobs:
       - name: 'Update README.md in packages directory'
         shell: bash
         run: |
-          echo -e "> nix develop -c bash 'source ./scripts/setup-python-env.sh && ./scripts/generate-pkg-list-readme'"
+          echo -e "> nix develop -c bash -c 'source ./scripts/setup-python-env.sh && ./scripts/generate-pkg-list-readme'"
           nix develop -c bash -c 'source ./scripts/setup-python-env.sh && ./scripts/generate-pkg-list-readme'
 
       - name: 'Commit changes'
