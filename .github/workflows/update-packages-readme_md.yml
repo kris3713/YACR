@@ -8,7 +8,7 @@ on:
   workflow_dispatch: # Allows manual triggering of the workflow
 
 jobs:
-  update-packages:
+  update-packages-readme_md:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -31,8 +31,10 @@ jobs:
         run: |
           echo "> command='source ./scripts/setup-python-env.sh && ./scripts/generate-pkg-list-readme'"
           command='source ./scripts/setup-python-env.sh && ./scripts/generate-pkg-list-readme'
-          echo '> nix develop --command bash -c "$command"'
-          nix develop --command bash -c "$command"
+          echo "> nix develop --command bash \
+            -c 'source ./scripts/setup-python-env.sh && ./scripts/generate-pkg-list-readme'"
+          nix develop --command bash \
+            -c 'source ./scripts/setup-python-env.sh && ./scripts/generate-pkg-list-readme'
 
       - name: 'Commit changes'
         shell: bash
