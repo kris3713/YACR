@@ -1,5 +1,5 @@
 %global         debug_package %{nil}
-%global         version_no_dots 712
+%global         version_no_dots %%(echo %{version} | tr -d '.')
 
 Name:           rar
 Version:        7.12
