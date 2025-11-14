@@ -20,7 +20,7 @@ if test -z "$latest_version"
   exit 1
 end
 
-set -l current_version (cat "$script_dir/$basename.spec" | rg -or '$1' "Version:\\s*$ALPHA_NUM_VERSION_REGEX_EXTRA")
+set -l current_version (cat "$script_dir/$basename.spec" | rg -or '$1' "real_version\\s$ALPHA_NUM_VERSION_REGEX_EXTRA")
 
 echo 'Comparing the current version ($current_version) with the latest version ($latest_version)'
 echo "Current version: $current_version"
