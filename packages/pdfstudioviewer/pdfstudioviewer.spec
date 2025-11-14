@@ -2,9 +2,9 @@
 %global         __requires_exclude_from ^/opt/%{fullname}/.*$
 %global         __spec_install_post %{nil}
 %global         __os_install_post %{_dbpath}/brp-compress
-%global         year 2024
-%global         underscore_version 2024_0_1
-%global         fullname pdfstudioviewer%{year}
+%global         year %%(echo %{version} | cut -d. -f1)
+%global         underscore_version %%(echo %{version} | tr '.' '_')
+%global         fullname %{name}%{year}
 %global         debug_package %{nil}
 
 Name:           pdfstudioviewer

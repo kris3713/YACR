@@ -20,13 +20,7 @@ if test -z "$latest_version"
   exit 1
 end
 
-set -l latest_year (echo $latest_version | cut -d. -f1)
-set -l latest_underscore_version (string replace --all '.' '_' $latest_version)
-
 set -l current_version (cat "$script_dir/$basename.spec" | rg -or '$1' "Version:\\s*$VERSION_REGEX")
-
-set -l current_year (echo $current_version | cut -d. -f1)
-set -l current_underscore_version (string replace --all '.' '_' $current_version)
 
 echo 'Comparing the current version ($current_version) with the latest version ($latest_version)'
 echo "Current version: $current_version"
@@ -34,8 +28,6 @@ echo "Latest version: $latest_version"
 if test "$current_version" != "$latest_version"
   echo 'Versions are different. Updating the spec file(s)...'
   for v in (fd --glob '*.spec' $script_dir)
-    sd -F "year $current_year" "year $latest_year" $v
-    sd -F "underscore_version $current_underscore_version" "underscore_version $latest_underscore_version" $v
     sd "(Version\\:\\s*)$current_version" "\${1}$latest_version" $v
   end && echo 'Done!'
 else
