@@ -20,11 +20,7 @@ if test -z "$latest_version"
   exit 1
 end
 
-set -l latest_major (echo $latest_version | cut -d. -f1)
-
 set -l current_version (cat "$script_dir/$basename.spec" | rg -or '$1' "Version:\\s*$VERSION_REGEX")
-
-set -l current_major (echo $current_version | cut -d. -f1)
 
 echo 'Comparing the current version ($current_version) with the latest version ($latest_version)'
 echo "Current version: $current_version"
@@ -32,7 +28,6 @@ echo "Latest version: $latest_version"
 if test "$current_version" != "$latest_version"
   echo 'Versions are different. Updating the spec file(s)...'
   for v in (fd --glob '*.spec' $script_dir)
-    sd -F "major $current_major" "major $latest_major" $v
     sd "(Version\\:\\s*)$current_version" "\${1}$latest_version" $v
   end && echo 'Done!'
 else
