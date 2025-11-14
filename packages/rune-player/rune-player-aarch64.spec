@@ -6,7 +6,6 @@
 %global         __provides_exclude_from ^/opt/%{name}/.*$
 %global         __requires_exclude_from ^/opt/%{name}/.*$
 %global         pkg_arch %arm64
-%global         real_version 2.0.0-alpha.8
 %global         debug_package %{nil}
 
 Name:           rune-player-%{pkg_arch}
@@ -17,11 +16,11 @@ Summary:        The audio player that blends classic design with modern technolo
 License:        MPL-2.0
 URL:            %{git_url}
 
-Source0:        %{git_url}/releases/download/v%{real_version}/Rune-v%{real_version}-linux-%{pkg_arch}.zip
+Source0:        %{git_url}/releases/download/v%{version}/Rune-v%{version}-linux-%{pkg_arch}.zip
 
 BuildRequires:  fd-find
 
-ExclusiveArch:  %arm64
+ExclusiveArch:  %{pkg_arch}
 
 %description
 Rune Player is a music player that offers audio analysis and recommendation features.

@@ -28,10 +28,6 @@ echo "Latest version: $latest_version"
 if test "$current_version" != "$latest_version"
   echo 'Versions are different. Updating the spec file(s)...'
   for v in (fd --glob '*.spec' $script_dir)
-    sd -F "real_version $current_version" "real_version $latest_version" $v
-    # Reassign the variables to use underscores instead of hyphens
-    set -l latest_version (string replace --all '-' '~' $latest_version)
-    set -l current_version (string replace --all '-' '~' $current_version)
     sd "(Version\\:\\s*)$current_version" "\${1}$latest_version" $v
   end && echo 'Done!'
 else
