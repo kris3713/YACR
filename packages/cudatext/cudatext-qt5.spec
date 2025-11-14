@@ -17,7 +17,6 @@ URL:            https://cudatext.github.io/
 Source0:        https://sourceforge.net/projects/cudatext/files/release/%{version}/%{fullname}-linux-%{variant}-%{pkg_arch}-%{version}.tar.xz
 Source1:        %{fullname}.desktop
 
-BuildRequires:  zlib-ng
 Requires:       qt5-qtbase qt5-qttools
 Recommends:     python3
 
