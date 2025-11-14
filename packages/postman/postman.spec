@@ -6,7 +6,9 @@
 %global         debug_package %{nil}
 
 Name:           %{fullname}
-Version:        11.70.6
+# Postman sometimes likes to include a hypen in the version number,
+# which is not allowed in RPM version numbers. This is a workaround for that.
+Version:        %(echo %{real_version} | tr '-' '~')
 Release:        1%{?dist}
 Summary:        Postman - Platform for building and using APIs
 
