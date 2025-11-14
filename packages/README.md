@@ -5,6 +5,7 @@
 # Packages available for installation
 
 * `ab-download-manager`
+* `adwaita-fonts`
 * `asdf`
 * `blobdrop`
 * `cudatext-aarch64`
