@@ -2,7 +2,7 @@
   description = "A flake for development and GitHub Actions";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.*";
   };
 
   outputs =
@@ -13,8 +13,7 @@
 
     let
       system = "x86_64-linux";
-      legacyPackages = nixpkgs.legacyPackages;
-      pkgs = legacyPackages.${system};
+      pkgs = nixpkgs.legacyPackages.${system};
     in
     {
       # Define a devShell that provides all the required tools
