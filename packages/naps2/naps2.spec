@@ -21,6 +21,7 @@ License:        GPL-2.0-or-later
 URL:            https://www.naps2.com/
 
 Source0:        https://github.com/cyanfish/naps2/archive/refs/tags/v%{version}.tar.gz
+Source1:        %{name}.console
 
 BuildRequires:  dotnet-sdk-9.0 liberation-fonts-all google-noto-fonts-common google-noto-sans-cjk-vf-fonts
 Requires:       dotnet-host dotnet-runtime-9.0
@@ -83,6 +84,9 @@ fi
 
 # Create a symlink to the application binary
 %__ln_s /opt/%{app_name}/%{name} %{buildroot}%{_bindir}
+
+# Install the wrapper script for the NAPS2 console
+%__install -Dm 0755 ./%{name}.console -t %{buildroot}%{_bindir}
 
 # Install the application icons
 %__install -Dm 0644 ./%{app_name}.Setup/config/windows/msix/Assets/scanner-150.png \
