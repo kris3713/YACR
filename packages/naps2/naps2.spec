@@ -102,6 +102,7 @@ fi
 %files
 /opt/%{app_name}
 %{_bindir}/%{name}
+%{_bindir}/%{name}.console
 %{_datadir}/applications/%{name}.desktop
 %{_iconsdir}/hicolor/150x150/apps/%{fullname}.png
 %{_iconsdir}/hicolor/128x128/apps/%{fullname}.png
