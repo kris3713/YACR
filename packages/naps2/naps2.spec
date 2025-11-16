@@ -86,7 +86,7 @@ fi
 %__ln_s /opt/%{app_name}/%{name} %{buildroot}%{_bindir}
 
 # Install the wrapper script for the NAPS2 console
-%__install -Dm 0755 ./%{name}.console -t %{buildroot}%{_bindir}
+%__install -Dm 0755 %{SOURCE1} -t %{buildroot}%{_bindir}
 
 # Install the application icons
 %__install -Dm 0644 ./%{app_name}.Setup/config/windows/msix/Assets/scanner-150.png \
