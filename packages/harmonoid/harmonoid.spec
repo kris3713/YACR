@@ -8,7 +8,7 @@
 %global         debug_package %{nil}
 
 Name:           harmonoid
-Version:        0.3.10
+Version:        0.3.14
 Release:        1%{?dist}
 Summary:        Plays & manages your music library. Looks beautiful & juicy.
 
