@@ -2,7 +2,7 @@
 %global         debug_package %{nil}
 
 Name:           lrcget
-Version:        1.0.1
+Version:        1.0.2
 Release:        1%{?dist}
 Summary:        Utility for mass-downloading LRC synced lyrics for your offline music library.
 
