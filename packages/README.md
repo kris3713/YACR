@@ -19,7 +19,6 @@
 * `devtoys-cli`
 * `devtoys`
 * `dnscrypt-proxy`
-* `ffmpeg`
 * `fooyin`
 * `harmonoid`
 * `jetbrains-toolbox-arm64`
