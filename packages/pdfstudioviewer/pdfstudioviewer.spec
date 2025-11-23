@@ -4,7 +4,7 @@
 %global         __os_install_post %{_dbpath}/brp-compress
 %global         year %%(echo %{version} | cut -d. -f1)
 %global         underscore_version %%(echo %{version} | tr '.' '_')
-%global         fullname %{name}%{year}
+%global         fullname %%(echo "%{name}$(echo %{version} | cut -d. -f1)")
 %global         debug_package %{nil}
 
 Name:           pdfstudioviewer
