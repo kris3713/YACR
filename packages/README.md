@@ -7,6 +7,7 @@
 * `ab-download-manager`
 * `adwaita-fonts`
 * `asdf`
+* `bitwarden`
 * `blobdrop`
 * `cudatext-aarch64`
 * `cudatext-gtk2-aarch64`
