@@ -9,7 +9,7 @@ echo "Updating '$basename'"
 
 set -l url 'https://api.github.com/repos/bitwarden/clients/releases'
 set -l regex "desktop-v$VERSION_REGEX"
-set -l jsonpath '$[contains(@.tag_name, "desktop-v")].tag_name'
+set -l jsonpath '$[?name =~ "Desktop.*"].tag_name'
 
 echo 'Executing the `parse-json` script'
 set -l latest_version ("$script_dir/../../scripts/parse-json" $url $regex $jsonpath)
