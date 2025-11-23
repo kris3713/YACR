@@ -1,3 +1,4 @@
+# Imported from https://src.fedoraproject.org/rpms/podman/blob/rawhide/f/podman.spec
 %global         with_debug 1
 
 %if 0%{?with_debug}
