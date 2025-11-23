@@ -32,6 +32,7 @@
 * `p7zip`
 * `pdfstudioviewer`
 * `picocrypt-ng`
+* `podman`
 * `postman-arm64`
 * `postman`
 * `rar`
