@@ -6,7 +6,8 @@ from logging import error
 from typing import Any
 
 import requests
-from jsonpath_ng import JSONPath, parse
+from jsonpath_ng.jsonpath import JSONPath
+from jsonpath_ng.ext import parse
 
 
 def parse_json(url: str, regex_str: str, jsonpath_expr: str):
@@ -16,10 +17,10 @@ def parse_json(url: str, regex_str: str, jsonpath_expr: str):
   regular expressions and JSONPath expressions.
   """
 
-  if jsonpath_expr.__contains__('?'):
-    error('JSONPath expression contains a question mark!')
-    error('Conditional JSONPath expressions are not supported!')
-    exit(1)
+  # if jsonpath_expr.__contains__('?'):
+  #   error('JSONPath expression contains a question mark!')
+  #   error('Conditional JSONPath expressions are not supported!')
+  #   exit(1)
 
   result = ''
 
