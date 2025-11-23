@@ -15,6 +15,8 @@ Source0:        https://github.com/%{name}/clients/releases/download/desktop-v%{
 
 BuildRequires:  dpkg
 
+ExclusiveArch:  x86_64
+
 %description
 %{summary}
 
