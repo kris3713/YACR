@@ -11,6 +11,8 @@ Summary:        A secure and free password manager for all of your devices.
 License:        GPL-3.0
 URL:            https://bitwarden.com
 
+# Not bothering trying to build from source, keep getting too much build errors
+# related to rust.
 Source0:        https://github.com/%{name}/clients/releases/download/desktop-v%{version}/%{app_name}-%{version}-amd64.deb
 
 BuildRequires:  dpkg
