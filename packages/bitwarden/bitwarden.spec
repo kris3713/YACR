@@ -4,7 +4,7 @@
 %global         debug_package %{nil}
 
 Name:           bitwarden
-Version:        2025.11.1
+Version:        2025.8.1
 Release:        1%{?dist}
 Summary:        A secure and free password manager for all of your devices.
 
