@@ -22,6 +22,9 @@ def parse_json(url: str, regex_str: str, jsonpath_expr: str):
   #   error('Conditional JSONPath expressions are not supported!')
   #   exit(1)
 
+  # TODO: Add better support for conditional JSONPath expressions
+  # and change the results from a string to a list of strings.
+  # This should return the first entry int the list.
   result = ''
 
   # Compile the regular expression from string
