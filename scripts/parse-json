@@ -25,6 +25,8 @@ def parse_json(url: str, regex_str: str, jsonpath_expr: str):
   # TODO: Add better support for conditional JSONPath expressions
   # and change the results from a string to a list of strings.
   # This should return the first entry int the list.
+  #
+  # This should also be fixed in the other repo, https://github.com/kris3713/figma-linux-copr
   result = ''
 
   # Compile the regular expression from string
