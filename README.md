@@ -1,6 +1,7 @@
 # YACR (Yet Another Copr Repository)
 
-This is a Copr repository for free/non-free packages that don't have the privilege of receiving auto-updates.
+This is a **COPR** repository for free/non-free packages that don't have the privilege
+of receiving auto-updates. Or are not available in the official Fedora repositories.
 
 ## Installation Instructions
 
