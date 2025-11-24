@@ -36,6 +36,7 @@
 * `podman`
 * `postman-arm64`
 * `postman`
+* `qman`
 * `rar`
 * `rename-my-tv-series`
 * `renamemytvseries-gtk`
