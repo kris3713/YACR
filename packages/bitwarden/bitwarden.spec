@@ -36,7 +36,7 @@ done
 %__cp -a ./opt/%{app_name} %{buildroot}/opt
 
 # Ensure chrome_crashpad_handler has the correct permissions
-%__chmod 4755 %{buildroot}/opt/%{app_name}/chrome_crashpad_handler
+%__chmod 4755 %{buildroot}/opt/%{app_name}/chrome-sandbox
 
 # Create a symbolic link to the application binary
 %__ln_s /opt/%{app_name}/%{name} -t %{buildroot}%{_bindir}
