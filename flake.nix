@@ -19,12 +19,13 @@
       # Define a devShell that provides all the required tools
       devShells.${system}.default = pkgs.mkShell {
         buildInputs = with pkgs; [
-          # rpm
-          python3
+          fish
           fd
+          # jq
+          python3
           sd
           ripgrep
-          fish
+          # yq-go
         ];
       };
     };
