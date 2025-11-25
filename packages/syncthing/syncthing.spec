@@ -256,7 +256,7 @@ This package contains the main syncthing server tools:
 export GOPATH="$(pwd)"
 # Got rid of Fedora's dumb gobuild macros because
 # they keep causing the build to fail.
-go run ./build.go -no-upgrade -version 'v%{version}' install all
+go run -v ./build.go -no-upgrade -version 'v%{version}' install all
 
 unset GOPATH
 
