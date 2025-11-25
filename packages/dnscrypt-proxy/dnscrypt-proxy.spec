@@ -4,7 +4,7 @@
 
 Name:           dnscrypt-proxy
 Version:        2.1.14
-Release:        1%{?dist}
+Release:        4%{?dist}
 Summary:        Flexible DNS proxy, with support for encrypted DNS protocols
 
 License:        ISC
