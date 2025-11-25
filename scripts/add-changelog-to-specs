@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# Find all .spec files using fd and append changelog macros to them.
+fd --extension spec | while read -r spec_file; do
+  # Check if the last non-empty line of the file is "%autochangelog"
+  if ! tail -n 1 "$spec_file" 2> /dev/null | rg -q '^%autochangelog$'; then
+    echo -e "\n%changelog\n%autochangelog" >> "$spec_file"
+  fi
+done
