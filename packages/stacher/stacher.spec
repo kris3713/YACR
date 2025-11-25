@@ -2,7 +2,7 @@
 %global         __requires_exclude_from ^/opt/%{name}/.*$
 %global         major %%(echo %{version} | cut -d. -f1)
 %global         fullname Stacher%{major}
-%global         app_name %{name}%{major}
+%global         app_name %%(echo "%{name}$(echo %{version} | cut -d. -f1)")
 %global         debug_package %{nil}
 
 Name:           stacher
