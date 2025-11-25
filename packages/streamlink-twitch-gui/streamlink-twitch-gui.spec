@@ -66,3 +66,6 @@ Built with NW.js, a web application platform powered by Chromium and Node.js.
 %{_iconsdir}/hicolor/128x128/apps/%{name}.png
 %{_iconsdir}/hicolor/256x256/apps/%{name}.png
 %license ./LICENSE.txt
+
+%changelog
+%autochangelog

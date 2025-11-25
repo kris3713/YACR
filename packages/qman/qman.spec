@@ -42,3 +42,6 @@ fast and tiny, so that it can be used everywhere.
 %dir %{_sysconfdir}/xdg/qman/themes/
 %config(noreplace) %{_sysconfdir}/xdg/qman/qman.conf
 %config(noreplace) %{_sysconfdir}/xdg/qman/themes/*.conf
+
+%changelog
+%autochangelog

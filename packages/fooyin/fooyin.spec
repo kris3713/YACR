@@ -119,3 +119,6 @@ ldconfig
 %{_datadir}/%{name}/translations
 %config(noreplace) %{_sysconfdir}/ld.so.conf.d/%{name}.conf
 %license ./COPYING
+
+%changelog
+%autochangelog

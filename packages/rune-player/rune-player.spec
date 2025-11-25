@@ -59,3 +59,6 @@ fd -e spec . %{buildroot}%{_iconsdir}/hicolor --exec %__chmod 0644 {}
 %{_datadir}/applications/rune.desktop
 %{_metainfodir}/rune.metainfo.xml
 %{_iconsdir}/hicolor/*
+
+%changelog
+%autochangelog

@@ -64,3 +64,6 @@ BuildArch:      noarch
 %fontinstall -a
 
 %fontfiles -a
+
+%changelog
+%autochangelog

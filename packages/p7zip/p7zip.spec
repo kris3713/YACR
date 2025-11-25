@@ -89,3 +89,6 @@ rmdir %{buildroot}%{_docdir}/p7zip/DOC/
 %{_libexecdir}/p7zip/7z.so
 %{_libexecdir}/p7zip/Codecs/Rar.so
 %{_mandir}/man1/7z.1*
+
+%changelog
+%autochangelog

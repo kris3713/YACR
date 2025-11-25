@@ -58,3 +58,6 @@ dpkg -x %{SOURCE0} .
 /opt/%{fullname}
 %{_datadir}/applications/%{name}.desktop
 %{_iconsdir}/hicolor/128x128/apps/%{name}.png
+
+%changelog
+%autochangelog

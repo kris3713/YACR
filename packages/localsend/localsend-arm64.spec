@@ -66,3 +66,6 @@ export QA_RPATHS=$[ 0x0002 | 0x0010 ]
 %{_iconsdir}/hicolor/128x128/apps/%{realname}.png
 %{_iconsdir}/hicolor/256x256/apps/%{realname}.png
 %{_iconsdir}/hicolor/512x512/apps/%{realname}.png
+
+%changelog
+%autochangelog

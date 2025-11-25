@@ -62,3 +62,6 @@ fi
 %{_bindir}/%{fullname}
 %{_datadir}/applications/%{fullname}.desktop
 %{_iconsdir}/hicolor/scalable/apps/%{fullname}.svg
+
+%changelog
+%autochangelog

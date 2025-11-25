@@ -62,3 +62,6 @@ intuitively selects the best tool for the data on your clipboard.
 %{_iconsdir}/hicolor/scalable/apps/%{fullname}.svg
 %{_iconsdir}/hicolor/512x512/apps/%{fullname}.png
 %license ./LICENSE.md
+
+%changelog
+%autochangelog

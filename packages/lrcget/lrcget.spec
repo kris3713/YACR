@@ -63,3 +63,6 @@ npm run tauri build -- --no-bundle
 %{_iconsdir}/hicolor/256x256/apps/%{app_name}.png
 %{_iconsdir}/hicolor/512x512/apps/%{app_name}.png
 %license ./LICENSE
+
+%changelog
+%autochangelog

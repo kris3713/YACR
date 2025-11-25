@@ -60,3 +60,6 @@ Features:
 %{_bindir}/%{app_name}
 %{_datadir}/applications/%{fullname}.desktop
 %{_iconsdir}/hicolor/1024x1024/apps/%{app_name}.png
+
+%changelog
+%autochangelog

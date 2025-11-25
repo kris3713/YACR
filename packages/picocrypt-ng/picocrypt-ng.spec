@@ -52,3 +52,6 @@ cd ..
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_iconsdir}/hicolor/scalable/apps/%{name}.svg
+
+%changelog
+%autochangelog

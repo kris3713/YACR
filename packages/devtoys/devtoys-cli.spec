@@ -46,3 +46,6 @@ intuitively selects the best tool for the data on your clipboard.
 /opt/%{name}
 %{_bindir}/DevToys
 %license ./LICENSE.md
+
+%changelog
+%autochangelog

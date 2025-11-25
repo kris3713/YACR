@@ -91,3 +91,6 @@ cd ..
 %{_datadir}/icons/hicolor/48x48/apps/%{name}.png
 %{_datadir}/icons/hicolor/256x256/apps/%{name}.png
 %license ./LICENSE
+
+%changelog
+%autochangelog

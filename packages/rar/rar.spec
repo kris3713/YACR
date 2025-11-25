@@ -64,3 +64,6 @@ pod2man -c "RAR User's Manual" -n 'RAR' -r "%{name} ${version}" -s 1 ./%{name}.1
 %{_mandir}/man1/un%{name}.1.gz
 /etc/rarfiles.lst
 %license ./acknow.txt ./license.txt
+
+%changelog
+%autochangelog

@@ -62,3 +62,6 @@ pnpm run build
 %{_datadir}/icons/hicolor/256x256/apps/%{name}.png
 %{_datadir}/pixmaps/%{name}.png
 %license ./LICENSE
+
+%changelog
+%autochangelog

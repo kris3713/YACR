@@ -51,3 +51,6 @@ ExclusiveArch:  x86_64
 %{_iconsdir}/hicolor/64x64/apps/%{name}.png
 %license ./tixati_eula.txt
 %doc ./README.txt
+
+%changelog
+%autochangelog

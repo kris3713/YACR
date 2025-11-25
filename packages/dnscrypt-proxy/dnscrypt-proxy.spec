@@ -106,3 +106,6 @@ fi
 %ghost /var/cache/%{name}
 %license ./LICENSE
 %doc ./README.md ./ChangeLog ./utils/generate-domains-blocklist
+
+%changelog
+%autochangelog

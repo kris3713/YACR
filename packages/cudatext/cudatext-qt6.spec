@@ -65,3 +65,6 @@ Syntax parser is feature-rich, from EControl engine.
 %{_datadir}/applications/%{fullname}.desktop
 %{_datadir}/icons/hicolor/512x512/apps/%{fullname}-512.png
 %license ./readme/license.%{app_name}.txt
+
+%changelog
+%autochangelog

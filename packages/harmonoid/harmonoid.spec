@@ -88,3 +88,6 @@ fd -e spec . %{buildroot}%{_iconsdir}/hicolor --exec %__chmod 0644 {}
 %{_iconsdir}/hicolor/*
 %{_metainfodir}/%{name}.appdata.xml
 %license ./LICENSE.txt
+
+%changelog
+%autochangelog

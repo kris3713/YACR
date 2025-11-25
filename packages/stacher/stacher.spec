@@ -56,3 +56,6 @@ dpkg -x %{SOURCE0} .
 %{_datadir}/applications/%{app_name}.desktop
 %{_datadir}/pixmaps/%{app_name}.png
 %{_iconsdir}/hicolor/256x256/apps/%{app_name}.png
+
+%changelog
+%autochangelog

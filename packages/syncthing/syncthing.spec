@@ -335,3 +335,6 @@ done
 %{_mandir}/man1/strelaysrv*
 %license ./LICENSE
 %doc ./README.md ./AUTHORS
+
+%changelog
+%autochangelog

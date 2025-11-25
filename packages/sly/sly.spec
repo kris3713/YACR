@@ -71,3 +71,6 @@ export QA_RPATHS=$[ 0x0002 | 0x0010 ]
 %{_iconsdir}/hicolor/scalable/apps/%{fullname}.svg
 %{_iconsdir}/hicolor/scalable/apps/%{fullname}-symbolic.svg
 %{_metainfodir}/%{fullname}.metainfo.xml
+
+%changelog
+%autochangelog

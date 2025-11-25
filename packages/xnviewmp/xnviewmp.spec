@@ -67,3 +67,6 @@ export QA_RPATHS=$[ 0x0002 | 0x0010 ]
 %{_iconsdir}/hicolor/512x512/apps/%{name}.png
 %{_iconsdir}/hicolor/512x512/apps/xnview.png
 %license ./license.txt
+
+%changelog
+%autochangelog

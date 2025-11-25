@@ -70,3 +70,6 @@ EOF
 %{python_sitelib}/%{py_name}
 %{python_sitelib}/yt_dlg-%{version}-py%{python_version}.egg-info
 %license ./LICENSE
+
+%changelog
+%autochangelog

@@ -361,3 +361,6 @@ done
 %dir %{_libexecdir}/%{name}
 %{_libexecdir}/%{name}/virtiofsd
 %endif
+
+%changelog
+%autochangelog

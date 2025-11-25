@@ -71,3 +71,6 @@ Zsh completion for asdf
 
 %files zsh-completion
 %{zsh_completions_dir}/_asdf
+
+%changelog
+%autochangelog

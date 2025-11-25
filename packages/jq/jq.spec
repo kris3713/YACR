@@ -77,3 +77,6 @@ chrpath -d %{buildroot}%{_bindir}/%{name}
 %{_includedir}/jv.h
 %{_libdir}/libjq.so
 %{_libdir}/pkgconfig/libjq.pc
+
+%changelog
+%autochangelog

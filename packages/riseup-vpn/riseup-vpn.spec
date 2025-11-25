@@ -76,3 +76,6 @@ unset PROVIDER
 %{_iconsdir}/hicolor/256x256/apps/%{name}.png
 %{_iconsdir}/hicolor/scalable/apps/%{name}.svg
 %license ./LICENSE
+
+%changelog
+%autochangelog

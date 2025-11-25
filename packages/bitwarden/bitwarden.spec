@@ -55,3 +55,6 @@ done
 %{_datadir}/applications/%{name}.desktop
 %{_iconsdir}/hicolor/*/apps/%{name}.png
 %doc .%{_datadir}/doc/%{name}
+
+%changelog
+%autochangelog

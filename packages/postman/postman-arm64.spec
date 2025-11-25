@@ -56,3 +56,6 @@ streamlines collaboration so you can create better APIs faster.
 %{_bindir}/%{fullname}
 %{_datadir}/applications/%{fullname}.desktop
 %{_datadir}/icons/hicolor/128x128/apps/%{fullname}.png
+
+%changelog
+%autochangelog

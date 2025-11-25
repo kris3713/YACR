@@ -114,3 +114,6 @@ fi
 %{_iconsdir}/hicolor/16x16/apps/%{fullname}.png
 %{_metainfodir}/%{fullname}.metainfo.xml
 %license ./LICENSE
+
+%changelog
+%autochangelog

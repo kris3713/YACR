@@ -77,3 +77,6 @@ fi
 %{_datadir}/icons/hicolor/128x128/apps/%{app_name}.png
 %{_datadir}/icons/hicolor/256x256/apps/%{app_name}.png
 %{_datadir}/icons/hicolor/512x512/apps/%{app_name}.png
+
+%changelog
+%autochangelog
