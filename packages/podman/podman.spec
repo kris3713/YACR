@@ -118,7 +118,7 @@ manipulate images (but not containers) created by the other.
 
 %package docker
 Summary:        Emulate Docker CLI using %{name}
-BuildArch: noarch
+BuildArch:      noarch
 Requires:       %{name} = %{epoch}:%{version}-%{release}
 Conflicts:      docker docker-latest docker-ce docker-ee moby-engine
 
@@ -196,11 +196,11 @@ https://docs.podman.io/en/latest/markdown/podman-machine.1.html
 
 %prep
 %autosetup -Sgit -n %{name}-%{version_no_tilde}
-%__sed -i 's;@@PODMAN@@\;$(BINDIR);@@PODMAN@@\;%{_bindir};' Makefile
+%__sed -i 's;@@PODMAN@@\;$(BINDIR);@@PODMAN@@\;%{_bindir};' ./Makefile
 
 # cgroups-v1 is supported on rhel9
 %if 0%{?rhel} == 9
-%__sed -i '/DELETE ON RHEL9/,/DELETE ON RHEL9/d' libpod/runtime.go
+%__sed -i '/DELETE ON RHEL9/,/DELETE ON RHEL9/d' ./libpod/runtime.go
 %endif
 
 %build
@@ -208,9 +208,9 @@ https://docs.podman.io/en/latest/markdown/podman-machine.1.html
 export CGO_CFLAGS=$CFLAGS
 
 # These extra flags present in $CFLAGS have been skipped for now as they break the build
-CGO_CFLAGS=$(echo $CGO_CFLAGS | %__sed 's/-flto=auto//g')
-CGO_CFLAGS=$(echo $CGO_CFLAGS | %__sed 's/-Wp,D_GLIBCXX_ASSERTIONS//g')
-CGO_CFLAGS=$(echo $CGO_CFLAGS | %__sed 's/-specs=\/usr\/lib\/rpm\/redhat\/redhat-annobin-cc1//g')
+CGO_CFLAGS=$(echo $CGO_CFLAGS | sed 's/-flto=auto//g')
+CGO_CFLAGS=$(echo $CGO_CFLAGS | sed 's/-Wp,D_GLIBCXX_ASSERTIONS//g')
+CGO_CFLAGS=$(echo $CGO_CFLAGS | sed 's/-specs=\/usr\/lib\/rpm\/redhat\/redhat-annobin-cc1//g')
 
 %ifarch x86_64
 export CGO_CFLAGS+=" -m64 -mtune=generic -fcf-protection=full"
@@ -230,7 +230,7 @@ GIT_COMMIT="0370128fc8dcae93533334324ef838db8f8da8cb"
 LDFLAGS="$LDFLAGS -X %{ld_libpod}/define.gitCommit=$GIT_COMMIT"
 
 # build rootlessport first
-%gobuild -o bin/rootlessport ./cmd/rootlessport
+%gobuild -o ./bin/rootlessport ./cmd/rootlessport
 
 export BASEBUILDTAGS="seccomp $(hack/systemd_tag.sh) $(hack/libsubid_tag.sh) libsqlite3 grpcnotrace"
 
@@ -249,19 +249,19 @@ export BUILDTAGS="$BASEBUILDTAGS $(hack/btrfs_installed_tag.sh)"
 export BUILDTAGS="$BUILDTAGS containers_image_sequoia"
 %endif
 
-%gobuild -o bin/%{name} ./cmd/%{name}
+%gobuild -o ./bin/%{name} ./cmd/%{name}
 
 # build %%{name}-remote
 export BUILDTAGS="$BASEBUILDTAGS exclude_graphdriver_btrfs remote"
-%gobuild -o bin/%{name}-remote ./cmd/%{name}
+%gobuild -o ./bin/%{name}-remote ./cmd/%{name}
 
 # build quadlet
 export BUILDTAGS="$BASEBUILDTAGS $(hack/btrfs_installed_tag.sh)"
-%gobuild -o bin/quadlet ./cmd/quadlet
+%gobuild -o ./bin/quadlet ./cmd/quadlet
 
 # build %%{name}-testing
 export BUILDTAGS="$BASEBUILDTAGS $(hack/btrfs_installed_tag.sh)"
-%gobuild -o bin/podman-testing ./cmd/podman-testing
+%gobuild -o ./bin/podman-testing ./cmd/podman-testing
 
 # reset LDFLAGS for plugins binaries
 LDFLAGS=''
@@ -283,14 +283,14 @@ PODMAN_VERSION=%{version} %{__make} DESTDIR=%{buildroot} PREFIX=%{_prefix} ETCDI
 %__sed -i 's;%{buildroot};;g' %{buildroot}%{_bindir}/docker
 
 # do not include docker and podman-remote man pages in main package
-for file in $(find %{buildroot}%{_mandir}/man[157] -type f | sed "s,%{buildroot},," | grep -v -e %{name}sh.1 -e remote -e docker); do
+for file in $(find %{buildroot}%{_mandir}/man[157] -type f | sed 's,%{buildroot},,' | grep -v -e %{name}sh.1 -e remote -e docker); do
   echo "$file*" >> %{name}.file-list
 done
 
 %__rm -f %{buildroot}%{_mandir}/man5/docker*.5
 
 %__install -d -p %{buildroot}%{_datadir}/%{name}/test/system
-%__cp -pav test/system %{buildroot}%{_datadir}/%{name}/test/
+%__cp -pav ./test/system %{buildroot}%{_datadir}/%{name}/test/
 
 %ifarch %{machine_arches}
 # symlink virtiofsd in %%{name} libexecdir for machine subpackage
