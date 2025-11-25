@@ -233,6 +233,7 @@ This package contains the syncthing client binary and systemd services.
 
 %package        tools
 Summary:        Continuous File Synchronization (server tools)
+
 %description    tools
 Syncthing replaces other file synchronization services with something
 open, trustworthy and decentralized. Your data is your data alone and
