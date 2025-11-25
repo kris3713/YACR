@@ -48,6 +48,7 @@
 * `sly`
 * `stacher`
 * `streamlink-twitch-gui`
+* `syncthing`
 * `termora-aarch64`
 * `termora`
 * `tixati`
