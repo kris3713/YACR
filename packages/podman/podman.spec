@@ -1,12 +1,6 @@
 # Imported from https://src.fedoraproject.org/rpms/podman/blob/rawhide/f/podman.spec
 %global         with_debug 1
-
-%if 0%{?with_debug}
-%global         _find_debuginfo_dwz_opts %{nil}
-%global         _dwz_low_mem_die_limit 0
-%else
 %global         debug_package %{nil}
-%endif
 
 %global         gomodulesmode GO111MODULE=on
 
