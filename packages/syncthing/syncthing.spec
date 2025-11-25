@@ -292,7 +292,7 @@ install -Dm 0644 ./etc/linux-desktop/syncthing-start.desktop %{buildroot}/%{_dat
 install -Dm 0644 ./etc/linux-desktop/syncthing-ui.desktop %{buildroot}/%{_datadir}/applications/
 
 for size in '32' '64' '128' '256' '512'; do
-  cp -pav "./assets/logo-${size}.png" "%{buildroot}%{_iconsdir}/hicolor/${size}x${size}/apps/syncthing.png"
+  install -Dm 0644 "./assets/logo-${size}.png" "%{buildroot}%{_iconsdir}/hicolor/${size}x${size}/apps/syncthing.png"
 done
 
 install -Dm 0644 ./assets/logo-only.svg %{buildroot}/%{_iconsdir}/hicolor/scalable/apps/syncthing.svg
