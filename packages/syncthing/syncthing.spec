@@ -13,12 +13,13 @@ Release:        1%{?dist}
 # - a number of go packages (Apache-2.0, BSD-2-Clause, BSD-2-Clause-Views, BSD-3-Clause, ISC, MIT, MPL-2.0)
 License:        MPL-2.0 AND Apache-2.0 AND BSD-2-Clause AND BSD-2-Clause-Views AND BSD-3-Clause AND CC-BY-3.0 AND ISC AND MIT AND OFL-1.1 AND (Apache-2.0 OR MIT) AND (MIT OR Unlicense)
 
+%gometa -f
+
 URL:            https://syncthing.net
 # use official release tarball (contains vendored dependencies)
 Source0:        %{gourl}/releases/download/%{tag}/%{name}-source-%{tag}.tar.gz
 
 BuildRequires:  desktop-file-utils systemd-rpm-macros
-%gometa -f
 
 Requires:       hicolor-icon-theme
 
