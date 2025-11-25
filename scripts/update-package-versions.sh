@@ -4,7 +4,7 @@ SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
 
 source "$SCRIPT_DIR/setup-python-env.sh"
 
-BOLD_GREEN='\\e[1;32m'
+BOLD_GREEN='\e[1;32m'
 
 echo -e "${BOLD_GREEN}Updating package versions...$RESET"
 
