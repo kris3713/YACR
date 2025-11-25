@@ -295,11 +295,11 @@ for size in '32' '64' '128' '256' '512'; do
   install -Dm 0644 "./assets/logo-${size}.png" "%{buildroot}%{_iconsdir}/hicolor/${size}x${size}/apps/syncthing.png"
 done
 
-install -Dm 0644 ./assets/logo-only.svg %{buildroot}/%{_iconsdir}/hicolor/scalable/apps/syncthing.svg
+install -Dm 0644 ./assets/logo-only.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps/syncthing.svg
 
 # install systemd units
-install -Dm 0644 ./etc/linux-systemd/system/syncthing@.service -t %{buildroot}/%{_unitdir}
-install -Dm 0644 ./etc/linux-systemd/user/syncthing.service -t %{buildroot}/%{_userunitdir}
+install -Dm 0644 ./etc/linux-systemd/system/syncthing@.service -t %{buildroot}%{_unitdir}
+install -Dm 0644 ./etc/linux-systemd/user/syncthing.service -t %{buildroot}%{_userunitdir}
 
 # unmark source files as executable
 for i in $(find -name '*.go' -type f -executable -print); do
