@@ -20,7 +20,6 @@
 * `devtoys-cli`
 * `devtoys`
 * `dnscrypt-proxy`
-* `fooyin`
 * `harmonoid`
 * `jetbrains-toolbox-arm64`
 * `jetbrains-toolbox`
