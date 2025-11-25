@@ -13,9 +13,9 @@ Summary:        A Swiss Army knife for developers. (CLI version)
 License:        MIT
 URL:            https://devtoys.app/
 
-Source0:        https://github.com/DevToys-app/DevToy/releases/download/v%{version}/%{fullname}.cli_linux_x64_portable.zip
+Source0:        https://github.com/DevToys-app/DevToys/releases/download/v%{version}/%{fullname}.cli_linux_x64_portable.zip
 
-Requires:      dotnet-host
+Requires:       dotnet-host
 
 ExclusiveArch:  x86_64
 
