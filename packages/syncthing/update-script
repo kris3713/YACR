@@ -1,0 +1,37 @@
+#!/usr/bin/env fish
+
+set -l script_dir (status dirname)
+set -l basename (basename "$script_dir")
+
+source "$script_dir/../constants.fish"
+
+echo "Updating '$basename'"
+
+set -l url 'https://api.github.com/repos/syncthing/syncthing/releases/latest'
+set -l regex "v$VERSION_REGEX"
+set -l jsonpath '$.tag_name'
+
+echo 'Executing the `parse-json` script'
+set -l latest_version ("$script_dir/../../scripts/parse-json" $url $regex $jsonpath)
+
+if test -z "$latest_version"
+  echo "Failed to get the latest version for '$basename'"
+  echo 'Exitting...'
+  exit 1
+end
+
+set -l current_version (cat "$script_dir/$basename.spec" | rg -or '$1' "Version:\\s*$VERSION_REGEX")
+
+echo 'Comparing the current version ($current_version) with the latest version ($latest_version)'
+echo "Current version: $current_version"
+echo "Latest version: $latest_version"
+if test "$current_version" != "$latest_version"
+  echo 'Versions are different. Updating the spec file(s)...'
+  for v in (fd --glob '*.spec' $script_dir)
+    sd "(Version\\:\\s*)$current_version" "\${1}$latest_version" $v
+  end && echo 'Done!'
+else
+  echo 'Both versions are the same. No update needed.'
+end
+
+echo "Finished updating '$basename'"
