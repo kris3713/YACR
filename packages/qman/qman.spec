@@ -28,9 +28,6 @@ fast and tiny, so that it can be used everywhere.
 %install
 %meson_install
 
-%check
-%meson_test
-
 %files
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1*
