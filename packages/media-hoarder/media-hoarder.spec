@@ -88,7 +88,6 @@ sizes=(
   '256x256' '512x512'
   '1024x1024'
 )
-
 for size in "${sizes[@]}"; do
   install -d "%{buildroot}%{_iconsdir}/hicolor/$size/apps"
 done
@@ -103,8 +102,10 @@ ln -s /opt/%{app_name}/%{name} -t %{buildroot}%{_bindir}
 install -Dm 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
 
 # Install the application icons
+install -Dm 0644 ./icon/mh1/mh1.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps/%{name}.png
+
 for size in "${sizes[@]}"; do
-  install -Dm 0644 "./build/icons/$size.png" -t "%{buildroot}%{_iconsdir}/hicolor/$size/apps"
+  install -Dm 0644 "./build/icons/$size.png" "%{buildroot}%{_iconsdir}/hicolor/$size/apps/%{name}.png"
 done
 
 
