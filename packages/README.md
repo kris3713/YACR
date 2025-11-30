@@ -28,6 +28,7 @@
 * `localsend`
 * `lrcget`
 * `masscode`
+* `media-hoarder`
 * `naps2`
 * `p7zip`
 * `pdfstudioviewer`
