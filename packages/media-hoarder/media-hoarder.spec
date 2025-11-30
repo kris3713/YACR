@@ -102,7 +102,7 @@ ln -s /opt/%{app_name}/%{name} -t %{buildroot}%{_bindir}
 install -Dm 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
 
 # Install the application icons
-install -Dm 0644 ./icon/mh1/mh1.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps/%{name}.png
+install -Dm 0644 ./icon/mh1/mh1.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps/%{name}.svg
 
 for size in "${sizes[@]}"; do
   install -Dm 0644 "./build/icons/$size.png" "%{buildroot}%{_iconsdir}/hicolor/$size/apps/%{name}.png"
