@@ -64,9 +64,6 @@ export PATH="$PATH:$NODE_BIN_PATH"
 # Change prefix for npm
 npm config set prefix "$NODE_PATH"
 
-# # Update NPM to the latest version
-# npm install -g npm@latest
-
 # Install the dependencies
 npm install
 
