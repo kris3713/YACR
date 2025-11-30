@@ -22,6 +22,7 @@ Source2:        https://nodejs.org/dist/v14.17.5/node-v14.17.5-linux-x64.tar.xz
 Patch:          package.json_diff.patch
 
 BuildRequires:  git
+Requires:       mediainfo
 
 # Currently, the application is only available for 64bit platforms
 ExclusiveArch:  x86_64
