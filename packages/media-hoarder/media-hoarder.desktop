@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Media Hoarder
+Exec=media-hoarder %U
+Terminal=false
+Type=Application
+Icon=media-hoarder
+StartupWMClass=Media Hoarder
+Comment=Media Hoarder - THE media frontend for data hoarders and movie lovers
+Categories=AudioVideo
