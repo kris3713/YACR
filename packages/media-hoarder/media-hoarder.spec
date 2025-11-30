@@ -106,6 +106,7 @@ for size in "${sizes[@]}"; do
   install -Dm 0644 "./build/icons/$size.png" -t "%{buildroot}%{_iconsdir}/hicolor/$size/apps"
 done
 
+
 %files
 /opt/%{app_name}
 %{_bindir}/%{name}
