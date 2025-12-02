@@ -42,14 +42,14 @@ jobs:
           USERNAME='github-actions[bot]'
           echo "> EMAIL='41898282+github-actions[bot]@users.noreply.github.com'"
           EMAIL='41898282+github-actions[bot]@users.noreply.github.com'
-          echo '> git config --local user.name $USERNAME'
-          git config --local user.name $USERNAME
-          echo '> git config --local user.email $EMAIL'
-          git config --local user.email $EMAIL
+          echo '> git config --local user.name "$USERNAME"'
+          git config --local user.name "$USERNAME"
+          echo '> git config --local user.email "$EMAIL"'
+          git config --local user.email "$EMAIL"
           echo '> git add -u'
           git add -u
           # Get the list of staged files
-          STAGED_FILES=$(git diff --cached --name-only)
+          STAGED_FILES="$(git diff --cached --name-only)"
 
           if [ -n "$STAGED_FILES" ]; then
             echo "> commit_message=''"
