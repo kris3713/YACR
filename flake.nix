@@ -23,6 +23,7 @@
           fd
           # jq
           python3
+          pixi
           sd
           ripgrep
           # yq-go
