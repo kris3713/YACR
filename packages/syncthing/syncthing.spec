@@ -4,7 +4,7 @@
 
 Name:           syncthing
 Summary:        Continuous File Synchronization
-Version:        2.0.11
+Version:        2.0.12
 Release:        1%{?dist}
 # syncthing (MPL-2.0) bundles
 # - angular, bootstrap, daterangepicker, fancytree, jQuery, moment (MIT),
