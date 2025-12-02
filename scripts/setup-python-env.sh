@@ -8,10 +8,7 @@ BOLD_YELLOW='\033[1;33m'
 
 echo -e "\n${YELLOW}Setting up Python environment...$RESET"
 
-if ! command -v pip &> /dev/null; then
-  echo -e "${BOLD_RED}ERROR: ${RESET}${RED}\`pip\` not found, please install it first$RESET"
-  exit 1
-elif ! command -v python &> /dev/null; then
+if ! command -v python &> /dev/null; then
   echo -e "${BOLD_RED}ERROR: ${RESET}${RED}\`python\` not found, please install it first$RESET"
   exit 1
 fi
