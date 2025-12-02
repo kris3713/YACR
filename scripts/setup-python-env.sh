@@ -16,8 +16,8 @@ fi
 # The reason for installing uv from pip is because
 # it provides the latest version, unlike nixpkgs
 if ! command -v uv &> /dev/null; then
-  echo '> pip install uv --user'
-  pip install uv --user
+  echo '> pixi global install uv'
+  pixi global install uv 
 fi
 
 if [ ! -d './scripts/.venv' ]; then
