@@ -13,12 +13,22 @@ if ! command -v python &> /dev/null; then
   exit 1
 fi
 
-# The reason for installing uv from pip is because
-# it provides the latest version, unlike nixpkgs
+# The reason for installing uv from conda/conda-forge (with Pixi) is because
+# it provides the latest version, unlike nixpkgs.
 if ! command -v uv &> /dev/null; then
-  echo '> pixi global install uv'
-  pixi global install uv 
+  #shellcheck disable=SC2016
+  echo 'eval "$(pixi shell-hook --shell bash)"'
+  # Sets up the Pixi environment (which includes the installation of `uv`)
+  # and hooks it into our current shell.
+  eval "$(pixi shell-hook --shell bash)"
 fi
+
+# # The reason for installing uv from pip is because
+# # it provides the latest version, unlike nixpkgs.
+# if ! command -v uv &> /dev/null; then
+#   echo '> pip install uv --user'
+#   pip install uv --user
+# fi
 
 if [ ! -d './scripts/.venv' ]; then
   echo -e "${BOLD_YELLOW}Installing Python packages...$RESET"
