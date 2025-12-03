@@ -22,7 +22,7 @@
           fish
           fd
           # jq
-          python3
+          # python3
           pixi
           sd
           ripgrep
