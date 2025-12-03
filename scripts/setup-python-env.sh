@@ -16,13 +16,11 @@ fi
 # The reason for installing uv from conda/conda-forge (with Pixi) is because
 # it provides the latest version, unlike nixpkgs.
 if ! command -v uv &> /dev/null; then
-  echo 'pixi install --verbose'
-  pixi install --verbose
   #shellcheck disable=SC2016
-  echo 'eval "$(pixi shell-hook --shell bash --verbose)"'
+  echo 'eval "$(pixi shell-hook --shell bash -vvv)"'
   # Sets up the Pixi environment (which includes the installation of `uv`)
   # and hooks it into our current shell.
-  eval "$(pixi shell-hook --shell bash --verbose)"
+  eval "$(pixi shell-hook --shell bash -vvv)"
 fi
 
 # # The reason for installing uv from pip is because
