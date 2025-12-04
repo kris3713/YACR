@@ -1,8 +1,10 @@
+%define         code echo %{version} | cut -d. -f1
+
 %global         __provides_exclude_from ^/opt/%{name}/.*$
 %global         __requires_exclude_from ^/opt/%{name}/.*$
-%global         major %%(echo %{version} | cut -d. -f1)
-%global         fullname Stacher%%(echo %{version} | cut -d. -f1)
-%global         app_name %%(echo "%{name}$(echo %{version} | cut -d. -f1)")
+%global         major %%(%{code})
+%global         fullname Stacher%%(%{code})
+%global         app_name %{name}%%(%{code})
 %global         debug_package %{nil}
 
 Name:           stacher
