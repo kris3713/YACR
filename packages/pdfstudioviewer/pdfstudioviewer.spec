@@ -1,10 +1,12 @@
+%define         code echo %{version} | cut -d. -f1
+
 %global         __provides_exclude_from ^/opt/%{fullname}/.*$
 %global         __requires_exclude_from ^/opt/%{fullname}/.*$
 %global         __spec_install_post %{nil}
 %global         __os_install_post %{_dbpath}/brp-compress
-%global         year %%(echo %{version} | cut -d. -f1)
+%global         year %%(%{code})
 %global         underscore_version %%(echo %{version} | tr '.' '_')
-%global         fullname %%(echo "%{name}$(echo %{version} | cut -d. -f1)")
+%global         fullname %{name}%%(%{code})
 %global         debug_package %{nil}
 
 Name:           pdfstudioviewer
