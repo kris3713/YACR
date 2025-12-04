@@ -49,8 +49,11 @@ ExclusiveArch:  x86_64
 %__install -Dm 0644 %{SOURCE1} -t %{buildroot}%{_iconsdir}/hicolor/scalable/apps
 
 %post
-# Prevent JetBrains Toolbox from creating a desktop file in $HOME/.local/share/applications
-%__ln_s /dev/null "$SUDO_HOME/.local/share/applications/%{fullname}.desktop"
+DESKTOP_FILE="$SUDO_HOME/.local/share/applications/%{fullname}.desktop"
+if [ -f "$DESKTOP_FILE" ] && [ "$(readlink -f "$DESKTOP_FILE")" != '/dev/null' ]; then
+  # Prevent JetBrains Toolbox from creating a desktop file in $HOME/.local/share/applications
+  %__ln_s /dev/null "$DESKTOP_FILE"
+fi
 
 %postun
 if [ -f "$SUDO_HOME/.local/share/applications/%{fullname}.desktop" ]; then
