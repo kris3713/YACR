@@ -50,7 +50,7 @@ ExclusiveArch:  x86_64
 
 %post
 DESKTOP_FILE="$SUDO_HOME/.local/share/applications/%{fullname}.desktop"
-if [ -f "$DESKTOP_FILE" ] && [ "$(readlink -f "$DESKTOP_FILE")" != '/dev/null' ]; then
+if [ ! -f "$DESKTOP_FILE" ] || [ "$(readlink -f "$DESKTOP_FILE")" != '/dev/null' ]; then
   # Prevent JetBrains Toolbox from creating a desktop file in $HOME/.local/share/applications
   %__ln_s /dev/null "$DESKTOP_FILE"
 fi
