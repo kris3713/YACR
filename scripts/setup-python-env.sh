@@ -17,7 +17,7 @@ fi
 # it provides the latest version, unlike nixpkgs.
 if ! command -v uv &> /dev/null; then
   #shellcheck disable=SC2016
-  echo 'eval "$(pixi shell-hook --shell bash -vvv)"'
+  echo '> eval "$(pixi shell-hook --shell bash -vvv)"'
   # Sets up the Pixi environment (which includes the installation of `uv`)
   # and hooks it into our current shell.
   eval "$(pixi shell-hook --shell bash -vvv)"
