@@ -6,6 +6,12 @@
 
 %define         git_url https://github.com/%{name}sh/%{name}
 
+%ifarch x86_64
+%define         build_target x86_64-unknown-linux-gnu
+%else
+%define         build_target aarch64-unknown-linux-gnu
+%endif
+
 Name:           atuin
 Version:        18.10.0
 Release:        1%{?dist}
@@ -33,18 +39,18 @@ of your history between machines, via an Atuin server.
 export CARGO_HOME="$(realpath ./.cargo)"
 
 # Build atuin
-cargo build "-j$(nproc)" --profile dist
+cargo build "-j$(nproc)" --profile dist --target %build_target
 
 # Generate a clean dependency graph
 cargo tree --workspace --edges 'no-build,no-dev,no-proc-macro' \
-  --no-dedupe --target all --prefix none \
+  --no-dedupe --target %build_target --prefix none \
   --format '# {l}' |
     sed -e "s: / :/:g" -e "s:/: OR :g" |
       sort -u
 
 # Generate a LICENSE file for each all cargo dependencies
 cargo tree --workspace --edges 'no-build,no-dev,no-proc-macro' \
-  --no-dedupe --target all --prefix none \
+  --no-dedupe --target %build_target --prefix none \
   --format '{l}: {p}' |
     sed -e 's: ($(pwd)[^)]*)::g' -e 's: / :/:g' -e 's:/: OR :g' |
       sort -u > LICENSE.dependencies
