@@ -41,12 +41,12 @@ export CARGO_HOME="$(realpath ./.cargo)"
 # Build atuin
 cargo build "-j$(nproc)" --profile dist --target %build_target
 
-# Generate a clean dependency graph
-cargo tree --workspace --edges 'no-build,no-dev,no-proc-macro' \
-  --no-dedupe --target all --prefix none \
-  --format '# {l}' |
-    sed -e "s: / :/:g" -e "s:/: OR :g" |
-      sort -u
+# # Generate a clean dependency graph
+# cargo tree --workspace --edges 'no-build,no-dev,no-proc-macro' \
+#   --no-dedupe --target all --prefix none \
+#   --format '# {l}' |
+#     sed -e "s: / :/:g" -e "s:/: OR :g" |
+#       sort -u
 
 # Generate a LICENSE file for each all cargo dependencies
 cargo tree --workspace --edges 'no-build,no-dev,no-proc-macro' \
