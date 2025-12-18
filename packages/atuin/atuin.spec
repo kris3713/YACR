@@ -61,7 +61,7 @@ cargo tree --workspace --edges 'no-build,no-dev,no-proc-macro' \
 install -d %{buildroot}{%{_bindir},%{bash_completions_dir},%{fish_completions_dir},%{zsh_completions_dir}}
 
 # install atuin
-install -Dm 0755 ./target/dist/%{name} -t %{buildroot}%{_bindir}
+install -Dm 0755 ./target/%{build_target}/%{name} -t %{buildroot}%{_bindir}
 
 # generate completions
 ./target/%{build_target}/%{name} gen-completions --shell bash > ./%{name}.bash
