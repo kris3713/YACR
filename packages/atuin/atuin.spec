@@ -64,9 +64,9 @@ install -d %{buildroot}{%{_bindir},%{bash_completions_dir},%{fish_completions_di
 install -Dm 0755 ./target/dist/%{name} -t %{buildroot}%{_bindir}
 
 # generate completions
-./target/dist/%{name} gen-completions --shell bash > ./%{name}.bash
-./target/dist/%{name} gen-completions --shell fish > ./%{name}.fish
-./target/dist/%{name} gen-completions --shell zsh > ./%{name}.zsh
+./target/%{build_target}/%{name} gen-completions --shell bash > ./%{name}.bash
+./target/%{build_target}/%{name} gen-completions --shell fish > ./%{name}.fish
+./target/%{build_target}/%{name} gen-completions --shell zsh > ./%{name}.zsh
 
 # install completions
 install -Dm 0644 ./%{name}.bash %{buildroot}%{bash_completions_dir}/%{name}
