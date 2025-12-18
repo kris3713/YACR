@@ -48,7 +48,7 @@ cargo build "-j$(nproc)" --profile dist --target %build_target
 #     sed -e "s: / :/:g" -e "s:/: OR :g" |
 #       sort -u
 
-# Generate a LICENSE file for each all cargo dependencies
+# Generate a LICENSE file for all cargo dependencies
 cargo tree --workspace --edges 'no-build,no-dev,no-proc-macro' \
   --no-dedupe --target all --prefix none \
   --format '{l}: {p}' |
