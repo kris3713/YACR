@@ -43,14 +43,14 @@ cargo build "-j$(nproc)" --profile dist --target %build_target
 
 # Generate a clean dependency graph
 cargo tree --workspace --edges 'no-build,no-dev,no-proc-macro' \
-  --no-dedupe --target %build_target --prefix none \
+  --no-dedupe --target all --prefix none \
   --format '# {l}' |
     sed -e "s: / :/:g" -e "s:/: OR :g" |
       sort -u
 
 # Generate a LICENSE file for each all cargo dependencies
 cargo tree --workspace --edges 'no-build,no-dev,no-proc-macro' \
-  --no-dedupe --target %build_target --prefix none \
+  --no-dedupe --target all --prefix none \
   --format '{l}: {p}' |
     sed -e 's: ($(pwd)[^)]*)::g' -e 's: / :/:g' -e 's:/: OR :g' |
       sort -u > LICENSE.dependencies
@@ -61,12 +61,13 @@ cargo tree --workspace --edges 'no-build,no-dev,no-proc-macro' \
 install -d %{buildroot}{%{_bindir},%{bash_completions_dir},%{fish_completions_dir},%{zsh_completions_dir}}
 
 # install atuin
-install -Dm 0755 ./target/%{build_target}/%{name} -t %{buildroot}%{_bindir}
+target_exe='./target/%{build_target}/dist/%{name}'
+install -Dm 0755 "$target_exe" -t %{buildroot}%{_bindir}
 
 # generate completions
-./target/%{build_target}/%{name} gen-completions --shell bash > ./%{name}.bash
-./target/%{build_target}/%{name} gen-completions --shell fish > ./%{name}.fish
-./target/%{build_target}/%{name} gen-completions --shell zsh > ./%{name}.zsh
+"$target_exe" gen-completions --shell bash > ./%{name}.bash
+"$target_exe" gen-completions --shell fish > ./%{name}.fish
+"$target_exe" gen-completions --shell zsh > ./%{name}.zsh
 
 # install completions
 install -Dm 0644 ./%{name}.bash %{buildroot}%{bash_completions_dir}/%{name}
