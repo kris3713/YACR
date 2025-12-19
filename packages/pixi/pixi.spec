@@ -49,7 +49,7 @@ export CARGO_HOME="$(realpath ./.cargo)"
 # A subshell is here to ensure the RUSTFLAGS variable is only modified temporarily
 (
   # The RUSTFLAGS variable has to be modified so pixi can compile properly
-  export RUSTFLAGS='-Cstrip=none'
+  export RUSTFLAGS='-Cstrip=none -Clink-arg=-specs=/usr/lib/rpm/redhat/redhat-package-notes'
   # Build pixi
   cargo build -j4 --profile dist --target %build_target
 
