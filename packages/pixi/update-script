@@ -8,7 +8,7 @@ source "$script_dir/../constants.fish"
 echo "Updating '$basename'"
 
 set -l url 'https://api.github.com/repos/prefix-dev/pixi/releases/latest'
-# set -l regex 'v([\\w.]+)'
+set -l regex "v$VERSION_REGEX"
 set -l jsonpath '$.tag_name'
 
 echo 'Executing the `parse-json` script'
