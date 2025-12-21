@@ -14,15 +14,11 @@ jobs:
     permissions:
       contents: write
 
-    env:
-      GITHUB_TOKEN: "${{ secrets.TOKEN }}"
-
     steps:
       - name: 'Checkout Repository'
         uses: actions/checkout@v4
         with:
           repository: "${{ github.repository }}"
-          token: "${{ env.GITHUB_TOKEN }}"
 
       - name: 'Install Nix'
         uses: cachix/install-nix-action@v31
