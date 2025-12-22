@@ -28,6 +28,8 @@ jobs:
 
       - name: 'Update package versions'
         shell: bash
+        env:
+          GITHUB_TOKEN: "${{ secrets.TOKEN }}"
         run: |
           echo '----- Creating a new environment with helper programs -----'
           echo '> nix flake update --verbose'
