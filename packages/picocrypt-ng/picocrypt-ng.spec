@@ -75,7 +75,7 @@ install -Dm 0644 ./images/key.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps
 %{_datadir}/applications/%{name}.desktop
 %{_iconsdir}/hicolor/scalable/apps/%{name}.svg
 %license ./LICENSE
-%doc /src/README.md ./Changelog.md ./Internals.md ./README.md ./rec.md
+%doc ./src/README.md ./Changelog.md ./Internals.md ./README.md ./rec.md
 
 %changelog
 %autochangelog
