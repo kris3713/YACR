@@ -30,6 +30,8 @@ BuildRequires:  git golang
 %build
 if [ $(rpm -E %fedora) -gt 42 ]; then
   export GOEXPERIMENT='greenteagc,jsonv2'
+
+  sed -i -e 's/go 1.25.5/go 1.24.10/' ./src/go.mod
 fi
 
 export CGO_ENABLED=0
