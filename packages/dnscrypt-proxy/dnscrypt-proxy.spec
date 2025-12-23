@@ -2,6 +2,12 @@
 %global         __requires_exclude_from ^%{_bindir}/generate-domains-blocklist$
 %global         debug_package %{nil}
 
+%ifarch x86_64
+%global         go_arch amd64
+%else
+%global         go_arch arm64
+%endif
+
 Name:           dnscrypt-proxy
 Version:        2.1.15
 Release:        4%{?dist}
@@ -48,9 +54,20 @@ Features:
 %__patch -Np1 -i %{PATCH0}
 
 %build
-cd ./%{name}
-go build '-ldflags=-s -w' -mod vendor -o ../bin/%{name}
-cd ..
+export CGO_ENABLED=1
+export GOOS='linux'
+export GOARCH='%{go_arch}'
+
+%gobuild
+
+pushd ./%{name}
+
+go build \
+  -ldflags '-s -w' \
+  -mod vendor \
+  -o ../bin/%{name}
+
+popd
 
 %install
 # Remove the old build root
