@@ -1,8 +1,6 @@
 [workspace]
-channels = ["conda-forge"]
-platforms = ["linux-64"]
-
-[tasks]
+channels = ['conda-forge']
+platforms = ['linux-64']
 
 [dependencies]
 uv = '*' # Used to get the latest version
