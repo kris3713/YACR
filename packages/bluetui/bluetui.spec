@@ -1,9 +1,9 @@
 %global         debug_package %{nil}
 
 %ifarch x86_64
-%define         build_target x86_64-unknown-linux-gnu
+%global         build_target x86_64-unknown-linux-gnu
 %else
-%define         build_target aarch64-unknown-linux-gnu
+%global         build_target aarch64-unknown-linux-gnu
 %endif
 
 Name:           bluetui
@@ -43,14 +43,15 @@ cargo tree --workspace --edges 'no-build,no-dev,no-proc-macro' \
 install -d %{buildroot}{%{_bindir},%{_datadir}/applications}
 
 # Install the executable
-install -Dm 0755 ./target/%build_target/release/bluetui -t %{buildroot}%{_bindir}
+install -Dm 0755 ./target/%{build_target}/release/%{name} -t %{buildroot}%{_bindir}
 
 # Install the desktop file
-install -Dm 0644 ./bluetui.desktop -t %{buildroot}%{_datadir}/applications
+install -Dm 0644 ./%{name}.desktop -t %{buildroot}%{_datadir}/applications
 
 
 %files
-%{_bindir}/bluetui
+%{_bindir}/%{name}
+%{_datadir}/applications/%{name}.desktop
 %doc ./Readme.md
 %license ./LICENSE ./LICENSE.dependencies
 
