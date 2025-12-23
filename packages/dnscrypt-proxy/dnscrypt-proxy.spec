@@ -58,8 +58,6 @@ export CGO_ENABLED=1
 export GOOS='linux'
 export GOARCH='%{go_arch}'
 
-%gobuild
-
 pushd ./%{name}
 
 go build \
