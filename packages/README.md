@@ -10,6 +10,7 @@
 * `atuin`
 * `bitwarden`
 * `blobdrop`
+* `bluetui`
 * `cudatext-aarch64`
 * `cudatext-gtk2-aarch64`
 * `cudatext-gtk2`
