@@ -17,6 +17,7 @@ URL:            https://ohmyposh.dev/
 
 Source0:        %{git_url}/archive/refs/tags/v%{version}.tar.gz
 
+BuildRequires:  fedora-release >= 43
 BuildRequires:  git golang
 
 %description
@@ -28,10 +29,6 @@ BuildRequires:  git golang
 
 
 %build
-# Building on Fedora 42 is not supportted
-if [ $(rpm -E %fedora) -eq 42 ]; then
-  exit 1
-fi
 
 export CGO_ENABLED=0
 export GOOS='linux'
