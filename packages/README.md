@@ -32,6 +32,7 @@
 * `masscode`
 * `media-hoarder`
 * `naps2`
+* `oh-my-posh`
 * `p7zip`
 * `pdfstudioviewer`
 * `picocrypt-ng`
