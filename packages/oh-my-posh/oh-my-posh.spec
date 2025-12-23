@@ -30,7 +30,7 @@ BuildRequires:  git golang
 
 
 %build
-
+export GOEXPERIMENT='greenteagc,jsonv2'
 export CGO_ENABLED=0
 export GOOS='linux'
 export GOARCH='%{go_arch}'
