@@ -28,8 +28,11 @@ BuildRequires:  git golang
 
 
 %build
+if [ $(rpm -E %fedora) -gt 42 ]; then
+  export GOEXPERIMENT='greenteagc,jsonv2'
+fi
+
 export CGO_ENABLED=0
-export GOEXPERIMENT='jsonv2'
 export GOOS='linux'
 export GOARCH='%{go_arch}'
 
