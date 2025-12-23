@@ -13,7 +13,6 @@ URL:            https://masscode.io/
 
 Source0:        https://github.com/massCodeIO/massCode/archive/refs/tags/v%{version}.tar.gz
 Source1:        %{name}.desktop
-Source2:        pnpm-workspace.yaml
 
 BuildRequires:  nodejs-npm pnpm
 
@@ -28,8 +27,7 @@ snippet collection and have quick access to it.
 %setup -q -n ./%{app_name}-%{version}
 
 %build
-%__cp -a %{SOURCE2} .
-pnpm install
+pnpm install --dangerously-allow-all-builds
 pnpm run build
 
 %install
