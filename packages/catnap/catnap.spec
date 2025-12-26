@@ -39,7 +39,7 @@ install -d %{buildroot}{%{_bindir},/etc/%{name},%{_mandir}/{man1,man5}}
 install -Dm 0755 ./bin/%{name} -t %{buildroot}%{_bindir}
 
 # Copy the config files
-cp -a ./config/* %{buildroot}%/etc/%{name}/
+cp -a ./config/* %{buildroot}/etc/%{name}/
 
 # Install the manpages
 install -Dm 0644 ./docs/%{name}.1 -t %{buildroot}%{_mandir}/man1
