@@ -33,19 +33,29 @@ nim release
 
 %install
 # Create important directories in the buildroot
-install -d %{buildroot}{%{_bindir},%{_mandir}/{man1,man5}}
+install -d %{buildroot}{%{_bindir},/etc/%{name},%{_mandir}/{man1,man5}}
 
 # Install the executable
 install -Dm 0755 ./bin/%{name} -t %{buildroot}%{_bindir}
+
+# Copy the config files
+cp -a ./config/* %{buildroot}%/etc/%{name}/
 
 # Install the manpages
 install -Dm 0644 ./docs/%{name}.1 -t %{buildroot}%{_mandir}/man1
 install -Dm 0644 ./docs/%{name}.5 -t %{buildroot}%{_mandir}/man5
 
+%post
+if ! [ -d "$SUDO_HOME/.config/%{name}" ]; then
+  mkdir -p "$SUDO_HOME/.config/%{name}"
+  mv -a /etc/%{name}/* "$SUDO_HOME/.config/%{name}/"
+fi
+
 
 %files
 %{_bindir}/%{name}
 %{_mandir}/*
+%config(noreplace) /etc/%{name}/*
 %license ./LICENSE
 %doc ./CHANGELOG.md
 
