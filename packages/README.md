@@ -4,7 +4,6 @@
 
 # Packages available for installation
 
-* `ab-download-manager`
 * `adwaita-fonts`
 * `asdf`
 * `atuin`
