@@ -18,7 +18,6 @@ URL:            https://ohmyposh.dev/
 Source0:        %{git_url}/archive/refs/tags/v%{version}.tar.gz
 
 # Building on Fedora 42 (or lower) is not supported
-BuildRequires:  fedora-release >= 43
 BuildRequires:  git golang
 
 %description
