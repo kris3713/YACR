@@ -1,5 +1,5 @@
 %global         __brp_check_rpaths %nil
-The reason for this is to avoid the "broken rpath" error
+# The reason for this is to avoid the "broken rpath" error
 
 %global         fullname page.kramo.%{app_name}
 %global         app_name Sly
