@@ -1,5 +1,3 @@
-%global         __provides_exclude_from ^/opt/%{app_name}/.*$
-%global         __requires_exclude_from ^/opt/%{app_name}/.*$
 %global         fullname page.kramo.%{app_name}
 %global         app_name Sly
 %global         debug_package %nil
