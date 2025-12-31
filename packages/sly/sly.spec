@@ -24,6 +24,10 @@ Source0:        %{git_url}/archive/v%{version}.tar.gz
 BuildRequires:  mise
 BuildRequires:  git cmake clang ninja-build glib2-devel gtk3-devel
 
+%ifarch %arm64
+BuildRequires:  jq
+%endif
+
 # ExclusiveArch:  x86_64
 
 %description
