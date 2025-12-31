@@ -7,12 +7,6 @@
 
 %define         git_url https://codeberg.org/kramo/%{app_name}
 
-%ifarch x86_64
-%global         build_target x64
-%else
-%global         build_target aarch64
-%endif
-
 Name:           sly
 Version:        1.0.0
 Release:        1%{?dist}
@@ -27,11 +21,7 @@ Source0:        %{git_url}/archive/v%{version}.tar.gz
 BuildRequires:  mise
 BuildRequires:  git cmake clang ninja-build glib2-devel gtk3-devel
 
-%ifarch %arm64
-BuildRequires:  jq
-%endif
-
-# ExclusiveArch:  x86_64
+ExclusiveArch:  x86_64
 
 %description
 Sly is a friendly image editor that requires no internet connection or preexisting expertise.
@@ -43,6 +33,7 @@ If you're a pro, you can even preview your edits on a histogram.
 
 When you're done, just save the photo with the quality settings of your choosing.
 You also get a choice in whether or not to keep metadata such as location information.
+
 
 %prep
 %autosetup -n ./%{name}
