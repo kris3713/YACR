@@ -22,7 +22,7 @@ Source0:        %{git_url}/archive/v%{version}.tar.gz
 
 # `flutter` is provided by `mise`
 BuildRequires:  mise
-BuildRequires:  cmake clang ninja-build glib2-devel gtk3-devel
+BuildRequires:  git cmake clang ninja-build glib2-devel gtk3-devel
 
 # ExclusiveArch:  x86_64
 
