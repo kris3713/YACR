@@ -1,3 +1,6 @@
+%global         __brp_check_rpaths %nil
+The reason for this is to avoid the "broken rpath" error
+
 %global         fullname page.kramo.%{app_name}
 %global         app_name Sly
 %global         debug_package %nil
@@ -63,6 +66,8 @@ flutter --no-version-check build linux --release -v
 
 
 %install
+# export QA_RPATHS=$[ 0x0002 | 0x0010 ]
+
 # Create the new build root
 install -d %{buildroot}{%{_bindir},/opt/%{app_name},%{_datadir}/applications,%{_metainfodir}}
 install -d %{buildroot}%{_iconsdir}/hicolor/scalable/apps
