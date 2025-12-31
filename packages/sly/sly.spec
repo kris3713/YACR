@@ -57,8 +57,6 @@ flutter --no-version-check build linux --release -v
 
 
 %install
-# export QA_RPATHS=$[ 0x0002 | 0x0010 ]
-
 # Create the new build root
 install -d %{buildroot}{%{_bindir},/opt/%{app_name},%{_datadir}/applications,%{_metainfodir}}
 install -d %{buildroot}%{_iconsdir}/hicolor/scalable/apps
