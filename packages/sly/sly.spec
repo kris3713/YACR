@@ -1,13 +1,16 @@
-%global         __brp_check_rpaths %{nil}
-# The reason for this is to avoid the "broken rpath" error
-
-%define         git_url https://codeberg.org/kramo/Sly
-
 %global         __provides_exclude_from ^/opt/%{app_name}/.*$
 %global         __requires_exclude_from ^/opt/%{app_name}/.*$
-%global         fullname page.kramo.Sly
+%global         fullname page.kramo.%{app_name}
 %global         app_name Sly
-%global         debug_package %{nil}
+%global         debug_package %nil
+
+%define         git_url https://codeberg.org/kramo/%{app_name}
+
+%ifarch x86_64
+%global         build_target x64
+%else
+%global         build_target aarch64
+%endif
 
 Name:           sly
 Version:        1.0.0
@@ -15,15 +18,15 @@ Release:        1%{?dist}
 Summary:        A friendly image editor that requires no internet connection or preexisting expertise
 
 License:        GPL-3.0
-URL:            https://kramo.page/sly/
+URL:            https://kramo.page/%{name}/
 
-Source0:        %{git_url}/releases/download/v%{version}/Sly-%{version}-Linux.tar.gz
-Source1:        %{git_url}/raw/tag/v%{version}/packaging/linux/%{fullname}.desktop
-Source2:        %{git_url}/raw/tag/v%{version}/packaging/linux/%{fullname}.svg
-Source3:        %{git_url}/raw/tag/v%{version}/packaging/linux/%{fullname}-symbolic.svg
-Source4:        %{git_url}/raw/tag/v%{version}/packaging/linux/%{fullname}.metainfo.xml
+Source0:        %{git_url}/archive/v%{version}.tar.gz
 
-ExclusiveArch:  x86_64
+# `flutter` is provided by `mise`
+BuildRequires:  mise
+BuildRequires:  cmake clang ninja-build glib2-devel gtk3-devel
+
+# ExclusiveArch:  x86_64
 
 %description
 Sly is a friendly image editor that requires no internet connection or preexisting expertise.
@@ -37,40 +40,55 @@ When you're done, just save the photo with the quality settings of your choosing
 You also get a choice in whether or not to keep metadata such as location information.
 
 %prep
-%setup -q -c -n ./%{name}-%{version}
+%autosetup -n ./%{name}
+
+
+%build
+# Setup mise, and install flutter
+export MISE_GLOBAL_CONFIG_FILE=''
+export MISE_CACHE_DIR="$(realpath ./.mise_cache)"
+export MISE_DATA_DIR="$(realpath ./.mise_data)"
+export PUB_CACHE="$(realpath ./.pub-cache)"
+mise install flutter@latest
+
+# Modify $PATH
+export PATH="$(mise where flutter@latest)/bin:$PATH"
+
+# Build the application
+unset CFLAGS CXXFLAGS
+flutter --no-version-check pub get
+flutter --no-version-check build linux --release -v
+
 
 %install
-export QA_RPATHS=$[ 0x0002 | 0x0010 ]
-# Remove the old build root
-%__rm -rf %{buildroot}
-
 # Create the new build root
-%__install -d %{buildroot}{%{_bindir},/opt/%{app_name},%{_datadir}/applications,%{_metainfodir}}
-%__install -d %{buildroot}%{_iconsdir}/hicolor/scalable/apps
+install -d %{buildroot}{%{_bindir},/opt/%{app_name},%{_datadir}/applications,%{_metainfodir}}
+install -d %{buildroot}%{_iconsdir}/hicolor/scalable/apps
 
 # Copy the application files to the application directory
-%__cp -a . %{buildroot}/opt/%{app_name}
+cp -a ./build/linux/%{build_target}/release/bundle/* %{buildroot}/opt/%{app_name}
 
 # Create a symlink to the application binary
-%__ln_s /opt/%{app_name}/%{name} %{buildroot}%{_bindir}
+ln -s /opt/%{app_name}/%{name} %{buildroot}%{_bindir}
 
 # Install the desktop file
-%__install -Dm 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
+install -Dm 0644 ./packaging/linux/%{fullname}.desktop %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 # Install the application icons
-%__install -Dm 0644 %{SOURCE2} -t %{buildroot}%{_iconsdir}/hicolor/scalable/apps
-%__install -Dm 0644 %{SOURCE3} -t %{buildroot}%{_iconsdir}/hicolor/scalable/apps
+install -Dm 0644 ./packaging/linux/%{fullname}.svg -t %{buildroot}%{_iconsdir}/hicolor/scalable/apps
+install -Dm 0644 ./packaging/linux/%{fullname}-symbolic.svg -t %{buildroot}%{_iconsdir}/hicolor/scalable/apps
 
 # Install the application metainfo file
-%__install -Dm 0644 %{SOURCE4} -t %{buildroot}%{_metainfodir}
+install -Dm 0644 ./packaging/linux/%{fullname}.metainfo.xml -t %{buildroot}%{_metainfodir}
+
 
 %files
 /opt/%{app_name}
 %{_bindir}/%{name}
-%{_datadir}/applications/%{fullname}.desktop
-%{_iconsdir}/hicolor/scalable/apps/%{fullname}.svg
-%{_iconsdir}/hicolor/scalable/apps/%{fullname}-symbolic.svg
+%{_datadir}/applications/%{name}.desktop
+%{_iconsdir}/hicolor/scalable/apps/*
 %{_metainfodir}/%{fullname}.metainfo.xml
+
 
 %changelog
 %autochangelog
