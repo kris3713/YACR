@@ -1,3 +1,4 @@
+#shellcheck disable=SC2148
 set -e
 
 RESET='\033[0m'
