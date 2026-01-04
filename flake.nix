@@ -7,7 +7,7 @@
 
   outputs =
     {
-      self,
+      # self,
       nixpkgs
     }:
 
