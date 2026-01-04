@@ -1,0 +1,59 @@
+#!/usr/bin/env fish
+
+set -l script_dir (status dirname)
+set -l basename (basename "$script_dir")
+
+source "$script_dir/../constants.fish"
+
+echo "Updating '$basename'"
+
+# BEGIN: Get the latest pkg version and commit hash
+set -l raw_url 'https://raw.githubusercontent.com/BeardOverflow/msi-ec/refs/heads/main/Makefile'
+set -l regex "VERSION\\s+:=\\s$VERSION_REGEX"
+
+echo 'Executing the `curl` command'
+set -l user_agent 'Mozilla/5.0 (X11; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0'
+set -l latest_pkg_version (curl $raw_url -sA "$user_agent" | rg -or '$1' $regex)
+
+if test -z "$latest_pkg_version"
+  echo "Failed to get the latest pkg version for '$basename'"
+  echo 'Exitting...'
+  exit 1
+end
+
+set -l api_url 'https://api.github.com/repos/BeardOverflow/msi-ec/commits'
+set -l jsonpath '$[0].sha'
+
+echo 'Executing the `parse-json` script'
+set -l latest_commit_hash ("$script_dir/../../scripts/parse-json" $api_url '' $jsonpath)
+
+if test -z "$latest_commit_hash"
+  echo "Failed to get the latest pkg version for '$basename'"
+  echo 'Exitting...'
+  exit 1
+end
+
+set -l latest_version_with_hash "$latest_pkg_version.git.$latest_commit_hash"
+# END: Get the latest pkg version and commit hash
+
+# BEGIN: Get the current pkg version and commit hash
+set -l spec_file "$script_dir/$basename.spec"
+set -l current_pkg_version (cat $spec_file | rg -or '$1' "pkg_version\\s$VERSION_REGEX")
+set -l current_commit_hash (cat $spec_file | rg -or '$1' 'commit_hash\\s([\\w]{40}.*)')
+set -l current_version_with_hash "$current_pkg_version.git.$current_commit_hash"
+# END: Get the current pkg version and commit hash
+
+echo 'Comparing the current version ($current_version_with_hash) with the latest version ($latest_version_with_hash)'
+echo "Current version: $current_version_with_hash"
+echo "Latest version: $latest_version_with_hash"
+if test "$current_version_with_hash" != "$latest_version_with_hash"
+  echo 'Versions are different. Updating the spec file(s)...'
+  for v in (fd --glob '*.spec' $script_dir)
+    sd -F "pkg_version $current_pkg_version" "pkg_version $latest_pkg_version" $v
+    sd -F "commit_hash $current_commit_hash" "pkg_version $latest_commit_hash" $v
+  end && echo 'Done!'
+else
+  echo 'Both versions are the same. No update needed.'
+end
+
+echo "Finished updating '$basename'"
