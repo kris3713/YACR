@@ -31,6 +31,7 @@
 * `lrcget`
 * `masscode`
 * `media-hoarder`
+* `msi-ec`
 * `naps2`
 * `oh-my-posh`
 * `p7zip`
