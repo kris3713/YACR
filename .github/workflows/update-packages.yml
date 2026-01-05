@@ -29,7 +29,8 @@ jobs:
       - name: 'Update package versions'
         shell: bash
         run: |
-          echo '----- Creating a new environment with helper programs -----'
+          BOLD_GREEN='\e[1;32m'
+          echo -e "${BOLD_GREEN}Creating a new environment with helper programs"
           echo '> nix flake update --verbose'
           nix flake update --verbose
           echo '> nix develop --command bash ./scripts/update-package-versions.sh'
