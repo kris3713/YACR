@@ -63,8 +63,8 @@ jobs:
             else
               echo "> CURRENT_TIME=\"\$(date +'%Y-%m-%d %H:%M:%S')\""
               CURRENT_TIME="$(date +'%Y-%m-%d %H:%M:%S')"
-              echo '> commit_message="bot: Updated packages at $CURRENT_TIME UTC"'
-              commit_message="bot: Updated packages at $CURRENT_TIME UTC"
+              echo '> commit_message="bot: Updated packages at $CURRENT_TIME UTC [skip ci]"'
+              commit_message="bot: Updated packages at $CURRENT_TIME UTC [skip ci]"
             fi
 
             echo '> git commit -m "$commit_message"'
