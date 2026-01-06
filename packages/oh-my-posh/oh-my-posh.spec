@@ -8,7 +8,7 @@
 %endif
 
 Name:           oh-my-posh
-Version:        28.10.0
+Version:        29.0.0
 Release:        1%{?dist}
 Summary:        The most customisable and low-latency cross platform/shell prompt renderer
 
