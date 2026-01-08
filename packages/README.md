@@ -23,6 +23,7 @@
 * `devtoys`
 * `dnscrypt-proxy`
 * `harmonoid`
+* `jdsystemmonitor`
 * `jetbrains-toolbox-arm64`
 * `jetbrains-toolbox`
 * `jq`
