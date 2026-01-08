@@ -16,7 +16,7 @@ Source1:        %{name}.desktop
 
 BuildRequires:  git gawk python3 gcc libgcc cmake golang openvpn-devel qt6-qtbase qt6-qtbase-devel
 BuildRequires:  qt6-qtbase-gui qt6-qttools qt6-qttools-devel qt6-qtsvg-devel qt-devel qt6-qtdeclarative-devel
-Requires:       python3 openvpn qt6-qtbase qt6-qttools
+Requires:       python3 openvpn
 
 ExclusiveArch:  x86_64
 

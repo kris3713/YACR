@@ -17,7 +17,6 @@ Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 Source1:        %{name}.desktop
 
 BuildRequires:  qt6-qttools-devel qt-devel qt6-qtdeclarative-devel qt6-qtsvg-devel xcb-util-wm-devel
-# Requires:       qt6-qttools qt6-qtsvg
 
 %description
 Drag and drop files directly out of the terminal.

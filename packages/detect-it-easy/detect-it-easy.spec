@@ -14,7 +14,6 @@ Source0:        https://github.com/horsicq/DIE-engine/releases/download/%{versio
 BuildRequires:  cmake qt5-qtbase qt5-qtbase-devel qt5-qtbase-gui
 BuildRequires:  qt5-qtscript-devel qt5-qttools qt5-qttools-devel
 BuildRequires:  qt5-qtsvg-devel qt-devel qtchooser
-Requires:       qt5-qtbase qt5-qttools
 
 %description
 Detect It Easy (DiE) is a powerful tool for file type identification,
