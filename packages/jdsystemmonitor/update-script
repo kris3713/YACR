@@ -8,11 +8,11 @@ source "$script_dir/../constants.fish"
 echo "Updating '$basename'"
 
 set -l url 'https://codeberg.org/api/v1/repos/JakobDev/jdSystemMonitor/releases/latest'
-set -l regex "v$VERSION_REGEX"
+# set -l regex "v$VERSION_REGEX"
 set -l jsonpath '$.tag_name'
 
 echo 'Executing the `parse-json` script'
-set -l latest_version ("$script_dir/../../scripts/parse-json" $url $regex $jsonpath)
+set -l latest_version ("$script_dir/../../scripts/parse-json" $url '' $jsonpath)
 
 if test -z "$latest_version"
   echo "Failed to get the latest version for '$basename'"
