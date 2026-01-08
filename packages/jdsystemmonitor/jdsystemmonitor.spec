@@ -63,7 +63,7 @@ export CC=clang CXX=clang++
 %{_bindir}/%{name}
 %{_libexecdir}/%{name}-daemon
 %{_datadir}/applications/%{full_name}.desktop
-%{_hicolordir}/*
+%{_iconsdir}/hicolor/*
 %{_metainfodir}/%{full_name}.metainfo.xml
 %{_datadir}/polkit-1/actions/%{full_name}.policy
 %license ./LICENSE
