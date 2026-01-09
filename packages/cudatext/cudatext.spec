@@ -7,7 +7,7 @@
 %global         debug_package %{nil}
 
 Name:           %{fullname}
-Version:        1.231.5.4
+Version:        1.231.7.0
 Release:        1%{?dist}
 Summary:        Cross-platform text and code editor
 
