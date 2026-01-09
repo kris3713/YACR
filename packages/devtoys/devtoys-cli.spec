@@ -6,7 +6,7 @@
 %global         debug_package %{nil}
 
 Name:           devtoys-cli
-Version:        2.0.8.0
+Version:        2.0.9.0
 Release:        1%{?dist}
 Summary:        A Swiss Army knife for developers. (CLI version)
 
