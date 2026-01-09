@@ -17,6 +17,8 @@ Source:         %{url}/archive/%{commit_hash}.tar.gz
 BuildRequires:  dkms
 Requires:       dkms
 
+BuildArch:      noarch
+
 %description
 %{summary}
 
