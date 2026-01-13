@@ -13,7 +13,7 @@
 %endif
 
 Name:           atuin
-Version:        18.10.0
+Version:        18.11.0
 Release:        1%{?dist}
 Summary:        ✨ Magical shell history
 
@@ -43,14 +43,14 @@ cargo build "-j$(nproc)" --profile dist --target %build_target
 
 # # Generate a clean dependency graph
 # cargo tree --workspace --edges 'no-build,no-dev,no-proc-macro' \
-#   --no-dedupe --target all --prefix none \
+#   --no-dedupe --prefix none \
 #   --format '# {l}' |
 #     sed -e "s: / :/:g" -e "s:/: OR :g" |
 #       sort -u
 
 # Generate a LICENSE file for all cargo dependencies
 cargo tree --workspace --edges 'no-build,no-dev,no-proc-macro' \
-  --no-dedupe --target all --prefix none \
+  --no-dedupe --prefix none \
   --format '{l}: {p}' |
     sed -e "s: ($(pwd)[^)]*)::g" -e 's: / :/:g' -e 's:/: OR :g' |
       sort -u > ./LICENSE.dependencies
