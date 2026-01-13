@@ -46,28 +46,23 @@ EOF
 # export OPENSSL_NO_VENDOR=1
 export CARGO_HOME="$(realpath ./.cargo)"
 
-# A subshell is here to ensure the RUSTFLAGS variable is only modified temporarily
-(
-  # The RUSTFLAGS variable has to be modified so pixi can compile properly
-  export RUSTFLAGS='-Cstrip=none -Clink-arg=-specs=/usr/lib/rpm/redhat/redhat-package-notes'
-  # Build pixi
-  cargo build -j4 --profile dist --target %build_target
-
-  # cargo build -j4 --profile dist --target %build_target \
-  #   --no-default-features --features native-tls
-)
+# The RUSTFLAGS variable has to be modified so pixi can compile properly
+export RUSTFLAGS='-Cstrip=none -Clink-arg=-specs=/usr/lib/rpm/redhat/redhat-package-notes'
+# Build pixi
+cargo build -j4 --profile dist --target %build_target
 
 # ⬇️ Both of these `cargo tree` commands takes way too long to execute.
 
 # # Generate a clean dependency graph
 # cargo tree --workspace --edges 'no-build,no-dev,no-proc-macro' \
-#   --no-dedupe --target all --prefix none \
+#   --no-dedupe --prefix none \
 #   --format '# {l}' |
 #     sed -e "s: / :/:g" -e "s:/: OR :g" |
 #       sort -u
+
 # # Generate a LICENSE file for all cargo dependencies
 # cargo tree --workspace --edges 'no-build,no-dev,no-proc-macro' \
-#   --no-dedupe --target all --prefix none \
+#   --no-dedupe --prefix none \
 #   --format '{l}: {p}' |
 #     sed -e "s: ($(pwd)[^)]*)::g" -e 's: / :/:g' -e 's:/: OR :g' |
 #       sort -u > ./LICENSE.dependencies
