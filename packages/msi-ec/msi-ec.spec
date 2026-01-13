@@ -1,11 +1,11 @@
-%global         commit_hash ecd3fbd81c0196c909a072a63f709ce71dc97e98
-%global         short_commit_hash %(echo %commit_hash | cut -c '1-7')
+%global         commit_hash ef34a4a374d2140c26ca360c607010cf0859d944
+%global         short_hash %(echo %commit_hash | cut -c '1-7')
 %global         pkg_version 0.12
 %global         underscore_name %%(echo %name | tr '-' '_')
 %global         debug_package %nil
 
 Name:           msi-ec
-Version:        %{pkg_version}.git.%{short_commit_hash}
+Version:        %{pkg_version}.git.%{short_hash}
 Release:        1%{?dist}
 Summary:        Embedded Controller for MSI laptops
 
@@ -46,6 +46,20 @@ sed -e 's/@VERSION/%{pkg_version}/' -i "$src_dir/dkms.conf"
 
 
 %post
+if [ $1 -eq 1 ]; then
+  # Change current directory
+  pushd /usr/src/%{underscore_name}-%{pkg_version}
+
+  dkms remove %{underscore_name}/%{pkg_version} --all
+  rm -f /etc/modules-load.d/%{name}.conf
+
+  # Switch back to the previous directory
+  popd
+
+  # Inform the user
+  echo 'Make sure to restart the computer afterwards to ensure the driver is properly uninstalled!'
+fi
+
 # Change current directory
 pushd /usr/src/%{underscore_name}-%{pkg_version}
 
@@ -63,17 +77,19 @@ echo 'Make sure to restart the computer afterwards to ensure the driver is prope
 
 
 %preun
-# Change current directory
-pushd /usr/src/%{underscore_name}-%{pkg_version}
+if [ $1 -eq 0 ]; then
+  # Change current directory
+  pushd /usr/src/%{underscore_name}-%{pkg_version}
 
-dkms remove %{underscore_name}/%{pkg_version} --all
-rm -f /etc/modules-load.d/%{name}.conf
+  dkms remove %{underscore_name}/%{pkg_version} --all
+  rm -f /etc/modules-load.d/%{name}.conf
 
-# Switch back to the previous directory
-popd
+  # Switch back to the previous directory
+  popd
 
-# Inform the user
-echo 'Make sure to restart the computer afterwards to ensure the driver is properly uninstalled!'
+  # Inform the user
+  echo 'Make sure to restart the computer afterwards to ensure the driver is properly uninstalled!'
+fi
 
 
 %files
