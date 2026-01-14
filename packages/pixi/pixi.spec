@@ -13,7 +13,7 @@
 %endif
 
 Name:           pixi
-Version:        0.62.2
+Version:        0.63.0
 Release:        1%{?dist}
 Summary:        Package management made simple
 
