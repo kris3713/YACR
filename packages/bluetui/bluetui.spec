@@ -48,7 +48,6 @@ install -Dm 0755 ./target/%{build_target}/release/%{name} -t %{buildroot}%{_bind
 
 %files
 %{_bindir}/%{name}
-%{_datadir}/applications/%{name}.desktop
 %doc ./Readme.md
 %license ./LICENSE ./LICENSE.dependencies
 
