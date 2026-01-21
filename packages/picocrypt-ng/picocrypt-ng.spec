@@ -34,10 +34,9 @@ pushd ./src
 
 go build \
   -ldflags '-s -w -linkmode=external' \
-  -tags gui \
   -buildmode pie \
   -o ./%{name} \
-  ./cmd/picocrypt/main.go
+  ./cmd/picocrypt/main_gui.go
 
 popd
 
