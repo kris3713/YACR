@@ -9,7 +9,7 @@
 %endif
 
 Name:           picocrypt-ng
-Version:        2.04
+Version:        2.05
 Release:        1%{?dist}
 Summary:        A very small, very simple, yet very secure encryption tool
 
