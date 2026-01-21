@@ -36,7 +36,7 @@ go build \
   -ldflags '-s -w -linkmode=external' \
   -buildmode pie \
   -o ./%{name} \
-  ./cmd/picocrypt/main_gui.go
+  ./cmd/picocrypt
 
 popd
 
