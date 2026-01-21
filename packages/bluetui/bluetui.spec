@@ -45,9 +45,6 @@ install -d %{buildroot}{%{_bindir},%{_datadir}/applications}
 # Install the executable
 install -Dm 0755 ./target/%{build_target}/release/%{name} -t %{buildroot}%{_bindir}
 
-# Install the desktop file
-install -Dm 0644 ./%{name}.desktop -t %{buildroot}%{_datadir}/applications
-
 
 %files
 %{_bindir}/%{name}
