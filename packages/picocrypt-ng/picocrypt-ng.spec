@@ -1,12 +1,5 @@
-%global         __requires_exclude_from ^%{_bindir}/%{name}$
 %global         real_name Picocrypt-NG
-%global         debug_package %{nil}
-
-%ifarch x86_64
-%global         go_arch amd64
-%else
-%global         go_arch arm64
-%endif
+%global         debug_package %nil
 
 Name:           picocrypt-ng
 Version:        2.05
@@ -35,36 +28,28 @@ and the Argon2id key derivation function to provide a high level of security.
 
 
 %build
-export CGO_ENABLED=1
-export GOOS='linux'
-export GOARCH='%{go_arch}'
+export CGO_ENABLED=1 GOOS='linux' GOARCH='amd64'
 
 pushd ./src
 
 go build \
   -ldflags '-s -w -linkmode=external' \
   -buildmode pie \
-  -o %{name}
+  -o %{name} \
+  ./cmd/picocrypt/main.go
 
 popd
 
 
 %install
-# Remove the old build root
-rm -rf %{buildroot}
-
-
-# Create the new build root
+# Create important directories in the buildroot
 install -d %{buildroot}{%{_bindir},%{_datadir}/applications,%{_iconsdir}/hicolor/scalable/apps}
-
 
 # Install the application binary
 install -Dm 0755 ./src/%{name} -t %{buildroot}%{_bindir}
 
-
 # Install the desktop file
 install -Dm 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
-
 
 # Install the application icon
 install -Dm 0644 ./images/key.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps/%{name}.svg
