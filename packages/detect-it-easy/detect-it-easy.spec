@@ -1,5 +1,7 @@
 %global         app_name die
-%global         debug_package %{nil}
+%global         debug_package %nil
+
+%define         git_url https://github.com/horsicq/DIE-engine
 
 Name:           detect-it-easy
 Version:        3.10
@@ -7,13 +9,13 @@ Release:        2%{?dist}
 Summary:        Program for determining types of files for Windows, Linux, and MacOS
 
 License:        MIT
-URL:            https://horsicq.github.io/#detect-it-easydie
+URL:            https://horsicq.github.io/#detect-it-easy%{app_name}
 
-Source0:        https://github.com/horsicq/DIE-engine/releases/download/%{version}/%{app_name}_sourcecode_%{version}.tar.gz
+Source0:        %{git_url}/releases/download/%{version}/%{app_name}_sourcecode_%{version}.tar.gz
 
-BuildRequires:  cmake qt5-qtbase qt5-qtbase-devel qt5-qtbase-gui
-BuildRequires:  qt5-qtscript-devel qt5-qttools qt5-qttools-devel
-BuildRequires:  qt5-qtsvg-devel qt-devel qtchooser
+BuildRequires:  make clang qt5-qtbase qt5-qtbase-devel
+BuildRequires:  qt5-qtbase-gui qt5-qtscript-devel qt5-qttools
+BuildRequires:  qt5-qttools-devel qt5-qtsvg-devel qt-devel qtchooser
 
 %description
 Detect It Easy (DiE) is a powerful tool for file type identification,
@@ -24,72 +26,96 @@ including Windows, Linux, and MacOS. Its adaptable, script-driven
 detection architecture makes it one of the most versatile tools in
 the field, with a comprehensive list of supported OS images.
 
+
 %prep
 %setup -q -n ./%{app_name}_sourcecode_%{version}
 
+
 %build
+# Remove unneeded build flags from C flags (clang doesn't need them)
+export CFLAGS="$(
+  echo '%{build_cflags}' |
+  sed -e 's;-specs=\/usr\/lib\/rpm\/redhat\/redhat-hardened-cc1;;' \
+    -e 's;-specs=\/usr\/lib\/rpm\/redhat\/redhat-annobin-cc1;;'
+)"
+# Remove unneeded build flags from CXX flags (clang doesn't need them)
+export CXXFLAGS="$(
+  echo '%{build_cxxflags}' |
+  sed -e 's;-specs=\/usr\/lib\/rpm\/redhat\/redhat-hardened-cc1;;' \
+    -e 's;-specs=\/usr\/lib\/rpm\/redhat\/redhat-annobin-cc1;;'
+)"
+# Remove unneeded build flags from LD flags (clang doesn't need them)
+export LDFLAGS="$(
+  echo '%{build_ldflags}' |
+  sed -e 's;-specs=\/usr\/lib\/rpm\/redhat\/redhat-hardened-ld;;' \
+    -e 's;-specs=\/usr\/lib\/rpm\/redhat\/redhat-hardened-ld-errors;;' \
+    -e 's;-specs=\/usr\/lib\/rpm\/redhat\/redhat-annobin-cc1;;' \
+    -e 's;-specs=\/usr\/lib\/rpm\/redhat\/redhat-package-notes;;'
+)"
+
+# Ensure the configure script is executable
+chmod 0755 ./configure
+
+# Force make to use clang
+export CC=clang CXX=clang++
+
 # Generate build files
-%__mkdir ./build
-%__cmake . -B ./build
-# Switch to the build directory
-cd ./build
+%configure
+
 # Build the application binaries
-%__make "-j$(nproc)"
-# Switch back to the root directory
-cd ..
+%make_build "CC=$CC" "CXX=$CXX"
+
 
 %install
-# Remove the old build root
-%__rm -rf %{buildroot}
+# Setup buildroot
+install -d %{buildroot}{%{_bindir},/lib/%{app_name}/signatures,%{_datadir}/applications}
 
-# Create a new build root (along with other directories)
-%__install -d %{buildroot}{%{_bindir},/lib/%{app_name},%{_datadir}/applications}
-%__install -d %{buildroot}%{_datadir}/icons/hicolor/{16x16,20x20,24x24,32x32,48x48,256x256}/apps
+for size in '16x16' '20x20' '24x24' '32x32' '48x48' '256x256'; do
+  install -d "%{buildroot}%{_datadir}/icons/hicolor/$size/apps"
+done
 
 # Install the application binarys
-%__install -D -m 0755 ./build/release/die -t %{buildroot}%{_bindir}
-%__install -D -m 0755 ./build/release/diec -t %{buildroot}%{_bindir}
-%__install -D -m 0755 ./build/release/diel -t %{buildroot}%{_bindir}
+for exe in '%{app_name}' '%{app_name}c' '%{app_name}l'; do
+  install -Dm 0755 "./build/release/$exe" -t %{buildroot}%{_bindir}
+done
 
 # Copy required libraires for Detect It Easy
-%__cp -a ./XStyles/qss %{buildroot}/lib/%{app_name}
-%__cp -a ./XYara/yara_rules %{buildroot}/lib/%{app_name}
-%__cp -a ./XInfoDB/info %{buildroot}/lib/%{app_name}
-%__cp -a ./images %{buildroot}/lib/%{app_name}
-%__cp -a ./Detect-It-Easy/db_custom %{buildroot}/lib/%{app_name}
-%__cp -a ./Detect-It-Easy/db %{buildroot}/lib/%{app_name}
-%__install -D -m 0644 ./signatures/crypto.db -t %{buildroot}/lib/%{app_name}/signatures
+cp -a ./XStyles/qss %{buildroot}/lib/%{app_name}/
+cp -a ./XYara/yara_rules %{buildroot}/lib/%{app_name}/
+cp -a ./XInfoDB/info %{buildroot}/lib/%{app_name}/
+cp -a ./images %{buildroot}/lib/%{app_name}/
+cp -a ./Detect-It-Easy/{db_custom,db} %{buildroot}/lib/%{app_name}/
+cp -a ./signatures/crypto.db %{buildroot}/lib/%{app_name}/signatures/
+
+# Remove executable permissions for all files in /lib/die
+find %{buildroot}/lib/%{app_name} -type f -exec chmod 0644 {} +
 
 # Change the directory to ./LINUX
-cd ./LINUX
+pushd ./LINUX
 
 # Install the desktop file
-%__install -D -m 0644 ./%{app_name}.desktop -t %{buildroot}%{_datadir}/applications
+install -Dm 0644 ./%{app_name}.desktop \
+  -t %{buildroot}%{_datadir}/applications
 
 # Install application icons
-%__install -D -m 0644 ./hicolor/16x16/apps/%{name}.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{name}.png
-%__install -D -m 0644 ./hicolor/20x20/apps/%{name}.png %{buildroot}%{_datadir}/icons/hicolor/20x20/apps/%{name}.png
-%__install -D -m 0644 ./hicolor/24x24/apps/%{name}.png %{buildroot}%{_datadir}/icons/hicolor/24x24/apps/%{name}.png
-%__install -D -m 0644 ./hicolor/32x32/apps/%{name}.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{name}.png
-%__install -D -m 0644 ./hicolor/48x48/apps/%{name}.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/%{name}.png
-%__install -D -m 0644 ./hicolor/256x256/apps/%{name}.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{name}.png
+for size in '16x16' '20x20' '24x24' '32x32' '48x48' '256x256'; do
+  install -Dm 0644 "./hicolor/$size/apps/%{name}.png" \
+    -t "%{buildroot}%{_datadir}/icons/hicolor/$size/apps"
+done
 
 # Change the directory back to the root
-cd ..
+popd
+
 
 %files
 %{_bindir}/%{app_name}
-%{_bindir}/diec
-%{_bindir}/diel
+%{_bindir}/%{app_name}c
+%{_bindir}/%{app_name}l
 /lib/%{app_name}
 %{_datadir}/applications/%{app_name}.desktop
-%{_datadir}/icons/hicolor/16x16/apps/%{name}.png
-%{_datadir}/icons/hicolor/20x20/apps/%{name}.png
-%{_datadir}/icons/hicolor/24x24/apps/%{name}.png
-%{_datadir}/icons/hicolor/32x32/apps/%{name}.png
-%{_datadir}/icons/hicolor/48x48/apps/%{name}.png
-%{_datadir}/icons/hicolor/256x256/apps/%{name}.png
+%{_datadir}/icons/hicolor/*/apps/%{name}.png
 %license ./LICENSE
+
 
 %changelog
 %autochangelog
