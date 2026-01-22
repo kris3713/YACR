@@ -54,7 +54,7 @@ export LDFLAGS="$(
 )"
 
 # Force meson to use clang instead of gcc
-export CC=clang CXX=clang++
+export CC='clang' CXX='clang++'
 
 # Setup meson
 %meson

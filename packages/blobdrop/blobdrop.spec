@@ -81,7 +81,7 @@ export LDFLAGS="$(
 )"
 
 # Force cmake to use clang
-export CC=clang CXX=clang++
+export CC='clang' CXX='clang++'
 
 # Force cmake to install to /usr instead of /usr/local
 cmake -DCMAKE_INSTALL_PREFIX=/usr -B ./redhat-linux-build
