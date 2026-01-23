@@ -135,8 +135,8 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.metainfo.xml
 
 %files -f %{name}.lang
-%license LICENSE LICENSE.1 LICENSE.2
-%doc README.md
+%license ./LICENSE ./LICENSE.1 ./LICENSE.2
+%doc ./README.md
 %{_bindir}/%{name}
 %{_bindir}/hwinfo2_fetch_sysdata
 %{_unitdir}/%{name}.service
