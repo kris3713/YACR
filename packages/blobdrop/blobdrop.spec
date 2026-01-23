@@ -14,7 +14,7 @@ URL:            https://github.com/vimpostor/%{name}
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 Source1:        %{name}.desktop
 
-BuildRequires:  cmake-rpm-macros cmake clang
+BuildRequires:  cmake-rpm-macros cmake gcc gcc-c++
 BuildRequires:  qt6-qttools-devel qt-devel qt6-qtdeclarative-devel
 BuildRequires:  qt6-qtsvg-devel xcb-util-wm-devel
 
@@ -59,30 +59,6 @@ Zsh completion for %{name}
 
 
 %build
-# Remove unneeded build flags from C flags (clang doesn't need them)
-export CFLAGS="$(
-  echo '%{build_cflags}' |
-  sed -e 's;-specs=\/usr\/lib\/rpm\/redhat\/redhat-hardened-cc1;;' \
-    -e 's;-specs=\/usr\/lib\/rpm\/redhat\/redhat-annobin-cc1;;'
-)"
-# Remove unneeded build flags from CXX flags (clang doesn't need them)
-export CXXFLAGS="$(
-  echo '%{build_cxxflags}' |
-  sed -e 's;-specs=\/usr\/lib\/rpm\/redhat\/redhat-hardened-cc1;;' \
-    -e 's;-specs=\/usr\/lib\/rpm\/redhat\/redhat-annobin-cc1;;'
-)"
-# Remove unneeded build flags from LD flags (clang doesn't need them)
-export LDFLAGS="$(
-  echo '%{build_ldflags}' |
-  sed -e 's;-specs=\/usr\/lib\/rpm\/redhat\/redhat-hardened-ld;;' \
-    -e 's;-specs=\/usr\/lib\/rpm\/redhat\/redhat-hardened-ld-errors;;' \
-    -e 's;-specs=\/usr\/lib\/rpm\/redhat\/redhat-annobin-cc1;;' \
-    -e 's;-specs=\/usr\/lib\/rpm\/redhat\/redhat-package-notes;;'
-)"
-
-# Force cmake to use clang
-export CC='clang' CXX='clang++'
-
 # Force cmake to install to /usr instead of /usr/local
 cmake -DCMAKE_INSTALL_PREFIX=/usr -B ./redhat-linux-build
 %cmake_build
