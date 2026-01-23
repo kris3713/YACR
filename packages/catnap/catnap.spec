@@ -49,6 +49,7 @@ install -Dm 0644 ./docs/%{name}.5 -t %{buildroot}%{_mandir}/man5
 if ! [ -d "$SUDO_HOME/.config/%{name}" ]; then
   mkdir -p "$SUDO_HOME/.config/%{name}"
   mv /etc/%{name}/* "$SUDO_HOME/.config/%{name}/"
+  chown -R "$SUDO_USER:users" "$SUDO_HOME/.config/%{name}"
 fi
 
 
