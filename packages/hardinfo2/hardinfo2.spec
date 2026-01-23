@@ -109,7 +109,7 @@ Features include:
 - Online Benchmarking - compare your machine against other machines
 
 %prep
-%autosetup -p1 -n hardinfo2-release-%{version}
+%autosetup -n ./%{name}-release-%{version}
 
 %build
 %if 0%{?rhel} < 8
@@ -136,26 +136,26 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.metainfo.xml
 %files -f %{name}.lang
 %license LICENSE LICENSE.1 LICENSE.2
 %doc README.md
-%{_bindir}/hardinfo2
+%{_bindir}/%{name}
 %{_bindir}/hwinfo2_fetch_sysdata
-%{_unitdir}/hardinfo2.service
-%dir %{_libdir}/hardinfo2
-%dir %{_libdir}/hardinfo2/modules
-%{_libdir}/hardinfo2/modules/benchmark.so
-%{_libdir}/hardinfo2/modules/computer.so
-%{_libdir}/hardinfo2/modules/devices.so
-%{_libdir}/hardinfo2/modules/network.so
-%{_libdir}/hardinfo2/modules/qgears2
-%{_libdir}/hardinfo2/modules/vkgears
-%{_metainfodir}/org.hardinfo2.hardinfo2.metainfo.xml
-%{_datadir}/applications/hardinfo2.desktop
-%dir %{_datadir}/hardinfo2
-%{_datadir}/hardinfo2/*.ids
-%{_datadir}/hardinfo2/benchmark.data
-%{_datadir}/hardinfo2/*.json
-%{_datadir}/hardinfo2/pixmaps/
-%{_datadir}/icons/hicolor/scalable/apps/hardinfo2.svg
-%{_mandir}/man1/hardinfo2.1*
+%{_unitdir}/%{name}.service
+%dir %{_libdir}/%{name}
+%dir %{_libdir}/%{name}/modules
+%{_libdir}/%{name}/modules/benchmark.so
+%{_libdir}/%{name}/modules/computer.so
+%{_libdir}/%{name}/modules/devices.so
+%{_libdir}/%{name}/modules/network.so
+%{_libdir}/%{name}/modules/qgears2
+%{_libdir}/%{name}/modules/vkgears
+%{_metainfodir}/org.%{name}.%{name}.metainfo.xml
+%{_datadir}/applications/%{name}.desktop
+%dir %{_datadir}/%{name}
+%{_datadir}/%{name}/*.ids
+%{_datadir}/%{name}/benchmark.data
+%{_datadir}/%{name}/*.json
+%{_datadir}/%{name}/pixmaps/
+%{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
+%{_mandir}/man1/%{name}.1*
 
 %changelog
 %autochangelog
