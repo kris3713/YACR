@@ -62,7 +62,7 @@ switch (count $argv)
     set -l webhook_rebuild $argv[1]
     set -l name $argv[2]
 
-     if test $webhook_rebuild != 'on'; and test $webhook_rebuild != 'off'
+    if test $webhook_rebuild != 'on'; and test $webhook_rebuild != 'off'
       echo 'First argument must either be a value of "on" or "off" (without quotes)'
       exit 1
     end
@@ -90,7 +90,7 @@ switch (count $argv)
     set -l subdir $argv[2]
     set -l name $argv[3]
 
-     if test $webhook_rebuild != 'on'; and test $webhook_rebuild != 'off'
+    if test $webhook_rebuild != 'on'; and test $webhook_rebuild != 'off'
       echo 'First argument must either be a value of "on" or "off" (without quotes)'
       exit 1
     end
