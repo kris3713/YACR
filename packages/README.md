@@ -21,6 +21,7 @@
 * `devtoys-cli`
 * `devtoys`
 * `dnscrypt-proxy`
+* `hardinfo2`
 * `harmonoid`
 * `jdsystemmonitor`
 * `jetbrains-toolbox-arm64`
