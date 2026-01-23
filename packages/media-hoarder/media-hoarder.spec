@@ -14,14 +14,11 @@ URL:            https://media.hoarder.software/
 
 Source0:        %{git_url}/archive/refs/tags/v%{version}.tar.gz
 Source1:        %{name}.desktop
-# This is needed since the project has dependencies
-# that don't work beyond NodeJS version 14.17.5.
-Source2:        https://nodejs.org/dist/v14.17.5/node-v14.17.5-linux-x64.tar.xz
 
 # Needed for creating a non-portable variant
-Patch:          package.json_diff.patch
+Patch0:         package.json_diff.patch
 
-BuildRequires:  git
+BuildRequires:  git mise
 Requires:       mediainfo
 
 # Currently, the application is only available for 64bit platforms
@@ -50,20 +47,20 @@ git checkout -fb 'v%{version}' 'v%{version}'
 %build
 # Change the node cache dir to avoid errors in COPR's cloud environment
 mkdir -v ./.node_cache
-NEW_CACHE_DIR="$(readlink -f ./.node_cache)"
-export npm_config_cache="$NEW_CACHE_DIR"
+export npm_config_cache="$(readlink -f ./.node_cache)"
 
-# Unpack the precompiled NodeJS executable binaries
-mkdir -v ./node-bin
-tar -xJf %{SOURCE2} '--strip-components=1' -C ./node-bin
-NODE_PATH="$(readlink -f ./node-bin)"
+# Setup mise, and install nodejs
+export MISE_GLOBAL_CONFIG_FILE=''
+export MISE_CACHE_DIR="$(realpath ./.mise_cache)"
+export MISE_DATA_DIR="$(realpath ./.mise_data)"
+mise install node@14.17.5
+NODE_PATH="$(mise where node@14.17.5)"
 
-# Add the executables to the PATH (tmp)
-NODE_BIN_PATH="$NODE_PATH/bin"
-export PATH="$PATH:$NODE_BIN_PATH"
+# Add the executables to the PATH
+export PATH="$PATH:$NODE_PATH/bin"
 
-# Change prefix for npm
-npm config set prefix "$NODE_PATH"
+# # Change prefix for npm
+# npm config set prefix "$NODE_PATH"
 
 # Install the dependencies
 npm install
