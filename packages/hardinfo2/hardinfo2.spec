@@ -8,7 +8,7 @@
 
 Name:           hardinfo2
 Version:        2.2.16
-Release:        1%{?dist}
+Release:        4%{?dist}
 Summary:        System Information and Benchmark for Linux Systems
 
 # most of the source code is GPL-2.0-or-later license, except:
@@ -83,16 +83,17 @@ BuildRequires:  zlib-devel
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  desktop-file-utils
 BuildRequires:  libappstream-glib
+Requires:       sysbench iperf3
 
 %if 0%{?rhel} >= 8 || 0%{?fedora}
 Recommends:     lm_sensors
-Recommends:     sysbench
+# Recommends:     sysbench
 Recommends:     lsscsi
 Recommends:     glx-utils
 Recommends:     dmidecode
 Recommends:     udisks2
 Recommends:     xdg-utils
-Recommends:     iperf3
+# Recommends:     iperf3
 Recommends:     vulkan-tools
 %endif
 
