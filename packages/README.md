@@ -23,6 +23,7 @@
 * `dnscrypt-proxy`
 * `hardinfo2`
 * `harmonoid`
+* `hwinfo`
 * `jdsystemmonitor`
 * `jetbrains-toolbox-arm64`
 * `jetbrains-toolbox`
