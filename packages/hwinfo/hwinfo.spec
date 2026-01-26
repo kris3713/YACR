@@ -29,17 +29,17 @@ generate a system overview log which can be later used for support.
 
 
 %package libs
-Summary:        Libraries for hwinfo
+Summary:        Libraries for %{name}
 Obsoletes:      %{name} < 22.2-1
 %description libs
-Libraries for using hwinfo, a hardware information tool, in other applications.
+Libraries for using %{name}, a hardware information tool, in other applica%{name}
 
 
 %package devel
-Summary:        Development files for hwinfo
+Summary:        Development files for %{name}
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 %description devel
-Header files and libraries for developing with libhd library from hwinfo, a
+Header files and libraries for developing with libhd library from %{name}, a
 hardware information tool.
 
 
@@ -67,21 +67,20 @@ mv %{buildroot}/usr/sbin  %{buildroot}%{_sbindir}
 %{_sbindir}/check_hd
 %{_sbindir}/convert_hd
 %{_sbindir}/getsysinfo
-%{_sbindir}/hwinfo
+%{_sbindir}/%{name}
 %{_sbindir}/mk_isdnhwdb
-%{_datadir}/hwinfo
+%{_datadir}/%{name}
 %doc ./*.md ./MAINTAINER
-%license COPYING
+%license ./COPYING
 
 
 %files libs
-%license COPYING
 %{_libdir}/libhd.so.*
 
 
 %files devel
 %{_includedir}/hd.h
-%{_libdir}/pkgconfig/hwinfo.pc
+%{_libdir}/pkgconfig/%{name}.pc
 %{_libdir}/libhd.so
 
 
