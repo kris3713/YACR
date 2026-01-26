@@ -46,7 +46,6 @@ git checkout -fb 'v%{version}' 'v%{version}'
 
 %build
 # Change the node cache dir to avoid errors in COPR's cloud environment
-mkdir -v ./.node_cache
 export npm_config_cache="$(readlink -f ./.node_cache)"
 
 # Setup mise, and install nodejs
@@ -63,9 +62,10 @@ export PATH="$PATH:$NODE_PATH/bin"
 # npm config set prefix "$NODE_PATH"
 
 # Install the dependencies
-npm install
+env NODE_ENV='dev' npm install
 
 # Update the `caniuse-lite` database
+export NODE_ENV='production'
 npx --verbose -y browserslist@latest --update-db
 # npx --verbose -y update-browserslist-db@latest
 
