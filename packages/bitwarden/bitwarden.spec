@@ -37,7 +37,6 @@ ExclusiveArch:  x86_64
   export PATH="$PATH:$(realpath ./extra_bin)"
 %endif
 
-
 export npm_config_cache="$(realpath ./.node_cache)"
 export CARGO_HOME="$(realpath ./.cargo)"
 export RUSTUP_HOME="$(realpath ./.rustup)"
