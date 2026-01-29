@@ -30,8 +30,10 @@ LRCGET is the official client of LRCLIB service.
 %setup -q -n ./%{name}-%{version}
 
 %build
-npm install
-npm run tauri build -- --no-bundle
+env NODE_ENV='dev' npm install
+env NODE_ENV='production' npm run tauri build -- \
+  --no-bundle \
+  --release --target x86_64-unknown-linux-gnu
 
 %install
 # Remove the old build root
