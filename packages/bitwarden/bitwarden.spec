@@ -15,9 +15,9 @@ URL:            https://%{name}.com
 
 Source0:        %{git_url}/archive/refs/tags/desktop-v%{version}.tar.gz
 
-BuildRequires:  nodejs nodejs-npm rustup git libsecret-devel
-BuildRequires:  glib2-devel atk-devel at-spi2-atk-devel
-BuildRequires:  gtk3-devel libxcrypt-compat
+BuildRequires:  nodejs nodejs-npm rustup git gcc gcc-c++
+BuildRequires:  libsecret-devel glib2-devel atk-devel
+BuildRequires:  at-spi2-atk-devel gtk3-devel libxcrypt-compat
 
 ExclusiveArch:  x86_64
 
