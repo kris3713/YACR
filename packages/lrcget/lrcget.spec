@@ -58,7 +58,8 @@ install -Dm 0644 ./packaging/linux/%{app_name}.desktop \
   %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 # Install the application binary
-install -Dm 0755 ./src-tauri/target/release/%{app_name} \
+install -Dm 0755 \
+  ./src-tauri/x86_64-unknown-linux-gnu/release/%{app_name} \
   -t %{buildroot}%{_bindir}
 
 # Install the application icons
