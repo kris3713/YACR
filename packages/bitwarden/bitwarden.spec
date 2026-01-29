@@ -97,6 +97,8 @@ ln -s /opt/%{app_name}/%{name} -t %{buildroot}%{_bindir}
 # Install the desktop file
 install -Dm 0644 "$RESOURCES_DIR/com.%{name}.desktop.desktop" \
   %{buildroot}%{_datadir}/applications/%{name}.desktop
+sed -i -e 's/com.%{name}.desktop/%{name}' \
+  %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 # Install the application icons
 for size in "${sizes[@]}"; do
