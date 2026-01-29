@@ -20,11 +20,11 @@ ExclusiveArch:  x86_64
 %description
 Utility for mass-downloading LRC synced lyrics for your offline music library.
 
-LRCGET will scan every files in your chosen directory for music files,
+%app_name will scan every files in your chosen directory for music files,
 then and try to download lyrics to a LRC files having the same name and save
 them to the same directory as your music files.
 
-LRCGET is the official client of LRCLIB service.
+%app_name is the official client of LRCLIB service.
 
 
 %prep
