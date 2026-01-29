@@ -79,6 +79,7 @@ install -Dm 0644 ./src-tauri/icons/icon.png \
 %{_datadir}/applications/%{name}.desktop
 %{_iconsdir}/hicolor/*/apps/%{app_name}.png
 %license ./LICENSE
+%doc ./README.md
 
 
 %changelog
