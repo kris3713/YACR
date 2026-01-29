@@ -1,18 +1,18 @@
 %global         app_name LRCGET
 %global         debug_package %{nil}
 
-Name:           lrcget
+Name:           %(echo %app_name | tr '[:upper:]' '[:lower:]')
 Version:        1.0.2
 Release:        1%{?dist}
 Summary:        Utility for mass-downloading LRC synced lyrics for your offline music library.
 
 License:        MIT
-URL:            https://github.com/tranxuanthang/lrcget
+URL:            https://github.com/tranxuanthang/%{name}
 
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 Source1:        %{name}.desktop
 
-BuildRequires:  nodejs-npm rust cargo openssl-devel libsoup3-devel
+BuildRequires:  nodejs nodejs-npm rust cargo openssl-devel libsoup3-devel
 BuildRequires:  javascriptcoregtk4.1-devel webkit2gtk4.1-devel alsa-lib-devel
 
 ExclusiveArch:  x86_64
@@ -26,45 +26,60 @@ them to the same directory as your music files.
 
 LRCGET is the official client of LRCLIB service.
 
+
 %prep
-%setup -q -n ./%{name}-%{version}
+%autosetup -n ./%{name}-%{version}
+
 
 %build
+%if %{?fedora} >= 44
+  mkdir -v ./extra_bin
+  ln -sv $(command -v node-22) ./extra_bin/node
+  ln -sv $(command -v npm-22) ./extra_bin/npm
+  export PATH="$PATH:$(realpath ./extra_bin)"
+%endif
+
+export npm_config_cache="$(realpath ./.node_cache)"
+export CARGO_HOME="$(realpath ./.cargo)"
+
 env NODE_ENV='dev' npm install
 env NODE_ENV='production' npm run tauri build -- \
   --no-bundle \
   --release --target x86_64-unknown-linux-gnu
 
-%install
-# Remove the old build root
-%__rm -rf %{buildroot}
 
-# Create the new build root
-%__install -d %{buildroot}{%{_bindir},%{_datadir}/applications}
-%__install -d %{buildroot}%{_iconsdir}/hicolor/{32x32,44x44,128x128,256x256,512x512}/apps
+%install
+# Setup buildroot
+install -d %{buildroot}{%{_bindir},%{_datadir}/applications}
+install -d %{buildroot}%{_iconsdir}/hicolor/{32x32,44x44,128x128}/apps
+install -d %{buildroot}%{_iconsdir}/hicolor/{256x256,512x512}/apps
 
 # Install the desktop file
-%__install -Dm 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
+install -Dm 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
 
 # Install the application binary
-%__install -Dm 0755 ./src-tauri/target/release/%{app_name} -t %{buildroot}%{_bindir}
+install -Dm 0755 ./src-tauri/target/release/%{app_name} \
+  -t %{buildroot}%{_bindir}
 
 # Install the application icons
-%__install -Dm 0644 ./src-tauri/icons/32x32.png %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{app_name}.png
-%__install -Dm 0644 ./src-tauri/icons/Square44x44Logo.png %{buildroot}%{_iconsdir}/hicolor/44x44/apps/%{app_name}.png
-%__install -Dm 0644 ./src-tauri/icons/128x128.png %{buildroot}%{_iconsdir}/hicolor/128x128/apps/%{app_name}.png
-%__install -Dm 0644 ./src-tauri/icons/128x128@2x.png %{buildroot}%{_iconsdir}/hicolor/256x256/apps/%{app_name}.png
-%__install -Dm 0644 ./src-tauri/icons/icon.png %{buildroot}%{_iconsdir}/hicolor/512x512/apps/%{app_name}.png
+install -Dm 0644 ./src-tauri/icons/32x32.png \
+  %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{app_name}.png
+install -Dm 0644 ./src-tauri/icons/Square44x44Logo.png \
+  %{buildroot}%{_iconsdir}/hicolor/44x44/apps/%{app_name}.png
+install -Dm 0644 ./src-tauri/icons/128x128.png \
+  %{buildroot}%{_iconsdir}/hicolor/128x128/apps/%{app_name}.png
+install -Dm 0644 ./src-tauri/icons/128x128@2x.png \
+  %{buildroot}%{_iconsdir}/hicolor/256x256/apps/%{app_name}.png
+install -Dm 0644 ./src-tauri/icons/icon.png \
+  %{buildroot}%{_iconsdir}/hicolor/512x512/apps/%{app_name}.png
+
 
 %files
 %{_bindir}/%{app_name}
 %{_datadir}/applications/%{name}.desktop
-%{_iconsdir}/hicolor/32x32/apps/%{app_name}.png
-%{_iconsdir}/hicolor/44x44/apps/%{app_name}.png
-%{_iconsdir}/hicolor/128x128/apps/%{app_name}.png
-%{_iconsdir}/hicolor/256x256/apps/%{app_name}.png
-%{_iconsdir}/hicolor/512x512/apps/%{app_name}.png
+%{_iconsdir}/hicolor/*/apps/%{app_name}.png
 %license ./LICENSE
+
 
 %changelog
 %autochangelog
