@@ -10,7 +10,6 @@ License:        MIT
 URL:            https://github.com/tranxuanthang/%{name}
 
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
-Source1:        %{name}.desktop
 
 BuildRequires:  nodejs nodejs-npm rust cargo openssl-devel libsoup3-devel
 BuildRequires:  javascriptcoregtk4.1-devel webkit2gtk4.1-devel alsa-lib-devel
@@ -55,7 +54,8 @@ install -d %{buildroot}%{_iconsdir}/hicolor/{32x32,44x44,128x128}/apps
 install -d %{buildroot}%{_iconsdir}/hicolor/{256x256,512x512}/apps
 
 # Install the desktop file
-install -Dm 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
+install -Dm 0644 ./packaging/linux/%{app_name}.desktop \
+  %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 # Install the application binary
 install -Dm 0755 ./src-tauri/target/release/%{app_name} \
