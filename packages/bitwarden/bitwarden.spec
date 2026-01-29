@@ -72,7 +72,8 @@ npm run build -- \
 # Build the application
 pushd ..
 
-npm run build
+npm run build -- \
+  --release --target x86_64-unknown-linux-gnu
 npm run 'clean:dist'
 npm exec electron-builder -- \
   --linux --x64 --dir -p always
