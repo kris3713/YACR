@@ -30,6 +30,14 @@ ExclusiveArch:  x86_64
 
 
 %build
+%if %{?fedora} >= 44
+  mkdir -v ./extra_bin
+  ln -sv $(command -v node-22) ./extra_bin/node
+  ln -sv $(command -v npm-22) ./extra_bin/npm
+  export PATH="$PATH:$(realpath ./extra_bin)"
+%endif
+
+
 export npm_config_cache="$(realpath ./.node_cache)"
 export CARGO_HOME="$(realpath ./.cargo)"
 export RUSTUP_HOME="$(realpath ./.rustup)"
@@ -97,7 +105,7 @@ ln -s /opt/%{app_name}/%{name} -t %{buildroot}%{_bindir}
 # Install the desktop file
 install -Dm 0644 "$RESOURCES_DIR/com.%{name}.desktop.desktop" \
   %{buildroot}%{_datadir}/applications/%{name}.desktop
-sed -i -e 's/com.%{name}.desktop/%{name}' \
+sed -i -e 's/com.%{name}.desktop/%{name}/' \
   %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 # Install the application icons
