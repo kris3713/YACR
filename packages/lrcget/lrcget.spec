@@ -45,7 +45,8 @@ export CARGO_HOME="$(realpath ./.cargo)"
 env NODE_ENV='dev' npm install
 env NODE_ENV='production' npm run tauri build -- \
   --no-bundle \
-  --release --target x86_64-unknown-linux-gnu
+  --target x86_64-unknown-linux-gnu \
+  -- --release
 
 
 %install
