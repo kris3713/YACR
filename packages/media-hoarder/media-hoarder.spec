@@ -37,7 +37,7 @@ Features:
 %setup -q -n ./%{app_name}-%{version}
 # Git is needed so the build doesn't fail
 git init -q
-git remote add origin %{git_url}
+git remote add origin %{git_url}.git
 git fetch --tags -q
 git checkout -fb 'v%{version}' 'v%{version}'
 # Apply the patch
