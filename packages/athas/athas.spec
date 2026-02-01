@@ -56,7 +56,7 @@ env NODE_ENV='production' bun run tauri build \
 
 %install
 # Setup buildroot
-install -d %{buildroot}{%{_bindir},%{_datadir}/applications}}
+install -d %{buildroot}{%{_bindir},%{_datadir}/applications}
 
 std_sizes=('32x32' '128x128' '256x256' '512x512')
 for size in "${std_sizes[@]}"; do
@@ -102,7 +102,7 @@ done
 
 
 %files
-%{_bindir}/%{name}
+%{_bindir}/%{name}-code
 %{_datadir}/applications/%{name}.desktop
 %{_iconsdir}/hicolor/*/apps/%{name}.png
 %license ./LICENSE
