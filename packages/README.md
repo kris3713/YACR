@@ -5,6 +5,7 @@
 # Packages available for installation
 
 * `adwaita-fonts`
+* `athas`
 * `atuin`
 * `bitwarden`
 * `blobdrop`
