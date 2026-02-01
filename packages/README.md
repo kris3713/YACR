@@ -29,6 +29,7 @@
 * `jetbrains-toolbox-arm64`
 * `jetbrains-toolbox`
 * `jq`
+* `kuro`
 * `localsend-arm64`
 * `localsend`
 * `lrcget`
