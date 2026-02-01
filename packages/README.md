@@ -32,7 +32,6 @@
 * `localsend-arm64`
 * `localsend`
 * `lrcget`
-* `masscode`
 * `media-hoarder`
 * `msi-ec`
 * `naps2`
