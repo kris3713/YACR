@@ -32,7 +32,6 @@ ExclusiveArch:  x86_64
 %if %{?fedora} >= 44
   mkdir -v ./extra_bin
   ln -sv $(command -v node-22) ./extra_bin/node
-  ln -sv $(command -v npm-22) ./extra_bin/npm
   export PATH="$PATH:$(realpath ./extra_bin)"
 %endif
 
