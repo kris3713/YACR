@@ -6,7 +6,7 @@
 Name:           %(echo %app_name | tr '[:upper:]' '[:lower:]')
 Version:        9.1.1
 Release:        1%{?dist}
-Summary:        A secure and free password manager for all of your devices.
+Summary:        An elegant Microsoft ToDo desktop client for Linux (a fork of Ao)
 
 License:        MIT
 URL:            https://github.com/davidsmorais/%{name}
@@ -21,7 +21,8 @@ BuildRequires:  nodejs yarnpkg
 ExclusiveArch:  x86_64
 
 %description
-%{summary}
+%app_name is an unofficial, featureful, open source,
+community-driven, free Microsoft To-Do app for Linux
 
 
 %prep
