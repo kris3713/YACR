@@ -13,6 +13,7 @@ Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 BuildRequires:  gcc gcc-c++ ninja-build cmake cmake-rpm-macros
 BuildRequires:  maddy boost-devel boost-json cpr-devel gettext-libs
 BuildRequires:  gtest-devel libsecret-devel sqlcipher-devel
+Requires:       maddy
 
 %description
 %name provides Nickvision apps with a common set of cross-platform
