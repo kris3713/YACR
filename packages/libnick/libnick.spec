@@ -24,7 +24,7 @@ network management, taskbar icons, translations, app updates, and more.
 
 
 # %%package devel
-# Summary: Development files for %name
+# Summary: Development files for %%name
 # Provides: %%{name}-static = %%{?epoch:%%{epoch}:}%%{version}-%%{release}
 # %%description devel
 # %%{summary}.
