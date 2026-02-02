@@ -59,8 +59,7 @@ Zsh completion for %{name}
 
 
 %build
-# Force cmake to install to /usr instead of /usr/local
-cmake -DCMAKE_INSTALL_PREFIX=/usr -B ./redhat-linux-build
+%cmake -DCMAKE_BUILD_TYPE=Release
 %cmake_build
 
 
