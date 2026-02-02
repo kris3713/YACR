@@ -19,12 +19,11 @@ BuildRequires:  gcc gcc-c++ ninja-build cmake cmake-rpm-macros
 %autosetup -n ./%{name}-%{version}
 
 
-
-%package devel
-Summary: Development files for %name
-Provides: %{name}-static = %{?epoch:%{epoch}:}%{version}-%{release}
-%description devel
-%{summary}.
+# %%package devel
+# Summary: Development files for %name
+# Provides: %%{name}-static = %%{?epoch:%%{epoch}:}%%{version}-%%{release}
+# %%description devel
+# %%{summary}.
 
 
 %build
