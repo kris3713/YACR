@@ -17,7 +17,7 @@ BuildRequires:  gcc gcc-c++ ninja-build cmake
 BuildRequires:  cmake-rpm-macros libnick boost-devel
 BuildRequires:  boost-date-time cpr-devel blueprint-compiler
 BuildRequires:  gtk4-devel libadwaita-devel libxml++50-devel
-BuildRequires:  libsecret-devel sqlcipher-devel patchelf
+BuildRequires:  libsecret-devel sqlcipher-devel yelp-tools patchelf
 Requires:       libsecret gnome-keyring python3 %lib_name
 # yt-dlp is not in needed in "Requires"
 # as parabolic (or tubeconverter) downloads
