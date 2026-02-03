@@ -31,14 +31,17 @@
 * `jetbrains-toolbox`
 * `jq`
 * `kuro`
+* `libnick`
 * `localsend-arm64`
 * `localsend`
 * `lrcget`
+* `maddy`
 * `media-hoarder`
 * `msi-ec`
 * `naps2`
 * `oh-my-posh`
 * `p7zip`
+* `parabolic`
 * `pdfstudioviewer`
 * `picocrypt-ng`
 * `podman`
