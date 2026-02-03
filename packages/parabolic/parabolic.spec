@@ -64,6 +64,7 @@ patchelf --print-rpath "$EXE_FILEPATH"
 # Install Parabolic
 %cmake_install
 ln -s ./%{app_id} %{buildroot}%{_bindir}/%{name}
+ln -s ./%{app_id} %{buildroot}%{_bindir}/tubeconverter
 
 # Install libparabolic
 install -d %{buildroot}%{_libdir}/%{lib_name}
@@ -74,6 +75,7 @@ cp -a ./redhat-linux-build/%{lib_name}/* \
 %files
 %{_bindir}/%{name}
 %{_bindir}/%{app_id}
+%{_bindir}/tubeconverter
 %{_libdir}/%{app_id}
 %{_datadir}/applications/%{app_id}.desktop
 %{_metainfodir}/%{app_id}.metainfo.xml
