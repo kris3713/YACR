@@ -78,6 +78,7 @@ cp -a ./redhat-linux-build/%{lib_name}/* \
 %{_bindir}/tubeconverter
 %{_libdir}/%{app_id}
 %{_datadir}/applications/%{app_id}.desktop
+%{_datadir}/help/*/parabolic/*
 %{_metainfodir}/%{app_id}.metainfo.xml
 /usr/share/dbus-1/services/%{app_id}.service
 %{_iconsdir}/hicolor/*/apps/*.svg
