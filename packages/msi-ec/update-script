@@ -13,7 +13,7 @@ set -l regex "VERSION\\s+:=\\s$VERSION_REGEX"
 
 echo 'Executing the `curl` command'
 set -l user_agent 'Mozilla/5.0 (X11; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0'
-set -l latest_pkg_version (curl $raw_url -sA "$user_agent" | rg -or '$1' $regex)
+set -l latest_pkg_version (curl -fSsL $raw_url A $user_agent | rg -or '$1' $regex)
 
 if test -z "$latest_pkg_version"
   echo "Failed to get the latest pkg version for '$basename'"
@@ -23,7 +23,6 @@ end
 
 set -l api_url 'https://api.github.com/repos/BeardOverflow/msi-ec/commits'
 set -l jsonpath '$[0].sha'
-
 echo 'Executing the `parse-json` script'
 set -l latest_commit_hash ("$script_dir/../../scripts/parse-json" $api_url '' $jsonpath)
 set -l latest_short_hash (echo $latest_commit_hash | cut -c '1-7')
