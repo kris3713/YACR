@@ -36,6 +36,7 @@
 * `localsend`
 * `lrcget`
 * `maddy`
+* `mantra`
 * `media-hoarder`
 * `msi-ec`
 * `naps2`
