@@ -17,6 +17,8 @@ Source0:        %{url}/archive/%{short_commit}.tar.gz
 BuildRequires:  make
 Requires:       python3 python3-beautifulsoup4 fzf
 
+BuildArch:      noarch
+
 %description
 View online Arch Linux manual pages (from https://man.archlinux.org) from the terminal.
 
