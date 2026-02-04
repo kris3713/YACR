@@ -14,6 +14,7 @@ URL:            https://codeberg.org/theooo/%{repo_name}
 
 Source0:        %{url}/archive/%{short_commit}.tar.gz
 
+BuildRequires:  make
 Requires:       python3 python3-beautifulsoup4 fzf
 
 %description
