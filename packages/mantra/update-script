@@ -1,0 +1,60 @@
+#!/usr/bin/env fish
+
+set -l script_dir (status dirname)
+set -l basename (basename "$script_dir")
+
+source "$script_dir/../constants.fish"
+
+echo "Updating '$basename'"
+
+# BEGIN: Get the latest date version and commit hash
+set -l url 'https://codeberg.org/api/v1/repos/theooo/mantra.py/commits?ref=main'
+# set -l regex "v$VERSION_REGEX"
+set -l date_jsonpath '$[0].created'
+echo 'Executing the `parse-json` script to get the latest date.'
+set -l latest_date ("$script_dir/../../scripts/parse-json" $url '' $date_jsonpath)
+
+if test -z "$latest_date"
+  echo "Failed to get the latest version for '$basename'"
+  echo 'Exitting...'
+  exit 1
+end
+
+set -l latest_date_version (env TZ='utc' date "--date=$latest_date" +'%Y.%m.%d')
+
+set -l commit_jsonpath '$[0].sha'
+echo 'Executing the `parse-json` script to get the latest commit hash.'
+set -l latest_commit ("$script_dir/../../scripts/parse-json" $url '' $commit_jsonpath)
+
+if test -z "$latest_commit"
+  echo "Failed to get the latest version for '$basename'"
+  echo 'Exitting...'
+  exit 1
+end
+
+set -l latest_short_commit (echo $latest_commit | cut -c '1-10')
+
+set -l latest_version_with_hash "$latest_date_version.git.$latest_short_commit"
+# END: Get the latest date version and commit hash
+
+# BEGIN: Get the current date version and commit hash
+set -l spec_file "$script_dir/$basename.spec"
+set -l current_date_version (cat $spec_file | rg -or '$1' "date_version\\s$VERSION_REGEX")
+set -l current_short_commit (cat $spec_file | rg -or '$1' 'short_commit\\s([\\w]{10}.*)')
+set -l current_version_with_hash "$current_date_version.git.$current_short_commit"
+# END: Get the current date version and commit hash
+
+echo 'Comparing the current version ($current_version_with_hash) with the latest version ($latest_version_with_hash)'
+echo "Current version: $current_version_with_hash"
+echo "Latest version: $latest_version_with_hash"
+if test "$current_version_with_hash" != "$latest_version_with_hash"
+  echo 'Versions are different. Updating the spec file(s)...'
+  for v in (fd --glob '*.spec' $script_dir)
+    sd -F "date_version $current_date_version" "date_version $latest_date_version" $v
+    sd -F "commit_hash $current_short_commit" "commit_hash $latest_short_commit" $v
+  end && echo 'Done!'
+else
+  echo 'Both versions are the same. No update needed.'
+end
+
+echo "Finished updating '$basename'"
