@@ -2,7 +2,7 @@
 %global         version_no_dots %%(echo %{version} | tr -d '.')
 
 Name:           rar
-Version:        7.12
+Version:        7.20
 Release:        1%{?dist}
 Summary:        Utility for RAR archives
 
