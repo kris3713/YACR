@@ -12,11 +12,8 @@ License:        MIT
 URL:            https://github.com/davidsmorais/%{name}
 
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
-Source1:        %{name}.desktop
 
-BuildRequires:  nodejs yarnpkg
-# BuildRequires:  libsecret-devel glib2-devel atk-devel
-# BuildRequires:  at-spi2-atk-devel gtk3-devel libxcrypt-compat
+BuildRequires:  electron nodejs yarnpkg
 
 ExclusiveArch:  x86_64
 
@@ -36,18 +33,27 @@ community-driven, free Microsoft To-Do app for Linux
   export PATH="$PATH:$(realpath ./extra_bin)"
 %endif
 
+# Ensure nodejs does not download
+# an electron executable.
+export ELECTRON_SKIP_BINARY_DOWNLOAD=1
+export ELECTRON_OVERRIDE_DIST_PATH='%{_libdir}/electron'
+
+# Ensure yarn (or npm if ever used) stores it's
+# config in a relative location
 export npm_config_cache="$(realpath ./.yarn_cache)"
+export ELECTRON_CACHE="$(realpath ./.electron_cache)"
+export ELECTRON_BUILDER_CACHE="$(realpath ./.electron_builder_cache)"
 export YARN_CACHE_FOLDER="$npm_config_cache"
-export YARN_CONFIG_FOLDER="$(realpath ./.yarn_config)"
+export YARN_GLOBAL_FOLDER="$(realpath ./.yarn_config)"
 
 # Clean install all node dependencies
 env NODE_ENV='dev' yarn install
 
 # Build the application
 export NODE_ENV='production'
-yarn icons
-yarn exec electron-builder -- \
-  --linux --x64 --dir -p always
+yarn run release --linux --x64 --dir \
+  "-c.electronDist=$ELECTRON_OVERRIDE_DIST_PATH" \
+  "-c.electronVersion=$(cat $ELECTRON_OVERRIDE_DIST_PATH/version)"
 
 
 %install
@@ -69,8 +75,19 @@ cp -a ./dist/linux-unpacked/* %{buildroot}/opt/%{app_name}
 ln -s /opt/%{app_name}/%{name} -t %{buildroot}%{_bindir}
 
 # Install the desktop file
-install -Dm 0644 %SOURCE1 \
-  -t %{buildroot}%{_datadir}/applications
+CONTENT="$(cat << 'desktop'
+[Desktop Entry]
+Name=%app_name
+Exec=%name
+Terminal=false
+Type=Application
+Icon=%name
+StartupWMClass=%app_name
+Comment=%app_name is an unofficial, featureful Microsoft ToDo desktop client for Linux (a fork of Ao).
+Categories=Office
+desktop
+)"
+install -Dm 0644 /dev/stdin %{buildroot}%{_datadir}/applications/%{name}.desktop <<< "$CONTENT"
 
 # Install the application icons
 for size in "${sizes[@]}"; do
