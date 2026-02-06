@@ -6,7 +6,7 @@
 %define         git_url https://github.com/%{name}/clients
 
 Name:           %(echo %app_name | tr '[:upper:]' '[:lower:]')
-Version:        2025.12.1
+Version:        2026.1.0
 Release:        1%{?dist}
 Summary:        A secure and free password manager for all of your devices.
 
@@ -15,7 +15,7 @@ URL:            https://%{name}.com
 
 Source0:        %{git_url}/archive/refs/tags/desktop-v%{version}.tar.gz
 
-BuildRequires:  nodejs nodejs-npm rustup git gcc gcc-c++
+BuildRequires:  electron nodejs nodejs-npm rustup gcc gcc-c++
 BuildRequires:  libsecret-devel glib2-devel atk-devel
 BuildRequires:  at-spi2-atk-devel gtk3-devel libxcrypt-compat
 
@@ -37,21 +37,31 @@ ExclusiveArch:  x86_64
   export PATH="$PATH:$(realpath ./extra_bin)"
 %endif
 
+# Ensure nodejs does not download
+# an electron executable.
+export ELECTRON_SKIP_BINARY_DOWNLOAD=1
+export ELECTRON_OVERRIDE_DIST_PATH='%{_libdir}/electron'
+
+# Ensure npm/electron/cargo/rustup stores
+# it's config in a relative location.
 export npm_config_cache="$(realpath ./.node_cache)"
+export ELECTRON_CACHE="$(realpath ./.electron_cache)"
+export ELECTRON_BUILDER_CACHE="$(realpath ./.electron_builder_cache)"
 export CARGO_HOME="$(realpath ./.cargo)"
 export RUSTUP_HOME="$(realpath ./.rustup)"
-export RUSTUP_TOOLCHAIN='nightly'
 
 # Clean install all node dependencies
 env NODE_ENV='dev' npm ci --loglevel=error
 
-# Install rustup, add cargo bin to PATH and install
-# rust nightly
-rustup-init -y \
-  --no-modify-path --default-toolchain none
+# Ensure rustup uses the nightly
+# toolchain by default.
+export RUSTUP_TOOLCHAIN='nightly'
+
+# Install rustup, install rust nightly,
+# and add cargo bin to PATH
+rustup-init -y --no-modify-path \
+  --default-toolchain $RUSTUP_TOOLCHAIN
 export PATH="$PATH:$CARGO_HOME/bin"
-rustup toolchain install nightly
-rustup default nightly
 
 # Build the native modules
 export NODE_ENV='production'
@@ -59,23 +69,23 @@ pushd ./apps/desktop/desktop_native/napi
 
 # Using extra arguments that will be
 # passed to cargo from napi cli
-npm run build -- \
-  --release --target x86_64-unknown-linux-gnu \
-  -- "-j$(nproc)"
+BUILD_TARGET='x86_64-unknown-linux-gnu'
+npm run build -- --release \
+  --target $BUILD_TARGET -- "-j$(nproc)"
 
 pushd ..
 
-npm run build -- \
-  --release --target x86_64-unknown-linux-gnu
+npm run build -- --release \
+  --target $BUILD_TARGET
 
 # Build the application
 pushd ..
 
-npm run build -- \
-  --release --target x86_64-unknown-linux-gnu
-npm run 'clean:dist'
-npm exec electron-builder -- \
-  --linux --x64 --dir -p always
+npm run build -- --release \
+  --target $BUILD_TARGET
+npm run 'pack:dir' -- --linux --x64 \
+  "-c.electronDist=$ELECTRON_OVERRIDE_DIST_PATH" \
+  "-c.electronVersion=$(cat $ELECTRON_OVERRIDE_DIST_PATH/version)"
 
 popd
 
@@ -100,7 +110,7 @@ cp -a "$BUILD_DIR"/* %{buildroot}/opt/%{app_name}
 chmod -v 4755 %{buildroot}/opt/%{app_name}/chrome-sandbox
 
 # Create a symbolic link to the application binary
-ln -s /opt/%{app_name}/%{name} -t %{buildroot}%{_bindir}
+ln -s /opt/%{app_name}/%{name} %{buildroot}%{_bindir}
 
 # Install the desktop file
 install -Dm 0644 "$RESOURCES_DIR/com.%{name}.desktop.desktop" \
@@ -124,7 +134,7 @@ mv -v ./apps/desktop/README.md ./apps/desktop/README_desktop.md
 %{_datadir}/applications/%{name}.desktop
 %{_iconsdir}/hicolor/*/apps/%{name}.png
 %license ./LICENSE*.txt
-%doc ./README.md ./apps/desktop/README_desktop.md ./SECURITY.md
+%doc ./{README,SECURITY}.md ./apps/desktop/README_desktop.md
 
 
 %changelog
