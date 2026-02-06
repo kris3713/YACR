@@ -4,7 +4,7 @@
 %global         debug_package %nil
 
 Name:           %(echo %real_name | tr '[:upper:]' '[:lower:]')
-Version:        2025.11.1
+Version:        2026.2.0
 Release:        1%{?dist}
 Summary:        Download web video and audio.
 
