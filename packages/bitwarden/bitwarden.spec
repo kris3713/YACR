@@ -50,6 +50,12 @@ export ELECTRON_BUILDER_CACHE="$(realpath ./.electron_builder_cache)"
 export CARGO_HOME="$(realpath ./.cargo)"
 export RUSTUP_HOME="$(realpath ./.rustup)"
 
+# Change where npm stores its
+# user and global config
+export NPM_CONFIG_USERCONFIG="$(realpath ./user_npmrc)"
+export NPM_CONFIG_GLOBALCONFIG="$(realpath ./npmrc)"
+touch ./user_npmrc ./npmrc
+
 # Clean install all node dependencies
 env NODE_ENV='dev' npm ci --loglevel=error
 
