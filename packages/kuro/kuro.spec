@@ -5,7 +5,7 @@
 
 Name:           %(echo %app_name | tr '[:upper:]' '[:lower:]')
 Version:        9.1.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        An elegant Microsoft ToDo desktop client for Linux (a fork of Ao)
 
 License:        MIT
