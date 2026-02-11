@@ -23,7 +23,7 @@ URL:            https://www.naps2.com/
 Source0:        https://github.com/cyanfish/naps2/archive/refs/tags/v%{version}.tar.gz
 Source1:        %{name}.console
 
-BuildRequires:  dotnet-sdk-10.0 liberation-fonts-all
+BuildRequires:  dotnet-sdk-9.0 liberation-fonts-all
 BuildRequires:  google-noto-fonts-common google-noto-sans-cjk-vf-fonts
 
 %description
