@@ -20,7 +20,7 @@ Summary:        ✨ Magical shell history
 License:        MIT
 URL:            https://atuin.sh/
 
-Source0:         %{git_url}/archive/refs/tags/v%{version}.tar.gz
+Source0:        %{git_url}/archive/refs/tags/v%{version}.tar.gz
 
 BuildRequires:  rust cargo
 
