@@ -1,0 +1,14 @@
+# TODO: fix bug that is causing the chmod command to not work properly.
+diff --git a/Nickvision.Parabolic.Shared/Services/YtdlpExecutableService.cs b/Nickvision.Parabolic.Shared/Services/YtdlpExecutableService.cs
+index 3fd2d78..d703e1e 100644
+--- a/Nickvision.Parabolic.Shared/Services/YtdlpExecutableService.cs
++++ b/Nickvision.Parabolic.Shared/Services/YtdlpExecutableService.cs
+@@ -97,7 +97,7 @@ public class YtdlpExecutableService : IYtdlpExecutableService
+             {
+                 using var process = new Process()
+                 {
+-                    StartInfo = new ProcessStartInfo("chmod", [$"+x \"{path}\""])
++                    StartInfo = new ProcessStartInfo("chmod", [$"0755 '{path}'"])
+                     {
+                         UseShellExecute = false,
+                         CreateNoWindow = true,
