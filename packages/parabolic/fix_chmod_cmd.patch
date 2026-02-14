@@ -1,19 +1,26 @@
+From 60b6e33fc73a446cf0178df24d7f76b8baa0996f Mon Sep 17 00:00:00 2001
+From: kris3713 <07e5297d5b@c0x0.com>
+Date: Sat, 14 Feb 2026 14:38:43 -0700
+Subject: [PATCH] fix chmod cmd
+
+Updated Hungarian translation
+---
+ Nickvision.Parabolic.Shared/Services/YtdlpExecutableService.cs | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
 diff --git a/Nickvision.Parabolic.Shared/Services/YtdlpExecutableService.cs b/Nickvision.Parabolic.Shared/Services/YtdlpExecutableService.cs
-index 3fd2d78..1871660 100644
+index 3fd2d785..bf13c4ca 100644
 --- a/Nickvision.Parabolic.Shared/Services/YtdlpExecutableService.cs
 +++ b/Nickvision.Parabolic.Shared/Services/YtdlpExecutableService.cs
-@@ -97,8 +97,13 @@ public class YtdlpExecutableService : IYtdlpExecutableService
+@@ -97,7 +97,7 @@ public class YtdlpExecutableService : IYtdlpExecutableService
              {
                  using var process = new Process()
                  {
 -                    StartInfo = new ProcessStartInfo("chmod", [$"+x \"{path}\""])
-+                    StartInfo = new ProcessStartInfo
++                    StartInfo = new ProcessStartInfo("chmod", ["0755", path])
                      {
-+                        FileName = "chmod",
-+                        ArgumentList = {
-+                          "0755",
-+                          path,
-+                        },
                          UseShellExecute = false,
                          CreateNoWindow = true,
-                     }
+-- 
+2.53.0
+
