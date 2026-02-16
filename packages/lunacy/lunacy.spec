@@ -32,6 +32,12 @@ cp -a %SOURCE1 .
 # Copy all the applications files to the buildroot
 cp -a ./%{name}/* %{buildroot}/
 
+sed -i 's|/opt/icons8/%{name}/Assets/%{app_name}Logo.png|%{name}|' \
+  %{buildroot}%{_datadir}/applications/%{name}.desktop
+
+install -Dm 0644 ./%{name}/opt/icons8/%{name}/Assets/%{app_name}Logo.png \
+  %{_iconsdir}/hicolor/200x200/apps/%{name}.png
+
 install -d %{buildroot}%{_bindir}
 ln -sv /opt/icons8/%{name}/%{app_name} %{buildroot}%{_bindir}
 
@@ -85,6 +91,7 @@ gtk-update-icon-cache %{_iconsdir}/hicolor -f
 %{_bindir}/%{app_name}
 /opt/icons8/%{name}
 %{_datadir}/applications/%{name}.desktop
+
 %{_iconsdir}/hicolor/scalable/mimetypes/zip-sketch.svg
 %dir %{_datadir}/mime/
 %license ./EULA.md
