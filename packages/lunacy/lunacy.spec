@@ -37,22 +37,21 @@ ln -sv /opt/icons8/%{name}/%{app_name} %{buildroot}%{_bindir}
 
 
 %post
-MIMEINFO_CACHE='%{_datadir}/applications/mimeinfo.cache'
+MIMEINFO_LIST='%{_datadir}/applications/mimeinfo.list'
 # Associate .sketch
 SKETCH_MIME_TYPE='zip/sketch=lunacy.desktop'
 update-mime-database %{_datadir}/mime
-xdg-mime install --mode system %{_datadir}/mime/packages/zip-sketch.xml
-if grep -Fxq "$SKETCH_MIME_TYPE" "$MIMEINFO_CACHE"; then
+if grep -Fxq "$SKETCH_MIME_TYPE" "$MIMEINFO_LIST"; then
   echo ': .sketch already registered'
 else
-  echo "$SKETCH_MIME_TYPE" >> "$MIMEINFO_CACHE"
+  echo "$SKETCH_MIME_TYPE" >> "$MIMEINFO_LIST"
 fi
 # Associate .free
 FREE_MIME_TYPE='zip/free=lunacy.desktop'
-if grep -Fxq "$FREE_MIME_TYPE" "$MIMEINFO_CACHE"; then
+if grep -Fxq "$FREE_MIME_TYPE" "$MIMEINFO_LIST"; then
   echo ': .free already registered'
 else
-  echo "$FREE_MIME_TYPE" >> "$MIMEINFO_CACHE"
+  echo "$FREE_MIME_TYPE" >> "$MIMEINFO_LIST"
 fi
 update-desktop-database
 # Associate icons
