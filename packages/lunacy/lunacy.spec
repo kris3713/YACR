@@ -1,3 +1,5 @@
+%global         __provides_exclude ^/opt/icons8/%{name}/.*$
+
 %global         app_name %%(v='%{name}'; echo "${v^}")
 %global         debug_package %nil
 
