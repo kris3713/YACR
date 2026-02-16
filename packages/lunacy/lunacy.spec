@@ -91,7 +91,7 @@ gtk-update-icon-cache %{_iconsdir}/hicolor -f
 %{_bindir}/%{app_name}
 /opt/icons8/%{name}
 %{_datadir}/applications/%{name}.desktop
-
+%{_iconsdir}/hicolor/200x200/apps/%{name}.png
 %{_iconsdir}/hicolor/scalable/mimetypes/zip-sketch.svg
 %dir %{_datadir}/mime/
 %license ./EULA.md
