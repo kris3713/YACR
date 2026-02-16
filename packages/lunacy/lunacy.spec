@@ -11,7 +11,7 @@ Summary:        UI/UX and Web Designer Tool
 License:        Freeware (See EULA.md)
 URL:            https://icons8.com/%{name}
 
-Source0:        https://lcdn.icons8.com/setup/Lunacy_%{version}.deb
+Source0:        https://lcdn.icons8.com/setup/%{app_name}_%{version}.deb
 Source1:        %{raw_github_url}/refs/heads/master/docs/%{name}%20license.md#/EULA.md
 
 BuildRequires:  dpkg
