@@ -46,6 +46,8 @@ ln -sv /opt/icons8/%{name}/%{app_name} %{buildroot}%{_bindir}
 
 
 %post
+set -x
+
 if ! [ -f %{_datadir}/mime/packages/zip-sketch.xml ]; then
   cat << 'XML' > %{_datadir}/mime/packages/zip-sketch.xml
 <?xml version="1.0"?>
