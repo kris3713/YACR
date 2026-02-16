@@ -36,7 +36,7 @@ sed -i 's|/opt/icons8/%{name}/Assets/%{app_name}Logo.png|%{name}|' \
   %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 install -Dm 0644 ./%{name}/opt/icons8/%{name}/Assets/%{app_name}Logo.png \
-  %{_iconsdir}/hicolor/200x200/apps/%{name}.png
+  %{buildroot}%{_iconsdir}/hicolor/200x200/apps/%{name}.png
 
 install -d %{buildroot}%{_bindir}
 ln -sv /opt/icons8/%{name}/%{app_name} %{buildroot}%{_bindir}
