@@ -35,6 +35,7 @@
 * `localsend-arm64`
 * `localsend`
 * `lrcget`
+* `lunacy`
 * `maddy`
 * `mantra`
 * `media-hoarder`
