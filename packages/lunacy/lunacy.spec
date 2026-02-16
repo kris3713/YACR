@@ -35,6 +35,9 @@ cp -a ./%{name}/* %{buildroot}/
 sed -i 's|/opt/icons8/%{name}/Assets/%{app_name}Logo.png|%{name}|' \
   %{buildroot}%{_datadir}/applications/%{name}.desktop
 
+sed -i 's|x-scheme-handler/i8-lunacy;|x-scheme-handler/i8-lunacy;zip/sketch;zip/free|' \
+  %{buildroot}%{_datadir}/applications/%{name}.desktop
+
 install -Dm 0644 ./%{name}/opt/icons8/%{name}/Assets/%{app_name}Logo.png \
   %{buildroot}%{_iconsdir}/hicolor/200x200/apps/%{name}.png
 
@@ -43,7 +46,8 @@ ln -sv /opt/icons8/%{name}/%{app_name} %{buildroot}%{_bindir}
 
 
 %post
-cat << 'XML' > %{_datadir}/mime/packages/zip-sketch.xml
+if ! [ -f %{_datadir}/mime/packages/zip-sketch.xml ]; then
+  cat << 'XML' > %{_datadir}/mime/packages/zip-sketch.xml
 <?xml version="1.0"?>
 <mime-info xmlns='http://www.freedesktop.org/standards/shared-mime-info'>
   <mime-type type="zip/sketch">
@@ -52,8 +56,10 @@ cat << 'XML' > %{_datadir}/mime/packages/zip-sketch.xml
   </mime-type>
 </mime-info>
 XML
+fi
 
-cat << 'XML' > %{_datadir}/mime/packages/zip-free.xml
+if ! [ -f %{_datadir}/mime/packages/zip-free.xml ]; then
+  cat << 'XML' > %{_datadir}/mime/packages/zip-free.xml
 <?xml version="1.0"?>
 <mime-info xmlns='http://www.freedesktop.org/standards/shared-mime-info'>
   <mime-type type="zip/free">
@@ -62,6 +68,7 @@ cat << 'XML' > %{_datadir}/mime/packages/zip-free.xml
   </mime-type>
 </mime-info>
 XML
+fi
 
 MIMEAPPS_LIST='%{_datadir}/applications/mimeapps.list'
 # Associate .sketch
