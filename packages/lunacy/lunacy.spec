@@ -5,7 +5,7 @@
 
 Name:           lunacy
 Version:        12.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        UI/UX and Web Designer Tool
 
 License:        Freeware (See EULA.md)
@@ -37,21 +37,21 @@ ln -sv /opt/icons8/%{name}/%{app_name} %{buildroot}%{_bindir}
 
 
 %post
-MIMEINFO_LIST='%{_datadir}/applications/mimeinfo.list'
+MIMEAPPS_LIST='%{_datadir}/applications/mimeapps.list'
 # Associate .sketch
 SKETCH_MIME_TYPE='zip/sketch=lunacy.desktop'
 update-mime-database %{_datadir}/mime
-if grep -Fxq "$SKETCH_MIME_TYPE" "$MIMEINFO_LIST"; then
+if grep -Fxq "$SKETCH_MIME_TYPE" "$MIMEAPPS_LIST"; then
   echo ': .sketch already registered'
 else
-  echo "$SKETCH_MIME_TYPE" >> "$MIMEINFO_LIST"
+  echo "$SKETCH_MIME_TYPE" >> "$MIMEAPPS_LIST"
 fi
 # Associate .free
 FREE_MIME_TYPE='zip/free=lunacy.desktop'
-if grep -Fxq "$FREE_MIME_TYPE" "$MIMEINFO_LIST"; then
+if grep -Fxq "$FREE_MIME_TYPE" "$MIMEAPPS_LIST"; then
   echo ': .free already registered'
 else
-  echo "$FREE_MIME_TYPE" >> "$MIMEINFO_LIST"
+  echo "$FREE_MIME_TYPE" >> "$MIMEAPPS_LIST"
 fi
 update-desktop-database
 # Associate icons
