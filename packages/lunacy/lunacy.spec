@@ -37,22 +37,45 @@ ln -sv /opt/icons8/%{name}/%{app_name} %{buildroot}%{_bindir}
 
 
 %post
+cat << 'XML' > %{_datadir}/mime/packages/zip-sketch.xml
+<?xml version="1.0"?>
+<mime-info xmlns='http://www.freedesktop.org/standards/shared-mime-info'>
+  <mime-type type="zip/sketch">
+    <comment>Sketch file</comment>
+    <glob pattern="*.sketch"/>
+  </mime-type>
+</mime-info>
+XML
+
+cat << 'XML' > %{_datadir}/mime/packages/zip-free.xml
+<?xml version="1.0"?>
+<mime-info xmlns='http://www.freedesktop.org/standards/shared-mime-info'>
+  <mime-type type="zip/free">
+    <comment>Lunacy Free file</comment>
+    <glob pattern="*.free"/>
+  </mime-type>
+</mime-info>
+XML
+
 MIMEAPPS_LIST='%{_datadir}/applications/mimeapps.list'
 # Associate .sketch
+xdg-mime install --mode system %{_datadir}/mime/packages/zip-sketch.xml
 SKETCH_MIME_TYPE='zip/sketch=lunacy.desktop'
-update-mime-database %{_datadir}/mime
 if grep -Fxq "$SKETCH_MIME_TYPE" "$MIMEAPPS_LIST"; then
   echo ': .sketch already registered'
 else
   echo "$SKETCH_MIME_TYPE" >> "$MIMEAPPS_LIST"
 fi
 # Associate .free
+xdg-mime install --mode system %{_datadir}/mime/packages/zip-sketch.xml
 FREE_MIME_TYPE='zip/free=lunacy.desktop'
 if grep -Fxq "$FREE_MIME_TYPE" "$MIMEAPPS_LIST"; then
   echo ': .free already registered'
 else
   echo "$FREE_MIME_TYPE" >> "$MIMEAPPS_LIST"
 fi
+
+update-mime-database %{_datadir}/mime
 update-desktop-database
 # Associate icons
 gtk-update-icon-cache %{_iconsdir}/hicolor -f
