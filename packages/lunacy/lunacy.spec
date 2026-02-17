@@ -1,5 +1,3 @@
-%global         __provides_exclude ^/opt/icons8/%{name}/.*$
-
 %global         app_name %%(v='%{name}'; echo "${v^}")
 %global         debug_package %nil
 
@@ -35,9 +33,6 @@ cp -a %SOURCE1 .
 cp -a ./%{name}/* %{buildroot}/
 
 sed -i 's|/opt/icons8/%{name}/Assets/%{app_name}Logo.png|%{name}|' \
-  %{buildroot}%{_datadir}/applications/%{name}.desktop
-
-sed -i 's|x-scheme-handler/i8-lunacy;|x-scheme-handler/i8-lunacy;zip/sketch;zip/free|' \
   %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 install -Dm 0644 ./%{name}/opt/icons8/%{name}/Assets/%{app_name}Logo.png \
