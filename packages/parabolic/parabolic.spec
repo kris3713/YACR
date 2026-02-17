@@ -14,7 +14,7 @@
 %endif
 
 Name:           %(echo %real_name | tr '[:upper:]' '[:lower:]')
-Version:        2026.2.2
+Version:        2026.2.4
 Release:        2%{?dist}
 Summary:        Download web video and audio.
 
