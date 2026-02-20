@@ -48,8 +48,6 @@ def parse_html(url: str, regex_str: str, xpath_expr: str):
       result = matches.group(1)  # noqa: E701
 
   print(result)
-
-
 # end of parse_html
 
 if __name__ == '__main__':

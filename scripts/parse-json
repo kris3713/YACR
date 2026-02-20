@@ -50,11 +50,14 @@ def parse_json(url: str, regex_str: str, jsonpath_expr: str):
   user_agent = 'Mozilla/5.0 (X11; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0'
 
   if ('api.github.com' in url) and (GITHUB_TOKEN != ''):
-    response = session.get(
-      url, headers={'User-Agent': user_agent, 'Authorization': f'Bearer {GITHUB_TOKEN}'}
-    )
+    response = session.get(url, headers={
+      'User-Agent': user_agent,
+      'Authorization': f'Bearer {GITHUB_TOKEN}'
+    })
   else:
-    response = session.get(url, headers={'User-Agent': user_agent})
+    response = session.get(url, headers={
+      'User-Agent': user_agent
+    })
 
   json_content = response.json()
   session.close()
@@ -74,8 +77,6 @@ def parse_json(url: str, regex_str: str, jsonpath_expr: str):
       result = str(key.value)
 
   print(result)
-
-
 # end of parse_json
 
 if __name__ == '__main__':
