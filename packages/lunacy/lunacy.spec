@@ -47,11 +47,12 @@ set -x
 
 if ! [ -f %{_datadir}/mime/packages/zip-sketch.xml ]; then
   cat << 'XML' > %{_datadir}/mime/packages/zip-sketch.xml
-<?xml version="1.0"?>
+<?xml version='1.0'?>
 <mime-info xmlns='http://www.freedesktop.org/standards/shared-mime-info'>
-  <mime-type type="zip/sketch">
+  <mime-type type='zip/sketch'>
     <comment>Sketch document</comment>
-    <glob pattern="*.sketch"/>
+    <icon name='zip-sketch' />
+    <glob pattern='*.sketch' />
   </mime-type>
 </mime-info>
 XML
@@ -59,11 +60,12 @@ fi
 
 if ! [ -f %{_datadir}/mime/packages/zip-free.xml ]; then
   cat << 'XML' > %{_datadir}/mime/packages/zip-free.xml
-<?xml version="1.0"?>
+<?xml version='1.0'?>
 <mime-info xmlns='http://www.freedesktop.org/standards/shared-mime-info'>
-  <mime-type type="zip/free">
+  <mime-type type='zip/free'>
     <comment>Lunacy document</comment>
-    <glob pattern="*.free"/>
+    <icon name='zip-sketch' />
+    <glob pattern='*.free' />
   </mime-type>
 </mime-info>
 XML
