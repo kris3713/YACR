@@ -78,7 +78,7 @@ ln -s /opt/%{app_name}/%{name}-desktop -t %{buildroot}%{_bindir}
 CONTENT="$(cat << 'DESKTOP'
 [Desktop Entry]
 Name=%app_name
-Exec=%name
+Exec=%name-desktop
 Terminal=false
 Type=Application
 Icon=%name
