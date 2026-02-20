@@ -72,10 +72,10 @@ done
 cp -a ./dist/linux-unpacked/* %{buildroot}/opt/%{app_name}
 
 # Create a symbolic link to the application binary
-ln -s /opt/%{app_name}/%{name} -t %{buildroot}%{_bindir}
+ln -s /opt/%{app_name}/%{name}-desktop -t %{buildroot}%{_bindir}
 
 # Install the desktop file
-CONTENT="$(cat << 'desktop'
+CONTENT="$(cat << 'DESKTOP'
 [Desktop Entry]
 Name=%app_name
 Exec=%name
@@ -85,7 +85,7 @@ Icon=%name
 StartupWMClass=%app_name
 Comment=%app_name is an unofficial, featureful Microsoft ToDo desktop client for Linux (a fork of Ao).
 Categories=Office
-desktop
+DESKTOP
 )"
 install -Dm 0644 /dev/stdin %{buildroot}%{_datadir}/applications/%{name}.desktop <<< "$CONTENT"
 
@@ -97,7 +97,7 @@ done
 
 
 %files
-%{_bindir}/%{name}
+%{_bindir}/%{name}-desktop
 /opt/%{app_name}
 %{_datadir}/applications/%{name}.desktop
 %{_iconsdir}/hicolor/*/apps/%{name}.png
