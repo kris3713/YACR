@@ -4,6 +4,14 @@ import re
 import sys
 from lxml import html
 import requests
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+
+# Disable the warning
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+
+
+session = requests.Session()
+session.verify = False
 
 
 def parse_html(url: str, regex_str: str, xpath_expr: str):
@@ -20,8 +28,9 @@ def parse_html(url: str, regex_str: str, xpath_expr: str):
 
   # Invoke a new HTTP GET request
   user_agent = 'Mozilla/5.0 (X11; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0'
-  response = requests.get(url, headers={'User-Agent': user_agent})
+  response = session.get(url, headers={'User-Agent': user_agent})
   content = response.content.replace(b'\xc2\xa0', b'')
+  session.close()
   html_content = html.fromstring(content)
 
   #  Find all the elements that were captured in the XPath expression
@@ -39,6 +48,8 @@ def parse_html(url: str, regex_str: str, xpath_expr: str):
       result = matches.group(1)  # noqa: E701
 
   print(result)
+
+
 # end of parse_html
 
 if __name__ == '__main__':
