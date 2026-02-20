@@ -4,7 +4,7 @@
 %define         raw_github_url https://raw.githubusercontent.com/icons8/%{name}-docs
 
 Name:           lunacy
-Version:        12.2
+Version:        12.3
 Release:        2%{?dist}
 Summary:        UI/UX and Web Designer Tool
 
