@@ -23,8 +23,6 @@ URL:            https://github.com/NickvisionApps/%{real_name}
 
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 
-Patch0:         fix_chmod_cmd.patch
-
 BuildRequires:  dotnet-sdk-10.0 blueprint-compiler
 BuildRequires:  gtk4-devel libadwaita-devel
 BuildRequires:  libsecret-devel gettext-devel
