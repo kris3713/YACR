@@ -50,7 +50,7 @@ if ! [ -f %{_datadir}/mime/packages/zip-sketch.xml ]; then
 <?xml version="1.0"?>
 <mime-info xmlns='http://www.freedesktop.org/standards/shared-mime-info'>
   <mime-type type="zip/sketch">
-    <comment>Sketch file</comment>
+    <comment>Sketch document</comment>
     <glob pattern="*.sketch"/>
   </mime-type>
 </mime-info>
@@ -62,7 +62,7 @@ if ! [ -f %{_datadir}/mime/packages/zip-free.xml ]; then
 <?xml version="1.0"?>
 <mime-info xmlns='http://www.freedesktop.org/standards/shared-mime-info'>
   <mime-type type="zip/free">
-    <comment>Lunacy Free file</comment>
+    <comment>Lunacy document</comment>
     <glob pattern="*.free"/>
   </mime-type>
 </mime-info>
