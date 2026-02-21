@@ -6,7 +6,7 @@
 %define         git_url https://github.com/%{name}/clients
 
 Name:           %(echo %app_name | tr '[:upper:]' '[:lower:]')
-Version:        2026.1.0
+Version:        2026.1.1
 Release:        1%{?dist}
 Summary:        A secure and free password manager for all of your devices.
 
