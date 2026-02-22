@@ -2,7 +2,7 @@
 %global         debug_package %nil
 
 Name:           %(echo %real_name | tr '[:upper:]' '[:lower:]')
-Version:        2.05
+Version:        2.06
 Release:        1%{?dist}
 Summary:        A very small, very simple, yet very secure encryption tool
 
