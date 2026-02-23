@@ -1,4 +1,4 @@
-%global         commit_hash f9a8b0d72e88a219055bf308a634b33b7680b25d
+%global         commit_hash 026e3ac5ecb68937b0e81d31e7bfa58f51ace073
 %global         short_hash %(echo %commit_hash | cut -c '1-7')
 %global         pkg_version 0.13
 %global         underscore_name %%(echo %name | tr '-' '_')
