@@ -34,7 +34,7 @@ Adwaita Mono is a customized version of the Iosevka font, designed to match Inte
 
 Name:           adwaita-fonts
 Summary:        Adwaita fonts
-Version:        49.0
+Version:        50.0
 Release:        1%{?dist}
 
 License:        OFL-1.1
