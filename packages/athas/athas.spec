@@ -80,7 +80,7 @@ Categories=Development;IDE
 EOF
 
 # Install the application binary
-install -Dm 0755 ./target/%{build_target}/release/%{name}-code \
+install -Dm 0755 ./target/%{build_target}/release/%{name} \
   -t %{buildroot}%{_bindir}
 
 # For later use
@@ -102,7 +102,7 @@ done
 
 
 %files
-%{_bindir}/%{name}-code
+%{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_iconsdir}/hicolor/*/apps/%{name}.png
 %license ./LICENSE
