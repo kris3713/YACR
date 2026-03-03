@@ -4,6 +4,7 @@
 
 # Packages available for installation
 
+* `16x-prompt`
 * `adwaita-fonts`
 * `athas`
 * `atuin`
