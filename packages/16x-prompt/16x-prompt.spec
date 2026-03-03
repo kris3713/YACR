@@ -29,7 +29,7 @@ BYOK API integrations, token limit tracking, and a no‑black‑box workflow.
 %install
 dpkg -x %SOURCE0 ./%{name}
 
-mv -v './%{name}/opt/%{company} %{Product}' %{buildroot}/opt/%{name}
+mv -v './%{name}/opt/%{company} %{Product}' ./%{name}/opt/%{name}
 sed -i 's;"/opt/%{company} %{Product};16x-prompt";/opt/%{name}/%{name};'
 
 # Copy all the applications files to the buildroot
