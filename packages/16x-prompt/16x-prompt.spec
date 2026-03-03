@@ -9,7 +9,7 @@
 Name:           16x-prompt
 Version:        0.0.143
 Release:        1%{?dist}
-Summary:        Helps developer create the perfect prompt for complex coding tasks with AI.
+Summary:        Helps developers create the perfect prompt for complex coding tasks with AI.
 
 License:        Freeware
 URL:            https://%{product}.%{company}.engineer/
