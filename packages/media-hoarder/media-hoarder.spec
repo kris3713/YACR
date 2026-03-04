@@ -5,7 +5,7 @@
 %global         git_url https://github.com/theMK2k/%{app_name}
 
 Name:           media-hoarder
-Version:        1.4.6
+Version:        1.4.7
 Release:        1%{?dist}
 Summary:        %{app_name} - THE media frontend for data hoarders and movie lovers
 
