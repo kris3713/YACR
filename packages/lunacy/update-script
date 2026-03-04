@@ -7,12 +7,12 @@ source "$script_dir/../constants.fish"
 
 echo "Updating '$basename'"
 
-set -l url 'https://lunacy.docs.icons8.com/release-notes/'
-set -l regex "Lunacy_$VERSION_REGEX\\."
-set -l xpath '//div[@id="content"]/p[4]/a[6]'
+set -l url 'https://api.snapcraft.io/v2/snaps/info/lunacy'
+# set -l regex $VERSION_REGEX
+set -l xpath '$.channel-map[0].version'
 
-echo 'Executing the `parse-html` script'
-set -l latest_version ("$script_dir/../../scripts/parse-html" $url $regex $xpath)
+echo 'Executing the `parse-json` script'
+set -l latest_version ("$script_dir/../../scripts/parse-json" $url '' $xpath)
 
 if test -z "$latest_version"
   echo "Failed to get the latest version for '$basename'"
