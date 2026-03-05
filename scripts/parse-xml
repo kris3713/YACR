@@ -1,18 +1,21 @@
 #!/usr/bin/env python
 
+from ast import Tuple
 import re
 import sys
+from typing import Any
 from lxml import etree as xml
 import requests
-from requests.packages.urllib3.exceptions import InsecureRequestWarning
+from requests.packages.urllib3.exceptions import InsecureRequestWarning  # pyright: ignore[reportMissingImports]
 
 # Disable the warning
-requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)  # pyright: ignore[reportAttributeAccessIssue]
 
 
 session = requests.Session()
 session.verify = False
 
+# Elements = list[str | bytes | tuple[str | bytes | None]]
 
 def parse_xml(url: str, regex_str: str, xpath_expr: str):
   """
@@ -42,7 +45,7 @@ def parse_xml(url: str, regex_str: str, xpath_expr: str):
     namespaces = {'atom': 'http://www.w3.org/2005/Atom'}
 
   #  Find all the elements that were captured in the XPath expression
-  elements = xml_content.xpath(xpath_expr, namespaces=namespaces)
+  elements: list[Any]  = xml_content.xpath(xpath_expr, namespaces=namespaces)  # pyright: ignore[reportAssignmentType]
 
   for e in elements:
     # If you want the text content of the element:

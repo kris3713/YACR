@@ -4,16 +4,12 @@ import re
 import sys
 import os
 
-# from logging import error
-from typing import Any
-
-from jsonpath_ng.jsonpath import JSONPath
 from jsonpath_ng.ext import parse
 import requests
-from requests.packages.urllib3.exceptions import InsecureRequestWarning
+from requests.packages.urllib3.exceptions import InsecureRequestWarning  # pyright: ignore[reportMissingImports]
 
 # Disable the warning
-requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)  # pyright: ignore[reportAttributeAccessIssue]
 
 
 session = requests.Session()
@@ -43,31 +39,27 @@ def parse_json(url: str, regex_str: str, jsonpath_expr: str):
   regex = re.compile(regex_str) if regex_str != '' else None
 
   # Parse the JSONPath expression from string
-  jsonPath: JSONPath = parse(jsonpath_expr)
+  jsonPath = parse(jsonpath_expr)
 
   # Invoke a new HTTP GET request
   GITHUB_TOKEN = os.getenv('GITHUB_TOKEN', '')
   user_agent = 'Mozilla/5.0 (X11; Linux x86_64; rv:148.0) Gecko/20100101 Firefox/148.0'
 
   if ('api.github.com' in url) and (GITHUB_TOKEN != ''):
-    response = session.get(url, headers={
-      'User-Agent': user_agent,
-      'Authorization': f'Bearer {GITHUB_TOKEN}'
-    })
+    response = session.get(
+      url, headers={'User-Agent': user_agent, 'Authorization': f'Bearer {GITHUB_TOKEN}'}
+    )
   elif 'api.snapcraft.io' in url:
-    response = session.get(url, headers={
-      'User-Agent': user_agent,
-      'Snap-Device-Series': '16'
-    })
+    response = session.get(
+      url, headers={'User-Agent': user_agent, 'Snap-Device-Series': '16'}
+    )
   else:
-    response = session.get(url, headers={
-      'User-Agent': user_agent
-    })
+    response = session.get(url, headers={'User-Agent': user_agent})
 
   json_content = response.json()
   session.close()
 
-  keys: list[Any] = jsonPath.find(json_content)
+  keys = jsonPath.find(json_content)
 
   for key in keys:
     if regex is not None:
@@ -82,6 +74,8 @@ def parse_json(url: str, regex_str: str, jsonpath_expr: str):
       result = str(key.value)
 
   print(result)
+
+
 # end of parse_json
 
 if __name__ == '__main__':

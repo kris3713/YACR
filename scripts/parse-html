@@ -2,12 +2,13 @@
 
 import re
 import sys
+from typing import Any
 from lxml import html
 import requests
-from requests.packages.urllib3.exceptions import InsecureRequestWarning
+from requests.packages.urllib3.exceptions import InsecureRequestWarning  # pyright: ignore[reportMissingImports]
 
 # Disable the warning
-requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)  # pyright: ignore[reportAttributeAccessIssue]
 
 
 session = requests.Session()
@@ -34,7 +35,7 @@ def parse_html(url: str, regex_str: str, xpath_expr: str):
   html_content = html.fromstring(content)
 
   #  Find all the elements that were captured in the XPath expression
-  elements = html_content.xpath(xpath_expr)
+  elements: list[Any] = html_content.xpath(xpath_expr)  # pyright: ignore[reportAssignmentType]
 
   for e in elements:
     # If you want the text content of the element:
