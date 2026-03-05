@@ -1,5 +1,5 @@
 #shellcheck disable=SC2148
-set -e
+# set -e
 
 SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
 

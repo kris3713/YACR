@@ -1,5 +1,5 @@
 #shellcheck disable=SC2148
-set -e
+# set -e
 
 RESET='\033[0m'
 RED='\033[0;31m'
