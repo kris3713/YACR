@@ -22,7 +22,7 @@ URL:            https://atuin.sh/
 
 Source0:        %{git_url}/archive/refs/tags/v%{version}.tar.gz
 
-BuildRequires:  rust cargo
+BuildRequires:  rust cargo rustup
 
 %description
 Atuin replaces your existing shell history with a SQLite database,
@@ -36,7 +36,12 @@ of your history between machines, via an Atuin server.
 
 
 %build
+export RUSTUP_HOME="$(realpath ./.rustup)"
 export CARGO_HOME="$(realpath ./.cargo)"
+
+# Install rustup to ensure latest rust toolchain
+rustup-init -y --no-modify-path
+export PATH="$PATH:$CARGO_HOME/bin"
 
 # Build atuin
 cargo build "-j$(nproc)" --profile dist --target %build_target
