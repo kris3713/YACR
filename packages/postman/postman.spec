@@ -2,7 +2,7 @@
 %global         __requires_exclude_from ^/opt/%{app_name}/.*$
 %global         fullname postman
 %global         app_name Postman
-%global         real_version 12.3.0
+%global         real_version 12.3.2
 %global         debug_package %{nil}
 
 Name:           %{fullname}
