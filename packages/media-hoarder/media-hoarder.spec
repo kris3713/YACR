@@ -15,10 +15,7 @@ URL:            https://media.hoarder.software/
 Source0:        %{git_url}/archive/refs/tags/v%{version}.tar.gz
 Source1:        %{name}.desktop
 
-# Needed for creating a non-portable variant
-Patch0:         package.json_diff.patch
-
-BuildRequires:  git mise
+BuildRequires:  electron mise
 Requires:       mediainfo
 
 # Currently, the application is only available for 64bit platforms
@@ -34,17 +31,15 @@ Features:
 - Provides a frontend to browse your collection and play your media (running the media player of your choice, e.g. VLC)
 
 %prep
-%setup -q -n ./%{app_name}-%{version}
-# Git is needed so the build doesn't fail
-git init -q
-git remote add origin %{git_url}.git
-git fetch --tags -q
-git checkout -fb 'v%{version}' 'v%{version}'
-# Apply the patch
-%autopatch
+%autosetup -n ./%{app_name}-%{version}
 
 
 %build
+# Ensure nodejs does not download
+# an electron executable.
+export ELECTRON_SKIP_BINARY_DOWNLOAD=1
+export ELECTRON_OVERRIDE_DIST_PATH='%{_libdir}/electron'
+
 # Change the node cache dir to avoid errors in COPR's cloud environment
 export npm_config_cache="$(readlink -f ./.node_cache)"
 
@@ -52,25 +47,29 @@ export npm_config_cache="$(readlink -f ./.node_cache)"
 export MISE_GLOBAL_CONFIG_FILE=''
 export MISE_CACHE_DIR="$(realpath ./.mise_cache)"
 export MISE_DATA_DIR="$(realpath ./.mise_data)"
-mise install node@14.17.5
-NODE_PATH="$(mise where node@14.17.5)"
+mise install node@24
+NODE_PATH="$(mise where node@24)"
 
 # Add the executables to the PATH
 export PATH="$PATH:$NODE_PATH/bin"
 
-# # Change prefix for npm
-# npm config set prefix "$NODE_PATH"
+# Update the caniuse-lite database
+npx -y update-browserslist-db@latest
 
 # Install the dependencies
 env NODE_ENV='dev' npm install
 
-# Update the `caniuse-lite` database
+# Set NODE_ENV to production
 export NODE_ENV='production'
-npx --verbose -y browserslist@latest --update-db
-# npx --verbose -y update-browserslist-db@latest
 
 # Build the appplication
-npm run 'electron:build-linux-non-portable'
+# bash ./check-killme.sh
+# bash ./check-package.json.sh
+node set-portable --portable=false
+npx -y electron-vite build
+npx -y electron-builder build --linux --dir --x64 \
+  "-c.electronDist=$ELECTRON_OVERRIDE_DIST_PATH" \
+  "-c.electronVersion=$(cat $ELECTRON_OVERRIDE_DIST_PATH/version)"
 
 
 %install
@@ -90,7 +89,7 @@ for size in "${sizes[@]}"; do
 done
 
 # Copy the application files to the application directory
-cp -a ./RELEASE/media-hoarder_linux/* %{buildroot}/opt/%{app_name}
+cp -a ./dist/linux-unpacked/* %{buildroot}/opt/%{app_name}
 
 # Create a symbolic link to the application executable
 ln -s /opt/%{app_name}/%{name} -t %{buildroot}%{_bindir}
