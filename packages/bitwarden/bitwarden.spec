@@ -15,7 +15,7 @@ URL:            https://%{name}.com
 
 Source0:        %{git_url}/archive/refs/tags/desktop-v%{version}.tar.gz
 
-BuildRequires:  electron nodejs nodejs-npm rustup gcc gcc-c++
+BuildRequires:  nodejs nodejs-npm yarnpkg rustup gcc gcc-c++
 BuildRequires:  libsecret-devel glib2-devel atk-devel
 BuildRequires:  at-spi2-atk-devel gtk3-devel libxcrypt-compat
 
@@ -36,11 +36,6 @@ ExclusiveArch:  x86_64
   ln -sv $(command -v npm-22) ./extra_bin/npm
   export PATH="$PATH:$(realpath ./extra_bin)"
 %endif
-
-# Ensure nodejs does not download
-# an electron executable.
-export ELECTRON_SKIP_BINARY_DOWNLOAD=1
-export ELECTRON_OVERRIDE_DIST_PATH='%{_libdir}/electron'
 
 # Ensure npm/electron/cargo/rustup stores
 # it's config in a relative location.
@@ -89,9 +84,7 @@ pushd ..
 
 npm run build -- --release \
   --target $BUILD_TARGET
-npm run 'pack:dir' -- --linux --x64 \
-  "-c.electronDist=$ELECTRON_OVERRIDE_DIST_PATH" \
-  "-c.electronVersion=$(cat $ELECTRON_OVERRIDE_DIST_PATH/version)"
+npm run 'pack:dir' -- --linux --x64
 
 popd
 
