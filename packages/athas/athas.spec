@@ -9,7 +9,7 @@
 %define         git_url https://github.com/%{name}dev/%{name}
 
 Name:           athas
-Version:        0.4.4
+Version:        0.4.5
 Release:        1%{?dist}
 Summary:        A lightweight, cross-platform code editor, built with Tauri, (Rust and React).
 
