@@ -26,7 +26,6 @@
 * `hardinfo2`
 * `harmonoid`
 * `hwinfo`
-* `intel-npu-driver`
 * `jdsystemmonitor`
 * `jetbrains-toolbox-arm64`
 * `jetbrains-toolbox`
