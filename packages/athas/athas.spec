@@ -106,7 +106,7 @@ done
 %{_datadir}/applications/%{name}.desktop
 %{_iconsdir}/hicolor/*/apps/%{name}.png
 %license ./LICENSE
-%doc ./{README,SECURITY}.md ./docs
+%doc ./{README,SECURITY}.md
 
 
 %changelog
