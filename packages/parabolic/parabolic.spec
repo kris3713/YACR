@@ -26,7 +26,7 @@ Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 BuildRequires:  dotnet-sdk-10.0 blueprint-compiler
 BuildRequires:  gtk4-devel libadwaita-devel
 BuildRequires:  libsecret-devel gettext-devel
-Requires:       libsecret gnome-keyring python3
+Requires:       libsecret
 # yt-dlp is not in needed in "Requires"
 # as parabolic (or tubeconverter) downloads
 # and maintains its own version.
