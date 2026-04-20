@@ -65,6 +65,7 @@
 * `termora-aarch64`
 * `termora`
 * `tixati`
+* `tux-manager`
 * `xnconvert`
 * `xnviewmp`
 * `yt-dlg`
