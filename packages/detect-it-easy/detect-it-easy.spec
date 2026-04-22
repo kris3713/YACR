@@ -4,7 +4,7 @@
 %define         git_url https://github.com/horsicq/DIE-engine
 
 Name:           detect-it-easy
-Version:        3.20
+Version:        3.21
 Release:        2%{?dist}
 Summary:        Program for determining types of files for Windows, Linux, and MacOS
 
