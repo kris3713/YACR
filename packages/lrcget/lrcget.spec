@@ -2,7 +2,7 @@
 %global         debug_package %{nil}
 
 Name:           %(echo %app_name | tr '[:upper:]' '[:lower:]')
-Version:        2.0.1
+Version:        2.1.0
 Release:        1%{?dist}
 Summary:        Utility for mass-downloading LRC synced lyrics for your offline music library.
 
