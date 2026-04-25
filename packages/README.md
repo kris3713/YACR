@@ -42,6 +42,7 @@
 * `msi-ec`
 * `naps2`
 * `oh-my-posh`
+* `open-pencil`
 * `p7zip`
 * `parabolic`
 * `pdfstudioviewer`
