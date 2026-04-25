@@ -2,7 +2,7 @@
 %global        debug_package %nil
 
 Name:           tux-manager
-Version:        1.0.4
+Version:        1.0.5
 Release:        1%{?dist}
 Summary:        A Linux system monitor inspired by the Windows Task Manager.
 
