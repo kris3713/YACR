@@ -6,7 +6,7 @@
 %global         debug_package %{nil}
 
 Name:           xnviewmp
-Version:        1.10.5
+Version:        1.11.2
 Release:        1%{?dist}
 Summary:        XnView MP is a powerful, versatile and free image viewer, photo management, and image resizer software.
 
