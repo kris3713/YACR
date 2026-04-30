@@ -1,0 +1,26 @@
+# This patches `config/builder.json` so it only builds the "dir" target.
+diff --git a/config/builder.json b/config/builder.json
+index 2c62cb6..c190c34 100755
+--- a/config/builder.json
++++ b/config/builder.json
+@@ -60,19 +60,7 @@
+     ],
+     "target": [
+       {
+-        "target": "deb"
+-      },
+-      {
+-        "target": "zip"
+-      },
+-      {
+-        "target": "rpm"
+-      },
+-      {
+-        "target": "pacman"
+-      },
+-      {
+-        "target": "appimage"
++        "target": "dir"
+       }
+     ]
+   }
