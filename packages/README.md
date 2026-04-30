@@ -23,6 +23,8 @@
 * `devtoys-cli`
 * `devtoys`
 * `dnscrypt-proxy`
+* `figma-linux-arm64`
+* `figma-linux`
 * `hardinfo2`
 * `harmonoid`
 * `hwinfo`
