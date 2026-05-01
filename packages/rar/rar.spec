@@ -11,7 +11,7 @@ URL:            https://www.rarlab.com/
 
 Source0:        https://www.rarlab.com/rar/rarlinux-x64-%{version_no_dots}.tar.gz
 # Thank you Debian/Ubuntu mantainers for the unrar man page
-Source1:        https://manpages.debian.org/stretch/unrar-free/unrar.1.en.gz#/unrar.1
+Source1:        unrar.1.gz
 
 BuildRequires:  perl
 
