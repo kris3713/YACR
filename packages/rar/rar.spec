@@ -11,7 +11,7 @@ URL:            https://www.rarlab.com/
 
 Source0:        https://www.rarlab.com/rar/rarlinux-x64-%{version_no_dots}.tar.gz
 # Thank you Debian/Ubuntu mantainers for the unrar man page
-Source1:        https://manpages.ubuntu.com/manpages.gz/questing/man1/unrar-nonfree.1.gz#/unrar.1.gz
+Source1:        https://manpages.debian.org/stretch/unrar-free/unrar.1.en.gz#/unrar.1
 
 BuildRequires:  perl
 
@@ -60,8 +60,7 @@ pod2man -c "RAR User's Manual" -n 'RAR' -r "%{name} ${version}" -s 1 ./%{name}.1
 %{_bindir}/%{name}
 %{_bindir}/un%{name}
 /usr/lib/default.sfx
-%{_mandir}/man1/%{name}.1.gz
-%{_mandir}/man1/un%{name}.1.gz
+%{_mandir}/man1/*
 /etc/rarfiles.lst
 %license ./acknow.txt ./license.txt
 
