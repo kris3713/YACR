@@ -10,12 +10,12 @@
 Name:           %(v="%{app_name}"; echo "${v,,}")
 Version:        1.11.2
 Release:        1%{?dist}
-Summary:        XnView MP is a powerful, versatile and free image viewer, photo management, and image resizer software.
+Summary:        %alt_name MP is a powerful, versatile and free image viewer, photo management, and image resizer software.
 
 License:        Freeware (Non-Commercial) | Proprietary (Commercial)
-URL:            https://www.xnview.com/en/%{name}/
+URL:            https://www.%{alt_name_l}.com/en/%{name}/
 
-Source0:        https://download.xnview.com/old_versions/%{alt_name}_MP/%{alt_name}_MP-%{version}-linux-x64.tgz
+Source0:        https://download.%{alt_name_l}.com/old_versions/%{alt_name}_MP/%{alt_name}_MP-%{version}-linux-x64.tgz
 Source1:        %{name}.png
 Source2:        %{name}.desktop
 
@@ -32,10 +32,8 @@ perfect for both beginners and professionals. All common picture and graphics fo
 
 %install
 export QA_RPATHS=$[ 0x0002 | 0x0010 ]
-# Remove the old build root
-rm -rf %{buildroot}
 
-# Create the new build root
+# Create directories in the buildroot
 install -d %{buildroot}{%{_bindir},/opt/%{app_name},%{_datadir}/applications}
 install -d %{buildroot}%{_iconsdir}/hicolor/{64x64,512x512}/apps
 
