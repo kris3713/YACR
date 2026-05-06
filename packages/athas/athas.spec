@@ -18,7 +18,7 @@ URL:            https://%{name}.dev/
 
 Source0:        %{git_url}/archive/refs/tags/v%{version}.tar.gz
 
-BuildRequires:  nodejs bun-bin rust cargo openssl-devel libsoup3-devel
+BuildRequires:  nodejs bun-bin rust cargo openssl-devel libsoup3-devel clang
 BuildRequires:  javascriptcoregtk4.1-devel webkit2gtk4.1-devel alsa-lib-devel
 BuildRequires:  gtk3-devel libayatana-appindicator-gtk3-devel librsvg2-devel
 BuildRequires:  pkgconf-pkg-config pkgconf perl-FindBin perl-IPC-Cmd perl
