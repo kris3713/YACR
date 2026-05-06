@@ -22,8 +22,7 @@ BuildRequires:  nodejs bun-bin rust cargo openssl-devel libsoup3-devel clang
 BuildRequires:  javascriptcoregtk4.1-devel webkit2gtk4.1-devel alsa-lib-devel
 BuildRequires:  gtk3-devel libayatana-appindicator-gtk3-devel librsvg2-devel
 BuildRequires:  pkgconf-pkg-config pkgconf perl-FindBin perl-IPC-Cmd perl
-
-# ExclusiveArch:  x86_64
+BuildRequires:  zig
 
 %description
 A lightweight, cross-platform code editor,
