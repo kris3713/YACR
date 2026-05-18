@@ -10,7 +10,7 @@
 %define         git_url https://github.com/%{name}/%{name}
 
 Name:           open-pencil
-Version:        0.11.8
+Version:        0.12.0
 Release:        1%{?dist}
 Summary:        AI-native design editor. Open-source Figma alternative.
 
