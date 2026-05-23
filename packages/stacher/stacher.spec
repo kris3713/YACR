@@ -8,7 +8,7 @@
 %global         debug_package %{nil}
 
 Name:           stacher
-Version:        7.1.9
+Version:        7.1.10
 Release:        1%{?dist}
 Summary:        A modern GUI for yt-dlp (and other youtube-dl forks)
 
