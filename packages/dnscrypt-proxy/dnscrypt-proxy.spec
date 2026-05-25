@@ -17,7 +17,6 @@ License:        ISC
 URL:            https://github.com/DNSCrypt/dnscrypt-proxy
 
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
-Patch0:         %{name}.custom_config.patch
 
 BuildRequires:  systemd-rpm-macros golang
 # Optionally needed for the `generate-domains-blocklist` script
