@@ -49,8 +49,7 @@ Features:
  - Can force outgoing connections to use TCP; useful with tunnels such as Tor.
 
 %prep
-%setup -q -n ./%{name}-%{version}
-%__patch -Np1 -i %{PATCH0}
+%autosetup -n ./%{name}-%{version}
 
 %build
 export CGO_ENABLED=1
