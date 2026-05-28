@@ -55,6 +55,7 @@ export PATH="$PATH:$NODE_PATH/bin"
 
 # Update the caniuse-lite database
 npx -y update-browserslist-db@latest
+./fetch-easylist.sh
 
 # Install the dependencies
 env NODE_ENV='dev' npm install
