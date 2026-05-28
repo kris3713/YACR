@@ -1,13 +1,13 @@
-%global         debug_package %{nil}
+%global         debug_package %nil
 %global         app_name Media-Hoarder
 %global         __requires_exclude_from ^/opt/%{app_name}/.*$
 %global         __provides_exclude_from ^/opt/%{app_name}/.*$
 %global         git_url https://github.com/theMK2k/%{app_name}
 
-Name:           media-hoarder
+Name:           %(echo %app_name | tr '[:upper:]' '[:lower:]')
 Version:        1.5.2
 Release:        1%{?dist}
-Summary:        %{app_name} - THE media frontend for data hoarders and movie lovers
+Summary:        %app_name - THE media frontend for data hoarders and movie lovers
 
 License:        Freeware (See LICENSE.md)
 URL:            https://media.hoarder.software/
@@ -15,14 +15,14 @@ URL:            https://media.hoarder.software/
 Source0:        %{git_url}/archive/refs/tags/v%{version}.tar.gz
 Source1:        %{name}.desktop
 
-BuildRequires:  electron mise
+BuildRequires:  mise
 Requires:       mediainfo
 
 # Currently, the application is only available for 64bit platforms
 ExclusiveArch:  x86_64
 
 %description
-%{app_name} is THE frontend for your Movie and TV Series collection if you love metadata, filter abilities and easy management.
+%app_name is THE frontend for your Movie and TV Series collection if you love metadata, filter abilities and easy management.
 
 Features:
 
@@ -35,11 +35,6 @@ Features:
 
 
 %build
-# Ensure nodejs does not download
-# an electron executable.
-export ELECTRON_SKIP_BINARY_DOWNLOAD=1
-export ELECTRON_OVERRIDE_DIST_PATH='%{_libdir}/electron'
-
 # Change the node cache dir to avoid errors in COPR's cloud environment
 export npm_config_cache="$(readlink -f ./.node_cache)"
 
@@ -64,13 +59,11 @@ env NODE_ENV='dev' npm install
 export NODE_ENV='production'
 
 # Build the appplication
-# bash ./check-killme.sh
-# bash ./check-package.json.sh
+sed -i 's;../data/imdb-graphql-urls.json;./data/imdb-graphql-urls.json;' \
+  ./src/imdb-scraper.js
 node set-portable --portable=false
 npx -y electron-vite build
-npx -y electron-builder build --linux --dir --x64 \
-  "-c.electronDist=$ELECTRON_OVERRIDE_DIST_PATH" \
-  "-c.electronVersion=$(cat $ELECTRON_OVERRIDE_DIST_PATH/version)"
+npx -y electron-builder build --linux --dir --x64
 
 
 %install
