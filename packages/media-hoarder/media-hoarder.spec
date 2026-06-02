@@ -3,17 +3,17 @@
 %global         __requires_exclude_from ^/opt/%{app_name}/.*$
 %global         __provides_exclude_from ^/opt/%{app_name}/.*$
 %global         git_url https://github.com/theMK2k/%{app_name}
+%global         ws_name %(v="%{app_name}"; echo "${v/-/ }")
 
 Name:           %(echo %app_name | tr '[:upper:]' '[:lower:]')
 Version:        1.5.3
 Release:        1%{?dist}
-Summary:        %app_name - THE media frontend for data hoarders and movie lovers
+Summary:        %ws_name - THE media frontend for data hoarders and movie lovers
 
 License:        Freeware (See LICENSE.md)
 URL:            https://media.hoarder.software/
 
 Source0:        %{git_url}/archive/refs/tags/v%{version}.tar.gz
-Source1:        %{name}.desktop
 
 BuildRequires:  mise
 Requires:       mediainfo
@@ -22,7 +22,7 @@ Requires:       mediainfo
 ExclusiveArch:  x86_64
 
 %description
-%app_name is THE frontend for your Movie and TV Series collection if you love metadata, filter abilities and easy management.
+%ws_name is THE frontend for your Movie and TV Series collection if you love metadata, filter abilities and easy management.
 
 Features:
 
@@ -35,8 +35,12 @@ Features:
 
 
 %build
-# Change the node cache dir to avoid errors in COPR's cloud environment
+# Change the node cache dir
 export npm_config_cache="$(readlink -f ./.node_cache)"
+
+# Change the electron cache dir
+export ELECTRON_CACHE="$(realpath ./.electron_cache)"
+export ELECTRON_BUILDER_CACHE="$(realpath ./.electron_builder_cache)"
 
 # Setup mise, and install nodejs
 export MISE_GLOBAL_CONFIG_FILE=''
@@ -59,8 +63,6 @@ env NODE_ENV='dev' npm install
 export NODE_ENV='production'
 
 # Build the appplication
-sed -i 's;../data/imdb-graphql-urls.json;./data/imdb-graphql-urls.json;' \
-  ./src/imdb-scraper.js
 node set-portable --portable=false
 npx -y electron-vite build
 npx -y electron-builder build --linux --dir --x64
@@ -89,7 +91,19 @@ cp -a ./dist/linux-unpacked/* %{buildroot}/opt/%{app_name}
 ln -s /opt/%{app_name}/%{name} -t %{buildroot}%{_bindir}
 
 # Install the application desktop file
-install -Dm 0644 %{SOURCE1} -t %{buildroot}%{_datadir}/applications
+CONTENT="$(cat << 'DESKTOP'
+[Desktop Entry]
+Name=%ws_name
+Exec=%name
+Terminal=false
+Type=Application
+Icon=%name
+StartupWMClass=%ws_name
+Comment=%summary
+Categories=AudioVideo
+DESKTOP
+)"
+install -Dm 0644 /dev/stdin %{buildroot}%{_datadir}/applications/%{name}.desktop <<< "$CONTENT"
 
 # Install the application icons
 install -Dm 0644 ./icon/mh1/mh1.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps/%{name}.svg
