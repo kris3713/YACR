@@ -5,7 +5,7 @@
 %global         git_url https://github.com/theMK2k/%{app_name}
 
 Name:           %(echo %app_name | tr '[:upper:]' '[:lower:]')
-Version:        1.5.2
+Version:        1.5.3
 Release:        1%{?dist}
 Summary:        %app_name - THE media frontend for data hoarders and movie lovers
 

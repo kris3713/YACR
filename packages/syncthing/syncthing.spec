@@ -4,7 +4,7 @@
 
 Name:           syncthing
 Summary:        Continuous File Synchronization
-Version:        2.1.0
+Version:        2.1.1
 Release:        1%{?dist}
 License:        MPL-2.0
 
