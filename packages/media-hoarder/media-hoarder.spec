@@ -6,7 +6,7 @@
 %global         ws_name %(v="%{app_name}"; echo "${v/-/ }")
 
 Name:           %(echo %app_name | tr '[:upper:]' '[:lower:]')
-Version:        1.5.3
+Version:        1.5.4
 Release:        1%{?dist}
 Summary:        %ws_name - THE media frontend for data hoarders and movie lovers
 
