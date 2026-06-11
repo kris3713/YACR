@@ -62,7 +62,7 @@ install -d %{buildroot}{%{_bindir},/opt/%{app_name},%{_datadir}/applications,%{_
 install -d %{buildroot}%{_iconsdir}/hicolor/scalable/apps
 
 # Copy the application files to the application directory
-cp -a ./build/linux/%{build_target}/release/bundle/* %{buildroot}/opt/%{app_name}
+cp -a ./build/linux/x64/release/bundle/* %{buildroot}/opt/%{app_name}
 
 # Create a symlink to the application binary
 ln -s /opt/%{app_name}/%{name} %{buildroot}%{_bindir}
