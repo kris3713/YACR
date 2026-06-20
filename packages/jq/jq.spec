@@ -1,7 +1,7 @@
 %global         debug_package %{nil}
 
 Name:           jq
-Version:        1.8.1
+Version:        1.8.2
 Release:        1%{?dist}
 Summary:        Command-line JSON processor
 
