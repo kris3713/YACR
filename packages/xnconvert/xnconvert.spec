@@ -6,7 +6,7 @@
 %global         debug_package %nil
 
 Name:           %(v="%{app_name}"; echo "${v,,}")
-Version:        1.111.0
+Version:        1.112.0
 Release:        1%{?dist}
 Summary:        %{app_name} is a fast, powerful and free cross-platform batch image converter.
 
