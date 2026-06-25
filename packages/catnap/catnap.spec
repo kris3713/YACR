@@ -1,7 +1,7 @@
 %global         debug_package %{nil}
 
 Name:           catnap
-Version:        1.2.3
+Version:        2.0.0
 Release:        1%{?dist}
 Summary:        A highly customizable systemfetch written in nim
 
