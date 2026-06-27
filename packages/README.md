@@ -71,4 +71,3 @@
 * `tux-manager`
 * `xnconvert`
 * `xnviewmp`
-* `yt-dlg`
