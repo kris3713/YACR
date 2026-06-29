@@ -8,7 +8,7 @@
 %global         debug_package %nil
 
 Name:           %(v="%{app_name}"; echo "${v,,}")
-Version:        1.11.2
+Version:        1.11.5
 Release:        1%{?dist}
 Summary:        %alt_name MP is a powerful, versatile and free image viewer, photo management, and image resizer software.
 
