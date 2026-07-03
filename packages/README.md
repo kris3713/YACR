@@ -11,7 +11,6 @@
 * `bitwarden`
 * `blobdrop`
 * `bluetui`
-* `catnap`
 * `cudatext-aarch64`
 * `cudatext-gtk2-aarch64`
 * `cudatext-gtk2`
