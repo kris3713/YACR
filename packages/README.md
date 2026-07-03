@@ -32,7 +32,6 @@
 * `jetbrains-toolbox`
 * `jq`
 * `kuro`
-* `libnick`
 * `localsend-arm64`
 * `localsend`
 * `lrcget`
