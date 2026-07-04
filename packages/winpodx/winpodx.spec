@@ -88,9 +88,11 @@ install -Dm 0755 ./packaging/scripts/postrm-common.sh \
 install -Dm 0755 ./uninstall.sh \
     %{buildroot}%{_datadir}/%{name}/uninstall.sh
 
+# Desktop integration
 install -Dm 0644 ./data/%{name}.desktop \
   -t %{buildroot}%{_datadir}/applications
-
+install -Dm 0644 ./data/%{name}-icon.svg \
+  %{buildroot}%{_iconsdir}/hicolor/scalable/apps/%{name}.svg
 
 
 %post
