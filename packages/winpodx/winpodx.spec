@@ -110,7 +110,8 @@ For the curl-like all-in-one experience, run:
   winpodx setup
 
 Full docs: https://github.com/kernalix7/winpodx/blob/main/docs/INSTALL.md
-EOF)"
+EOF
+)"
 if [ "$1" -eq 1 ]; then
   echo "$MSG"
 fi
@@ -126,13 +127,14 @@ if [ -x %{_datadir}/winpodx/packaging/postrm-common.sh ]; then
     %{_datadir}/winpodx/packaging/postrm-common.sh "$1" || true
 fi
 
-MSG="$(cat <<'EOF'
+MSG="$(cat << 'EOF'
 
 [WinPodX] Package removed. User-side state (containers, configs,
 reverse-open daemon, autostart) was NOT touched. To wipe everything:
   winpodx uninstall --purge --yes
 
-EOF)"
+EOF
+)"
 if [ "$1" -eq 0 ]; then
   echo "$MSG"
 fi
