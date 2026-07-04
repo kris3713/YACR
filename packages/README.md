@@ -67,5 +67,6 @@
 * `termora`
 * `tixati`
 * `tux-manager`
+* `winpodx`
 * `xnconvert`
 * `xnviewmp`
