@@ -17,7 +17,7 @@ Summary:        Windows app integration for Linux desktop
 # Combined SPDX expression follows Fedora packaging guidelines.
 License:        MIT AND Apache-2.0
 URL:            https://github.com/kernalix7/%{name}
-Source0:        %{url}/archive/refs/tags/v0.8.0.tar.gz
+Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 
 BuildArch:      noarch
 
