@@ -1,4 +1,4 @@
-%global pypi_name winpodx
+%global         pypi_name winpodx
 
 Name:           %{pypi_name}
 # OBS's _service chain runs `set_version` on every build and rewrites this
@@ -25,13 +25,13 @@ BuildArch:      noarch
 # Leap 16 (suse_version 1600) drops python311; use python313.
 # Tumbleweed (>= 1600) also has python313. Leap 15.x (1550..1560) keeps python311.
 %if 0%{?suse_version} >= 1600
-%global pythons python313
-%define py_flavor python313
-%define py_sitelib %{python313_sitelib}
+%global       pythons python313
+%define       py_flavor python313
+%define       py_sitelib %{python313_sitelib}
 %else
-%global pythons python311
-%define py_flavor python311
-%define py_sitelib %{python311_sitelib}
+%global       pythons python311
+%define       py_flavor python311
+%define       py_sitelib %{python311_sitelib}
 %endif
 BuildRequires:  %{py_flavor}
 BuildRequires:  %{py_flavor}-pip
@@ -83,10 +83,14 @@ MIME handlers, icons, and a Qt tray.
 
 %install
 %pyproject_install
-install -Dm 0755 packaging/scripts/postrm-common.sh \
-    %{buildroot}%{_datadir}/winpodx/packaging/postrm-common.sh
-install -Dm 0755 uninstall.sh \
-    %{buildroot}%{_datadir}/winpodx/uninstall.sh
+install -Dm 0755 ./packaging/scripts/postrm-common.sh \
+    %{buildroot}%{_datadir}/%{name}/packaging/postrm-common.sh
+install -Dm 0755 ./uninstall.sh \
+    %{buildroot}%{_datadir}/%{name}/uninstall.sh
+
+install -Dm 0644 ./data/%{name}.desktop \
+  -t %{buildroot}%{_datadir}/applications
+
 
 
 %post
@@ -94,9 +98,7 @@ install -Dm 0755 uninstall.sh \
 # The package install only drops the binary + desktop entry; the
 # Windows VM provisioning is deferred to the first-run prompt (CLI
 # or GUI). Banner stays terse -- full guidance in docs/INSTALL.md.
-if [ "$1" -eq 1 ]; then
-    cat <<'EOF'
-
+MSG="$(cat << 'EOF'
 [WinPodX] Package installed. Next step:
   - Open WinPodX from your application menu (GUI) OR
   - Run 'winpodx' in a terminal
@@ -106,8 +108,9 @@ For the curl-like all-in-one experience, run:
   winpodx setup
 
 Full docs: https://github.com/kernalix7/winpodx/blob/main/docs/INSTALL.md
-
-EOF
+EOF)"
+if [ "$1" -eq 1 ]; then
+  echo "$MSG"
 fi
 exit 0
 
@@ -120,14 +123,16 @@ exit 0
 if [ -x %{_datadir}/winpodx/packaging/postrm-common.sh ]; then
     %{_datadir}/winpodx/packaging/postrm-common.sh "$1" || true
 fi
-if [ "$1" -eq 0 ]; then
-    cat <<'EOF'
+
+MSG="$(cat <<'EOF'
 
 [WinPodX] Package removed. User-side state (containers, configs,
 reverse-open daemon, autostart) was NOT touched. To wipe everything:
   winpodx uninstall --purge --yes
 
-EOF
+EOF)"
+if [ "$1" -eq 0 ]; then
+  echo "$MSG"
 fi
 exit 0
 
@@ -136,6 +141,7 @@ exit 0
 %doc ./{README,CHANGELOG}.md
 %license ./{LICENSE,THIRD_PARTY_LICENSES.md}
 %{_bindir}/winpodx
+%{_datadir}/applications/%{name}.desktop
 %{_datadir}/winpodx/
 # Use a glob for dist-info so a pyproject.toml version that has drifted past
 # the latest git tag (@PARENT_TAG@) does not break the build. set_version
