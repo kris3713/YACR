@@ -101,6 +101,7 @@ install -Dm 0644 ./data/%{name}-icon.svg \
 # Windows VM provisioning is deferred to the first-run prompt (CLI
 # or GUI). Banner stays terse -- full guidance in docs/INSTALL.md.
 MSG="$(cat << 'EOF'
+
 [WinPodX] Package installed. Next step:
   - Open WinPodX from your application menu (GUI) OR
   - Run 'winpodx' in a terminal
@@ -110,6 +111,7 @@ For the curl-like all-in-one experience, run:
   winpodx setup
 
 Full docs: https://github.com/kernalix7/winpodx/blob/main/docs/INSTALL.md
+
 EOF
 )"
 if [ "$1" -eq 1 ]; then
