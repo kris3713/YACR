@@ -103,30 +103,24 @@ Features include:
 - Report generation (in either HTML or plain text)
 - Online Benchmarking - compare your machine against other machines
 
+
 %prep
 %autosetup -n ./%{name}-release-%{version}
 
+
 %build
-%if 0%{?rhel} < 8
-%cmake3 -DCMAKE_BUILD_TYPE=Release
-%cmake3_build
-%else
 %cmake -DCMAKE_BUILD_TYPE=Release
 %cmake_build
-%endif
+
 
 %install
-%if 0%{?rhel} < 8
-%cmake3_install
-%else
 %cmake_install
-%endif
-
 %find_lang %{name}
 
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.metainfo.xml
+
 
 %files -f %{name}.lang
 %license ./LICENSE ./LICENSE.1 ./LICENSE.2
@@ -151,6 +145,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.metainfo.xml
 %{_datadir}/%{name}/pixmaps/
 %{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
 %{_mandir}/man1/%{name}.1*
+
 
 %changelog
 %autochangelog
