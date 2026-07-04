@@ -51,13 +51,7 @@ License:        GPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-2.0-or-later AND
 URL:            https://github.com/%{name}/%{name}
 Source0:        %{url}/archive/release-%{version}/%{name}-release-%{version}.tar.gz
 
-BuildRequires:  gcc-c++
-%if 0%{?rhel} < 8
-BuildRequires:  cmake3
-%else
-BuildRequires:  cmake
-%endif
-
+BuildRequires:  gcc-c++ cmake
 BuildRequires:  cmake(Qt5Core)
 BuildRequires:  cmake(Qt5Gui)
 BuildRequires:  cmake(Qt5Widgets)
