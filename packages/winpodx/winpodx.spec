@@ -143,8 +143,9 @@ exit 0
 %doc ./{README,CHANGELOG}.md
 %license ./{LICENSE,THIRD_PARTY_LICENSES.md}
 %{_bindir}/winpodx
-%{_datadir}/applications/%{name}.desktop
 %{_datadir}/winpodx/
+%{_datadir}/applications/%{name}.desktop
+%{_iconsdir}/hicolor/scalable/apps/%{name}.svg
 # Use a glob for dist-info so a pyproject.toml version that has drifted past
 # the latest git tag (@PARENT_TAG@) does not break the build. set_version
 # updates Version: from the tarball filename, but the wheel metadata uses
