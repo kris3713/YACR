@@ -23,6 +23,10 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  make
+BuildRequires:  python3-pip
+BuildRequires:  python3-wheel
+BuildRequires:  python3-hatchling
+BuildRequires:  python3-installer
 BuildRequires:  python3-devel
 BuildRequires:  python3-pytest
 BuildRequires:  python3-psutil
