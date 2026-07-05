@@ -9,6 +9,7 @@
 * `athas`
 * `atuin`
 * `bitwarden`
+* `bleachbit`
 * `blobdrop`
 * `bluetui`
 * `cudatext-aarch64`
