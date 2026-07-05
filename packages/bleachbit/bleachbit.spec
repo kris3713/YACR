@@ -5,7 +5,7 @@
 %define         fedoraproject_src https://src.fedoraproject.org/rpms/%{name}/raw/rawhide/f
 
 Name:           %(echo %app_name | tr '[:upper:]' '[:lower:]')
-Version:        6.0.0
+Version:        6.0.2
 Release:        2%{?dist}
 Summary:        Remove sensitive data and free up disk space
 
