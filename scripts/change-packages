@@ -40,6 +40,7 @@ switch (count $argv)
       set -l name (basename -s '.spec' $split_dir[-1])
 
       echo '--------------------------------------------'
+      echo 'Method: make_srpm'
       echo 'Clone URL: https://github.com/kris3713/YACR.git'
       echo 'Commitish: master'
       echo "Subdir: packages/$subdir"
@@ -49,8 +50,9 @@ switch (count $argv)
       echo 'COPR Project: zliced13/YACR'
 
       copr-cli edit-package-scm \
+        --method make_srpm \
         --clone-url 'https://github.com/kris3713/YACR.git' \
-        --commit 'master' \
+        --commit master \
         --subdir "packages/$subdir" \
         --spec "$name.spec" \
         --name $name \
@@ -68,6 +70,7 @@ switch (count $argv)
     end
 
     echo '--------------------------------------------'
+    echo 'Method: make_srpm'
     echo 'Clone URL: https://github.com/kris3713/YACR.git'
     echo 'Commitish: master'
     echo "Subdir: packages/$name"
@@ -77,8 +80,9 @@ switch (count $argv)
     echo 'COPR Project: zliced13/YACR'
 
     copr-cli edit-package-scm \
+      --method make_srpm \
       --clone-url 'https://github.com/kris3713/YACR.git' \
-      --commit 'master' \
+      --commit master \
       --subdir "packages/$name" \
       --spec "$name.spec" \
       --name $name \
@@ -96,6 +100,7 @@ switch (count $argv)
     end
 
     echo '--------------------------------------------'
+    echo 'Method: make_srpm'
     echo 'Clone URL: https://github.com/kris3713/YACR.git'
     echo 'Commitish: master'
     echo "Subdir: packages/$subdir"
@@ -105,8 +110,9 @@ switch (count $argv)
     echo 'COPR Project: zliced13/YACR'
 
     copr-cli edit-package-scm \
+      --method make_srpm \
       --clone-url 'https://github.com/kris3713/YACR.git' \
-      --commit 'master' \
+      --commit master \
       --subdir "packages/$subdir" \
       --spec "$name.spec" \
       --name $name \
