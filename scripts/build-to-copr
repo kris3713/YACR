@@ -19,36 +19,36 @@ Example:
 "
 
 switch (count $argv)
-  case 1
-    set -l name $argv[1]
+    case 1
+        set -l name $argv[1]
 
-    copr-cli buildscm \
-      --method make_srpm \
-      --clone-url 'https://github.com/kris3713/YACR.git' \
-      --commit 'master' \
-      --subdir "packages/$name" \
-      --spec "$name.spec" \
-      --enable-net 'on' \
-      'zliced13/YACR'
+        copr-cli buildscm \
+            --method make_srpm \
+            --clone-url 'https://github.com/kris3713/YACR.git' \
+            --commit master \
+            --subdir "packages/$name" \
+            --spec "$name.spec" \
+            --enable-net on \
+            zliced13/YACR
 
-  case 2
-    set -l subdir $argv[1]
-    set -l name $argv[2]
+    case 2
+        set -l subdir $argv[1]
+        set -l name $argv[2]
 
-    copr-cli buildscm \
-      --method make_srpm \
-      --clone-url 'https://github.com/kris3713/YACR.git' \
-      --commit 'master' \
-      --subdir "packages/$subdir" \
-      --spec "$name.spec" \
-      --enable-net 'on' \
-      'zliced13/YACR'
+        copr-cli buildscm \
+            --method make_srpm \
+            --clone-url 'https://github.com/kris3713/YACR.git' \
+            --commit master \
+            --subdir "packages/$subdir" \
+            --spec "$name.spec" \
+            --enable-net on \
+            zliced13/YACR
 
-  case '*'
-    set_color red
-    printf "ERROR: Invalid Usage!\n"
-    set_color normal
+    case '*'
+        set_color red
+        printf "ERROR: Invalid Usage!\n"
+        set_color normal
 
-    echo $msg
-    exit 1
+        echo $msg
+        exit 1
 end
