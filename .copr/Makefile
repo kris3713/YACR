@@ -1,5 +1,5 @@
 srpm:
-	dnf group install -y rpm-development-tools development-tools
+	dnf install -y git
 	spectool --define "_sourcedir $(PWD)" --sourcedir -g "$(spec)"
 	rpmbuild -bs "$(spec)" \
 		--define "_srcrpmdir $(outdir)" \
