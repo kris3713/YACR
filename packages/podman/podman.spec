@@ -52,7 +52,7 @@ Epoch:          102
 %else
 Epoch:          5
 %endif
-Version:        6.0.1
+Version:        6.0.2
 # The `AND` needs to be uppercase in the License for SPDX compatibility
 License:        Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND ISC AND MIT AND MPL-2.0
 URL:            https://%{name}.io/
