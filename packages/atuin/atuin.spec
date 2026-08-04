@@ -13,7 +13,7 @@
 %endif
 
 Name:           atuin
-Version:        18.18.1
+Version:        18.19.0
 Release:        1%{?dist}
 Summary:        ✨ Magical shell history
 
