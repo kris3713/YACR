@@ -11,7 +11,7 @@
 %global         debug_package %{nil}
 
 Name:           %{fullname}-arm64
-Version:        1.17.0
+Version:        1.18.0
 Release:        1%{?dist}
 Summary:        An open source cross-platform alternative to AirDrop
 
