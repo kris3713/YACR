@@ -6,7 +6,6 @@
 
 * `16x-prompt`
 * `adwaita-fonts`
-* `athas`
 * `atuin`
 * `bitwarden`
 * `bleachbit`
