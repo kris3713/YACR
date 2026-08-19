@@ -57,7 +57,7 @@ export QT_PLUGIN_PATH="$APP_DIR/lib:$QT_PLUGIN_PATH"
 exec "$APP_DIR/XnConvert"  "$@"
 SH
 )"
-install -Dm 0755 /dev/stdin %{_bindir}/%{name} <<< "$CONTENT"
+install -Dm 0755 /dev/stdin %{buildroot}%{_bindir}/%{name} <<< "$CONTENT"
 
 # Install the application icons
 install -Dm 0644 ./%{name}.png -t %{buildroot}%{_iconsdir}/hicolor/64x64/apps
