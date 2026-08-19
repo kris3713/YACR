@@ -48,7 +48,16 @@ cp -a . %{buildroot}/opt/%{app_name}
 install -Dm 0644 %{SOURCE2} -t %{buildroot}%{_datadir}/applications
 
 # Install the shell script wrapper for the application binary
-ln -sv /opt/%{app_name}/%{app_name} %{buildroot}%{_bindir}/%{name}
+CONTENT="$(cat << 'SH'
+#!/usr/bin/env sh
+
+APP_DIR='/opt/XnConvert'
+export LD_LIBRARY_PATH="$APP_DIR/lib:$APP_DIR/Plugins:$LD_LIBRARY_PATH"
+export QT_PLUGIN_PATH="$APP_DIR/lib:$QT_PLUGIN_PATH"
+exec "$APP_DIR/XnConvert"  "$@"
+SH
+)"
+install -Dm 0755 /dev/stdin %{_bindir}/%{name} <<< "$CONTENT"
 
 # Install the application icons
 install -Dm 0644 ./%{name}.png -t %{buildroot}%{_iconsdir}/hicolor/64x64/apps
