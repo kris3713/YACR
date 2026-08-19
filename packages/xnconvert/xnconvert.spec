@@ -48,7 +48,7 @@ cp -a . %{buildroot}/opt/%{app_name}
 install -Dm 0644 %{SOURCE2} -t %{buildroot}%{_datadir}/applications
 
 # Install the shell script wrapper for the application binary
-ln -sv /opt/%{app_name}/%{name}.sh %{buildroot}%{_bindir}/%{name}
+ln -sv /opt/%{app_name}/%{app_name} %{buildroot}%{_bindir}/%{name}
 
 # Install the application icons
 install -Dm 0644 ./%{name}.png -t %{buildroot}%{_iconsdir}/hicolor/64x64/apps
