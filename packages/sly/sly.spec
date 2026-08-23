@@ -8,7 +8,7 @@
 %define         git_url https://codeberg.org/kramo/%{app_name}
 
 Name:           sly
-Version:        1.0.0
+Version:        1.1.1
 Release:        1%{?dist}
 Summary:        A friendly image editor that requires no internet connection or preexisting expertise
 
