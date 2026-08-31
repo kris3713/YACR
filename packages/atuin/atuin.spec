@@ -22,7 +22,7 @@ URL:            https://atuin.sh/
 
 Source0:        %{git_url}/archive/refs/tags/v%{version}.tar.gz
 
-BuildRequires:  gcc rustup
+BuildRequires:  gcc openssl-devel rustup
 
 %description
 Atuin replaces your existing shell history with a SQLite database,
