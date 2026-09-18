@@ -77,9 +77,6 @@ fd -e spec . %{buildroot}%{_iconsdir}/hicolor --exec %__chmod 0644 {}
 # Install the application metainfo file
 %__install -Dm 0644 ./metainfo/%{name}.appdata.xml -t %{buildroot}%{_metainfodir}
 
-# Copy the license file
-%__cp -a %{SOURCE1} .
-
 %files
 /opt/%{name}
 %{_bindir}/%{name}
