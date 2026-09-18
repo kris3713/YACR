@@ -13,11 +13,10 @@ Release:        1%{?dist}
 Summary:        Plays & manages your music library. Looks beautiful & juicy.
 
 # No need to include the PolyForm-Strict-1.0.0 license as were are not compiling from source
-License:        Freeware/Custom (See LICENSE.txt)
+License:        Freeware/Custom
 URL:            https://harmonoid.com/
 
 Source0:        %{rel_url}/releases/download/v%{version}/harmonoid-linux-x86_64.tar.gz
-Source1:        %{rel_url}/raw/refs/heads/main/LICENSE.txt
 
 BuildRequires:  fd-find
 Requires:       mpv mpv-libs (ffmpeg-devel or ffmpeg-free-devel)
@@ -87,7 +86,6 @@ fd -e spec . %{buildroot}%{_iconsdir}/hicolor --exec %__chmod 0644 {}
 %{_datadir}/applications/%{name}.desktop
 %{_iconsdir}/hicolor/*
 %{_metainfodir}/%{name}.appdata.xml
-%license ./LICENSE.txt
 
 %changelog
 %autochangelog
