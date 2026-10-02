@@ -10,7 +10,7 @@
         HWINFO_VERSION=%{version}
 
 Name:           hwinfo
-Version:        25.5
+Version:        26.0
 Release:        1%{?dist}
 Summary:        Hardware information tool
 
