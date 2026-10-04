@@ -70,6 +70,7 @@ mv %{buildroot}/usr/sbin  %{buildroot}%{_sbindir}
 %{_sbindir}/%{name}
 %{_sbindir}/mk_isdnhwdb
 %{_datadir}/%{name}
+%{_datadir}/bash-completion/completions/%{name}
 %doc ./*.md ./MAINTAINER
 %license ./COPYING
 
