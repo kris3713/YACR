@@ -52,7 +52,7 @@ export NPM_CONFIG_GLOBALCONFIG="$(realpath ./npmrc)"
 touch ./user_npmrc ./npmrc
 
 # Clean install all node dependencies
-env NODE_ENV='dev' npm ci --loglevel=error
+env NODE_ENV='dev' npm install --loglevel=error
 
 # Ensure rustup uses the nightly
 # toolchain by default.
