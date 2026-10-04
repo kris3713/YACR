@@ -23,7 +23,7 @@ URL:            https://www.naps2.com/
 Source0:        https://github.com/cyanfish/naps2/archive/refs/tags/v%{version}.tar.gz
 Source1:        %{name}.console
 
-BuildRequires:  dotnet-sdk-9.0 liberation-fonts-all
+BuildRequires:  dotnet-sdk-10.0 liberation-fonts-all
 BuildRequires:  google-noto-fonts-common google-noto-sans-cjk-vf-fonts
 
 %description
@@ -43,13 +43,13 @@ tasks.
 export DOTNET_NOLOGO=true
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 
-dotnet run --project %{app_name}.Tools -- clean &> /dev/null
+dotnet run --project %{app_name}.Tools -- clean
 dotnet publish %{app_name}.App.Gtk -c Release -r %{rel_type} \
   --self-contained '-p:DebugType=None' '-p:DebugSymbols=false'
 
 %__mkdir ./app
-%__cp -a ./%{app_name}.App.Gtk/bin/Release/net9/%{rel_type}/publish/* ./app
-%__rm -r ./%{app_name}.App.Gtk/bin/Release/net9/%{rel_type}/publish/*
+%__cp -a ./%{app_name}.App.Gtk/bin/Release/net10.0/%{rel_type}/publish/* ./app
+%__rm -r ./%{app_name}.App.Gtk/bin/Release/net10.0/%{rel_type}/publish/*
 
 unset DOTNET_NOLOGO
 unset DOTNET_CLI_TELEMETRY_OPTOUT
