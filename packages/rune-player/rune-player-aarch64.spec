@@ -9,7 +9,7 @@
 %global         debug_package %{nil}
 
 Name:           rune-player-%{pkg_arch}
-Version:        1.1.0
+Version:        endor-8.7.1
 Release:        1%{?dist}
 Summary:        The audio player that blends classic design with modern technology
 
