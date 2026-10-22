@@ -15,7 +15,7 @@ Source:         https://github.com/%{name}/%{name}/archive/refs/tags/v%{version}
 
 Patch0:         %{fedoraproject_src}/no_update.patch
 # https://github.com/bleachbit/bleachbit/issues/950
-Patch1:         %{fedoraproject_src}/disable_policykit.patch
+Patch1:         disable_policykit.patch
 
 BuildArch:      noarch
 

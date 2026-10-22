@@ -1,0 +1,15 @@
+diff --git a/Makefile b/Makefile
+index 3248c4cbd..98ffd6066 100644
+--- a/Makefile
++++ b/Makefile
+@@ -130,8 +130,8 @@ install:
+ 	$(MAKE) -C po install DESTDIR=$(DESTDIR)
+ 
+ 	# PolicyKit
+-	mkdir -p $(DESTDIR)$(datadir)/polkit-1/actions
+-	$(INSTALL_DATA) org.bleachbit.policy $(DESTDIR)$(datadir)/polkit-1/actions/
++	#mkdir -p $(DESTDIR)$(datadir)/polkit-1/actions
++	#$(INSTALL_DATA) org.bleachbit.policy $(DESTDIR)$(datadir)/polkit-1/actions/
+ 
+ # `lint` only warns about a missing tool, which is fine locally but hides a
+ # skipped check in CI. Depend on this to turn those warnings into an error.
