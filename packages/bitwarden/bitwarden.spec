@@ -66,7 +66,7 @@ export PATH="$PATH:$CARGO_HOME/bin"
 
 # Build the native modules
 export NODE_ENV='production'
-pushd ./apps/desktop/desktop_native/napi
+cd ./apps/desktop/desktop_native/napi
 
 # Using extra arguments that will be
 # passed to cargo from napi cli
@@ -74,19 +74,17 @@ BUILD_TARGET='x86_64-unknown-linux-gnu'
 npm run build -- --release \
   --target "$BUILD_TARGET" -- "-j$(nproc)"
 
-pushd ..
+cd ./..
 
 npm run build -- -- --release \
   --target "$BUILD_TARGET"
 
 # Build the application
-pushd ..
+cd ./..
 
-npm run build -- --release \
+npm run build -- -- --release \
   --target "$BUILD_TARGET"
 npm run 'pack:dir' -- --linux --x64
-
-popd
 
 
 %install
