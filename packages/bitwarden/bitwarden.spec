@@ -47,9 +47,9 @@ export RUSTUP_HOME="$(realpath ./.rustup)"
 
 # Change where npm stores its
 # user and global config
+touch ./user_npmrc ./npmrc
 export NPM_CONFIG_USERCONFIG="$(realpath ./user_npmrc)"
 export NPM_CONFIG_GLOBALCONFIG="$(realpath ./npmrc)"
-touch ./user_npmrc ./npmrc
 
 # Clean install all node dependencies
 env NODE_ENV='dev' npm install --loglevel=error
@@ -72,18 +72,18 @@ pushd ./apps/desktop/desktop_native/napi
 # passed to cargo from napi cli
 BUILD_TARGET='x86_64-unknown-linux-gnu'
 npm run build -- --release \
-  --target $BUILD_TARGET -- "-j$(nproc)"
+  --target "$BUILD_TARGET" -- "-j$(nproc)"
 
 pushd ..
 
-npm run build -- --release \
-  --target $BUILD_TARGET
+npm run build -- -- --release \
+  --target "$BUILD_TARGET"
 
 # Build the application
 pushd ..
 
 npm run build -- --release \
-  --target $BUILD_TARGET
+  --target "$BUILD_TARGET"
 npm run 'pack:dir' -- --linux --x64
 
 popd
