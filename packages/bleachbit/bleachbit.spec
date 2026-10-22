@@ -97,6 +97,7 @@ install -Dm 0644 ./%{app_id}.metainfo.xml \
 %{_bindir}/%{name}
 %{_datadir}/applications/%{app_id}.desktop
 %{_datadir}/%{name}
+%{_iconsdir}/hicolor/scalable/apps/%{name}.svg
 %{_datadir}/pixmaps/%{name}.png
 %{_metainfodir}/%{app_id}.metainfo.xml
 
