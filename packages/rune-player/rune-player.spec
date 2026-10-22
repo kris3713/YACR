@@ -9,7 +9,7 @@
 %global         debug_package %{nil}
 
 Name:           rune-player
-Version:        1.1.0
+Version:        2.0.0-alpha.12
 Release:        1%{?dist}
 Summary:        The audio player that blends classic design with modern technology
 
