@@ -64,7 +64,7 @@ install -Dm 0644 ./packaging/linux/%{name}.metainfo.xml \
 
 # Install the application binary
 install -Dm 0755 ./src-tauri/target/x86_64-unknown-linux-gnu/release/%{name} \
-  -t %{buildroot}%{_bindir}
+  -t %{buildroot}%{_metainfodir}/%{_bindir}
 
 # Install the application icons
 install -Dm 0644 ./src-tauri/icons/32x32.png \
@@ -80,7 +80,7 @@ install -Dm 0644 ./src-tauri/icons/icon.png \
 
 
 %files
-%{_bindir}/%{app_name}
+%{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_metainfodir}/%{name}.metainfo.xml
 %{_iconsdir}/hicolor/*/apps/%{app_name}.png
