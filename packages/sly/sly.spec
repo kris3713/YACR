@@ -68,14 +68,14 @@ cp -a ./build/linux/x64/release/bundle/* %{buildroot}/opt/%{app_name}
 ln -s /opt/%{app_name}/%{name} %{buildroot}%{_bindir}
 
 # Install the desktop file
-install -Dm 0644 ./packaging/linux/%{fullname}.desktop %{buildroot}%{_datadir}/applications/%{name}.desktop
+install -Dm 0644 ./linux/%{fullname}.desktop %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 # Install the application icons
-install -Dm 0644 ./packaging/linux/%{fullname}.svg -t %{buildroot}%{_iconsdir}/hicolor/scalable/apps
-install -Dm 0644 ./packaging/linux/%{fullname}-symbolic.svg -t %{buildroot}%{_iconsdir}/hicolor/scalable/apps
+install -Dm 0644 ./linux/flatpak/%{fullname}.svg -t %{buildroot}%{_iconsdir}/hicolor/scalable/apps
+install -Dm 0644 ./linux/flatpak/%{fullname}-symbolic.svg -t %{buildroot}%{_iconsdir}/hicolor/scalable/apps
 
 # Install the application metainfo file
-install -Dm 0644 ./packaging/linux/%{fullname}.metainfo.xml -t %{buildroot}%{_metainfodir}
+install -Dm 0644 ./linux/flatpak/%{fullname}.metainfo.xml -t %{buildroot}%{_metainfodir}
 
 
 %files
