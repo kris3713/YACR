@@ -57,8 +57,6 @@
 * `renamemytvseries-qt`
 * `renamemytvseries`
 * `riseup-vpn`
-* `rune-player-aarch64`
-* `rune-player`
 * `sly`
 * `stacher`
 * `streamlink-twitch-gui`
