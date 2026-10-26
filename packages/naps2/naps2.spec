@@ -47,72 +47,71 @@ dotnet run --project %{app_name}.Tools -- clean
 dotnet publish %{app_name}.App.Gtk -c Release -r %{rel_type} \
   --self-contained '-p:DebugType=None' '-p:DebugSymbols=false'
 
-%__mkdir ./app
-%__cp -a ./%{app_name}.App.Gtk/bin/Release/net10.0/%{rel_type}/publish/* ./app
-%__rm -r ./%{app_name}.App.Gtk/bin/Release/net10.0/%{rel_type}/publish/*
+mkdir ./app
+cp -a ./%{app_name}.App.Gtk/bin/Release/net10.0/%{rel_type}/publish/* ./app
+rm -r ./%{app_name}.App.Gtk/bin/Release/net10.0/%{rel_type}/publish/*
 
 unset DOTNET_NOLOGO
 unset DOTNET_CLI_TELEMETRY_OPTOUT
 
 %install
 # Remove the old build directory
-%__rm -rf %{buildroot}
+rm -rf %{buildroot}
 
 # Install the new build directory
-%__install -d %{buildroot}{/opt/%{app_name},%{_bindir},%{_datadir}/applications,%{_metainfodir}}
-%__install -d %{buildroot}%{_iconsdir}/hicolor/{16x16,32x32,44x44,48x48,64x64}/apps
-%__install -d %{buildroot}%{_iconsdir}/hicolor/{72x72,96x96,128x128,150x150}/apps
+install -d %{buildroot}{/opt/%{app_name},%{_bindir},%{_datadir}/applications,%{_metainfodir}}
+install -d %{buildroot}%{_iconsdir}/hicolor/{16x16,32x32,44x44,48x48,64x64}/apps
+install -d %{buildroot}%{_iconsdir}/hicolor/{72x72,96x96,128x128,150x150}/apps
 
 # Copy the application files to the appllication directory
-%__cp -a ./app/* %{buildroot}/opt/%{app_name}
+cp -a ./app/* %{buildroot}/opt/%{app_name}
 
 # Remove executables from /opt/%{app_name}/sosdocsunix.txt
-%__chmod 0644 %{buildroot}/opt/%{app_name}/sosdocsunix.txt
+chmod 0644 %{buildroot}/opt/%{app_name}/sosdocsunix.txt
 
 # The tesseract binary is not included in the arm64 build
 if [ '%{rel_type}' != 'linux-arm64' ]; then
   # Ensure the tesseract binary is executable
-  %__chmod 0755 %{buildroot}/opt/%{app_name}/_linux/tesseract
+  chmod 0755 %{buildroot}/opt/%{app_name}/_linux/tesseract
 fi
 
 # Install the desktop file
-%__install -Dm 0644 ./%{app_name}.Setup/config/linux/%{fullname}.desktop \
+install -Dm 0644 ./%{app_name}.Setup/config/linux/%{fullname}.desktop \
   %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 # Install the application metainfo
-%__install -Dm 0644 ./%{app_name}.Setup/config/linux/%{fullname}.metainfo.xml -t %{buildroot}%{_metainfodir}
+install -Dm 0644 ./%{app_name}.Setup/config/linux/%{fullname}.metainfo.xml -t %{buildroot}%{_metainfodir}
 
 # Create a symlink to the application binary
-%__ln_s /opt/%{app_name}/%{name} %{buildroot}%{_bindir}
+ln -sv /opt/%{app_name}/%{name} %{buildroot}%{_bindir}
 
 # Install the wrapper script for the NAPS2 console
-%__install -Dm 0755 %{SOURCE1} -t %{buildroot}%{_bindir}
+install -Dm 0755 %{SOURCE1} -t %{buildroot}%{_bindir}
 
 # Install the application icons
-%__install -Dm 0644 ./%{app_name}.Setup/config/windows/msix/Assets/scanner-150.png \
+install -Dm 0644 ./%{app_name}.Lib/Icons/svg/scanner.svg \
+  %{buildroot}%{_iconsdir}/hicolor/scalable/apps/%{fullname}.svg
+install -Dm 0644 ./%{app_name}.Setup/config/windows/msix/Assets/scanner-150.png \
   %{buildroot}%{_iconsdir}/hicolor/150x150/apps/%{fullname}.png
-%__install -Dm 0644 ./%{app_name}.Lib/Icons/scanner-128.png %{buildroot}%{_iconsdir}/hicolor/128x128/apps/%{fullname}.png
-%__install -Dm 0644 ./%{app_name}.Lib/Icons/scanner-96.png %{buildroot}%{_iconsdir}/hicolor/96x96/apps/%{fullname}.png
-%__install -Dm 0644 ./%{app_name}.Lib/Icons/scanner-72-rev1.png %{buildroot}%{_iconsdir}/hicolor/72x72/apps/%{fullname}.png
-%__install -Dm 0644 ./%{app_name}.Lib/Icons/scanner-64-rev1.png %{buildroot}%{_iconsdir}/hicolor/64x64/apps/%{fullname}.png
-%__install -Dm 0644 ./%{app_name}.Lib/Icons/scanner-48-rev1.png %{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{fullname}.png
-%__install -Dm 0644 ./%{app_name}.Lib/Icons/scanner-32-rev1.png %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{fullname}.png
-%__install -Dm 0644 ./%{app_name}.Lib/Icons/scanner-16-rev1.png %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{fullname}.png
+install -Dm 0644 ./%{app_name}.Lib/Icons/scanner_128.png \
+  %{buildroot}%{_iconsdir}/hicolor/128x128/apps/%{fullname}.png
+install -Dm 0644 ./%{app_name}.Lib/Icons/scanner_96.png \
+  %{buildroot}%{_iconsdir}/hicolor/96x96/apps/%{fullname}.png
+install -Dm 0644 ./%{app_name}.Lib/Icons/scanner_48.png \
+  %{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{fullname}.png
+install -Dm 0644 ./%{app_name}.Lib/Icons/scanner_32.png \
+  %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{fullname}.png
+install -Dm 0644 ./%{app_name}.Lib/Icons/scanner_16.png \
+  %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{fullname}.png
 
 %files
 /opt/%{app_name}
 %{_bindir}/%{name}
 %{_bindir}/%{name}.console
 %{_datadir}/applications/%{name}.desktop
-%{_iconsdir}/hicolor/150x150/apps/%{fullname}.png
-%{_iconsdir}/hicolor/128x128/apps/%{fullname}.png
-%{_iconsdir}/hicolor/96x96/apps/%{fullname}.png
-%{_iconsdir}/hicolor/72x72/apps/%{fullname}.png
-%{_iconsdir}/hicolor/64x64/apps/%{fullname}.png
-%{_iconsdir}/hicolor/48x48/apps/%{fullname}.png
-%{_iconsdir}/hicolor/32x32/apps/%{fullname}.png
-%{_iconsdir}/hicolor/16x16/apps/%{fullname}.png
 %{_metainfodir}/%{fullname}.metainfo.xml
+%{_iconsdir}/hicolor/scalable/apps/%{fullname}.svg
+%{_iconsdir}/hicolor/*/apps/%{fullname}.png
 %license ./LICENSE
 
 %changelog
