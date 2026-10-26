@@ -63,7 +63,7 @@ install -Dm 0644 ./packaging/linux/%{name}.metainfo.xml \
   %{buildroot}/%{name}.metainfo.xml
 
 # Install the application binary
-install -Dm 0755 ./src-tauri/target/x86_64-unknown-linux-gnu/release/%{app_name} \
+install -Dm 0755 ./src-tauri/target/x86_64-unknown-linux-gnu/release/%{name} \
   -t %{buildroot}%{_bindir}
 
 # Install the application icons
