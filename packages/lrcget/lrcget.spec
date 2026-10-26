@@ -33,8 +33,8 @@ them to the same directory as your music files.
 %build
 %if %{?fedora} >= 44
   mkdir -v ./extra_bin
-  ln -sv $(command -v node-22) ./extra_bin/node
-  ln -sv $(command -v npm-22) ./extra_bin/npm
+  ln -sv "$(command -v node-22)" ./extra_bin/node
+  ln -sv "$(command -v npm-22)" ./extra_bin/npm
   export PATH="$PATH:$(realpath ./extra_bin)"
 %endif
 
@@ -55,8 +55,12 @@ install -d %{buildroot}%{_iconsdir}/hicolor/{32x32,44x44,128x128}/apps
 install -d %{buildroot}%{_iconsdir}/hicolor/{256x256,512x512}/apps
 
 # Install the desktop file
-install -Dm 0644 ./packaging/linux/%{app_name}.desktop \
+install -Dm 0644 ./packaging/linux/%{name}.desktop \
   %{buildroot}%{_datadir}/applications/%{name}.desktop
+
+# Install the metainfo file
+install -Dm 0644 ./packaging/linux/%{name}.metainfo.xml \
+  %{buildroot}/%{name}.metainfo.xml
 
 # Install the application binary
 install -Dm 0755 ./src-tauri/target/x86_64-unknown-linux-gnu/release/%{app_name} \
@@ -78,6 +82,7 @@ install -Dm 0644 ./src-tauri/icons/icon.png \
 %files
 %{_bindir}/%{app_name}
 %{_datadir}/applications/%{name}.desktop
+%{_metainfodir}/%{name}.metainfo.xml
 %{_iconsdir}/hicolor/*/apps/%{app_name}.png
 %license ./LICENSE
 %doc ./README.md
