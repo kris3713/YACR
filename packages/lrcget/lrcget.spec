@@ -1,5 +1,5 @@
 %global         app_name LRCGET
-%global         debug_package %{nil}
+%global         debug_package %nil
 
 Name:           %(echo %app_name | tr '[:upper:]' '[:lower:]')
 Version:        2.2.1
@@ -60,11 +60,11 @@ install -Dm 0644 ./packaging/linux/%{name}.desktop \
 
 # Install the metainfo file
 install -Dm 0644 ./packaging/linux/%{name}.metainfo.xml \
-  %{buildroot}/%{name}.metainfo.xml
+  %{buildroot}%{_metainfodir}/%{name}.metainfo.xml
 
 # Install the application binary
 install -Dm 0755 ./src-tauri/target/x86_64-unknown-linux-gnu/release/%{name} \
-  -t %{buildroot}%{_metainfodir}/%{_bindir}
+  -t %{buildroot}%{_bindir}
 
 # Install the application icons
 install -Dm 0644 ./src-tauri/icons/32x32.png \
