@@ -41,6 +41,7 @@
 * `media-hoarder`
 * `msi-ec`
 * `naps2`
+* `noctis`
 * `oh-my-posh`
 * `open-pencil`
 * `p7zip`
