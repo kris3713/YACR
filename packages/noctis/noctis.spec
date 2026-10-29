@@ -19,7 +19,6 @@ License:        GPL-2.0-or-later
 URL:            https://noctisapp.cc/
 
 Source0:        https://github.com/heartached/%{app_name}/archive/refs/tags/v%{version}.tar.gz
-Source1:        %{name}.desktop
 
 BuildRequires:  dotnet-sdk-10.0 vlc-devel
 # BuildRequires:  google-noto-fonts-common google-noto-sans-cjk-vf-fonts liberation-fonts-all
@@ -43,8 +42,20 @@ install -d %{buildroot}/opt/%{app_name}
 cp -a ./app/* %{buildroot}/opt/%{app_name}
 
 # Install the desktop file
-install -Dm 0644 %{SOURCE1} \
-  %{buildroot}%{_datadir}/applications/%{name}.desktop
+CONTENT="$(cat << 'DESKTOP'
+[Desktop Entry]
+Name=%app_name
+Exec=%name-desktop
+Terminal=false
+Type=Application
+Icon=%name
+StartupWMClass=%app_name
+Comment=%app_name is an unofficial, featureful Microsoft ToDo desktop client for Linux (a fork of Ao).
+Categories=Office
+DESKTOP
+)"
+install -Dm 0644 /dev/stdin \
+  %{buildroot}%{_datadir}/applications/%{name}.desktop <<< "$CONTENT"
 
 # Create a symlink to the application binary
 install -d %{buildroot}%{_bindir}
@@ -64,6 +75,9 @@ for size in "${sizes[@]}"; do
       "%{buildroot}%{_iconsdir}/hicolor/$dirname/apps/%{name}.png"
   fi
 done
+
+%post
+gtk-update-icon-cache /usr/share/icons/hicolor -f
 
 %files
 /opt/%{app_name}

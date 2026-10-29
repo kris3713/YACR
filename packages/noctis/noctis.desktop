@@ -1,8 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Noctis
-Comment=A music player that respects what's yours
-Exec=Noctis
-Icon=noctis
-Categories=AudioVideo;Audio;Player
-Terminal=false
