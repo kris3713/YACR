@@ -20,8 +20,8 @@ URL:            https://noctisapp.cc/
 
 Source0:        https://github.com/heartached/%{app_name}/archive/refs/tags/v%{version}.tar.gz
 
+Requires:       vlc-libs
 BuildRequires:  dotnet-sdk-10.0 vlc-devel
-# BuildRequires:  google-noto-fonts-common google-noto-sans-cjk-vf-fonts liberation-fonts-all
 
 %description
 %{summary}. Gapless playback, synced lyrics and full theming.
