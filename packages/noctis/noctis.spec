@@ -44,14 +44,13 @@ cp -a ./app/* %{buildroot}/opt/%{app_name}
 # Install the desktop file
 CONTENT="$(cat << 'DESKTOP'
 [Desktop Entry]
-Name=%app_name
-Exec=%name-desktop
-Terminal=false
 Type=Application
-Icon=%name
-StartupWMClass=%app_name
-Comment=%app_name is an unofficial, featureful Microsoft ToDo desktop client for Linux (a fork of Ao).
-Categories=Office
+Name=Noctis
+Comment=A music player that respects what's yours
+Exec=Noctis
+Icon=noctis
+Categories=AudioVideo;Audio;Player
+Terminal=false
 DESKTOP
 )"
 install -Dm 0644 /dev/stdin \
