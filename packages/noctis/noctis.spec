@@ -77,7 +77,7 @@ for size in "${sizes[@]}"; do
 done
 
 %post
-gtk-update-icon-cache /usr/share/icons/hicolor -f
+gtk-update-icon-cache %{_iconsdir}/hicolor -f
 
 %files
 /opt/%{app_name}
