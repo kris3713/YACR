@@ -46,10 +46,10 @@ CONTENT="$(cat << 'DESKTOP'
 [Desktop Entry]
 Type=Application
 Name=Noctis
-Comment=A music player that respects what's yours
+Comment=%summary
 Exec=Noctis
 Icon=noctis
-Categories=AudioVideo;Audio;Player
+Categories=Audio;Player;Music
 Terminal=false
 DESKTOP
 )"
