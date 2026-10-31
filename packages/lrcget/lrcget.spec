@@ -68,15 +68,15 @@ install -Dm 0755 ./src-tauri/target/x86_64-unknown-linux-gnu/release/%{name} \
 
 # Install the application icons
 install -Dm 0644 ./src-tauri/icons/32x32.png \
-  %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{app_name}.png
+  %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
 install -Dm 0644 ./src-tauri/icons/Square44x44Logo.png \
-  %{buildroot}%{_iconsdir}/hicolor/44x44/apps/%{app_name}.png
+  %{buildroot}%{_iconsdir}/hicolor/44x44/apps/%{name}.png
 install -Dm 0644 ./src-tauri/icons/128x128.png \
-  %{buildroot}%{_iconsdir}/hicolor/128x128/apps/%{app_name}.png
+  %{buildroot}%{_iconsdir}/hicolor/128x128/apps/%{name}.png
 install -Dm 0644 ./src-tauri/icons/128x128@2x.png \
-  %{buildroot}%{_iconsdir}/hicolor/256x256/apps/%{app_name}.png
+  %{buildroot}%{_iconsdir}/hicolor/256x256/apps/%{name}.png
 install -Dm 0644 ./src-tauri/icons/icon.png \
-  %{buildroot}%{_iconsdir}/hicolor/512x512/apps/%{app_name}.png
+  %{buildroot}%{_iconsdir}/hicolor/512x512/apps/%{name}.png
 
 
 %files
