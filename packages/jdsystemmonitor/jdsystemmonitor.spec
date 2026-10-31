@@ -1,3 +1,5 @@
+%global         __provides_exclude_from ^%{_bindir}/%{name}$
+%global         __requires_exclude_from ^%{_bindir}/%{name}$
 %global         app_name jdSystemMonitor
 %global         full_name page.codeberg.JakobDev.%{app_name}
 %global         debug_package %nil
@@ -33,25 +35,19 @@ about your system as possible, with a focus on process management.
 
 %build
 # Remove unneeded build flags from C flags (clang doesn't need them)
-export CFLAGS="$(
-  echo '%{build_cflags}' |
+export CFLAGS="$(echo '%{build_cflags}' |
   sed -e 's;-specs=\/usr\/lib\/rpm\/redhat\/redhat-hardened-cc1;;' \
-    -e 's;-specs=\/usr\/lib\/rpm\/redhat\/redhat-annobin-cc1;;'
-)"
+    -e 's;-specs=\/usr\/lib\/rpm\/redhat\/redhat-annobin-cc1;;')"
 # Remove unneeded build flags from CXX flags (clang doesn't need them)
-export CXXFLAGS="$(
-  echo '%{build_cxxflags}' |
+export CXXFLAGS="$(echo '%{build_cxxflags}' |
   sed -e 's;-specs=\/usr\/lib\/rpm\/redhat\/redhat-hardened-cc1;;' \
-    -e 's;-specs=\/usr\/lib\/rpm\/redhat\/redhat-annobin-cc1;;'
-)"
+    -e 's;-specs=\/usr\/lib\/rpm\/redhat\/redhat-annobin-cc1;;')"
 # Remove unneeded build flags from LD flags (clang doesn't need them)
-export LDFLAGS="$(
-  echo '%{build_ldflags}' |
+export LDFLAGS="$(echo '%{build_ldflags}' |
   sed -e 's;-specs=\/usr\/lib\/rpm\/redhat\/redhat-hardened-ld;;' \
     -e 's;-specs=\/usr\/lib\/rpm\/redhat\/redhat-hardened-ld-errors;;' \
     -e 's;-specs=\/usr\/lib\/rpm\/redhat\/redhat-annobin-cc1;;' \
-    -e 's;-specs=\/usr\/lib\/rpm\/redhat\/redhat-package-notes;;'
-)"
+    -e 's;-specs=\/usr\/lib\/rpm\/redhat\/redhat-package-notes;;')"
 
 # Force meson to use clang instead of gcc
 export CC='clang' CXX='clang++'
