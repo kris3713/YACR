@@ -84,6 +84,7 @@ install -Dm 0644 ./linux/flatpak/%{fullname}.metainfo.xml -t %{buildroot}%{_meta
 %{_datadir}/applications/%{name}.desktop
 %{_iconsdir}/hicolor/scalable/apps/*
 %{_metainfodir}/%{fullname}.metainfo.xml
+%license ./LICENSE
 
 
 %changelog
