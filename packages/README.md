@@ -32,8 +32,6 @@
 * `jetbrains-toolbox`
 * `jq`
 * `kuro`
-* `localsend-arm64`
-* `localsend`
 * `lrcget`
 * `lunacy`
 * `maddy`
