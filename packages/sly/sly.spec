@@ -5,9 +5,9 @@
 %global         app_name Sly
 %global         debug_package %nil
 
-%define         git_url https://codeberg.org/kramo/%{app_name}
+%define         git_url https://codeberg.org/%{app_name}/%{app_name}
 
-Name:           sly
+Name:           %(echo %app_name | tr '[:upper:]' '[:lower:]')
 Version:        1.1.2
 Release:        1%{?dist}
 Summary:        A friendly image editor that requires no internet connection or preexisting expertise
