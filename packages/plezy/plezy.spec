@@ -94,6 +94,7 @@ install -Dm 0644 ./assets/%{name}.png \
 %{_datadir}/applications/%{app_id}.desktop
 %{_iconsdir}/hicolor/*/apps/%{name}.*
 %{_metainfodir}/%{app_id}.metainfo.xml
+%license ./LICENSE
 
 
 %changelog
