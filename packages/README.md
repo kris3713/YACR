@@ -24,6 +24,7 @@
 * `dnscrypt-proxy`
 * `figma-linux-arm64`
 * `figma-linux`
+* `fladder`
 * `hardinfo2`
 * `harmonoid`
 * `hwinfo`
