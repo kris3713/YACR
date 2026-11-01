@@ -13,7 +13,7 @@ Release:        1%{?dist}
 Summary:        A friendly image editor that requires no internet connection or preexisting expertise
 
 License:        GPL-3.0
-URL:            https://kramo.page/%{name}/
+URL:            https://%{name}.pictures/
 
 Source0:        %{git_url}/archive/v%{version}.tar.gz
 
