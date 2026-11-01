@@ -20,19 +20,13 @@ Source0:        https://github.com/edde746/%{name}/archive/refs/tags/%{version}.
 BuildRequires:  mise
 BuildRequires:  git cmake clang ninja-build glib2-devel gtk3-devel
 BuildRequires:  mpv-devel libcurl-devel libevdev-devel java-25-openjdk-devel
+Requires:       glib2 gtk3 mpv-libs libcurl libevdev
 
 ExclusiveArch:  x86_64
 
 %description
-Sly is a friendly image editor that requires no internet connection or preexisting expertise.
-Just open some photos and have at it.
-
-The app allows you to adjust attributes like brightness or contrast as well as add effects like a
-vignette or a border. It also allows you to flip, rotate and crop the image to your heart's desire.
-If you're a pro, you can even preview your edits on a histogram.
-
-When you're done, just save the photo with the quality settings of your choosing.
-You also get a choice in whether or not to keep metadata such as location information.
+A modern client for Plex, Jellyfin, and Emby on desktop, mobile, and TV.
+Built with Flutter for native performance and a clean interface.
 
 
 %prep
