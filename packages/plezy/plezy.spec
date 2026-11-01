@@ -39,10 +39,10 @@ export MISE_GLOBAL_CONFIG_FILE=''
 export MISE_CACHE_DIR="$(realpath ./.mise_cache)"
 export MISE_DATA_DIR="$(realpath ./.mise_data)"
 export PUB_CACHE="$(realpath ./.pub-cache)"
-mise install flutter@latest
+mise install 'vfox:mise-plugins/vfox-flutter@latest'
 
 # Modify $PATH
-export PATH="$(mise where flutter@latest)/bin:$PATH"
+export PATH="$(mise where 'vfox:mise-plugins/vfox-flutter@latest')/bin:$PATH"
 
 # Build the application
 unset CFLAGS CXXFLAGS
