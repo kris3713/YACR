@@ -48,6 +48,7 @@
 * `parabolic`
 * `pdfstudioviewer`
 * `picocrypt-ng`
+* `plezy`
 * `podman`
 * `postman-arm64`
 * `postman`
