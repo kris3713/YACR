@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Termora
-Comment=A terminal emulator and SSH client.
-Exec=Termora
-Icon=/opt/Termora/lib/Termora
-Terminal=false
-Type=Application
-Categories=Development;System
-MimeType=
