@@ -34,7 +34,7 @@ BuildRequires:  qt5-linguist
 
 
 %build
-%cmake -DCMAKE_BUILD_TYPE=Release
+%cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_POLICY_VERSION_MINIMUM=3.5
 %cmake_build
 
 
