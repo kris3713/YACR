@@ -7,7 +7,6 @@
 * `16x-prompt`
 * `adwaita-fonts`
 * `atuin`
-* `birdtray`
 * `bitwarden`
 * `bleachbit`
 * `blobdrop`
