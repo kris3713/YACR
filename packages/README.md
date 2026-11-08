@@ -64,6 +64,7 @@
 * `superlight`
 * `sweetpdf`
 * `syncthing`
+* `system-monitoring-center`
 * `tixati`
 * `tux-manager`
 * `winpodx`
