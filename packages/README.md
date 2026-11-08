@@ -61,6 +61,7 @@
 * `sly`
 * `stacher`
 * `streamlink-twitch-gui`
+* `superlight`
 * `sweetpdf`
 * `syncthing`
 * `tixati`
