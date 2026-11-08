@@ -6,7 +6,7 @@ Version:        1.0.2
 Release:        1%{?dist}
 Summary:        System Monitor for Linux desktops
 
-License:        GPL-3.0-only
+License:        GPL-3.0-or-later
 URL:            https://github.com/xapp-project/%{name}
 
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
