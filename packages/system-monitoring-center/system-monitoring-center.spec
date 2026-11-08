@@ -17,12 +17,14 @@ BuildRequires:  hwdata-devel dmidecode util-linux
 BuildRequires:  pkgconfig pkgconfig(python3)
 BuildRequires:  python3-cairo python3-tkinter
 BuildRequires:  python3-pillow python3-pillow-tk
+BuildRequires:  desktop-file-utils
 
 BuildArch:      noarch
 
 Requires:       hwdata dmidecode util-linux
 Requires:       python3-cairo python3-tkinter
 Requires:       python3-pillow python3-pillow-tk
+Requires:       desktop-file-utils
 
 %description
 Provides information about CPU/RAM/Disk/Network/GPU performance, sensors,
