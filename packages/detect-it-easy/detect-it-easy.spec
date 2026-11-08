@@ -52,6 +52,7 @@ export PATH="$PATH:%{_libdir}/qt5/bin"
 %{_bindir}/%{app_name}c
 %{_bindir}/%{app_name}l
 %{_bindir}/%{app_name}-update
+%{_libdir}/%{app_name}
 /usr/lib/%{app_name}
 %{_datadir}/applications/%{app_name}.desktop
 %{_datadir}/icons/hicolor/*/apps/%{app_id}.png
