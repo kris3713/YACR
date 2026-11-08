@@ -12,7 +12,7 @@ URL:            https://github.com/%{maintainer}/%{name}
 
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 
-BuildRequires:  meson ninja-build
+BuildRequires:  meson ninja-build gettext
 BuildRequires:  hwdata-devel dmidecode util-linux
 BuildRequires:  pkgconfig pkgconfig(python3)
 BuildRequires:  python3-cairo python3-tkinter
