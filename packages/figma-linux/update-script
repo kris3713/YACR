@@ -3,14 +3,16 @@
 set -l script_dir (status dirname)
 set -l basename (basename "$script_dir")
 
+source "$script_dir/../constants.fish"
+
 echo "Updating '$basename'"
 
 set -l url 'https://api.github.com/repos/Figma-Linux/figma-linux/releases/latest'
-set -l regex 'v([\\d.]+)'
+set -l regex "v$VERSION_REGEX"
 set -l jsonpath '$.tag_name'
 
 echo 'Executing the `parse-json` script'
-set -l latest_version ("$script_dir/../scripts/parse-json" $url $regex $jsonpath)
+set -l latest_version ("$script_dir/../../scripts/parse-json" $url $regex $jsonpath)
 
 if test -z "$latest_version"
   echo "Failed to get the latest version for '$basename'"
