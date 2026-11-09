@@ -7,7 +7,7 @@
 %global         debug_package %nil
 
 Name:           plezy
-Version:        2.25.0
+Version:        2.26.0
 Release:        1%{?dist}
 Summary:        Modern cross-platform Plex, Jellyfin and Emby client
 
