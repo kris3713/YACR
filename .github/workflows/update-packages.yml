@@ -23,6 +23,9 @@ jobs:
           repository: "${{ github.repository }}"
           token: "${{ env.GITHUB_TOKEN }}"
 
+      - name: 'Setup pixi'
+        uses: prefix-dev/setup-pixi@latest
+
       - name: 'Install Nix'
         uses: cachix/install-nix-action@v31
 

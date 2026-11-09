@@ -7,7 +7,7 @@
 
   outputs =
     {
-      self,
+      # self,
       nixpkgs
     }:
 
@@ -24,7 +24,7 @@
           fd
           jq
           # python3
-          pixi
+          # pixi
           sd
           ripgrep
           # yq-go
