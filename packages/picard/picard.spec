@@ -22,7 +22,7 @@ URL:            https://%{name}.musicbrainz.org/
 
 Source0:        %{forgesource}
 
-BuildRequires:  pyproject-rpm-macros desktop-file-utils
+BuildRequires:  gcc pyproject-rpm-macros desktop-file-utils
 BuildRequires:  gettext pkgconfig pkgconfig(python3)
 BuildRequires:  python3dist(discid) python3dist(markdown)
 BuildRequires:  python3dist(mutagen) python3dist(pygit2)
