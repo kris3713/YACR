@@ -53,6 +53,7 @@
 * `postman-arm64`
 * `postman`
 * `qman`
+* `quicksearch`
 * `rar`
 * `rename-my-tv-series`
 * `renamemytvseries-gtk`
