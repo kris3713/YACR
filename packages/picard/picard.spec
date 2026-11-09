@@ -28,6 +28,7 @@ BuildRequires:  python3dist(discid) python3dist(markdown)
 BuildRequires:  python3dist(mutagen) python3dist(pygit2)
 BuildRequires:  python3dist(pyjwt) python3dist(pip)
 BuildRequires:  python3dist(pyqt6) python3dist(tomlkit)
+BuildRequires:  python3-setuptools
 Recommends:     rsgain
 
 %if 0%{?rhel}
