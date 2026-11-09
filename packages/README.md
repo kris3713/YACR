@@ -66,6 +66,7 @@
 * `sweetpdf`
 * `syncthing`
 * `system-monitoring-center`
+* `tagrex`
 * `tixati`
 * `tux-manager`
 * `winpodx`
