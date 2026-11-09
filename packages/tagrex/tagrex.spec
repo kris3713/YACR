@@ -16,7 +16,7 @@ URL:            https://github.com/%{name}/%{name}
 
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 
-BuildRequires:  mise rustup openssl-devel libsoup3-devel
+BuildRequires:  mise rustup gcc openssl-devel libsoup3-devel
 BuildRequires:  javascriptcoregtk4.1-devel webkit2gtk4.1-devel
 BuildRequires:  gtk3-devel libayatana-appindicator-gtk3-devel
 BuildRequires:  librsvg2-devel libxdo-devel alsa-lib-devel
