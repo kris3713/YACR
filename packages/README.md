@@ -38,7 +38,6 @@
 * `maddy`
 * `mantra`
 * `media-hoarder`
-* `msi-ec`
 * `naps2`
 * `noctis`
 * `oh-my-posh`
