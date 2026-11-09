@@ -66,9 +66,9 @@ desktop-file-install \
 %files -f %{pyproject_files}
 %{_bindir}/%{name}
 %{_bindir}/%{name}-cli
-%{_datadir}/applications/org.musicbrainz.Picard.desktop
-%{_datadir}/icons/hicolor/*/apps/org.musicbrainz.Picard.*
-%{_datadir}/metainfo/org.musicbrainz.Picard.appdata.xml
+%{_datadir}/applications/%{app_id}.desktop
+%{_iconsdir}/hicolor/*/apps/%{app_id}.*
+%{_metainfodir}/%{app_id}.appdata.xml
 %doc ./{AUTHORS.txt,README.md}
 %license ./COPYING.txt
 
