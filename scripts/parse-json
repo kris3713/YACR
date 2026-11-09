@@ -43,7 +43,7 @@ def parse_json(url: str, regex_str: str, jsonpath_expr: str):
 
   # Invoke a new HTTP GET request
   GITHUB_TOKEN = os.getenv('GITHUB_TOKEN', '')
-  user_agent = 'Mozilla/5.0 (X11; Linux x86_64; rv:148.0) Gecko/20100101 Firefox/148.0'
+  user_agent = 'curl/8.23.0'
 
   if ('api.github.com' in url) and (GITHUB_TOKEN != ''):
     response = session.get(
