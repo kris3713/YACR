@@ -46,6 +46,7 @@
 * `p7zip`
 * `parabolic`
 * `pdfstudioviewer`
+* `picard`
 * `picocrypt-ng`
 * `plezy`
 * `podman`
