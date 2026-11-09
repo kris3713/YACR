@@ -16,7 +16,7 @@ URL:            https://github.com/%{name}/%{name}
 
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 
-BuildRequires:  mise rustup gcc openssl-devel libsoup3-devel
+BuildRequires:  bun-bin rustup gcc openssl-devel libsoup3-devel
 BuildRequires:  javascriptcoregtk4.1-devel webkit2gtk4.1-devel
 BuildRequires:  gtk3-devel libayatana-appindicator-gtk3-devel
 BuildRequires:  librsvg2-devel libxdo-devel alsa-lib-devel
@@ -40,18 +40,7 @@ rustup-init -y --no-modify-path \
   --default-toolchain stable
 export PATH="$PATH:$CARGO_HOME/bin"
 
-# Setup mise and tauri-cli
-export MISE_GLOBAL_CONFIG_FILE=''
-export MISE_CACHE_DIR="$(realpath ./.mise_cache)"
-export MISE_DATA_DIR="$(realpath ./.mise_data)"
-mise install tauri-cli@latest
-
-# Modify $PATH
-tauri_path=$(mise where tauri-cli@latest)
-ln -sv "$tauri_path/cargo-tauri" "$tauri_path/tauri"
-export PATH="$PATH:$tauri_path"
-
-tauri build \
+env NODE_ENV=production bunx @tauri-apps/cli build \
   --no-bundle \
   --target %build_target \
   -- "-j$(nproc)"
