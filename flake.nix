@@ -22,7 +22,7 @@
           curl
           fish
           fd
-          # jq
+          jq
           # python3
           pixi
           sd
