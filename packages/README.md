@@ -54,6 +54,7 @@
 * `python-box`
 * `python-cleanit`
 * `python-iso639-lang`
+* `python-jsonschema`
 * `python-rapidocr`
 * `python-trakit`
 * `qman`
