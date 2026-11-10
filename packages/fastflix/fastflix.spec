@@ -13,6 +13,8 @@ URL:            https://%{name}.org/
 
 Source0:        https://github.com/cdgriffith/%{app_name}/archive/refs/tags/%{version}.tar.gz
 
+Patch0:         pyproject_toml-edit.patch
+
 BuildRequires:  gcc pyproject-rpm-macros desktop-file-utils
 BuildRequires:  gettext pkgconfig pkgconfig(python3)
 BuildRequires:  python3dist(platformdirs) python3dist(chardet)
@@ -40,8 +42,9 @@ Recommends: tesseract mkvtoolnix
 
 
 %prep
-%autosetup -n ./%{app_name}-%{version}
+%autosetup -p1 -n ./%{app_name}-%{version}
 
+sed -i ./pyproject.toml -e 's/"wmi/# "wmi/'
 
 # %%generate_buildrequires
 # %%pyproject_buildrequires
