@@ -56,6 +56,7 @@
 * `python-click`
 * `python-iso639-lang`
 * `python-jsonschema`
+* `python-pgsrip`
 * `python-rapidocr`
 * `python-reusables`
 * `python-trakit`
