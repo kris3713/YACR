@@ -9,7 +9,7 @@ Version:        2.6.3
 Release:        1%{?dist}
 Summary:        A fast, comprehensive, ISO 639 library.
 
-License:        Apache-2.0
+License:        MIT
 URL:            https://github.com/LBeaudoux/%{alt_name}
 
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
