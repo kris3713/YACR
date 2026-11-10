@@ -44,8 +44,6 @@ BuildRequires:  python3dist(twisted)
 
 %package -n     %python_name
 Summary:        %{summary}
-%{?python_provide:%python_provide %{alt_pypi_name}}
-
 %description -n %python_name %{common_description}
 
 %pyproject_extras_subpkg -n %python_name format format-nongpl
