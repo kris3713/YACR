@@ -51,6 +51,7 @@
 * `podman`
 * `postman-arm64`
 * `postman`
+* `python-box`
 * `qman`
 * `quicksearch`
 * `rar`
