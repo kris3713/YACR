@@ -53,6 +53,7 @@
 * `postman`
 * `python-box`
 * `python-cleanit`
+* `python-click`
 * `python-iso639-lang`
 * `python-jsonschema`
 * `python-rapidocr`
