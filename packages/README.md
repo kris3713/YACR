@@ -60,6 +60,7 @@
 * `python-jsonschema`
 * `python-pgsrip`
 * `python-pyinstaller-hooks-contrib`
+* `python-pyinstaller`
 * `python-rapidocr`
 * `python-reusables`
 * `python-trakit`
