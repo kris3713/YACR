@@ -52,6 +52,7 @@
 * `podman`
 * `postman-arm64`
 * `postman`
+* `python-altgraph`
 * `python-box`
 * `python-cleanit`
 * `python-click`
