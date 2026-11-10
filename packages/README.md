@@ -53,6 +53,7 @@
 * `postman`
 * `python-box`
 * `python-cleanit`
+* `python-iso639-lang`
 * `python-rapidocr`
 * `python-trakit`
 * `qman`
