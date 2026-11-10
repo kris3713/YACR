@@ -32,11 +32,6 @@ problem, that is vagueness in metadata information.
 Summary:        %{summary}
 %{?python_provide:%python_provide %{alt_pypi_name}}
 
-Requires:       python3dist(pip)
-Requires:       python3dist(babelfish)
-Requires:       python3dist(rebulk)
-Requires:       python3dist(hatchling)
-
 %description -n %{srcname}
 TrakIt is a track name parser created to solve a common, yet very specific
 problem, that is vagueness in metadata information.
