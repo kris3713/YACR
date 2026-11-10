@@ -52,6 +52,7 @@
 * `postman-arm64`
 * `postman`
 * `python-box`
+* `python-cleanit`
 * `qman`
 * `quicksearch`
 * `rar`
