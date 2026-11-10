@@ -35,13 +35,6 @@ keys safe to access as an attribute.
 Summary:        %{summary}
 %{?python_provide:%python_provide %{alt_pypi_name}}
 
-Requires:       python3dist(msgpack)
-Requires:       python3dist(pyyaml)
-Requires:       python3dist(ruamel-yaml)
-Requires:       python3dist(toml)
-Requires:       python3dist(tomli-w)
-Requires:       python3dist(pip)
-
 %description -n %{alt_pypi_name}
 Box will automatically make otherwise inaccessible
 keys safe to access as an attribute.
