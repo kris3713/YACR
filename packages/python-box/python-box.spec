@@ -1,20 +1,19 @@
 # Created by pyp2rpm-3.3.10
 %global         alt_pypi_name python3-%{srcname}
 %global         pypi_name %name
-%global         pypi_version 8.0.0
 %global         srcname box
 
 %define         underscore_name %(echo %name | tr '-' '_')
 
 Name:           python-%{srcname}
-Version:        %{pypi_version}
+Version:        8.0.0
 Release:        1%{?dist}
 Summary:        Advanced Python dictionaries with dot notation access
 
 License:        MIT
 URL:            https://github.com/cdgriffith/Box
 
-Source0:        https://files.pythonhosted.org/packages/source/p/%{pypi_name}/%{underscore_name}-%{pypi_version}.tar.gz
+Source0:        https://files.pythonhosted.org/packages/source/p/%{pypi_name}/%{underscore_name}-%{version}.tar.gz
 
 BuildArch:      noarch
 
@@ -49,9 +48,7 @@ keys safe to access as an attribute.
 
 
 %prep
-%autosetup -n %{underscore_name}-%{pypi_version}
-# Remove bundled egg-info
-rm -rf ./%{pypi_name}.egg-info
+%autosetup -n ./%{underscore_name}-%{version}
 
 
 %build
@@ -60,18 +57,16 @@ rm -rf ./%{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files '%{srcname}'
 
 
 %check
-%nil
+%_pyproject_check_import_allow_no_modules -t
 
 
-%files -n %{alt_pypi_name}
+%files -n %{alt_pypi_name} -f %pyproject_files
 %license ./LICENSE
-%doc ./README.rst
-%{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{underscore_name}-%{pypi_version}.dist-info
-# %%{python3_sitelib}/%%{underscore_name}-%%{pypi_version}-py%%{python3_version}.egg-info
+%doc ./{AUTHORS,CHANGES,README}.rst
 
 %changelog
 %autochangelog
