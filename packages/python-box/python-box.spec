@@ -18,6 +18,7 @@ Source0:        https://files.pythonhosted.org/packages/source/p/%{pypi_name}/%{
 
 BuildArch:      noarch
 
+BuildRequires:  pyproject-rpm-macros
 BuildRequires:  pkgconfig pkgconfig(python)
 BuildRequires:  python3dist(msgpack)
 BuildRequires:  python3dist(pyyaml)
