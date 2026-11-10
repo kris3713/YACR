@@ -21,6 +21,8 @@ BuildRequires:  pkgconfig pkgconfig(python)
 BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(pip)
 
+Obsoletes:      python3dist(iso639)
+
 %description
 %srcname handles the ISO 639 code for individual languages and language groups.
 
