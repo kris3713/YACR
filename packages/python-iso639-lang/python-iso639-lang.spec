@@ -12,7 +12,7 @@ Summary:        A fast, comprehensive, ISO 639 library.
 License:        Apache-2.0
 URL:            https://github.com/LBeaudoux/%{srcname}
 
-Source0:        https://files.pythonhosted.org/packages/source/i/%{srcname}/%{underscore_name}-%{version}.tar.gz
+Source0:        %(echo %{pypi_source %{srcname}} | sed 's/%{srcname}-%{version}/%{underscore_name}-%{version}/')
 
 BuildArch:      noarch
 
@@ -34,6 +34,8 @@ Summary:        %summary
 
 %prep
 %autosetup -n ./%{underscore_name}-%{version}
+# Remove bundled egg-info
+rm -rf ./%{pypi_name}.egg-info
 
 
 %generate_buildrequires
