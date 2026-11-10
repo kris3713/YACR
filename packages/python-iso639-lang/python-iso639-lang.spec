@@ -4,16 +4,15 @@
 %global         pypi_version 2.6.3
 %global         srcname iso639-lang
 
-
 Name:           python-%{srcname}
 Version:        %pypi_version
 Release:        1%{?dist}
 Summary:        A fast, comprehensive, ISO 639 library.
 
 License:        Apache-2.0
-URL:            https://github.com/RapidAI/%{repo_name}
+URL:            https://github.com/LBeaudoux/%{srcname}
 
-Source:         https://files.pythonhosted.org/packages/source/i/%{srcname}/%{underscore_name}-%{version}.tar.gz
+Source0:        https://files.pythonhosted.org/packages/source/i/%{srcname}/%{underscore_name}-%{version}.tar.gz
 
 BuildArch:      noarch
 
@@ -47,7 +46,7 @@ Summary:        %summary
 
 %install
 %pyproject_install
-%pyproject_save_files '*iso639*'
+%pyproject_save_files %(v="%{srcname}"; echo "${v/-lang/}")
 
 
 %check
