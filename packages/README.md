@@ -22,6 +22,7 @@
 * `devtoys-cli`
 * `devtoys`
 * `dnscrypt-proxy`
+* `fastflix`
 * `figma-linux-arm64`
 * `figma-linux`
 * `fladder`
