@@ -7,7 +7,7 @@
 %endif
 
 Name:           tagrex
-Version:        1.3.3
+Version:        1.3.4
 Release:        1%{?dist}
 Summary:        A free tag editor for your music library
 
