@@ -38,16 +38,6 @@ to be replaced.
 Summary:        %{summary}
 %{?python_provide:%python_provide %{alt_pypi_name}}
 
-Requires:       python3dist(appdirs)
-Requires:       python3dist(babelfish)
-Requires:       python3dist(chardet)
-Requires:       python3dist(click)
-Requires:       python3dist(jsonschema)
-Requires:       python3dist(pysrt)
-Requires:       python3dist(pyyaml)
-Requires:       python3dist(pip)
-Requires:       python3dist(hatchling)
-
 %description -n %{srcname}
 CleanIt is a command line tool that helps you to keep your subtitles clean.
 You can specify your own rules to detect entries to be removed or patterns
@@ -56,8 +46,6 @@ to be replaced.
 
 %prep
 %autosetup -n ./%{srcname}-%{pypi_version}
-# Remove bundled egg-info
-rm -rf ./%{pypi_name}.egg-info
 
 
 %build
@@ -66,7 +54,6 @@ rm -rf ./%{pypi_name}.egg-info
 
 %install
 %pyproject_install
-
 %pyproject_save_files '%{srcname}'
 
 
@@ -79,7 +66,6 @@ rm -rf ./%{pypi_name}.egg-info
 %{_bindir}/%{srcname}
 %license ./LICENSE
 %doc ./README.md
-# %%{python3_sitelib}/%%{underscore_name}-%%{pypi_version}-py%%{python3_version}.egg-info
 
 %changelog
 %autochangelog
