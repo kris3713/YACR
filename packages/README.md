@@ -59,6 +59,7 @@
 * `python-iso639-lang`
 * `python-jsonschema`
 * `python-pgsrip`
+* `python-pyinstaller-hooks-contrib`
 * `python-rapidocr`
 * `python-reusables`
 * `python-trakit`
