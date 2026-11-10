@@ -1,3 +1,4 @@
+%global         python_name  python3-%{pypi_name}
 %global         pypi_name jsonschema
 
 %global         common_description %{expand:
@@ -41,11 +42,11 @@ BuildRequires:  python3dist(twisted)
 %description %{common_description}
 
 
-%package -n     python3-%{pypi_name}
+%package -n     %python_name
 Summary:        %{summary}
-%description -n python3-%{pypi_name} %{common_description}
+%description -n %python_name %{common_description}
 
-%pyproject_extras_subpkg -n python3-%{pypi_name} format format-nongpl
+%pyproject_extras_subpkg -n %python_name format format-nongpl
 
 
 %prep
@@ -76,7 +77,7 @@ sed -i -e 's|"virtue",||' ./pyproject.toml
 %{py3_test_envvars} trial-3 %{pypi_name}
 %endif
 
-%files -n python3-%{pypi_name} -f %{pyproject_files}
+%files -n %python_name -f %{pyproject_files}
 %license ./COPYING ./json/LICENSE
 %doc ./README.rst
 %{_bindir}/jsonschema
