@@ -53,6 +53,7 @@
 * `postman`
 * `python-box`
 * `python-cleanit`
+* `python-trakit`
 * `qman`
 * `quicksearch`
 * `rar`
