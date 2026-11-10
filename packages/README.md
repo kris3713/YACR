@@ -56,6 +56,7 @@
 * `python-iso639-lang`
 * `python-jsonschema`
 * `python-rapidocr`
+* `python-reusables`
 * `python-trakit`
 * `qman`
 * `quicksearch`
