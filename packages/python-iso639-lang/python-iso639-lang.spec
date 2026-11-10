@@ -1,18 +1,18 @@
+%global         alt_name %(v="%{srcname}"; echo "${v/-lang/}")
 %global         underscore_name %(echo %srcname | tr '-' '_')
 %global         alt_pypi_name python3-%{srcname}
 %global         pypi_name %name
-%global         pypi_version 2.6.3
 %global         srcname iso639-lang
 
 Name:           python-%{srcname}
-Version:        %pypi_version
+Version:        2.6.3
 Release:        1%{?dist}
 Summary:        A fast, comprehensive, ISO 639 library.
 
 License:        Apache-2.0
-URL:            https://github.com/LBeaudoux/%{srcname}
+URL:            https://github.com/LBeaudoux/%{alt_name}
 
-Source0:        %(echo %{pypi_source %{srcname}} | sed 's/%{srcname}-%{version}/%{underscore_name}-%{version}/')
+Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 
 BuildArch:      noarch
 
@@ -33,9 +33,7 @@ Summary:        %summary
 
 
 %prep
-%autosetup -n ./%{underscore_name}-%{version}
-# Remove bundled egg-info
-rm -rf ./%{pypi_name}.egg-info
+%autosetup -n ./%{alt_name}-%{version}
 
 
 %generate_buildrequires
@@ -48,7 +46,7 @@ rm -rf ./%{pypi_name}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files %(v="%{srcname}"; echo "${v/-lang/}")
+%pyproject_save_files %alt_name
 
 
 %check
