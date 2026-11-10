@@ -16,6 +16,7 @@ Source0:        %{pypi_source %{srcname}}
 
 BuildArch:      noarch
 
+BuildRequires:  pyproject-rpm-macros
 BuildRequires:  pkgconfig pkgconfig(python)
 BuildRequires:  python3dist(appdirs)
 BuildRequires:  python3dist(babelfish)
