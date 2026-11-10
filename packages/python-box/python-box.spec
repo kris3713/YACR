@@ -39,6 +39,7 @@ Summary:        %{summary}
 Box will automatically make otherwise inaccessible
 keys safe to access as an attribute.
 
+%pyproject_extras_subpkg -n %alt_pypi_name ruamel.yaml toml msgpack all
 
 %prep
 %autosetup -n ./%{underscore_name}-%{version}
