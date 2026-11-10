@@ -9,7 +9,7 @@ Version:        %{pypi_version}
 Release:        1%{?dist}
 Summary:        Subtitles extremely clean
 
-License:        MIT
+License:        Apache-2.0
 URL:            https://github.com/ratoaq2/%{srcname}
 
 Source0:        %{pypi_source %{srcname}}
