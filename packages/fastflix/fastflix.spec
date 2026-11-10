@@ -13,9 +13,7 @@ URL:            https://%{name}.org/
 
 Source0:        https://github.com/cdgriffith/%{app_name}/archive/refs/tags/%{version}.tar.gz
 
-Patch0:         pyproject_toml-edit.patch
-
-BuildRequires:  gcc pyproject-rpm-macros desktop-file-utils
+BuildRequires:  pyproject-rpm-macros desktop-file-utils
 BuildRequires:  gettext pkgconfig pkgconfig(python3)
 BuildRequires:  python3dist(platformdirs) python3dist(chardet)
 BuildRequires:  python3dist(colorama) python3dist(coloredlogs)
@@ -32,7 +30,7 @@ BuildRequires:  python3dist(pysrt) python3dist(pip)
 BuildRequires:  python3dist(setuptools-scm[toml])
 BuildRequires:  python3dist(wheel) python3dist(chardet)
 BuildRequires:  python3dist(mistune) python3dist(pathvalidate)
-BuildRequires:  python3dist(psutil)
+BuildRequires:  python3dist(psutil) python3dist(pyinstaller)
 BuildRequires:  icoutils
 
 Recommends: tesseract mkvtoolnix
@@ -42,7 +40,7 @@ Recommends: tesseract mkvtoolnix
 
 
 %prep
-%autosetup -p1 -n ./%{app_name}-%{version}
+%autosetup -n ./%{app_name}-%{version}
 
 sed -i ./pyproject.toml -e 's/"wmi/# "wmi/'
 
@@ -51,12 +49,12 @@ sed -i ./pyproject.toml -e 's/"wmi/# "wmi/'
 
 
 %build
-%pyproject_wheel
+pyinstaller ./%{app_name}_Nix_OneFile.spec
 
 
 %install
-%pyproject_install
-%pyproject_save_files '%{name}'
+install -Dm 0755 ./dist/%{app_name} \
+  -t %{buildroot}%{_bindir}
 
 # Install the desktop file
 CONTENT="$(cat << 'DESKTOP'
@@ -65,16 +63,15 @@ Type=Application
 Name=%app_name
 Comment=%summary
 GenericName=Video Encoder
-Exec=%name
+Exec=%app_name
 StartupWMClass=%name
 Icon=%name
 Terminal=false
-MimeType=inode/directory
 Categories=Audio;AudioVideo;Video;AudioVideoEditing
 DESKTOP
 )"
 install -Dm 0644 /dev/stdin \
-  %{buildroot}%{_datadir}/applications/%{name}.desktop <<< "$CONTENT"
+  %{buildroot}%{_datadir}/applications/%{app_name}.desktop <<< "$CONTENT"
 
 # Install the application icon
 icotool ./%{name}/data/icon.ico \
@@ -83,9 +80,9 @@ install -Dm 0644 ./%{name}.png \
   -t %{buildroot}%{_iconsdir}/hicolor/256x256/apps
 
 
-%files -f %{pyproject_files}
-%{_bindir}/%{name}
-%{_datadir}/applications/%{name}.desktop
+%files
+%{_bindir}/%{app_name}
+%{_datadir}/applications/%{app_name}.desktop
 %{_iconsdir}/hicolor/256x256/apps/%{name}.png
 %doc ./README.md
 %license ./LICENSE
