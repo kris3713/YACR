@@ -13,7 +13,7 @@ Summary:        A fast, comprehensive, ISO 639 library.
 License:        Apache-2.0
 URL:            https://github.com/RapidAI/%{repo_name}
 
-Source0:        https://files.pythonhosted.org/packages/source/i/%{srcname}/%{underscore_name}-%{version}.tar.gz
+Source:         https://files.pythonhosted.org/packages/source/i/%{srcname}/%{underscore_name}-%{version}.tar.gz
 
 BuildArch:      noarch
 
