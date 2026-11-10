@@ -37,6 +37,7 @@ Open source OCR for the security of the digital world.
 
 %package -n     %{alt_pypi_name}
 Summary:        %{summary}
+%{?python_provide:%python_provide %{alt_pypi_name}}
 
 %description -n %{alt_pypi_name}
 Open source OCR for the security of the digital world.
