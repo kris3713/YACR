@@ -3,7 +3,7 @@
 %global         debug_package %nil
 
 Name:           %(v="%{app_name}"; echo "${v,,}")
-Version:        1.1.2
+Version:        1.1.5
 Release:        1%{?dist}
 Summary:        All-in-one open source PDF editor
 
