@@ -2,11 +2,11 @@
 %global         app_name Picard
 %global         maintainer musicbrainz
 %global         forgeurl https://github.com/%{maintainer}/%{name}
-%global         commit b4cfdb02dbe808e7ac73a34760aaf382e8d837f6
+%global         commit 336b651b4f84b0d9295a212833e39b66098d2ba3
 %global         debug_package %nil
 
 Name:           %(v="%{app_name}"; echo "${v,}")
-Version:        3.0.4
+Version:        3.0.5
 Summary:        MusicBrainz-based audio tagger
 %if 0%{?buildtag:1}
 %forgemeta
