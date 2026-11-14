@@ -3,7 +3,7 @@
 %global         debug_package %nil
 
 Name:           system-monitoring-center
-Version:        3.4.1
+Version:        3.5.0
 Release:        1%{?dist}
 Summary:        Multi-featured system monitor
 
