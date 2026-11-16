@@ -81,6 +81,7 @@
 * `tagrex`
 * `tixati`
 * `tux-manager`
+* `universal-android-debloater`
 * `winpodx`
 * `xnconvert`
 * `xnviewmp`
