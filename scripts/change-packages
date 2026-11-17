@@ -39,49 +39,25 @@ switch (count $argv)
             set -l subdir $split_dir[-2]
             set -l name (basename -s '.spec' $split_dir[-1])
 
-            if test $name == streamnook
-                echo --------------------------------------------
-                echo 'Method: make_srpm'
-                echo 'Clone URL: https://github.com/kris3713/YACR.git'
-                echo 'Commitish: master'
-                echo "Subdir: packages/$subdir"
-                echo "Spec: $name.spec"
-                echo "Pkg Name: $name"
-                echo "Webhook Rebuild: $webhook_rebuild"
-                echo 'Timeout: 23400 seconds'
-                echo 'COPR Project: zliced13/YACR'
+            echo --------------------------------------------
+            echo 'Method: make_srpm'
+            echo 'Clone URL: https://github.com/kris3713/YACR.git'
+            echo 'Commitish: master'
+            echo "Subdir: packages/$subdir"
+            echo "Spec: $name.spec"
+            echo "Pkg Name: $name"
+            echo "Webhook Rebuild: $webhook_rebuild"
+            echo 'COPR Project: zliced13/YACR'
 
-                copr-cli edit-package-scm \
-                    --method make_srpm \
-                    --clone-url 'https://github.com/kris3713/YACR.git' \
-                    --commit master \
-                    --subdir "packages/$subdir" \
-                    --spec "$name.spec" \
-                    --name $name \
-                    --webhook-rebuild $webhook_rebuild \
-                    --timeout 23400 \
-                    zliced13/YACR
-            else
-                echo --------------------------------------------
-                echo 'Method: make_srpm'
-                echo 'Clone URL: https://github.com/kris3713/YACR.git'
-                echo 'Commitish: master'
-                echo "Subdir: packages/$subdir"
-                echo "Spec: $name.spec"
-                echo "Pkg Name: $name"
-                echo "Webhook Rebuild: $webhook_rebuild"
-                echo 'COPR Project: zliced13/YACR'
-
-                copr-cli edit-package-scm \
-                    --method make_srpm \
-                    --clone-url 'https://github.com/kris3713/YACR.git' \
-                    --commit master \
-                    --subdir "packages/$subdir" \
-                    --spec "$name.spec" \
-                    --name $name \
-                    --webhook-rebuild $webhook_rebuild \
-                    zliced13/YACR
-            end
+            copr-cli edit-package-scm \
+                --method make_srpm \
+                --clone-url 'https://github.com/kris3713/YACR.git' \
+                --commit master \
+                --subdir "packages/$subdir" \
+                --spec "$name.spec" \
+                --name $name \
+                --webhook-rebuild $webhook_rebuild \
+                zliced13/YACR
         end
 
     case 2
@@ -93,25 +69,49 @@ switch (count $argv)
             exit 1
         end
 
-        echo --------------------------------------------
-        echo 'Method: make_srpm'
-        echo 'Clone URL: https://github.com/kris3713/YACR.git'
-        echo 'Commitish: master'
-        echo "Subdir: packages/$name"
-        echo "Spec: $name.spec"
-        echo "Pkg Name: $name"
-        echo "Webhook Rebuild: $webhook_rebuild"
-        echo 'COPR Project: zliced13/YACR'
+        if test "$name" = streamnook
+            echo --------------------------------------------
+            echo 'Method: make_srpm'
+            echo 'Clone URL: https://github.com/kris3713/YACR.git'
+            echo 'Commitish: master'
+            echo "Subdir: packages/$subdir"
+            echo "Spec: $name.spec"
+            echo "Pkg Name: $name"
+            echo "Webhook Rebuild: $webhook_rebuild"
+            echo 'Timeout: 23400 seconds'
+            echo 'COPR Project: zliced13/YACR'
 
-        copr-cli edit-package-scm \
-            --method make_srpm \
-            --clone-url 'https://github.com/kris3713/YACR.git' \
-            --commit master \
-            --subdir "packages/$name" \
-            --spec "$name.spec" \
-            --name $name \
-            --webhook-rebuild $webhook_rebuild \
-            zliced13/YACR
+            copr-cli edit-package-scm \
+                --method make_srpm \
+                --clone-url 'https://github.com/kris3713/YACR.git' \
+                --commit master \
+                --subdir "packages/$subdir" \
+                --spec "$name.spec" \
+                --name $name \
+                --webhook-rebuild $webhook_rebuild \
+                --timeout 23400 \
+                zliced13/YACR
+        else
+            echo --------------------------------------------
+            echo 'Method: make_srpm'
+            echo 'Clone URL: https://github.com/kris3713/YACR.git'
+            echo 'Commitish: master'
+            echo "Subdir: packages/$subdir"
+            echo "Spec: $name.spec"
+            echo "Pkg Name: $name"
+            echo "Webhook Rebuild: $webhook_rebuild"
+            echo 'COPR Project: zliced13/YACR'
+
+            copr-cli edit-package-scm \
+                --method make_srpm \
+                --clone-url 'https://github.com/kris3713/YACR.git' \
+                --commit master \
+                --subdir "packages/$subdir" \
+                --spec "$name.spec" \
+                --name $name \
+                --webhook-rebuild $webhook_rebuild \
+                zliced13/YACR
+        end
 
     case 3
         set -l webhook_rebuild $argv[1]
