@@ -29,8 +29,7 @@ qmake6 ../src
 
 
 %install
-# rm -rf %{buildroot}
-install -Dm 0755 ./%{name} %{buildroot}%{_bindir}/%{name}
+install -Dm 0755 ./build/%{name} %{buildroot}%{_bindir}/%{name}
 
 CONTENT="$(cat << 'DESKTOP'
 [Desktop Entry]
