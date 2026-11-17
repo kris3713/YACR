@@ -9,7 +9,7 @@ Version:        8.9.2
 Release:        1%{?dist}
 Summary:        A native desktop client for Twitch, YouTube, Kick, and TikTok
 
-License:        MIT
+License:        PolyForm-Noncommercial-1.0.0 AND LicenseRef-StreamNook-Additional-Permissions
 URL:            https://%{name}.app/
 
 Source0:        %{git_url}/archive/refs/tags/v%{version}.tar.gz
@@ -113,7 +113,7 @@ install -Dm 0644 "$ICONS_DIR/icon.svg" \
 %{_datadir}/applications/%{name}.desktop
 %{_iconsdir}/hicolor/*/apps/%{app_name}.*
 %license ./LICENSE
-%doc ./README.md
+%doc ./{CHANGELOG,README}.md ./docs/plugins
 
 
 %changelog
