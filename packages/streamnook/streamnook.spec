@@ -14,7 +14,7 @@ URL:            https://%{name}.app/
 
 Source0:        %{git_url}/archive/refs/tags/v%{version}.tar.gz
 
-BuildRequires:  nodejs nodejs-npm rust cargo openssl-devel libsoup3-devel
+BuildRequires:  nodejs nodejs-npm rustup openssl-devel libsoup3-devel
 BuildRequires:  javascriptcoregtk4.1-devel webkit2gtk4.1-devel alsa-lib-devel
 BuildRequires:  gtk3-devel libayatana-appindicator-gtk3-devel libxdo-devel
 
@@ -31,7 +31,13 @@ Multi-stream grid, standalone chat, and every emote provider in one place.
 
 %build
 export npm_config_cache="$(realpath ./.node_cache)"
+export RUSTUP_HOME="$(realpath ./.rustup)"
 export CARGO_HOME="$(realpath ./.cargo)"
+
+# Initialize rustup
+rustup-init -y --no-modify-path \
+  --default-toolchain stable
+export PATH="$PATH:$CARGO_HOME/bin"
 
 env NODE_ENV='dev' npm install
 
