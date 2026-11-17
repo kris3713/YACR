@@ -50,16 +50,6 @@ if [ ! -d "$build_dir" ]; then
   mkdir -v "$build_dir"
 fi
 
-# # Remove the previous container if it already exists
-# PREV_RANDOM_NAME_FILE='/tmp/previous-random-name.txt'
-# if [ -f $PREV_RANDOM_NAME_FILE ]; then
-#   PREV_RANDOM_NAME="$(cat $PREV_RANDOM_NAME_FILE)"
-#   if podman container exists "$PREV_RANDOM_NAME"; then
-#     podman kill "$PREV_RANDOM_NAME" --signal=KILL
-#     podman rm -fv "$PREV_RANDOM_NAME"
-#   fi
-# fi
-
 RANDOM_NAME="$(uvx petname 2> /dev/null)"
 
 # Create the container
@@ -72,9 +62,6 @@ podman run -d \
   ghcr.io/ultramarine-linux/ultramarine:44 \
   sleep infinity
 # TODO: Update the image tag if availible ^
-
-# # Store the current random name for later use
-# echo "$RANDOM_NAME" > $PREV_RANDOM_NAME_FILE
 
 # For ease of use
 PODMAN_EXEC_CMD="podman exec -it $RANDOM_NAME"
