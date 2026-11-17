@@ -1,4 +1,4 @@
-%global         __requires_exclude_from ^/opt/%{app_name}/.*\.so(\..*)?$
+%global         __requires_exclude_from ^/opt/%{app_name}/.*$
 %global         __provides_exclude_from ^/opt/%{app_name}/.*$
 %global         git_url https://github.com/%{app_name}/%{app_name}
 %global         app_name StreamNook
@@ -57,11 +57,11 @@ install -d %{buildroot}{/opt/%{app_name},%{_bindir}}
 
 # Copy all the application files to the application dir
 RELEASE_DIR='./src-tauri/target/x86_64-unknown-linux-gnu/release'
-cp -av "$RELEASE_DIR"/{*.so*,*.pak,locales,icudtl.dat,vk_swiftshader_icd.json} \
+cp -a "$RELEASE_DIR/build"/{*.so*,*.pak,locales,icudtl.dat,vk_swiftshader_icd.json} \
   %{buildroot}/opt/%{app_name}/
-cp -av "$RELEASE_DIR"/{chrome-sandbox,%{app_name},v8_context_snapshot.bin} \
+cp -a "$RELEASE_DIR/build"/{chrome-sandbox,v8_context_snapshot.bin,CREDITS.html} \
   %{buildroot}/opt/%{app_name}/
-cp -av "$RELEASE_DIR/CREDITS.html" %{buildroot}/opt/%{app_name}/
+cp -a "$RELEASE_DIR/%{app_name}" %{buildroot}/opt/%{app_name}/
 
 # Symlink the application binary
 ln -sv /opt/%{app_name}/%{app_name} %{buildroot}%{_bindir}
