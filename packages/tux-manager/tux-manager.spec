@@ -11,7 +11,7 @@ URL:            https://github.com/benapetr/%{app_name}
 
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 
-BuildRequires:  qt6-qtbase-devel qt6-linguist pkgconf-pkg-config icoutils
+BuildRequires:  qt6-qtbase-devel qt6-linguist pkgconf-pkg-config ImageMagick
 
 %description
 %summary
@@ -46,21 +46,15 @@ install -Dm 0644 /dev/stdin \
   %{buildroot}%{_datadir}/applications/%{name}.desktop <<< "$CONTENT"
 
 SIZES=('16x16' '32x32' '48x48' '64x64' '128x128' '256x256')
-ICO_FILE='./src/tux_manager_256.ico'
 ICONS_DIR='./app_icons'
 mkdir -v "$ICONS_DIR"
-icotool "$ICO_FILE" --extract \
-  --index=1 -o "$ICONS_DIR/${SIZES[0]}.png"
-icotool "$ICO_FILE" --extract \
-  --index=2 -o "$ICONS_DIR/${SIZES[1]}.png"
-icotool "$ICO_FILE" --extract \
-  --index=3 -o "$ICONS_DIR/${SIZES[2]}.png"
-icotool "$ICO_FILE" --extract \
-  --index=4 -o "$ICONS_DIR/${SIZES[3]}.png"
-icotool "$ICO_FILE" --extract \
-  --index=5 -o "$ICONS_DIR/${SIZES[4]}.png"
-icotool "$ICO_FILE" --extract \
-  --index=6 -o "$ICONS_DIR/${SIZES[5]}.png"
+magick ./src/tux_manager_256.ico ./%{name}.png
+mv -v ./%{name}-0.png "$ICONS_DIR/${SIZES[5]}.png"
+mv -v ./%{name}-1.png "$ICONS_DIR/${SIZES[4]}.png"
+mv -v ./%{name}-2.png "$ICONS_DIR/${SIZES[3]}.png"
+mv -v ./%{name}-3.png "$ICONS_DIR/${SIZES[2]}.png"
+mv -v ./%{name}-4.png "$ICONS_DIR/${SIZES[1]}.png"
+mv -v ./%{name}-5.png "$ICONS_DIR/${SIZES[0]}.png"
 
 for size in "${SIZES[@]}"; do
   install -Dm 0644 "$ICONS_DIR/$size.png" \
