@@ -67,7 +67,7 @@ install -Dm644 ./src/tux_manager_icon.svg \
 %files
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
-%{buildroot}%{_iconsdir}/hicolor/*/%{name}.*
+%{_iconsdir}/hicolor/*/%{name}.*
 %license ./LICENSE
 %doc ./README.md
 
