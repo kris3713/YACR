@@ -19,6 +19,8 @@ BuildRequires:  nodejs nodejs-npm rust cargo openssl-devel libsoup3-devel
 BuildRequires:  javascriptcoregtk4.1-devel webkit2gtk4.1-devel alsa-lib-devel
 BuildRequires:  gtk3-devel libayatana-appindicator-gtk3-devel libxdo-devel
 
+ExclusiveArch:  x86_64
+
 %description
 %summary.
 Multi-stream grid, standalone chat, and every emote provider in one place.
@@ -34,11 +36,11 @@ export CARGO_HOME="$(realpath ./.cargo)"
 
 env NODE_ENV='dev' npm install
 
-export TWITCH_WEB_CLIENT_ID='kimne78kx3ncx6brgo4mv6wki5h1ko' \
-  TWITCH_APP_CLIENT_ID='1qgws7yzcp21g5ledlzffw3lmqdvie' \
-  TWITCH_ANDROID_CLIENT_ID='kd1unb4b3q4t58fwlpcbzcbnm76a8fp'
-env TWITCH_APP_CLIENT_SECRET="$TWITCH_APP_CLIENT_ID" \
-  NODE_ENV='production' \
+export TWITCH_WEB_CLIENT_ID='kimne78kx3ncx6brgo4mv6wki5h1ko'
+export TWITCH_APP_CLIENT_ID='1qgws7yzcp21g5ledlzffw3lmqdvie'
+export TWITCH_ANDROID_CLIENT_ID='kd1unb4b3q4t58fwlpcbzcbnm76a8fp'
+export TWITCH_APP_CLIENT_SECRET="$TWITCH_APP_CLIENT_ID"
+env NODE_ENV='production' \
   npm run tauri build -- \
     --no-bundle \
     --target x86_64-unknown-linux-gnu \
