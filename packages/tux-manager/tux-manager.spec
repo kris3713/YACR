@@ -58,7 +58,7 @@ mv -v ./%{name}-5.png "$ICONS_DIR/${SIZES[0]}.png"
 
 for size in "${SIZES[@]}"; do
   install -Dm 0644 "$ICONS_DIR/$size.png" \
-    "%{buildroot}%{_iconsdir}/hicolor/$size/uad-ng.png"
+    "%{buildroot}%{_iconsdir}/hicolor/$size/%{name}.png"
 done
 install -Dm644 ./src/tux_manager_icon.svg \
   %{buildroot}%{_iconsdir}/hicolor/scalable/%{name}.svg
