@@ -11,7 +11,7 @@ URL:            https://github.com/benapetr/%{app_name}
 
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 
-BuildRequires:  qt6-qtbase-devel qt6-linguist pkgconf-pkg-config
+BuildRequires:  qt6-qtbase-devel qt6-linguist pkgconf-pkg-config icoutils
 
 %description
 %summary
