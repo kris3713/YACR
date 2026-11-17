@@ -131,7 +131,9 @@ install -Dm 0644 "$ICONS_DIR/icon.svg" \
 
 %files
 %{_bindir}/%{app_name}
+%if "%{version}" != "8.7.1"
 /opt/%{app_name}
+%endif
 %{_datadir}/applications/%{name}.desktop
 %{_iconsdir}/hicolor/*/apps/%{app_name}.*
 %license ./LICENSE
