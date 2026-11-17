@@ -22,14 +22,26 @@ switch (count $argv)
     case 1
         set -l name $argv[1]
 
-        copr-cli buildscm \
-            --method make_srpm \
-            --clone-url 'https://github.com/kris3713/YACR.git' \
-            --commit master \
-            --subdir "packages/$name" \
-            --spec "$name.spec" \
-            --enable-net on \
-            zliced13/YACR
+        if test $name == streamnook
+            copr-cli buildscm \
+                --method make_srpm \
+                --clone-url 'https://github.com/kris3713/YACR.git' \
+                --commit master \
+                --subdir "packages/$name" \
+                --spec "$name.spec" \
+                --enable-net on \
+                --timeout 23400 \
+                zliced13/YACR
+        else
+            copr-cli buildscm \
+                --method make_srpm \
+                --clone-url 'https://github.com/kris3713/YACR.git' \
+                --commit master \
+                --subdir "packages/$name" \
+                --spec "$name.spec" \
+                --enable-net on \
+                zliced13/YACR
+        end
 
     case 2
         set -l subdir $argv[1]
