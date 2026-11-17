@@ -14,7 +14,7 @@ URL:            https://%{name}.app/
 
 Source0:        %{git_url}/archive/refs/tags/v%{version}.tar.gz
 
-BuildRequires:  nodejs nodejs-npm rustup openssl-devel libsoup3-devel
+BuildRequires:  nodejs nodejs-npm rustup gcc-c++ openssl-devel libsoup3-devel
 BuildRequires:  javascriptcoregtk4.1-devel webkit2gtk4.1-devel alsa-lib-devel
 BuildRequires:  gtk3-devel libayatana-appindicator-gtk3-devel libxdo-devel
 
