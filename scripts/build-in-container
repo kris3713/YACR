@@ -14,6 +14,18 @@
 
 set -x -euo pipefail
 
+# Cleanup function to catch exits, errors, and Ctrl+C (SIGINT)
+cleanup() {
+  local exit_code=$?
+  if [ -n "${RANDOM_NAME:-}" ]; then
+    podman kill "$RANDOM_NAME" --signal=KILL 2> /dev/null || true
+    podman rm -fv "$RANDOM_NAME" 2> /dev/null || true
+  fi
+  exit "$exit_code"
+}
+
+trap cleanup EXIT INT TERM
+
 if ! command -v uvx > /dev/null && ! command -v podman > /dev/null; then
   # shellcheck disable=SC2016
   echo 'Please ensure `podman` and `uv` are installed!
@@ -84,6 +96,3 @@ elif [ "$#" -eq 2 ]; then
   $PODMAN_EXEC_CMD spectool --define "_topdir $build_dir" --sourcedir -g "/project/packages/$1/$2.spec"
   $PODMAN_EXEC_CMD rpmbuild --define "_topdir $build_dir" -bb "/project/packages/$1/$2.spec"
 fi
-
-podman kill "$RANDOM_NAME" --signal=KILL
-podman rm -fv "$RANDOM_NAME"
