@@ -3,3 +3,7 @@
 .pixi/*
 !.pixi/config.toml
 pixi.lock
+
+# rpm files
+*.rpm
+build/

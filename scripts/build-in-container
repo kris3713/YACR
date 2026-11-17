@@ -1,0 +1,90 @@
+#!/usr/bin/env bash
+
+# This script builds rpm packages safely
+# by executing all the required commands
+# in an ultramarine-linux container.
+#
+# USAGE:
+#
+# ./scripts/build-in-container <name-of-rpm-spec-file>
+#
+# OR
+#
+# ./scripts/build-in-container <name-of-directory-of-rpm-spec-file> <name-of-rpm-spec-file>
+
+set -x -euo pipefail
+
+if ! command -v uvx && ! command -v podman; then
+  # shellcheck disable=SC2016
+  echo 'Please ensure `podman` and `uv` are installed!
+  The script will otherwise not work.'
+  exit 1
+fi
+
+# Check if number of arguments are more than
+# 2 or none
+if [ "$#" -gt 2 ] || [ "$#" -eq 0 ]; then
+  echo "Usage: $0 <arg1> <arg2>"
+  exit 1
+fi
+
+SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
+PROJECT_DIR="$(realpath "$SCRIPT_DIR/..")"
+
+# Set the initial build directory
+build_dir="$PROJECT_DIR/build"
+
+if [ ! -d "$build_dir" ]; then
+  mkdir -v "$build_dir"
+fi
+
+PREV_RANDOM_NAME_FILE='/tmp/previous-random-name.txt'
+
+# Remove the previous container if it already exists
+if [ -f $PREV_RANDOM_NAME_FILE ]; then
+  PREV_RANDOM_NAME="$(cat $PREV_RANDOM_NAME_FILE)"
+  if podman container exists "$PREV_RANDOM_NAME"; then
+    podman kill "$PREV_RANDOM_NAME" --signal=KILL
+    podman rm -fv "$PREV_RANDOM_NAME"
+  fi
+fi
+
+RANDOM_NAME="$(uvx petname 2> /dev/null)"
+
+# Create the container
+podman run -d \
+  --replace \
+  --pull=always \
+  "--name=$RANDOM_NAME" \
+  -v "$PROJECT_DIR:/project" \
+  -v "$build_dir:/project/build" \
+  ghcr.io/ultramarine-linux/ultramarine:44 \
+  sleep infinity
+# TODO: Update the image tag if availible ^
+
+# Store the current random name for later use
+echo "$RANDOM_NAME" > $PREV_RANDOM_NAME_FILE
+
+# For ease of use
+PODMAN_EXEC_CMD='podman exec -it build_rpm_pkg_container'
+
+# Enable required COPR repos and install important pkgs
+$PODMAN_EXEC_CMD sudo dnf copr enable -y zliced13/YACR
+$PODMAN_EXEC_CMD sudo dnf copr enable -y scottames/mise
+$PODMAN_EXEC_CMD sudo dnf install -y git rpmdevtools
+
+# Change the build directory again
+build_dir='/project/build'
+
+if [ "$#" -eq 1 ]; then
+  $PODMAN_EXEC_CMD sudo dnf builddep -y "/project/packages/$1/$1.spec"
+  $PODMAN_EXEC_CMD spectool --define "_topdir $build_dir" --sourcedir -g "/project/packages/$1/$1.spec"
+  $PODMAN_EXEC_CMD rpmbuild --define "_topdir $build_dir" -bb "/project/packages/$1/$1.spec"
+elif [ "$#" -eq 2 ]; then
+  $PODMAN_EXEC_CMD sudo dnf builddep -y "/project/packages/$1/$2.spec"
+  $PODMAN_EXEC_CMD spectool --define "_topdir $build_dir" --sourcedir -g "/project/packages/$1/$2.spec"
+  $PODMAN_EXEC_CMD rpmbuild --define "_topdir $build_dir" -bb "/project/packages/$1/$2.spec"
+fi
+
+podman kill "$RANDOM_NAME" --signal=KILL
+podman rm -fv "$RANDOM_NAME"
