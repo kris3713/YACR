@@ -74,6 +74,7 @@
 * `riseup-vpn`
 * `sly`
 * `stacher`
+* `streamnook`
 * `superlight`
 * `sweetpdf`
 * `syncthing`
