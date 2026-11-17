@@ -14,7 +14,7 @@
 
 set -x -euo pipefail
 
-if ! command -v uvx && ! command -v podman; then
+if ! command -v uvx > /dev/null && ! command -v podman > /dev/null; then
   # shellcheck disable=SC2016
   echo 'Please ensure `podman` and `uv` are installed!
   The script will otherwise not work.'
