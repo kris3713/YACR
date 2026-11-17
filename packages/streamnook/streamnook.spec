@@ -68,18 +68,25 @@ env NODE_ENV='production' \
 
 
 %install
+RELEASE_DIR='./src-tauri/target/x86_64-unknown-linux-gnu/release'
+
+%if "%{version}" == "8.7.1"
+# Install the application binary
+install -Dm 0755 "$RELEASE_DIR/%{app_name}" -t %{buildroot}%{_bindir}
+%else
 install -d %{buildroot}{/opt/%{app_name},%{_bindir}}
 
 # Copy all the application files to the application dir
-RELEASE_DIR='./src-tauri/target/x86_64-unknown-linux-gnu/release'
 cp -a "$RELEASE_DIR/build"/{*.so*,*.pak,locales,icudtl.dat,vk_swiftshader_icd.json} \
   %{buildroot}/opt/%{app_name}/
 cp -a "$RELEASE_DIR/build"/{chrome-sandbox,v8_context_snapshot.bin,CREDITS.html} \
   %{buildroot}/opt/%{app_name}/
-cp -a "$RELEASE_DIR/%{app_name}" %{buildroot}/opt/%{app_name}/
+cp -a "$RELEASE_DIR/%{app_name}" \
+  %{buildroot}/opt/%{app_name}/
 
 # Symlink the application binary
 ln -sv /opt/%{app_name}/%{app_name} %{buildroot}%{_bindir}
+%endif
 
 # Install the desktop file
 CONTENT="$(cat << 'DESKTOP'
