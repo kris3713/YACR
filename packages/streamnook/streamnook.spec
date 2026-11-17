@@ -18,6 +18,19 @@ BuildRequires:  nodejs nodejs-npm rustup gcc-c++ openssl-devel libsoup3-devel
 BuildRequires:  javascriptcoregtk4.1-devel webkit2gtk4.1-devel alsa-lib-devel
 BuildRequires:  gtk3-devel libayatana-appindicator-gtk3-devel libxdo-devel
 
+# To avoid having syslog-ng as a dependency; required
+# libraries (shared objects) will need to be manually listed.
+Requires:       openssl-libs glib2 gtk3 gdk-pixbuf2 libgcc systemd-libs
+Requires:       zlib-ng-compat libffi pango cairo harfbuzz fontconfig
+Requires:       fribidi atk libepoxy libXi at-spi2-atk libcloudproviders
+Requires:       libtinysparql libwayland-client libXfixes libxkbcommon
+Requires:       libwayland-cursor libwayland-egl libXext libXcursor
+Requires:       libXdamage libXcomposite libXrandr libXinerama
+Requires:       glycin-libs libmount libselinux pcre2 libthai libpng
+Requires:       freetype libXrender libxcb pixman graphite2 libxml2
+Requires:       at-spi2-core json-glib sqlite-libs lcms2 libseccomp
+Requires:       libblkid libdatrie libbrotli bzip2-libs libXau xz-libs
+
 ExclusiveArch:  x86_64
 
 %description
