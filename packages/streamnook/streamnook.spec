@@ -1,5 +1,6 @@
 %global         __requires_exclude_from ^/opt/%{app_name}/.*\.so.*$
 %global         __provides_exclude_from ^/opt/%{app_name}/.*$
+%global         __requires_exclude ^libcef\.so$
 %global         git_url https://github.com/%{app_name}/%{app_name}
 %global         app_name StreamNook
 %global         debug_package %nil
