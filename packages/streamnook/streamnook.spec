@@ -5,7 +5,9 @@
 %global         debug_package %nil
 
 Name:           %(v="%{app_name}"; echo "${v,,}")
-Version:        8.9.2
+# TODO: Update this to the latest version the moment the
+# TODO: developer announces better Linux support
+Version:        8.7.1
 Release:        1%{?dist}
 Summary:        A native desktop client for Twitch, YouTube, Kick, and TikTok
 
