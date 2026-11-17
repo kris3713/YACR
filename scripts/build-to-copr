@@ -22,7 +22,7 @@ switch (count $argv)
     case 1
         set -l name $argv[1]
 
-        if test $name == streamnook
+        if test $name = streamnook
             copr-cli buildscm \
                 --method make_srpm \
                 --clone-url 'https://github.com/kris3713/YACR.git' \
