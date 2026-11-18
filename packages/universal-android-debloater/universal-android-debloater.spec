@@ -86,7 +86,7 @@ Name=Universal Android Debloater Next Generation
 Comment=ADB GUI for debloating non-rooted Android devices
 Exec=%{gui_name}
 StartupWMClass=%{gui_name}
-Icon=%name
+Icon=%{gui_name}
 Terminal=false
 DESKTOP
 )"
@@ -117,12 +117,12 @@ icotool "$ICO_FILE" --extract \
 for icon in "$ICONS_DIR"/*; do
   dir_name="$(basename -s '.png' "$icon")"
   install -Dm 0644 "$icon" \
-    "%{buildroot}%{_iconsdir}/hicolor/$dir_name/uad-ng.png"
+    "%{buildroot}%{_iconsdir}/hicolor/$dir_name/%{gui_name}.png"
 done
 
 
 %files
-%{_bindir}/uad-ng
+%{_bindir}/%{gui_name}
 %{_datadir}/applications/%{gui_name}.desktop
 %{_iconsdir}/hicolor
 %license ./LICENSE ./LICENSE.dependencies
@@ -130,7 +130,7 @@ done
 
 
 %files          cli
-%{_bindir}/uad
+%{_bindir}/%{alt}
 %license ./LICENSE ./LICENSE.dependencies
 %doc ./README.md
 
