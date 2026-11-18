@@ -10,6 +10,7 @@ build-in-container *ARGS:
 change-packages *ARGS:
   ./scripts/change-packages {{ARGS}}
 
+# Tests a packages update-script if it exists
 test-update-script pkg_name:
   #!/usr/bin/env sh
 
