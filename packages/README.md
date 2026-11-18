@@ -42,6 +42,7 @@
 * `naps2`
 * `noctis`
 * `oh-my-posh`
+* `open-pdf-studio`
 * `open-pencil`
 * `p7zip`
 * `parabolic`
