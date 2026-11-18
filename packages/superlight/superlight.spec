@@ -48,6 +48,7 @@ Requires:       python3-xapp
 %{_datadir}/applications/org.x.%{name}.desktop
 %{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
 %{_datadir}/glib-2.0/schemas/org.x.%{name}.gschema.xml
+/usr/share/locale
 %license ./LICENSES/*
 %doc ./README.md
 
