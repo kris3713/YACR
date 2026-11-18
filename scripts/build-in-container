@@ -66,12 +66,13 @@ podman run -d \
 # For ease of use
 PODMAN_EXEC_CMD="podman exec -it $RANDOM_NAME"
 
+# Turn off weak deps
+$PODMAN_EXEC_CMD sudo dnf config-manager setopt install_weak_deps=False
+
 # Enable required COPR repos, install important pkgs
-# and turn off weak deps
 $PODMAN_EXEC_CMD sudo dnf copr enable -y zliced13/YACR
 $PODMAN_EXEC_CMD sudo dnf copr enable -y scottames/mise
 $PODMAN_EXEC_CMD sudo dnf install -y git rpmdevtools
-$PODMAN_EXEC_CMD sudo dnf config-manager setopt install_weak_deps=False
 
 # Change the build directory again
 build_dir='/project/build'
