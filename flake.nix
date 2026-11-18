@@ -23,6 +23,7 @@
           fish
           fd
           jq
+          just
           # python3
           # pixi
           sd
