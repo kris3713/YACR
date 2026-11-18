@@ -81,10 +81,11 @@ podman run -d \
 # For ease of use
 PODMAN_EXEC_CMD="podman exec -it $RANDOM_NAME"
 
-# Turn off weak deps
+# Turn off weak deps and enable best candidate
 $PODMAN_EXEC_CMD sudo dnf config-manager \
-  setopt 'install_weak_deps=False' \
-  setopt 'best=True'
+  setopt install_weak_deps=False
+$PODMAN_EXEC_CMD sudo dnf config-manager \
+  setopt best=True
 
 # Enable required COPR repos, install important pkgs
 $PODMAN_EXEC_CMD sudo dnf copr enable -y zliced13/YACR
