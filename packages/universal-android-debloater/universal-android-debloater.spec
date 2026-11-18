@@ -86,7 +86,7 @@ Name=Universal Android Debloater Next Generation
 Comment=ADB GUI for debloating non-rooted Android devices
 Exec=%{gui_name}
 StartupWMClass=%{gui_name}
-Icon=%{gui_name}
+Icon=%{_iconsdir}/hicolor/256x256/%{gui_name}.png
 Terminal=false
 DESKTOP
 )"
