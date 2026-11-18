@@ -1,4 +1,6 @@
-%global         debug_package %{nil}
+%global         alt uad
+%global         gui_name %{alt}-ng
+%global         debug_package %nil
 
 %ifarch x86_64
 %define         build_target x86_64-unknown-linux-gnu
@@ -49,8 +51,8 @@ export PATH="$PATH:$CARGO_HOME/bin"
 # Build uad-gui and uad-cli
 cargo build "-j$(nproc)" --release \
   --target %build_target \
-  -p uad-gui \
-  -p uad-cli
+  -p %{alt}-gui \
+  -p %{alt}-cli
 
 # # Generate a clean dependency graph
 # cargo tree --workspace --edges 'no-build,no-dev,no-proc-macro' \
@@ -69,11 +71,11 @@ cargo tree --workspace --edges 'no-build,no-dev,no-proc-macro' \
 
 %install
 # install uad-gui
-install -Dm 0755 ./target/%{build_target}/release/uad-ng \
+install -Dm 0755 ./target/%{build_target}/release/%{gui_name} \
   -t %{buildroot}%{_bindir}
 
 # install uad-cli
-install -Dm 0755 ./target/%{build_target}/release/uad \
+install -Dm 0755 ./target/%{build_target}/release/%{alt} \
   -t %{buildroot}%{_bindir}
 
 # Install the desktop file
@@ -82,14 +84,14 @@ CONTENT="$(cat << 'DESKTOP'
 Type=Application
 Name=Universal Android Debloater Next Generation
 Comment=ADB GUI for debloating non-rooted Android devices
-Exec=uad-ng
-StartupWMClass=uad-ng
+Exec=%{gui_name}
+StartupWMClass=%{gui_name}
 Icon=%name
 Terminal=false
 DESKTOP
 )"
 install -Dm 0644 /dev/stdin \
-  %{buildroot}%{_datadir}/applications/%{name}.desktop <<< "$CONTENT"
+  %{buildroot}%{_datadir}/applications/%{gui_name}.desktop <<< "$CONTENT"
 
 # Install application icons
 ICONS_DIR='./app_icons'
@@ -121,7 +123,7 @@ done
 
 %files
 %{_bindir}/uad-ng
-%{_datadir}/applications/%{name}.desktop
+%{_datadir}/applications/%{gui_name}.desktop
 %{_iconsdir}/hicolor
 %license ./LICENSE ./LICENSE.dependencies
 %doc ./README.md
