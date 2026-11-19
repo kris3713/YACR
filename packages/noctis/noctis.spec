@@ -20,7 +20,7 @@ URL:            https://noctisapp.cc/
 
 Source0:        https://github.com/heartached/%{app_name}/archive/refs/tags/v%{version}.tar.gz
 
-Requires:       vlc-libs
+Requires:       vlc-libs gtk-update-icon-cache
 BuildRequires:  dotnet-sdk-10.0 vlc-devel
 
 %description
@@ -31,9 +31,15 @@ No account to make, no telemetry to switch off.
 %autosetup -n ./%{app_name}-%{version}
 
 %build
-env DOTNET_NOLOGO=true DOTNET_CLI_TELEMETRY_OPTOUT=true \
-  dotnet publish ./src/%{app_name}/%{app_name}.csproj -c Release -r %{rel_type} \
-  --self-contained '-p:DebugType=None' '-p:DebugSymbols=false' \
+export DOTNET_NOLOGO=true
+export DOTNET_CLI_TELEMETRY_OPTOUT=true
+
+dotnet publish ./src/%{app_name}/%{app_name}.csproj \
+  -c Release \
+  -r %{rel_type} \
+  --self-contained \
+  '-p:DebugType=None' \
+  '-p:DebugSymbols=false' \
   -o ./app
 
 %install
@@ -45,10 +51,10 @@ cp -a ./app/* %{buildroot}/opt/%{app_name}
 CONTENT="$(cat << 'DESKTOP'
 [Desktop Entry]
 Type=Application
-Name=Noctis
+Name=%app_name
 Comment=%summary
-Exec=Noctis
-Icon=noctis
+Exec=%app_name
+Icon=%name
 Categories=Audio;Player;Music
 Terminal=false
 DESKTOP
