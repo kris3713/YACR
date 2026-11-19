@@ -1,7 +1,7 @@
 # Copied from the openSUSE package of the same name
 %global         alt_pypi_name python3-%{srcname}
 %global         pypi_name %name
-%global         pypi_version 0.4.0
+%global         pypi_version 0.5.0
 %global         srcname trakit
 
 Name:           python-%{srcname}
