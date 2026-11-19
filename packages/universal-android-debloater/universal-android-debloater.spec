@@ -86,7 +86,7 @@ Name=Universal Android Debloater Next Generation
 Comment=ADB GUI for debloating non-rooted Android devices
 Exec=%{gui_name}
 StartupWMClass=%{gui_name}
-Icon=%{_iconsdir}/hicolor/256x256/%{gui_name}.png
+Icon=%{gui_name}
 Terminal=false
 DESKTOP
 )"
@@ -120,11 +120,14 @@ for icon in "$ICONS_DIR"/*; do
     "%{buildroot}%{_iconsdir}/hicolor/$dir_name/%{gui_name}.png"
 done
 
+ln -sv %{_iconsdir}/hicolor/256x256/%{gui_name} \
+  %{buildroot}%{_datadir}/pixmaps/%{name}.png
 
 %files
 %{_bindir}/%{gui_name}
 %{_datadir}/applications/%{gui_name}.desktop
 %{_iconsdir}/hicolor
+%{_datadir}/pixmaps/%{name}.png
 %license ./LICENSE ./LICENSE.dependencies
 %doc ./README.md
 
