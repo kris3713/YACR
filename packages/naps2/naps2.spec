@@ -13,7 +13,7 @@
 %global         debug_package %{nil}
 
 Name:           naps2
-Version:        8.6.0
+Version:        8.6.1
 Release:        1%{?dist}
 Summary:        Scan documents to PDF and more, as simply as possible.
 
