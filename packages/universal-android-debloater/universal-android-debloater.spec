@@ -120,6 +120,7 @@ for icon in "$ICONS_DIR"/*; do
     "%{buildroot}%{_iconsdir}/hicolor/$dir_name/%{gui_name}.png"
 done
 
+install -d %{buildroot}%{_datadir}/pixmaps
 ln -sv %{_iconsdir}/hicolor/256x256/%{gui_name} \
   %{buildroot}%{_datadir}/pixmaps/%{name}.png
 
