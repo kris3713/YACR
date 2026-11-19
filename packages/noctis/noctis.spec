@@ -5,7 +5,7 @@
 %endif
 
 %global         __provides_exclude_from ^/opt/%{app_name}/.*$
-%global         __requires_exclude_from ^/opt/%{app_name}/.*$
+%global         __requires_exclude_from ^/opt/%{app_name}/runtimes/.*$
 %global         __spec_install_post %nil
 %global         app_name Noctis
 %global         debug_package %nil
@@ -16,7 +16,7 @@ Release:        1%{?dist}
 Summary:        A music player that respects what's yours. Zero tracking, total control
 
 License:        GPL-2.0-or-later
-URL:            https://noctisapp.cc/
+URL:            https://%{name}app.cc/
 
 Source0:        https://github.com/heartached/%{app_name}/archive/refs/tags/v%{version}.tar.gz
 
@@ -38,6 +38,7 @@ dotnet publish ./src/%{app_name}/%{app_name}.csproj \
   -c Release \
   -r %{rel_type} \
   --self-contained \
+  '-p:PublishSingleFile=true' \
   '-p:DebugType=None' \
   '-p:DebugSymbols=false' \
   -o ./app
