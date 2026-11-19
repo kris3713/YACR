@@ -14,7 +14,7 @@ URL:            https://github.com/netcrawlerr/%{app_name}
 
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 
-BuildArch:      x86_64
+ExclusiveArch:  x86_64
 
 BuildRequires:  dotnet-sdk-10.0
 Requires:       libicu libX11
