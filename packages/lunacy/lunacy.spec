@@ -15,6 +15,7 @@ Source0:        https://lcdn.icons8.com/setup/%{app_name}_%{version}.deb
 Source1:        %{raw_github_url}/refs/heads/master/docs/%{name}%20license.md#/EULA.md
 
 BuildRequires:  dpkg
+Requires:       gtk-update-icon-cache
 
 ExclusiveArch:  x86_64
 
