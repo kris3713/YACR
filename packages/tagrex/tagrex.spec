@@ -59,7 +59,6 @@ Type=Application
 Name=%app_name
 Comment=Cross-platform audio tag editor
 Exec=%name %%F
-StartupWMClass=%app_name
 Icon=%name
 Terminal=false
 MimeType=inode/directory
