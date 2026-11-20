@@ -31,7 +31,6 @@
 * `harmonoid`
 * `hwinfo`
 * `jdsystemmonitor`
-* `jetbrains-toolbox-arm64`
 * `jetbrains-toolbox`
 * `jq`
 * `kuro`
