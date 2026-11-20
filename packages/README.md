@@ -52,7 +52,6 @@
 * `picocrypt-ng`
 * `plezy`
 * `podman`
-* `postman-arm64`
 * `postman`
 * `python-altgraph`
 * `python-box`
