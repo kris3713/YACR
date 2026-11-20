@@ -1,3 +1,4 @@
+%global         app_name TagRex
 %global         debug_package %nil
 
 %ifarch x86_64
@@ -6,7 +7,7 @@
 %global         build_target aarch64-unknown-linux-gnu
 %endif
 
-Name:           tagrex
+Name:           %(v='%{app_name}'; echo "${v,,}")
 Version:        1.8.1
 Release:        1%{?dist}
 Summary:        A free tag editor for your music library
@@ -55,10 +56,10 @@ install -Dm 0755 ./target/%{build_target}/release/%{name} \
 CONTENT="$(cat << 'DESKTOP'
 [Desktop Entry]
 Type=Application
-Name=%name
+Name=%app_name
 Comment=Cross-platform audio tag editor
 Exec=%name %%F
-StartupWMClass=%name
+StartupWMClass=%app_name
 Icon=%name
 Terminal=false
 MimeType=inode/directory
