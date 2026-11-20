@@ -32,8 +32,10 @@ Postman is an API platform for building and using APIs.
 Postman simplifies each step of the API lifecycle and
 streamlines collaboration so you can create better APIs faster.
 
+
 %prep
 %autosetup -T -b %src_number -n ./%{app_name}/app
+
 
 %install
 # Start installing the application to the build root (while also creating another build root)
@@ -55,11 +57,13 @@ ln -sv /opt/%{app_name}/%{name} %{buildroot}%{_bindir}
 install -Dm 0644 ./resources/app/assets/icon.png \
   %{buildroot}%{_iconsdir}/hicolor/128x128/apps/%{name}.png
 
+
 %files
 /opt/%{app_name}
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_iconsdir}/hicolor/128x128/apps/%{name}.png
+
 
 %changelog
 %autochangelog
