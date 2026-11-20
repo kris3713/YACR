@@ -8,7 +8,7 @@
 %global         debug_package %nil
 
 Name:           %(echo %app_name | tr '[:upper:]' '[:lower:]')
-Version:        0.12.0
+Version:        0.12.1
 Release:        1%{?dist}
 Summary:        A cross-platform Jellyfin Frontend built on top of Flutter.
 
