@@ -17,6 +17,7 @@ URL:            https://cudatext.github.io/
 Source0:        https://sourceforge.net/projects/cudatext/files/release/%{version}/%{fullname}-linux-%{variant}-%{pkg_arch}-%{version}.tar.xz
 Source1:        %{fullname}.desktop
 
+Requires:       qt6-qtbase qt6-qttools
 Recommends:     python3
 
 ExclusiveArch:  x86_64
