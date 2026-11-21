@@ -6,12 +6,6 @@
 %global         url_part https://download.jetbrains.com/toolbox
 %global         debug_package %nil
 
-%ifarch x86_64
-%global         src_number 0
-%else
-%global         src_number 1
-%endif
-
 Name:           jetbrains-toolbox
 Version:        3.9.1.89198
 Release:        1%{?dist}
@@ -31,8 +25,11 @@ Obsoletes:      %{name}-arm64 = 3.9.1.89198-%{release}
 
 
 %prep
-%autosetup -T -b %src_number -n ./%{name}-%{version}/bin
-
+%ifarch x86_64
+%autosetup -T -b 0 -n ./%{name}-%{version}/bin
+%else
+%autosetup -T -b 1 -n ./%{name}-%{version}-arm64/bin
+%endif
 
 %install
 # Create a new build root
