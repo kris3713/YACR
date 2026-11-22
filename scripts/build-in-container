@@ -69,6 +69,7 @@ RANDOM_NAME="$(uvx petname 2>/dev/null)"
 
 # Create the container
 podman run -d \
+  --init \
   --replace \
   --pull=always \
   "--name=$RANDOM_NAME" \
