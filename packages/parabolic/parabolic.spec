@@ -49,11 +49,16 @@ export NUGET_PACKAGES="$(realpath ./.nuget_cache)"
 export DOTNET_NOLOGO='true'
 export DOTNET_CLI_TELEMETRY_OPTOUT='true'
 
-dotnet publish -c Release -r %rel_type \
-  --self-contained --ucr -v m \
+dotnet restore ./%{project}/%{project}.csproj
+dotnet publish ./%{project}/%{project}.csproj \
+  -c Release \
+  -r %rel_type \
+  --self-contained \
+  --ucr \
+  -v m \
   '-p:PublishReadyToRun=true' \
-  '-p:DebugType=None' '-p:DebugSymbols=false' \
-  ./%{project}/%{project}.csproj
+  '-p:DebugType=None' \
+  '-p:DebugSymbols=false'
 
 ln -sv ./%{project}/bin/Release/net10.0/%{rel_type}/publish ./build
 
