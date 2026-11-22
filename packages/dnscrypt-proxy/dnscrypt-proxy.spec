@@ -9,7 +9,7 @@
 %endif
 
 Name:           dnscrypt-proxy
-Version:        2.1.20
+Version:        2.2.21
 Release:        4%{?dist}
 Summary:        Flexible DNS proxy, with support for encrypted DNS protocols
 
