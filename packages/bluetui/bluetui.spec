@@ -7,7 +7,7 @@
 %endif
 
 Name:           bluetui
-Version:        0.8.2
+Version:        0.8.3
 Release:        1%{?dist}
 Summary:        TUI for managing bluetooth on Linux
 License:        GPL-3.0-or-later
