@@ -31,9 +31,11 @@ No account to make, no telemetry to switch off.
 %autosetup -n ./%{app_name}-%{version}
 
 %build
+export NUGET_PACKAGES="$(realpath ./.nuget_cache)"
 export DOTNET_NOLOGO=true
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 
+dotnet restore ./src/%{app_name}/%{app_name}.csproj
 dotnet publish ./src/%{app_name}/%{app_name}.csproj \
   -c Release \
   -r %{rel_type} \
@@ -44,6 +46,14 @@ dotnet publish ./src/%{app_name}/%{app_name}.csproj \
   -o ./app
 
 %install
+# Remove unneeded runtime libraries
+for glob_exp in 'win*' 'macos*'; do
+  find ./app/runtimes \
+    -type d \
+    -name "$glob_exp" \
+    -exec rm -rv {} +
+done
+
 # Copy the application files to the application directory
 install -d %{buildroot}/opt/%{app_name}
 cp -a ./app/* %{buildroot}/opt/%{app_name}
