@@ -51,7 +51,7 @@ for glob_exp in 'win*' 'macos*'; do
   find ./app/runtimes \
     -type d \
     -name "$glob_exp" \
-    -exec rm -rv {} +
+    -exec rm -rv '{}' +
 done
 
 # Copy the application files to the application directory
