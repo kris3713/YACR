@@ -32,6 +32,7 @@
 * `hwinfo`
 * `jdsystemmonitor`
 * `jetbrains-toolbox`
+* `jopdf`
 * `jq`
 * `kuro`
 * `lrcget`
