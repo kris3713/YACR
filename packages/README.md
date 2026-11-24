@@ -6,6 +6,7 @@
 
 * `16x-prompt`
 * `adwaita-fonts`
+* `ant-renamer-qt`
 * `atuin`
 * `bitwarden`
 * `bleachbit`
