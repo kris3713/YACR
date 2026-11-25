@@ -75,7 +75,7 @@ podman run -d \
   "--name=$RANDOM_NAME" \
   -v "$PROJECT_DIR:/project" \
   -v "$build_dir:/project/build" \
-  --network host \
+  --network=host \
   ghcr.io/ultramarine-linux/ultramarine:44 \
   sleep infinity
 # TODO: Update the image tag if availible ^
