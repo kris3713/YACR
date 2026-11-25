@@ -13,7 +13,7 @@ Version:        1.3.1
 Release:        1%{?dist}
 Summary:        Cross-platform GUI written in Rust using ADB to debloat non-rooted Android devices
 
-License:        MIT
+License:        GPL-3.0-only
 URL:            https://github.com/Universal-Debloater-Alliance/%{name}-next-generation
 
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
