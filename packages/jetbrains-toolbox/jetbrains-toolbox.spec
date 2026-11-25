@@ -7,7 +7,7 @@
 %global         debug_package %nil
 
 Name:           jetbrains-toolbox
-Version:        3.9.1.89198
+Version:        3.9.2.89815
 Release:        1%{?dist}
 Summary:        Manage your JetBrains IDEs and Tools the easy way
 
