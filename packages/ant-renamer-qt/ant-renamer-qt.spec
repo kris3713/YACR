@@ -12,7 +12,7 @@
 %endif
 
 Name:           ant-renamer-qt
-Version:        3.3.0
+Version:        3.3.1
 Release:        1%{?dist}
 Summary:        C++/Qt 6 port of Ant Renamer 2.13 (originally Delphi 7, GPL v2 or later)
 
