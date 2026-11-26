@@ -32,7 +32,7 @@ way. The service is paid for entirely by donations from users.
 # Using git makes the build unreproducible, but `make vendor` will fail without it
 git init -q
 git remote add origin %{git_url}.git > /dev/null
-git fetch --tags --depth=1 1> /dev/null
+git fetch --tags --depth=1 2> /dev/null
 git checkout -fb %{version} %{version}
 
 
