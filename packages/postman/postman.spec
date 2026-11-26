@@ -2,7 +2,7 @@
 %global         __requires_exclude_from ^/opt/%{app_name}/.*$
 %global         url_part https://dl.pstmn.io/download/version/%{real_version}
 %global         app_name Postman
-%global         real_version 12.38.3
+%global         real_version 12.38.5
 %global         debug_package %{nil}
 
 %ifarch x86_64
