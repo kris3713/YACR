@@ -115,6 +115,10 @@ build_package() {
 
   local SPEC_PATH="/project/packages/$1/$2.spec"
   $PODMAN_EXEC_CMD sudo dnf builddep -y "$SPEC_PATH"
+  # $PODMAN_EXEC_CMD sh -xc "spectool -l '$SPEC_PATH' |
+  #   awk '/https?:\/\// {print \$NF}' |
+  #   xargs -I{} -P4 curl -fsSL -O '{}' \
+  #     --output-dir '$build_dir/SOURCES'"
   $PODMAN_EXEC_CMD spectool \
     --define "_topdir $build_dir" \
     --sourcedir -g "$SPEC_PATH"
