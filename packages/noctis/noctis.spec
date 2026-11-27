@@ -11,7 +11,7 @@
 %global         debug_package %nil
 
 Name:           %(echo %app_name | tr '[:upper:]' '[:lower:]')
-Version:        1.7.2
+Version:        1.7.3
 Release:        1%{?dist}
 Summary:        A music player that respects what's yours. Zero tracking, total control
 
