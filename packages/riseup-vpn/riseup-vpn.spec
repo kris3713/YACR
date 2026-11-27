@@ -1,7 +1,8 @@
+%global         __requires_exclude_from %{_bindir}/%{name}
 # Generic name of the package without vendor branding
 %global         gen_name bitmask-vpn
 %global         git_url https://0xacab.org/leap/bitmask-vpn
-%global         debug_package %{nil}
+%global         debug_package %nil
 
 Name:           riseup-vpn
 Version:        0.25.8
@@ -28,12 +29,12 @@ way. The service is paid for entirely by donations from users.
 
 
 %prep
-%setup -q -n ./%{gen_name}-%{version}
+%autosetup -n ./%{gen_name}-%{version}
 # Using git makes the build unreproducible, but `make vendor` will fail without it
 git init -q
-git remote add origin %{git_url}.git > /dev/null
+git remote add origin '%{git_url}.git' > /dev/null
 git fetch --tags --depth=1 2> /dev/null
-git checkout -fb %{version} %{version}
+git checkout -fb %version %version
 
 
 %build
@@ -43,7 +44,8 @@ make vendor
 make relink_vendor
 
 # Build the application
-export LRELEASE="%{_libdir}/qt6/bin/lrelease" RELEASE='yes'
+export LRELEASE="%{_libdir}/qt6/bin/lrelease"
+export RELEASE='yes'
 export QMAKE='qmake6'
 %make_build
 
@@ -84,8 +86,7 @@ install -Dm 0644 ./providers/riseup/assets/icon.svg \
 %{_bindir}/bitmask-root
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/polkit-1/actions/se.leap.bitmask.policy
-%{_iconsdir}/hicolor/256x256/apps/%{name}.png
-%{_iconsdir}/hicolor/scalable/apps/%{name}.svg
+%{_iconsdir}/hicolor/*/apps/%{name}.*
 %license ./LICENSE
 
 
