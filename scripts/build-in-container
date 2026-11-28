@@ -109,8 +109,10 @@ build_package() {
     '.' \
     "$PROJECT_DIR/packages/$1")
   for source_file in $SOURCE_FILES; do
-    [ -f "$source_file" ] \
-      && cp -v "$source_file" "$PROJECT_DIR/build/SOURCES"
+    DEST_FILE="$PROJECT_DIR/build/SOURCES/$(basename "$source_file")"
+    if [ ! -f "$DEST_FILE" ]; then
+      cp -v "$source_file" "$DEST_FILE"
+    fi
   done
 
   local SPEC_PATH="/project/packages/$1/$2.spec"
