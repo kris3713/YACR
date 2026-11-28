@@ -108,7 +108,7 @@ done
 %{_datadir}/applications/%{app_id}.desktop
 %{_metainfodir}/%{app_id}.metainfo.xml
 %{_iconsdir}/hicolor/*/apps/%{app_id}.png
-%license ../{{LICENSE,LICENSING.md}.md,GPL-3.0.txt}
+%license ../{{LICENSE,LICENSING}.md,GPL-3.0.txt}
 %doc ../README.md
 
 
