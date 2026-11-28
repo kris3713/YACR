@@ -5,7 +5,7 @@
 %global         debug_package %nil
 
 Name:           open-pdf-studio
-Version:        2026.48.29
+Version:        2026.48.30
 Release:        1%{?dist}
 Summary:        An open source PDF viewer/editor with it's own blazing fast rust engine
 
